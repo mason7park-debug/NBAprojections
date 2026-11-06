@@ -100,16 +100,26 @@ def season_year(today):
 
 def fetch_baselines(season, out, today):
     """Season per-game averages. This is the naive baseline the model must beat."""
-    rows, offset, page = [], 0, 100
+    # ESPN paginates with `page`, NOT `offset`. Passing offset returns page 1
+    # every time -- which silently yielded 100 unique players repeated 4x.
+    rows, page_no, per_page, seen = [], 1, 100, set()
     while True:
         url = (f"{WEB}/statistics/byathlete?region=us&lang=en&season={season}"
-               f"&seasontype=2&limit={page}&offset={offset}")
-        d = get(url, f"baselines[{offset}]")
+               f"&seasontype=2&limit={per_page}&page={page_no}")
+        d = get(url, f"baselines[p{page_no}]")
         if not d:
             break
         athletes = d.get("athletes", [])
         if not athletes:
             break
+        # Guard against the failure returning: if a page repeats what we have,
+        # stop rather than writing duplicates.
+        page_ids = {a.get("athlete", {}).get("id") for a in athletes}
+        if page_ids and page_ids <= seen:
+            print(f"  [baselines] page {page_no} repeated earlier ids; stopping",
+                  file=sys.stderr)
+            break
+        seen |= page_ids
 
         # Label lists live at the top level, one per category, parallel to each
         # athlete's value arrays. CAREFUL: labels repeat -- ESPN returns both
@@ -152,9 +162,9 @@ def fetch_baselines(season, out, today):
                 row["GP"] = row["GP_total"]
             rows.append(row)
 
-        total = d.get("pagination", {}).get("count", 0)
-        offset += page
-        if offset >= total:
+        pages = d.get("pagination", {}).get("pages", 1)
+        page_no += 1
+        if page_no > pages:
             break
 
     write_csv(rows, out / "baseline" / f"{today}.csv", "baselines")

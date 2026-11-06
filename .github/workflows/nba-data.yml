@@ -1,0 +1,52 @@
+name: NBA data snapshot
+
+on:
+  schedule:
+    # Times are UTC. GitHub's scheduler is heavily delayed on the hour, so
+    # these sit on off-minutes. Expect 5-20 min of slippage regardless.
+    - cron: "37 22 * * *"   # ~5:37pm ET -- pregame snapshot, before first tip
+    - cron: "43 13 * * *"   # ~8:43am ET -- results from the night before
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "pregame or results"
+        required: true
+        default: pregame
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install nba_api pandas
+
+      - name: Pick mode
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "mode=${{ github.event.inputs.mode }}" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event.schedule }}" = "37 22 * * *" ]; then
+            echo "mode=pregame" >> "$GITHUB_OUTPUT"
+          else
+            echo "mode=results" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Fetch
+        run: python scripts/fetch_nba_data.py --mode "${{ steps.mode.outputs.mode }}" --out data
+
+      - name: Commit
+        run: |
+          git config user.name  "nba-data-bot"
+          git config user.email "actions@github.com"
+          git add data logs
+          git diff --staged --quiet || git commit -m "snapshot: ${{ steps.mode.outputs.mode }} $(date -u +%Y-%m-%d)"
+          git push

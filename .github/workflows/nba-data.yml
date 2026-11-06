@@ -1,19 +1,19 @@
 name: NBA data snapshot
 
-# SCHEDULE DISABLED 2026-11-06.
+# Fetches from ESPN, not stats.nba.com.
 #
-# stats.nba.com blackholes cloud-provider IP ranges. From GitHub runners every
-# request times out (not 403, not 429 -- packets are dropped), so all five
-# endpoints failed 4/4 attempts on the first scheduled run. cdn.nba.com is
-# reachable and serves schedule/box scores, but NOT the tracking stats
-# (rebound chances, potential assists) this project is built on.
+# History: stats.nba.com blackholes datacenter IPs, so the first scheduled run
+# here timed out on all five endpoints. It was then also unreachable from a
+# residential connection (2026-11-06), so the local-runner fallback failed too.
+# ESPN's public endpoints work from cloud runners, so the schedule is back.
 #
-# The fetch now runs on a residential connection via scripts/run_and_push.sh,
-# scheduled by scripts/com.mason.nbadata.plist. This repo is storage only.
-#
-# Kept as manual-dispatch so the block can be re-tested later if nba.com
-# changes policy. Do not re-enable the cron without a passing manual run.
+# scripts/fetch_nba_data.py (nba.com) is kept for manual retry -- if nba.com
+# becomes reachable again it restores the tracking stats ESPN lacks.
 on:
+  schedule:
+    # UTC. GitHub's scheduler slips 5-20 min regardless of the minute chosen.
+    - cron: "37 22 * * *"   # ~5:37pm ET -- pregame, before first tip
+    - cron: "43 13 * * *"   # ~8:43am ET -- results from the night before
   workflow_dispatch:
     inputs:
       mode:
@@ -34,8 +34,6 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install deps
-        run: pip install nba_api pandas
 
       - name: Pick mode
         id: mode
@@ -49,7 +47,7 @@ jobs:
           fi
 
       - name: Fetch
-        run: python scripts/fetch_nba_data.py --mode "${{ steps.mode.outputs.mode }}" --out data
+        run: python scripts/fetch_espn.py --mode "${{ steps.mode.outputs.mode }}" --out data
 
       - name: Commit
         run: |

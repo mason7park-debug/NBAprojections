@@ -2,60 +2,82 @@
 
 Nightly NBA data snapshots for the `nba-projections` skill.
 
-GitHub Actions runners have unrestricted network access to stats.nba.com.
-Sandboxed agents usually don't. This repo bridges that gap: Actions fetches
-the data and commits it, and the agent reads the committed CSVs over
-`raw.githubusercontent.com`.
+Sandboxed agents can't reliably reach sports data sources. This repo bridges
+that gap: GitHub Actions fetches the data and commits it, and the agent reads
+the committed CSVs over `raw.githubusercontent.com`. The commits also serve as
+the persistent projection log.
 
 ## Layout
 
 ```
 .github/workflows/nba-data.yml   scheduled fetch (pregame + results)
-scripts/fetch_nba_data.py        the fetcher
+scripts/fetch_espn.py            THE FETCHER -- ESPN, works from Actions
 scripts/calibrate.py             margin SD and MAE-threshold calculations
 scripts/minutes_by_margin.py     per-player minutes split by final margin
+scripts/fetch_nba_data.py        nba.com fetcher (blocked; kept for retry)
+scripts/run_and_push.sh          local runner (unused; kept for retry)
+scripts/com.mason.nbadata.plist  launchd schedule for the local runner
 data/                            committed snapshots (written by Actions)
 logs/                            projection logs, written before tip
 ```
 
-## Why the fetch runs locally
+## Data source: ESPN
 
-GitHub Actions **cannot** fetch this data. stats.nba.com blackholes
-cloud-provider IP ranges: requests time out rather than returning an error
-status. Verified 2026-11-06, all five endpoints failed 4/4 attempts from a
-GitHub runner. cdn.nba.com is reachable from cloud hosts and serves schedule
-and box scores, but not the tracking stats (rebound chances, potential
-assists) this project depends on.
+`scripts/fetch_espn.py` pulls from ESPN's public endpoints. No API key, no
+auth, standard library only.
 
-So the fetch runs on a residential connection and pushes here. The repo is
-storage: a persistent log that a sandboxed agent can read over
-raw.githubusercontent.com without the Mac being awake.
+**Why not stats.nba.com.** It blackholes datacenter IPs (requests time out
+rather than erroring), so GitHub Actions failed on all five endpoints
+2026-11-06. It was *also* unreachable from a residential connection the same
+evening, so the local-runner fallback failed too. ESPN works from cloud
+runners, so the fetch runs on Actions.
+
+`scripts/fetch_nba_data.py` (nba.com) and `scripts/run_and_push.sh` +
+`com.mason.nbadata.plist` (local runner) are kept for manual retry. If nba.com
+becomes reachable again it restores the tracking stats ESPN lacks.
+
+### What ESPN provides
+
+| Need | Available | Notes |
+|---|---|---|
+| Season baselines | yes | 400 players, per-game and totals |
+| Box scores | yes | incl. OREB/DREB split, DNP flag |
+| Volume drivers | yes | FGA, 3PA, FTA, FGM, TO |
+| Slate + schedule | yes | |
+| Injury reports | yes | per game, with status and type |
+| Spread + total | yes | DraftKings, same call as the box score |
+| Rebound chances | **no** | nba.com tracking only |
+| Potential assists | **no** | nba.com tracking only |
+
+Injuries and odds arrive in the same per-game `summary` call as the box score,
+so three sources collapse into one and the Odds API is not needed for spreads.
+
+The two missing tracking fields degrade the projection model: REB falls back
+to minutes x rebound rate, and AST loses its volume term entirely. See the
+skill for how that changes the approach.
+
+### Gotcha: duplicate labels
+
+ESPN returns per-game and season-total values under the *same* short label,
+and the order differs by category (in `general`, REB total comes BEFORE REB
+per-game; in `offensive`, per-game comes first). Only `displayNames`
+distinguishes them. Selecting on `labels` alone silently yields season totals
+as per-game averages — this produced "Luka Doncic, 65 rebounds per game"
+before it was fixed. Totals are preserved with a `_total` suffix.
 
 ## Schedule
 
-`scripts/com.mason.nbadata.plist` runs `run_and_push.sh auto` twice daily:
+GitHub Actions, twice daily:
 
-| Local time | Mode (chosen by hour) | What |
-|---|---|---|
-| 08:45 | results | previous night's box scores |
-| 17:40 | pregame | slate, tracking stats, baselines, game logs |
+| Cron (UTC) | ET | Mode | What |
+|---|---|---|---|
+| `43 13 * * *` | ~8:43am | results | previous night's box scores |
+| `37 22 * * *` | ~5:37pm | pregame | slate, odds, injuries, baselines |
 
-launchd skips runs while the Mac is asleep and does not make them up. A missed
-evening is a missed slate, not a broken pipeline.
+GitHub's scheduler slips 5-20 minutes. Run manually any time from the Actions
+tab via **Run workflow**.
 
-## Setup
-
-1. `chmod +x scripts/run_and_push.sh`
-2. Test once by hand: `./scripts/run_and_push.sh pregame`
-3. Edit `REPO_PATH` in `scripts/com.mason.nbadata.plist` to this folder's path.
-4. `cp scripts/com.mason.nbadata.plist ~/Library/LaunchAgents/`
-5. `launchctl load ~/Library/LaunchAgents/com.mason.nbadata.plist`
-
-Check status with `launchctl list | grep nbadata` (second column is the last
-exit code) and `tail ~/.../logs/run/*.log`.
-
-Exit codes from `run_and_push.sh`: `0` clean, `1` partial fetch or push
-failure, `2` nothing fetched at all (usually a blocked IP).
+Exit codes: `0` clean, `1` partial fetch, `2` nothing fetched at all.
 
 ## Reading the data from an agent
 

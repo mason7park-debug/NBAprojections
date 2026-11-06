@@ -28,9 +28,15 @@ from nba_api.stats.endpoints import (
 # nba.com rate-limits aggressively and rejects default user agents.
 PAUSE = 1.2
 
+# NOTE: stats.nba.com blackholes cloud-provider IP ranges (GitHub Actions, EC2,
+# etc). Requests time out rather than returning an error status. Run this from a
+# residential connection. Confirmed failing from GitHub runners 2026-11-06.
+
+FAILED = []   # labels that never came back
+WROTE = []    # labels actually written
+
 
 def retry(fn, label, attempts=4):
-    """nba.com times out often. Back off and retry rather than failing the run."""
     for i in range(attempts):
         try:
             out = fn()
@@ -42,13 +48,17 @@ def retry(fn, label, attempts=4):
                   file=sys.stderr)
             time.sleep(wait)
     print(f"  [{label}] GIVING UP after {attempts} attempts", file=sys.stderr)
+    FAILED.append(label)
     return None
 
 
 def write(df, path, label):
     if df is None or len(df) == 0:
         print(f"  skip {label}: no data")
+        if label not in FAILED:
+            FAILED.append(label)
         return
+    WROTE.append(label)
     path.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(path, index=False)
     print(f"  wrote {path}  ({len(df)} rows)")
@@ -112,6 +122,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", choices=["pregame", "results"], required=True)
     ap.add_argument("--out", default="data")
+    ap.add_argument("--allow-partial", action="store_true",
+                    help="exit 0 if at least one fetch succeeded (default: any "
+                         "failure is an error)")
     args = ap.parse_args()
 
     out = pathlib.Path(args.out)
@@ -120,6 +133,22 @@ def main():
     print(f"season={season} date={today}")
 
     (pregame if args.mode == "pregame" else results)(out, today, season)
+
+    # A nightly job that fails silently is worse than no job. Exit non-zero so
+    # the scheduler, the shell wrapper and the user all find out.
+    print(f"\nwrote: {WROTE or 'nothing'}")
+    if FAILED:
+        print(f"FAILED: {FAILED}", file=sys.stderr)
+        if not WROTE:
+            print("Nothing was fetched at all. If every request timed out, this "
+                  "machine's IP is likely blocked by stats.nba.com -- run from a "
+                  "residential connection.", file=sys.stderr)
+            sys.exit(2)
+        if not args.allow_partial:
+            sys.exit(1)
+        print("continuing anyway (--allow-partial)", file=sys.stderr)
+    else:
+        print("all fetches succeeded")
 
 
 if __name__ == "__main__":

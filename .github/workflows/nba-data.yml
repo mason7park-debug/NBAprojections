@@ -1,11 +1,19 @@
 name: NBA data snapshot
 
+# SCHEDULE DISABLED 2026-11-06.
+#
+# stats.nba.com blackholes cloud-provider IP ranges. From GitHub runners every
+# request times out (not 403, not 429 -- packets are dropped), so all five
+# endpoints failed 4/4 attempts on the first scheduled run. cdn.nba.com is
+# reachable and serves schedule/box scores, but NOT the tracking stats
+# (rebound chances, potential assists) this project is built on.
+#
+# The fetch now runs on a residential connection via scripts/run_and_push.sh,
+# scheduled by scripts/com.mason.nbadata.plist. This repo is storage only.
+#
+# Kept as manual-dispatch so the block can be re-tested later if nba.com
+# changes policy. Do not re-enable the cron without a passing manual run.
 on:
-  schedule:
-    # Times are UTC. GitHub's scheduler is heavily delayed on the hour, so
-    # these sit on off-minutes. Expect 5-20 min of slippage regardless.
-    - cron: "37 22 * * *"   # ~5:37pm ET -- pregame snapshot, before first tip
-    - cron: "43 13 * * *"   # ~8:43am ET -- results from the night before
   workflow_dispatch:
     inputs:
       mode:

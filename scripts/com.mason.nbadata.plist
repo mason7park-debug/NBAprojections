@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  launchd job: fetch NBA data twice a day and push to GitHub.
+
+  Install:
+    cp scripts/com.mason.nbadata.plist ~/Library/LaunchAgents/
+    # edit REPO_PATH below to the real path first
+    launchctl load  ~/Library/LaunchAgents/com.mason.nbadata.plist
+    launchctl start com.mason.nbadata
+
+  Check it:
+    launchctl list | grep nbadata        # second column is last exit code
+    tail -n 40 ~/projects/NBAprojections/logs/run/*.log
+
+  Uninstall:
+    launchctl unload ~/Library/LaunchAgents/com.mason.nbadata.plist
+
+  Note: launchd skips runs while the Mac is asleep and does NOT make them up
+  on wake for StartCalendarInterval jobs. A missed evening is a missed slate,
+  not a broken pipeline.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.mason.nbadata</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>REPO_PATH/scripts/run_and_push.sh</string>
+        <string>auto</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>REPO_PATH</string>
+
+    <!-- 17:40 local: pregame, before a 7pm first tip.
+         08:45 local: results from the night before. -->
+    <key>StartCalendarInterval</key>
+    <array>
+        <dict>
+            <key>Hour</key><integer>17</integer>
+            <key>Minute</key><integer>40</integer>
+        </dict>
+        <dict>
+            <key>Hour</key><integer>8</integer>
+            <key>Minute</key><integer>45</integer>
+        </dict>
+    </array>
+
+    <key>StandardOutPath</key>
+    <string>REPO_PATH/logs/run/launchd.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>REPO_PATH/logs/run/launchd.err.log</string>
+
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>

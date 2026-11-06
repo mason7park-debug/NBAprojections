@@ -18,25 +18,44 @@ data/                            committed snapshots (written by Actions)
 logs/                            projection logs, written before tip
 ```
 
+## Why the fetch runs locally
+
+GitHub Actions **cannot** fetch this data. stats.nba.com blackholes
+cloud-provider IP ranges: requests time out rather than returning an error
+status. Verified 2026-11-06, all five endpoints failed 4/4 attempts from a
+GitHub runner. cdn.nba.com is reachable from cloud hosts and serves schedule
+and box scores, but not the tracking stats (rebound chances, potential
+assists) this project depends on.
+
+So the fetch runs on a residential connection and pushes here. The repo is
+storage: a persistent log that a sandboxed agent can read over
+raw.githubusercontent.com without the Mac being awake.
+
 ## Schedule
 
-| Cron (UTC) | ET | Mode | What |
-|---|---|---|---|
-| `37 22 * * *` | ~5:37pm | pregame | slate, tracking stats, baselines, game logs |
-| `43 13 * * *` | ~8:43am | results | previous night's box scores |
+`scripts/com.mason.nbadata.plist` runs `run_and_push.sh auto` twice daily:
 
-GitHub's scheduler slips 5-20 minutes. The crons sit on off-minutes to reduce
-it, but don't rely on exact timing. Run manually from the Actions tab any time
-via **Run workflow**.
+| Local time | Mode (chosen by hour) | What |
+|---|---|---|
+| 08:45 | results | previous night's box scores |
+| 17:40 | pregame | slate, tracking stats, baselines, game logs |
+
+launchd skips runs while the Mac is asleep and does not make them up. A missed
+evening is a missed slate, not a broken pipeline.
 
 ## Setup
 
-1. Create the repo (see below) and push this folder.
-2. Settings → Actions → General → Workflow permissions → **Read and write**.
-   Without this the commit step fails.
-3. Actions tab → NBA data snapshot → Run workflow → mode `pregame`.
-4. Check that `data/` populated. If nba.com blocked the runner, you'll see
-   retry failures in the log — fall back to running the scripts locally.
+1. `chmod +x scripts/run_and_push.sh`
+2. Test once by hand: `./scripts/run_and_push.sh pregame`
+3. Edit `REPO_PATH` in `scripts/com.mason.nbadata.plist` to this folder's path.
+4. `cp scripts/com.mason.nbadata.plist ~/Library/LaunchAgents/`
+5. `launchctl load ~/Library/LaunchAgents/com.mason.nbadata.plist`
+
+Check status with `launchctl list | grep nbadata` (second column is the last
+exit code) and `tail ~/.../logs/run/*.log`.
+
+Exit codes from `run_and_push.sh`: `0` clean, `1` partial fetch or push
+failure, `2` nothing fetched at all (usually a blocked IP).
 
 ## Reading the data from an agent
 

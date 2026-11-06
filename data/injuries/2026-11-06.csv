@@ -1,0 +1,54 @@
+game_id,team,player_id,player,status,type
+401909287,ATL,4701230,Jalen Johnson,Out,Ankle
+401909287,ATL,4585618,Keshon Gilbert,Out,Knee
+401909287,ATL,4873201,Asa Newell,Out,Toe
+401909287,ATL,3146557,Jock Landale,Out,Hip
+401909287,ATL,4712863,Mouhamed Gueye,Out,Foot
+401909287,WSH,6583,Anthony Davis,Out,Ankle
+401909287,WSH,4432187,Reece Beekman,Out,Shoulder
+401909287,WSH,4997537,Tristan Vukcevic,Out,Hip
+401909287,WSH,4432907,Justin Champagnie,Out,Foot
+401909287,WSH,4606840,Jamir Watkins,Out,Knee
+401909288,CHA,3032979,Dennis Schroder,Out,Thigh
+401909288,CHA,4433249,Moussa Diabate,Out,Quadriceps
+401909288,CHA,5061575,Kon Knueppel,Out,Hamstring
+401909288,CHA,4066218,Grant Williams,Out,Hamstring
+401909288,BOS,4433188,Devin Carter,Out,Illness
+401909289,CLE,4683747,Jaylon Tyson,Out,Ankle
+401909289,CLE,4576087,Peyton Watson,Day-To-Day,Hamstring
+401909289,CLE,4066328,Jarrett Allen,Day-To-Day,Knee
+401909289,PHI,5105637,Adem Bona,Out,Back
+401909289,PHI,4870562,Dominick Barlow,Out,Back
+401909289,PHI,4871141,Ariel Hukporti,Out,Achilles
+401909290,DAL,5279129,Sergio de Larrea,Out,Knee
+401909290,DAL,5148538,Tarik Biberovic,Out,Heel
+401909290,DAL,4683688,Dereck Lively II,Out,Foot
+401909290,UTAH,3102530,Jusuf Nurkic,Out,Foot
+401909290,UTAH,4277961,Jaren Jackson Jr.,Out,Knee
+401909290,UTAH,4433268,Trey Alexander,Out,Knee
+401909291,MEM,4432810,Isaiah Stewart,Out,Knee
+401909291,MEM,4431785,Scotty Pippen Jr.,Out,Back
+401909291,OKC,4432823,Jaylin Williams,Out,Back
+401909291,OKC,5159925,Nikola Topic,Out,Back
+401909291,OKC,5061603,Thomas Sorber,Out,Knee
+401909291,OKC,4683692,Cason Wallace,Out,Shoulder
+401909291,OKC,4433255,Chet Holmgren,Out,Knee
+401909292,MIL,4697268,Kam Jones,Day-To-Day,Ankle
+401909292,TOR,3134908,Jakob Poeltl,Day-To-Day,Shoulder
+401909292,TOR,4395724,Immanuel Quickley,Day-To-Day,Hamstring
+401909292,TOR,4433134,Scottie Barnes,Day-To-Day,Groin
+401909292,TOR,2993874,Kyle Anderson,Day-To-Day,Illness
+401909292,TOR,6450,Kawhi Leonard,Out,Knee
+401909293,NO,5061589,Yves Missi,Out,Knee
+401909293,MIN,4432847,Terrence Shannon Jr.,Out,Hip
+401909293,MIN,4594268,Anthony Edwards,Out,Knee
+401909293,MIN,3934673,Donte DiVincenzo,Out,Achilles
+401909294,POR,4578893,Vit Krejci,Out,Ankle
+401909294,POR,4279888,Ja Morant,Out,Hamstring
+401909294,POR,4914336,Shaedon Sharpe,Out,Knee
+401909295,SAC,4065732,De'Andre Hunter,Day-To-Day,Illness
+401909295,SAC,4898371,Maxime Raynaud,Out,Knee
+401909295,SAC,4594327,Keegan Murray,Out,Ankle
+401909295,SAC,3907387,Ben Simmons,Out,Achilles
+401909295,SA,6440,Tobias Harris,Out,Calf
+401909295,SA,5101845,Jayden Quaintance,Out,Knee

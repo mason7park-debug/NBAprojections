@@ -1,6 +1,6 @@
 game_id,team,player_id,player,status,type
-401909287,ATL,4585618,Keshon Gilbert,Day-To-Day,Knee
-401909287,ATL,4873201,Asa Newell,Day-To-Day,Toe
+401909287,ATL,4873201,Asa Newell,Out,Toe
+401909287,ATL,4585618,Keshon Gilbert,Out,Knee
 401909287,ATL,4701230,Jalen Johnson,Out,Ankle
 401909287,ATL,3146557,Jock Landale,Out,Hip
 401909287,ATL,4712863,Mouhamed Gueye,Out,Foot
@@ -9,16 +9,16 @@ game_id,team,player_id,player,status,type
 401909287,WSH,4997537,Tristan Vukcevic,Out,Hip
 401909287,WSH,4432907,Justin Champagnie,Out,Foot
 401909287,WSH,4606840,Jamir Watkins,Out,Knee
+401909288,CHA,4433249,Moussa Diabate,Day-To-Day,Quadriceps
 401909288,CHA,4433287,Brandon Miller,Day-To-Day,Groin
 401909288,CHA,3032979,Dennis Schroder,Out,Thigh
-401909288,CHA,4433249,Moussa Diabate,Out,Quadriceps
 401909288,CHA,5061575,Kon Knueppel,Out,Hamstring
 401909288,CHA,4066218,Grant Williams,Out,Hamstring
 401909288,BOS,4433188,Devin Carter,Out,Illness
-401909289,CLE,4066757,Sam Merrill,Day-To-Day,Elbow
-401909289,CLE,4066328,Jarrett Allen,Day-To-Day,Knee
+401909289,CLE,4066757,Sam Merrill,Out,Elbow
+401909289,CLE,4066328,Jarrett Allen,Out,Knee
 401909289,CLE,4683747,Jaylon Tyson,Out,Ankle
-401909289,PHI,5105637,Adem Bona,Out,Back
+401909289,PHI,5105637,Adem Bona,Day-To-Day,Back
 401909289,PHI,4870562,Dominick Barlow,Out,Back
 401909289,PHI,4871141,Ariel Hukporti,Out,Achilles
 401909290,DAL,5279129,Sergio de Larrea,Out,Knee
@@ -27,6 +27,7 @@ game_id,team,player_id,player,status,type
 401909290,UTAH,3102530,Jusuf Nurkic,Out,Foot
 401909290,UTAH,4277961,Jaren Jackson Jr.,Out,Knee
 401909290,UTAH,4433268,Trey Alexander,Out,Knee
+401909291,MEM,5105462,Richie Saunders,Out,Knee
 401909291,MEM,4432810,Isaiah Stewart,Out,Knee
 401909291,MEM,4431785,Scotty Pippen Jr.,Out,Back
 401909291,OKC,4432823,Jaylin Williams,Day-To-Day,Back
@@ -35,8 +36,8 @@ game_id,team,player_id,player,status,type
 401909291,OKC,4433255,Chet Holmgren,Out,Knee
 401909291,OKC,4593803,Jalen Williams,Out,Leg
 401909292,MIL,4697268,Kam Jones,Day-To-Day,Ankle
-401909292,TOR,4433134,Scottie Barnes,Out,Groin
-401909292,TOR,4395724,Immanuel Quickley,Out,Hamstring
+401909292,TOR,4433134,Scottie Barnes,Day-To-Day,Groin
+401909292,TOR,4395724,Immanuel Quickley,Day-To-Day,Hamstring
 401909292,TOR,6450,Kawhi Leonard,Out,Knee
 401909292,TOR,4432586,Nate Bittle,Out,Foot
 401909293,NO,5061589,Yves Missi,Out,Knee

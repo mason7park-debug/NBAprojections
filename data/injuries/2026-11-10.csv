@@ -1,0 +1,35 @@
+game_id,team,player_id,player,status,type
+401909960,NY,3062679,Josh Hart,Day-To-Day,Ankle
+401909960,MIL,4395725,Tyler Herro,Day-To-Day,Knee
+401909961,PHI,5105637,Adem Bona,Out,Back
+401909961,PHI,4870562,Dominick Barlow,Out,Back
+401909961,PHI,4871141,Ariel Hukporti,Out,Achilles
+401909962,PHX,4278402,Jordan Goodwin,Out,Calf
+401909962,PHX,4701232,Mark Williams,Out,Shoulder
+401909962,LAC,5108024,Yanic Konan Niederhauser,Out,Foot
+401909962,LAC,3913176,Brandon Ingram,Out,Achilles
+401909962,LAC,4845363,Cam Christie,Day-To-Day,Ankle
+401909962,LAC,6580,Bradley Beal,Out,Knee
+401909962,LAC,4396818,Jordan Miller,Out,Shoulder
+401909963,UTAH,4433627,Keyonte George,Out,Ankle
+401909963,UTAH,4066336,Lauri Markkanen,Day-To-Day,Wrist
+401909963,UTAH,3102530,Jusuf Nurkic,Out,Foot
+401909963,UTAH,4277961,Jaren Jackson Jr.,Out,Knee
+401909963,MIA,3032977,Giannis Antetokounmpo,Day-To-Day,Wrist
+401909964,SAC,4898371,Maxime Raynaud,Out,Knee
+401909964,SAC,4594327,Keegan Murray,Day-To-Day,Wrist
+401909964,SAC,3155942,Domantas Sabonis,Day-To-Day,Knee
+401909964,SAC,3907387,Ben Simmons,Out,Achilles
+401909964,ORL,4432165,Jalen Suggs,Out,Knee
+401909964,ORL,4065654,Jonathan Isaac,Out,Knee
+401909964,ORL,4432573,Paolo Banchero,Out,Ankle
+401909964,ORL,5214637,Noah Penda,Out,Hamstring
+401909964,ORL,5107251,Izaiyah Nelson,Out,Ankle
+401909965,POR,4279888,Ja Morant,Out,Hamstring
+401909965,POR,4578893,Vit Krejci,Out,Ankle
+401909965,POR,4914336,Shaedon Sharpe,Out,Knee
+401909965,OKC,4432823,Jaylin Williams,Out,Back
+401909965,OKC,5061603,Thomas Sorber,Out,Knee
+401909965,OKC,4683692,Cason Wallace,Out,Shoulder
+401909965,OKC,4433255,Chet Holmgren,Out,Knee
+401909965,OKC,4593803,Jalen Williams,Out,Leg

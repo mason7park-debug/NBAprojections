@@ -1,8 +1,8 @@
 date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,expected,floor,blowout_floor,p_over,rule_floor,floor_source,line,spread,p_blowout,played,actual,actual_minutes,final_margin
-2026-10-31,401909896,4683021,Deni Avdija,POR,UTAH,starter,True,PTS,31.5,23.1,18.4,22.0,16,13,,12,flat,,6.5,0.223,True,24.0,30.0,22.0
-2026-10-31,401909896,4683021,Deni Avdija,POR,UTAH,starter,True,REB,31.5,7.7,6.1,7.3,5,4,,3,flat,,6.5,0.223,True,5.0,30.0,22.0
-2026-10-31,401909896,4683021,Deni Avdija,POR,UTAH,starter,True,AST,31.5,6.4,5.1,6.1,4,3,,3,flat,,6.5,0.223,True,2.0,30.0,22.0
-2026-10-31,401909896,4683021,Deni Avdija,POR,UTAH,starter,True,3PM,31.5,1.8,1.4,1.7,1,0,,0,flat,,6.5,0.223,True,2.0,30.0,22.0
+2026-10-31,401909896,4683021,Deni Avdija,POR,UTAH,starter,True,PTS,31.5,23.1,20.1,22.4,16,13,,14,flat,,6.5,0.223,True,24.0,30.0,22.0
+2026-10-31,401909896,4683021,Deni Avdija,POR,UTAH,starter,True,REB,31.5,7.7,6.7,7.4,5,4,,3,flat,,6.5,0.223,True,5.0,30.0,22.0
+2026-10-31,401909896,4683021,Deni Avdija,POR,UTAH,starter,True,AST,31.5,6.4,5.6,6.2,4,3,,3,flat,,6.5,0.223,True,2.0,30.0,22.0
+2026-10-31,401909896,4683021,Deni Avdija,POR,UTAH,starter,True,3PM,31.5,1.8,1.6,1.7,1,0,,0,flat,,6.5,0.223,True,2.0,30.0,22.0
 2026-10-31,401909896,6606,Damian Lillard,POR,UTAH,starter,True,PTS,29.5,18.7,16.9,18.3,13,12,,11,flat,,6.5,0.223,True,22.0,27.0,22.0
 2026-10-31,401909896,6606,Damian Lillard,POR,UTAH,starter,True,REB,29.5,3.6,3.3,3.6,2,2,,1,flat,,6.5,0.223,True,5.0,27.0,22.0
 2026-10-31,401909896,6606,Damian Lillard,POR,UTAH,starter,True,AST,29.5,3.5,3.1,3.4,2,2,,1,flat,,6.5,0.223,True,4.0,27.0,22.0
@@ -35,10 +35,10 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-31,401909896,4066211,Robert Williams III,POR,UTAH,bench,False,REB,18.0,8.5,8.5,8.5,5,5,,5,flat,,6.5,0.223,True,3.0,14.0,22.0
 2026-10-31,401909896,4066211,Robert Williams III,POR,UTAH,bench,False,AST,18.0,0.6,0.6,0.6,0,0,,0,flat,,6.5,0.223,True,1.0,14.0,22.0
 2026-10-31,401909896,4066211,Robert Williams III,POR,UTAH,bench,False,3PM,18.0,0.0,0.0,0.0,0,0,,0,flat,,6.5,0.223,True,0.0,14.0,22.0
-2026-10-31,401909896,4433627,Keyonte George,UTAH,POR,starter,True,PTS,32.8,24.3,19.4,23.2,17,14,,13,flat,,6.5,0.223,True,8.0,29.0,22.0
-2026-10-31,401909896,4433627,Keyonte George,UTAH,POR,starter,True,REB,32.8,3.9,3.1,3.7,3,2,,1,flat,,6.5,0.223,True,3.0,29.0,22.0
-2026-10-31,401909896,4433627,Keyonte George,UTAH,POR,starter,True,AST,32.8,6.7,5.3,6.4,4,3,,3,flat,,6.5,0.223,True,4.0,29.0,22.0
-2026-10-31,401909896,4433627,Keyonte George,UTAH,POR,starter,True,3PM,32.8,2.8,2.2,2.6,1,1,,1,flat,,6.5,0.223,True,0.0,29.0,22.0
+2026-10-31,401909896,4433627,Keyonte George,UTAH,POR,starter,True,PTS,32.8,24.3,21.1,23.6,17,14,,14,flat,,6.5,0.223,True,8.0,29.0,22.0
+2026-10-31,401909896,4433627,Keyonte George,UTAH,POR,starter,True,REB,32.8,3.9,3.4,3.8,3,2,,2,flat,,6.5,0.223,True,3.0,29.0,22.0
+2026-10-31,401909896,4433627,Keyonte George,UTAH,POR,starter,True,AST,32.8,6.7,5.8,6.5,4,3,,3,flat,,6.5,0.223,True,4.0,29.0,22.0
+2026-10-31,401909896,4433627,Keyonte George,UTAH,POR,starter,True,3PM,32.8,2.8,2.4,2.7,1,1,,1,flat,,6.5,0.223,True,0.0,29.0,22.0
 2026-10-31,401909896,5041955,Darryn Peterson,UTAH,POR,starter,False,PTS,28.6,12.7,11.5,12.5,9,8,,8,flat,,6.5,0.223,True,16.0,36.0,22.0
 2026-10-31,401909896,5041955,Darryn Peterson,UTAH,POR,starter,False,REB,28.6,4.3,3.9,4.2,3,3,,2,flat,,6.5,0.223,True,4.0,36.0,22.0
 2026-10-31,401909896,5041955,Darryn Peterson,UTAH,POR,starter,False,AST,28.6,2.5,2.3,2.5,2,1,,1,flat,,6.5,0.223,True,4.0,36.0,22.0
@@ -63,26 +63,26 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-31,401909896,4683766,Isaiah Collier,UTAH,POR,bench,False,REB,18.4,4.5,4.5,4.5,3,3,,2,flat,,6.5,0.223,True,1.0,20.0,22.0
 2026-10-31,401909896,4683766,Isaiah Collier,UTAH,POR,bench,False,AST,18.4,5.9,5.9,5.9,3,3,,3,flat,,6.5,0.223,True,4.0,20.0,22.0
 2026-10-31,401909896,4683766,Isaiah Collier,UTAH,POR,bench,False,3PM,18.4,0.0,0.0,0.0,0,0,,0,flat,,6.5,0.223,True,0.0,20.0,22.0
-2026-10-31,401909897,4431678,Tyrese Maxey,PHI,CHA,starter,True,PTS,37.5,26.9,21.5,25.9,23,19,,20,log,,1.5,0.185,True,38.0,38.0,5.0
-2026-10-31,401909897,4431678,Tyrese Maxey,PHI,CHA,starter,True,REB,37.5,4.1,3.3,3.9,3,3,,2,log,,1.5,0.185,True,4.0,38.0,5.0
-2026-10-31,401909897,4431678,Tyrese Maxey,PHI,CHA,starter,True,AST,37.5,4.4,3.5,4.2,4,3,,3,log,,1.5,0.185,True,4.0,38.0,5.0
-2026-10-31,401909897,4431678,Tyrese Maxey,PHI,CHA,starter,True,3PM,37.5,2.4,1.9,2.3,1,1,,1,log,,1.5,0.185,True,4.0,38.0,5.0
-2026-10-31,401909897,3917376,Jaylen Brown,PHI,CHA,starter,True,PTS,36.4,19.7,15.8,19.0,14,12,,11,flat,,1.5,0.185,True,16.0,38.0,5.0
-2026-10-31,401909897,3917376,Jaylen Brown,PHI,CHA,starter,True,REB,36.4,6.5,5.2,6.3,4,4,,3,flat,,1.5,0.185,True,4.0,38.0,5.0
-2026-10-31,401909897,3917376,Jaylen Brown,PHI,CHA,starter,True,AST,36.4,4.1,3.3,4.0,3,2,,1,flat,,1.5,0.185,True,4.0,38.0,5.0
-2026-10-31,401909897,3917376,Jaylen Brown,PHI,CHA,starter,True,3PM,36.4,1.7,1.4,1.7,1,0,,0,flat,,1.5,0.185,True,0.0,38.0,5.0
-2026-10-31,401909897,3059318,Joel Embiid,PHI,CHA,starter,True,PTS,35.0,18.3,14.6,17.6,13,11,,10,flat,,1.5,0.185,False,,,5.0
-2026-10-31,401909897,3059318,Joel Embiid,PHI,CHA,starter,True,REB,35.0,8.9,7.1,8.6,6,5,,4,flat,,1.5,0.185,False,,,5.0
-2026-10-31,401909897,3059318,Joel Embiid,PHI,CHA,starter,True,AST,35.0,5.1,4.1,4.9,3,3,,2,flat,,1.5,0.185,False,,,5.0
+2026-10-31,401909897,4431678,Tyrese Maxey,PHI,CHA,starter,True,PTS,37.5,26.9,23.4,26.2,23,19,,22,log,,1.5,0.185,True,38.0,38.0,5.0
+2026-10-31,401909897,4431678,Tyrese Maxey,PHI,CHA,starter,True,REB,37.5,4.1,3.6,4.0,3,3,,3,log,,1.5,0.185,True,4.0,38.0,5.0
+2026-10-31,401909897,4431678,Tyrese Maxey,PHI,CHA,starter,True,AST,37.5,4.4,3.8,4.3,4,3,,3,log,,1.5,0.185,True,4.0,38.0,5.0
+2026-10-31,401909897,4431678,Tyrese Maxey,PHI,CHA,starter,True,3PM,37.5,2.4,2.1,2.3,1,1,,1,log,,1.5,0.185,True,4.0,38.0,5.0
+2026-10-31,401909897,3917376,Jaylen Brown,PHI,CHA,starter,True,PTS,36.4,19.7,17.2,19.3,14,12,,12,flat,,1.5,0.185,True,16.0,38.0,5.0
+2026-10-31,401909897,3917376,Jaylen Brown,PHI,CHA,starter,True,REB,36.4,6.5,5.7,6.4,4,4,,3,flat,,1.5,0.185,True,4.0,38.0,5.0
+2026-10-31,401909897,3917376,Jaylen Brown,PHI,CHA,starter,True,AST,36.4,4.1,3.6,4.0,3,2,,2,flat,,1.5,0.185,True,4.0,38.0,5.0
+2026-10-31,401909897,3917376,Jaylen Brown,PHI,CHA,starter,True,3PM,36.4,1.7,1.5,1.7,1,0,,0,flat,,1.5,0.185,True,0.0,38.0,5.0
+2026-10-31,401909897,3059318,Joel Embiid,PHI,CHA,starter,True,PTS,35.0,18.3,15.9,17.9,13,11,,11,flat,,1.5,0.185,False,,,5.0
+2026-10-31,401909897,3059318,Joel Embiid,PHI,CHA,starter,True,REB,35.0,8.9,7.7,8.7,6,5,,4,flat,,1.5,0.185,False,,,5.0
+2026-10-31,401909897,3059318,Joel Embiid,PHI,CHA,starter,True,AST,35.0,5.1,4.5,5.0,3,3,,2,flat,,1.5,0.185,False,,,5.0
 2026-10-31,401909897,3059318,Joel Embiid,PHI,CHA,starter,True,3PM,35.0,0.6,0.5,0.6,0,0,,0,flat,,1.5,0.185,False,,,5.0
-2026-10-31,401909897,1966,LeBron James,PHI,CHA,starter,False,PTS,33.4,15.9,12.7,15.3,11,9,,8,flat,,1.5,0.185,False,,,5.0
-2026-10-31,401909897,1966,LeBron James,PHI,CHA,starter,False,REB,33.4,6.8,5.4,6.5,4,4,,3,flat,,1.5,0.185,False,,,5.0
-2026-10-31,401909897,1966,LeBron James,PHI,CHA,starter,False,AST,33.4,6.6,5.2,6.3,4,3,,3,flat,,1.5,0.185,False,,,5.0
-2026-10-31,401909897,1966,LeBron James,PHI,CHA,starter,False,3PM,33.4,1.0,0.8,0.9,0,0,,0,flat,,1.5,0.185,False,,,5.0
-2026-10-31,401909897,5124612,VJ Edgecombe,PHI,CHA,starter,False,PTS,32.6,11.1,8.9,10.7,7,6,,6,flat,,1.5,0.185,True,10.0,37.0,5.0
-2026-10-31,401909897,5124612,VJ Edgecombe,PHI,CHA,starter,False,REB,32.6,7.7,6.2,7.4,5,4,,3,flat,,1.5,0.185,True,8.0,37.0,5.0
-2026-10-31,401909897,5124612,VJ Edgecombe,PHI,CHA,starter,False,AST,32.6,2.6,2.0,2.5,2,1,,1,flat,,1.5,0.185,True,3.0,37.0,5.0
-2026-10-31,401909897,5124612,VJ Edgecombe,PHI,CHA,starter,False,3PM,32.6,1.5,1.2,1.5,0,0,,0,flat,,1.5,0.185,True,2.0,37.0,5.0
+2026-10-31,401909897,1966,LeBron James,PHI,CHA,starter,False,PTS,33.4,15.9,13.8,15.5,11,9,,9,flat,,1.5,0.185,False,,,5.0
+2026-10-31,401909897,1966,LeBron James,PHI,CHA,starter,False,REB,33.4,6.8,5.9,6.6,4,4,,3,flat,,1.5,0.185,False,,,5.0
+2026-10-31,401909897,1966,LeBron James,PHI,CHA,starter,False,AST,33.4,6.6,5.7,6.4,4,3,,3,flat,,1.5,0.185,False,,,5.0
+2026-10-31,401909897,1966,LeBron James,PHI,CHA,starter,False,3PM,33.4,1.0,0.9,1.0,0,0,,0,flat,,1.5,0.185,False,,,5.0
+2026-10-31,401909897,5124612,VJ Edgecombe,PHI,CHA,starter,False,PTS,32.6,11.1,9.7,10.9,7,6,,6,flat,,1.5,0.185,True,10.0,37.0,5.0
+2026-10-31,401909897,5124612,VJ Edgecombe,PHI,CHA,starter,False,REB,32.6,7.7,6.7,7.5,5,4,,4,flat,,1.5,0.185,True,8.0,37.0,5.0
+2026-10-31,401909897,5124612,VJ Edgecombe,PHI,CHA,starter,False,AST,32.6,2.6,2.2,2.5,2,1,,1,flat,,1.5,0.185,True,3.0,37.0,5.0
+2026-10-31,401909897,5124612,VJ Edgecombe,PHI,CHA,starter,False,3PM,32.6,1.5,1.3,1.5,0,0,,0,flat,,1.5,0.185,True,2.0,37.0,5.0
 2026-10-31,401909897,3912848,Dean Wade,PHI,CHA,bench,False,PTS,27.2,3.4,3.1,3.3,2,2,,2,flat,,1.5,0.185,True,4.0,30.0,5.0
 2026-10-31,401909897,3912848,Dean Wade,PHI,CHA,bench,False,REB,27.2,2.4,2.2,2.4,2,1,,1,flat,,1.5,0.185,True,5.0,30.0,5.0
 2026-10-31,401909897,3912848,Dean Wade,PHI,CHA,bench,False,AST,27.2,0.7,0.6,0.7,0,0,,0,flat,,1.5,0.185,True,10.0,30.0,5.0
@@ -95,14 +95,14 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-31,401909897,4351851,Anfernee Simons,PHI,CHA,bench,False,REB,24.5,2.3,2.1,2.3,1,1,,1,log,,1.5,0.185,True,0.0,25.0,5.0
 2026-10-31,401909897,4351851,Anfernee Simons,PHI,CHA,bench,False,AST,24.5,1.1,1.0,1.1,0,0,,0,log,,1.5,0.185,True,2.0,25.0,5.0
 2026-10-31,401909897,4351851,Anfernee Simons,PHI,CHA,bench,False,3PM,24.5,2.6,2.3,2.5,1,1,,0,log,,1.5,0.185,True,5.0,25.0,5.0
-2026-10-31,401909897,4433287,Brandon Miller,CHA,PHI,starter,True,PTS,34.2,23.2,18.5,22.3,14,12,,12,log,,1.5,0.185,True,24.0,33.0,5.0
-2026-10-31,401909897,4433287,Brandon Miller,CHA,PHI,starter,True,REB,34.2,6.0,4.8,5.8,3,2,,2,log,,1.5,0.185,True,5.0,33.0,5.0
-2026-10-31,401909897,4433287,Brandon Miller,CHA,PHI,starter,True,AST,34.2,1.7,1.3,1.6,1,1,,0,log,,1.5,0.185,True,5.0,33.0,5.0
-2026-10-31,401909897,4433287,Brandon Miller,CHA,PHI,starter,True,3PM,34.2,2.8,2.2,2.7,1,1,,1,log,,1.5,0.185,True,5.0,33.0,5.0
-2026-10-31,401909897,3032979,Dennis Schroder,CHA,PHI,starter,False,PTS,31.8,12.5,10.0,12.1,7,5,,5,log,,1.5,0.185,True,4.0,35.0,5.0
-2026-10-31,401909897,3032979,Dennis Schroder,CHA,PHI,starter,False,REB,31.8,3.7,3.0,3.6,2,2,,1,log,,1.5,0.185,True,3.0,35.0,5.0
-2026-10-31,401909897,3032979,Dennis Schroder,CHA,PHI,starter,False,AST,31.8,5.2,4.2,5.0,4,3,,3,log,,1.5,0.185,True,7.0,35.0,5.0
-2026-10-31,401909897,3032979,Dennis Schroder,CHA,PHI,starter,False,3PM,31.8,0.9,0.7,0.9,0,0,,0,log,,1.5,0.185,True,0.0,35.0,5.0
+2026-10-31,401909897,4433287,Brandon Miller,CHA,PHI,starter,True,PTS,34.2,23.2,20.2,22.6,14,12,,14,log,,1.5,0.185,True,24.0,33.0,5.0
+2026-10-31,401909897,4433287,Brandon Miller,CHA,PHI,starter,True,REB,34.2,6.0,5.3,5.9,3,2,,2,log,,1.5,0.185,True,5.0,33.0,5.0
+2026-10-31,401909897,4433287,Brandon Miller,CHA,PHI,starter,True,AST,34.2,1.7,1.4,1.6,1,1,,0,log,,1.5,0.185,True,5.0,33.0,5.0
+2026-10-31,401909897,4433287,Brandon Miller,CHA,PHI,starter,True,3PM,34.2,2.8,2.4,2.7,1,1,,2,log,,1.5,0.185,True,5.0,33.0,5.0
+2026-10-31,401909897,3032979,Dennis Schroder,CHA,PHI,starter,False,PTS,31.8,12.5,10.9,12.2,7,5,,5,log,,1.5,0.185,True,4.0,35.0,5.0
+2026-10-31,401909897,3032979,Dennis Schroder,CHA,PHI,starter,False,REB,31.8,3.7,3.3,3.7,2,2,,1,log,,1.5,0.185,True,3.0,35.0,5.0
+2026-10-31,401909897,3032979,Dennis Schroder,CHA,PHI,starter,False,AST,31.8,5.2,4.5,5.1,4,3,,3,log,,1.5,0.185,True,7.0,35.0,5.0
+2026-10-31,401909897,3032979,Dennis Schroder,CHA,PHI,starter,False,3PM,31.8,0.9,0.8,0.9,0,0,,0,log,,1.5,0.185,True,0.0,35.0,5.0
 2026-10-31,401909897,4433249,Moussa Diabate,CHA,PHI,starter,False,PTS,29.3,8.9,8.0,8.7,6,5,,6,log,,1.5,0.185,True,10.0,28.0,5.0
 2026-10-31,401909897,4433249,Moussa Diabate,CHA,PHI,starter,False,REB,29.3,9.3,8.4,9.1,6,6,,5,log,,1.5,0.185,True,8.0,28.0,5.0
 2026-10-31,401909897,4433249,Moussa Diabate,CHA,PHI,starter,False,AST,29.3,1.7,1.5,1.6,1,1,,1,log,,1.5,0.185,True,3.0,28.0,5.0
@@ -119,14 +119,14 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-31,401909897,3135045,Grayson Allen,CHA,PHI,bench,False,REB,26.8,3.1,2.8,3.0,2,2,,2,log,,1.5,0.185,True,4.0,30.0,5.0
 2026-10-31,401909897,3135045,Grayson Allen,CHA,PHI,bench,False,AST,26.8,2.8,2.5,2.7,1,1,,1,log,,1.5,0.185,True,3.0,30.0,5.0
 2026-10-31,401909897,3135045,Grayson Allen,CHA,PHI,bench,False,3PM,26.8,2.6,2.4,2.6,1,1,,1,log,,1.5,0.185,True,7.0,30.0,5.0
-2026-10-31,401909898,4701230,Jalen Johnson,ATL,NO,starter,True,PTS,33.9,20.4,16.3,19.5,15,13,,14,log,,5.5,0.211,True,13.0,28.0,22.0
-2026-10-31,401909898,4701230,Jalen Johnson,ATL,NO,starter,True,REB,33.9,9.9,8.0,9.5,7,6,,6,log,,5.5,0.211,True,7.0,28.0,22.0
-2026-10-31,401909898,4701230,Jalen Johnson,ATL,NO,starter,True,AST,33.9,8.6,6.9,8.2,6,5,,5,log,,5.5,0.211,True,4.0,28.0,22.0
-2026-10-31,401909898,4701230,Jalen Johnson,ATL,NO,starter,True,3PM,33.9,1.2,1.0,1.2,0,0,,0,log,,5.5,0.211,True,1.0,28.0,22.0
-2026-10-31,401909898,4278039,Nickeil Alexander-Walker,ATL,NO,starter,True,PTS,30.2,21.2,17.0,20.3,14,12,,12,log,,5.5,0.211,True,12.0,29.0,22.0
-2026-10-31,401909898,4278039,Nickeil Alexander-Walker,ATL,NO,starter,True,REB,30.2,3.3,2.6,3.2,2,2,,2,log,,5.5,0.211,True,2.0,29.0,22.0
-2026-10-31,401909898,4278039,Nickeil Alexander-Walker,ATL,NO,starter,True,AST,30.2,3.0,2.4,2.9,1,1,,0,log,,5.5,0.211,True,1.0,29.0,22.0
-2026-10-31,401909898,4278039,Nickeil Alexander-Walker,ATL,NO,starter,True,3PM,30.2,3.7,3.0,3.5,2,1,,1,log,,5.5,0.211,True,0.0,29.0,22.0
+2026-10-31,401909898,4701230,Jalen Johnson,ATL,NO,starter,True,PTS,33.9,20.4,17.7,19.8,15,13,,15,log,,5.5,0.211,True,13.0,28.0,22.0
+2026-10-31,401909898,4701230,Jalen Johnson,ATL,NO,starter,True,REB,33.9,9.9,8.6,9.7,7,6,,7,log,,5.5,0.211,True,7.0,28.0,22.0
+2026-10-31,401909898,4701230,Jalen Johnson,ATL,NO,starter,True,AST,33.9,8.6,7.5,8.4,6,5,,6,log,,5.5,0.211,True,4.0,28.0,22.0
+2026-10-31,401909898,4701230,Jalen Johnson,ATL,NO,starter,True,3PM,33.9,1.2,1.1,1.2,0,0,,0,log,,5.5,0.211,True,1.0,28.0,22.0
+2026-10-31,401909898,4278039,Nickeil Alexander-Walker,ATL,NO,starter,True,PTS,30.2,21.2,18.4,20.6,14,12,,14,log,,5.5,0.211,True,12.0,29.0,22.0
+2026-10-31,401909898,4278039,Nickeil Alexander-Walker,ATL,NO,starter,True,REB,30.2,3.3,2.9,3.2,2,2,,2,log,,5.5,0.211,True,2.0,29.0,22.0
+2026-10-31,401909898,4278039,Nickeil Alexander-Walker,ATL,NO,starter,True,AST,30.2,3.0,2.6,2.9,1,1,,0,log,,5.5,0.211,True,1.0,29.0,22.0
+2026-10-31,401909898,4278039,Nickeil Alexander-Walker,ATL,NO,starter,True,3PM,30.2,3.7,3.2,3.6,2,1,,1,log,,5.5,0.211,True,0.0,29.0,22.0
 2026-10-31,401909898,4869342,Dyson Daniels,ATL,NO,starter,False,PTS,28.7,11.1,10.0,10.8,4,4,,3,log,,5.5,0.211,True,8.0,27.0,22.0
 2026-10-31,401909898,4869342,Dyson Daniels,ATL,NO,starter,False,REB,28.7,5.0,4.5,4.9,2,2,,2,log,,5.5,0.211,True,4.0,27.0,22.0
 2026-10-31,401909898,4869342,Dyson Daniels,ATL,NO,starter,False,AST,28.7,4.7,4.2,4.6,3,3,,2,log,,5.5,0.211,True,3.0,27.0,22.0
@@ -151,17 +151,17 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-31,401909898,5149077,Kingston Flemings,ATL,NO,bench,False,REB,19.9,3.0,3.0,3.0,1,1,,1,log,,5.5,0.211,True,2.0,25.0,22.0
 2026-10-31,401909898,5149077,Kingston Flemings,ATL,NO,bench,False,AST,19.9,4.8,4.8,4.8,3,3,,3,log,,5.5,0.211,True,6.0,25.0,22.0
 2026-10-31,401909898,5149077,Kingston Flemings,ATL,NO,bench,False,3PM,19.9,0.7,0.7,0.7,0,0,,0,log,,5.5,0.211,True,1.0,25.0,22.0
-2026-10-31,401909898,4397688,Trey Murphy III,NO,ATL,starter,False,PTS,32.4,14.6,11.7,14.0,10,8,,8,flat,,5.5,0.211,True,15.0,29.0,22.0
-2026-10-31,401909898,4397688,Trey Murphy III,NO,ATL,starter,False,REB,32.4,4.5,3.6,4.3,3,2,,2,flat,,5.5,0.211,True,5.0,29.0,22.0
-2026-10-31,401909898,4397688,Trey Murphy III,NO,ATL,starter,False,AST,32.4,2.9,2.3,2.7,2,1,,1,flat,,5.5,0.211,True,5.0,29.0,22.0
-2026-10-31,401909898,4397688,Trey Murphy III,NO,ATL,starter,False,3PM,32.4,2.2,1.8,2.1,1,1,,0,flat,,5.5,0.211,True,1.0,29.0,22.0
-2026-10-31,401909898,3907497,Dejounte Murray,NO,ATL,starter,False,PTS,32.2,18.2,14.6,17.5,12,10,,10,flat,,5.5,0.211,False,,,22.0
-2026-10-31,401909898,3907497,Dejounte Murray,NO,ATL,starter,False,REB,32.2,5.9,4.7,5.6,4,3,,2,flat,,5.5,0.211,False,,,22.0
-2026-10-31,401909898,3907497,Dejounte Murray,NO,ATL,starter,False,AST,32.2,6.1,4.9,5.9,4,3,,2,flat,,5.5,0.211,False,,,22.0
+2026-10-31,401909898,4397688,Trey Murphy III,NO,ATL,starter,False,PTS,32.4,14.6,12.7,14.2,10,8,,8,flat,,5.5,0.211,True,15.0,29.0,22.0
+2026-10-31,401909898,4397688,Trey Murphy III,NO,ATL,starter,False,REB,32.4,4.5,3.9,4.4,3,2,,2,flat,,5.5,0.211,True,5.0,29.0,22.0
+2026-10-31,401909898,4397688,Trey Murphy III,NO,ATL,starter,False,AST,32.4,2.9,2.5,2.8,2,1,,1,flat,,5.5,0.211,True,5.0,29.0,22.0
+2026-10-31,401909898,4397688,Trey Murphy III,NO,ATL,starter,False,3PM,32.4,2.2,1.9,2.2,1,1,,0,flat,,5.5,0.211,True,1.0,29.0,22.0
+2026-10-31,401909898,3907497,Dejounte Murray,NO,ATL,starter,False,PTS,32.2,18.2,15.9,17.7,12,10,,11,flat,,5.5,0.211,False,,,22.0
+2026-10-31,401909898,3907497,Dejounte Murray,NO,ATL,starter,False,REB,32.2,5.9,5.1,5.7,4,3,,3,flat,,5.5,0.211,False,,,22.0
+2026-10-31,401909898,3907497,Dejounte Murray,NO,ATL,starter,False,AST,32.2,6.1,5.3,6.0,4,3,,3,flat,,5.5,0.211,False,,,22.0
 2026-10-31,401909898,3907497,Dejounte Murray,NO,ATL,starter,False,3PM,32.2,0.7,0.6,0.7,0,0,,0,flat,,5.5,0.211,False,,,22.0
-2026-10-31,401909898,4395628,Zion Williamson,NO,ATL,starter,True,PTS,32.2,22.8,18.2,21.8,16,13,,12,flat,,5.5,0.211,True,15.0,30.0,22.0
-2026-10-31,401909898,4395628,Zion Williamson,NO,ATL,starter,True,REB,32.2,4.1,3.3,3.9,3,2,,1,flat,,5.5,0.211,True,6.0,30.0,22.0
-2026-10-31,401909898,4395628,Zion Williamson,NO,ATL,starter,True,AST,32.2,2.2,1.8,2.2,1,1,,1,flat,,5.5,0.211,True,4.0,30.0,22.0
+2026-10-31,401909898,4395628,Zion Williamson,NO,ATL,starter,True,PTS,32.2,22.8,19.8,22.1,16,13,,13,flat,,5.5,0.211,True,15.0,30.0,22.0
+2026-10-31,401909898,4395628,Zion Williamson,NO,ATL,starter,True,REB,32.2,4.1,3.6,4.0,3,2,,2,flat,,5.5,0.211,True,6.0,30.0,22.0
+2026-10-31,401909898,4395628,Zion Williamson,NO,ATL,starter,True,AST,32.2,2.2,2.0,2.2,1,1,,1,flat,,5.5,0.211,True,4.0,30.0,22.0
 2026-10-31,401909898,4395628,Zion Williamson,NO,ATL,starter,True,3PM,32.2,0.6,0.5,0.6,0,0,,0,flat,,5.5,0.211,True,0.0,30.0,22.0
 2026-10-31,401909898,5144091,Jeremiah Fears,NO,ATL,starter,False,PTS,24.2,11.8,10.7,11.6,8,7,,7,flat,,5.5,0.211,True,20.0,31.0,22.0
 2026-10-31,401909898,5144091,Jeremiah Fears,NO,ATL,starter,False,REB,24.2,4.3,3.8,4.2,3,2,,2,flat,,5.5,0.211,True,5.0,31.0,22.0
@@ -183,18 +183,18 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-31,401909898,4277813,Herbert Jones,NO,ATL,bench,False,REB,20.4,2.5,2.5,2.5,1,1,,1,flat,,5.5,0.211,True,3.0,25.0,22.0
 2026-10-31,401909898,4277813,Herbert Jones,NO,ATL,bench,False,AST,20.4,0.4,0.4,0.4,0,0,,0,flat,,5.5,0.211,True,2.0,25.0,22.0
 2026-10-31,401909898,4277813,Herbert Jones,NO,ATL,bench,False,3PM,20.4,0.4,0.4,0.4,0,0,,0,flat,,5.5,0.211,True,1.0,25.0,22.0
-2026-10-31,401909899,3155942,Domantas Sabonis,SAC,MEM,starter,False,PTS,37.0,16.7,13.4,15.9,11,9,,9,flat,,-7.5,0.236,True,11.0,38.0,31.0
-2026-10-31,401909899,3155942,Domantas Sabonis,SAC,MEM,starter,False,REB,37.0,16.2,12.9,15.4,10,9,,7,flat,,-7.5,0.236,True,14.0,38.0,31.0
-2026-10-31,401909899,3155942,Domantas Sabonis,SAC,MEM,starter,False,AST,37.0,7.1,5.7,6.8,4,4,,3,flat,,-7.5,0.236,True,8.0,38.0,31.0
+2026-10-31,401909899,3155942,Domantas Sabonis,SAC,MEM,starter,False,PTS,37.0,16.7,14.6,16.2,11,9,,10,flat,,-7.5,0.236,True,11.0,38.0,31.0
+2026-10-31,401909899,3155942,Domantas Sabonis,SAC,MEM,starter,False,REB,37.0,16.2,14.1,15.7,10,9,,8,flat,,-7.5,0.236,True,14.0,38.0,31.0
+2026-10-31,401909899,3155942,Domantas Sabonis,SAC,MEM,starter,False,AST,37.0,7.1,6.2,6.9,4,4,,3,flat,,-7.5,0.236,True,8.0,38.0,31.0
 2026-10-31,401909899,3155942,Domantas Sabonis,SAC,MEM,starter,False,3PM,37.0,0.2,0.2,0.2,0,0,,0,flat,,-7.5,0.236,True,0.0,38.0,31.0
-2026-10-31,401909899,3064440,Zach LaVine,SAC,MEM,starter,True,PTS,36.6,25.8,20.6,24.6,18,15,,14,flat,,-7.5,0.236,True,11.0,21.0,31.0
-2026-10-31,401909899,3064440,Zach LaVine,SAC,MEM,starter,True,REB,36.6,3.5,2.8,3.3,2,2,,1,flat,,-7.5,0.236,True,0.0,21.0,31.0
-2026-10-31,401909899,3064440,Zach LaVine,SAC,MEM,starter,True,AST,36.6,3.6,2.9,3.4,2,2,,1,flat,,-7.5,0.236,True,1.0,21.0,31.0
-2026-10-31,401909899,3064440,Zach LaVine,SAC,MEM,starter,True,3PM,36.6,2.9,2.3,2.8,1,1,,1,flat,,-7.5,0.236,True,0.0,21.0,31.0
-2026-10-31,401909899,5142620,Darius Acuff Jr.,SAC,MEM,starter,True,PTS,36.4,23.8,19.0,22.7,16,14,,13,flat,,-7.5,0.236,True,38.0,37.0,31.0
-2026-10-31,401909899,5142620,Darius Acuff Jr.,SAC,MEM,starter,True,REB,36.4,3.5,2.8,3.3,2,2,,1,flat,,-7.5,0.236,True,5.0,37.0,31.0
-2026-10-31,401909899,5142620,Darius Acuff Jr.,SAC,MEM,starter,True,AST,36.4,6.6,5.2,6.2,4,3,,3,flat,,-7.5,0.236,True,5.0,37.0,31.0
-2026-10-31,401909899,5142620,Darius Acuff Jr.,SAC,MEM,starter,True,3PM,36.4,2.0,1.6,1.9,1,0,,0,flat,,-7.5,0.236,True,9.0,37.0,31.0
+2026-10-31,401909899,3064440,Zach LaVine,SAC,MEM,starter,True,PTS,36.6,25.8,22.4,25.0,18,15,,15,flat,,-7.5,0.236,True,11.0,21.0,31.0
+2026-10-31,401909899,3064440,Zach LaVine,SAC,MEM,starter,True,REB,36.6,3.5,3.0,3.4,2,2,,1,flat,,-7.5,0.236,True,0.0,21.0,31.0
+2026-10-31,401909899,3064440,Zach LaVine,SAC,MEM,starter,True,AST,36.6,3.6,3.1,3.5,2,2,,1,flat,,-7.5,0.236,True,1.0,21.0,31.0
+2026-10-31,401909899,3064440,Zach LaVine,SAC,MEM,starter,True,3PM,36.6,2.9,2.6,2.8,1,1,,1,flat,,-7.5,0.236,True,0.0,21.0,31.0
+2026-10-31,401909899,5142620,Darius Acuff Jr.,SAC,MEM,starter,True,PTS,36.4,23.8,20.7,23.1,16,14,,14,flat,,-7.5,0.236,True,38.0,37.0,31.0
+2026-10-31,401909899,5142620,Darius Acuff Jr.,SAC,MEM,starter,True,REB,36.4,3.5,3.0,3.4,2,2,,1,flat,,-7.5,0.236,True,5.0,37.0,31.0
+2026-10-31,401909899,5142620,Darius Acuff Jr.,SAC,MEM,starter,True,AST,36.4,6.6,5.7,6.4,4,3,,3,flat,,-7.5,0.236,True,5.0,37.0,31.0
+2026-10-31,401909899,5142620,Darius Acuff Jr.,SAC,MEM,starter,True,3PM,36.4,2.0,1.7,1.9,1,0,,0,flat,,-7.5,0.236,True,9.0,37.0,31.0
 2026-10-31,401909899,4065732,De'Andre Hunter,SAC,MEM,starter,False,PTS,28.8,12.7,11.5,12.4,9,8,,8,flat,,-7.5,0.236,True,19.0,32.0,31.0
 2026-10-31,401909899,4065732,De'Andre Hunter,SAC,MEM,starter,False,REB,28.8,5.2,4.7,5.1,3,3,,2,flat,,-7.5,0.236,True,3.0,32.0,31.0
 2026-10-31,401909899,4065732,De'Andre Hunter,SAC,MEM,starter,False,AST,28.8,1.2,1.1,1.2,1,1,,0,flat,,-7.5,0.236,True,0.0,32.0,31.0
@@ -207,14 +207,14 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-31,401909899,4431679,Precious Achiuwa,SAC,MEM,bench,False,REB,29.8,6.2,5.6,6.0,4,3,,3,flat,,-7.5,0.236,True,5.0,25.0,31.0
 2026-10-31,401909899,4431679,Precious Achiuwa,SAC,MEM,bench,False,AST,29.8,1.0,0.9,1.0,1,1,,0,flat,,-7.5,0.236,True,1.0,25.0,31.0
 2026-10-31,401909899,4431679,Precious Achiuwa,SAC,MEM,bench,False,3PM,29.8,0.2,0.2,0.2,0,0,,0,flat,,-7.5,0.236,True,0.0,25.0,31.0
-2026-10-31,401909899,5041935,Cameron Boozer,MEM,SAC,starter,False,PTS,32.0,16.0,12.8,15.2,10,9,,8,flat,,-7.5,0.236,True,27.0,26.0,31.0
-2026-10-31,401909899,5041935,Cameron Boozer,MEM,SAC,starter,False,REB,32.0,11.0,8.8,10.5,7,6,,5,flat,,-7.5,0.236,True,9.0,26.0,31.0
-2026-10-31,401909899,5041935,Cameron Boozer,MEM,SAC,starter,False,AST,32.0,6.3,5.1,6.0,4,3,,3,flat,,-7.5,0.236,True,3.0,26.0,31.0
-2026-10-31,401909899,5041935,Cameron Boozer,MEM,SAC,starter,False,3PM,32.0,2.3,1.8,2.1,1,1,,0,flat,,-7.5,0.236,True,3.0,26.0,31.0
-2026-10-31,401909899,4065733,Ty Jerome,MEM,SAC,starter,True,PTS,30.0,26.5,21.2,25.3,18,15,,14,flat,,-7.5,0.236,False,,,31.0
-2026-10-31,401909899,4065733,Ty Jerome,MEM,SAC,starter,True,REB,30.0,3.2,2.5,3.0,2,2,,1,flat,,-7.5,0.236,False,,,31.0
-2026-10-31,401909899,4065733,Ty Jerome,MEM,SAC,starter,True,AST,30.0,5.9,4.8,5.7,4,3,,2,flat,,-7.5,0.236,False,,,31.0
-2026-10-31,401909899,4065733,Ty Jerome,MEM,SAC,starter,True,3PM,30.0,2.2,1.8,2.1,1,1,,0,flat,,-7.5,0.236,False,,,31.0
+2026-10-31,401909899,5041935,Cameron Boozer,MEM,SAC,starter,False,PTS,32.0,16.0,13.9,15.5,10,9,,9,flat,,-7.5,0.236,True,27.0,26.0,31.0
+2026-10-31,401909899,5041935,Cameron Boozer,MEM,SAC,starter,False,REB,32.0,11.0,9.6,10.7,7,6,,5,flat,,-7.5,0.236,True,9.0,26.0,31.0
+2026-10-31,401909899,5041935,Cameron Boozer,MEM,SAC,starter,False,AST,32.0,6.3,5.5,6.1,4,3,,3,flat,,-7.5,0.236,True,3.0,26.0,31.0
+2026-10-31,401909899,5041935,Cameron Boozer,MEM,SAC,starter,False,3PM,32.0,2.3,2.0,2.2,1,1,,0,flat,,-7.5,0.236,True,3.0,26.0,31.0
+2026-10-31,401909899,4065733,Ty Jerome,MEM,SAC,starter,True,PTS,30.0,26.5,23.1,25.7,18,15,,16,flat,,-7.5,0.236,False,,,31.0
+2026-10-31,401909899,4065733,Ty Jerome,MEM,SAC,starter,True,REB,30.0,3.2,2.8,3.1,2,2,,1,flat,,-7.5,0.236,False,,,31.0
+2026-10-31,401909899,4065733,Ty Jerome,MEM,SAC,starter,True,AST,30.0,5.9,5.2,5.8,4,3,,3,flat,,-7.5,0.236,False,,,31.0
+2026-10-31,401909899,4065733,Ty Jerome,MEM,SAC,starter,True,3PM,30.0,2.2,1.9,2.2,1,1,,0,flat,,-7.5,0.236,False,,,31.0
 2026-10-31,401909899,4903027,Cedric Coward,MEM,SAC,starter,False,PTS,29.5,14.8,13.4,14.5,10,9,,9,flat,,-7.5,0.236,True,10.0,23.0,31.0
 2026-10-31,401909899,4903027,Cedric Coward,MEM,SAC,starter,False,REB,29.5,9.2,8.3,9.0,6,6,,4,flat,,-7.5,0.236,True,7.0,23.0,31.0
 2026-10-31,401909899,4903027,Cedric Coward,MEM,SAC,starter,False,AST,29.5,2.5,2.3,2.5,2,1,,1,flat,,-7.5,0.236,True,2.0,23.0,31.0
@@ -235,18 +235,18 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-31,401909899,4433083,Cam Spencer,MEM,SAC,bench,False,REB,18.0,3.6,3.6,3.6,2,2,,2,flat,,-7.5,0.236,True,5.0,25.0,31.0
 2026-10-31,401909899,4433083,Cam Spencer,MEM,SAC,bench,False,AST,18.0,3.5,3.5,3.5,2,2,,2,flat,,-7.5,0.236,True,13.0,25.0,31.0
 2026-10-31,401909899,4433083,Cam Spencer,MEM,SAC,bench,False,3PM,18.0,2.0,2.0,2.0,1,1,,1,flat,,-7.5,0.236,True,2.0,25.0,31.0
-2026-10-31,401909900,3992,James Harden,CLE,MIL,starter,False,PTS,35.0,18.1,14.5,17.2,12,10,,10,flat,,8.5,0.25,True,13.0,26.0,25.0
-2026-10-31,401909900,3992,James Harden,CLE,MIL,starter,False,REB,35.0,4.6,3.7,4.4,3,2,,2,flat,,8.5,0.25,True,6.0,26.0,25.0
-2026-10-31,401909900,3992,James Harden,CLE,MIL,starter,False,AST,35.0,6.4,5.1,6.1,4,3,,3,flat,,8.5,0.25,True,7.0,26.0,25.0
-2026-10-31,401909900,3992,James Harden,CLE,MIL,starter,False,3PM,35.0,2.5,2.0,2.4,1,1,,0,flat,,8.5,0.25,True,3.0,26.0,25.0
-2026-10-31,401909900,4432158,Evan Mobley,CLE,MIL,starter,True,PTS,34.4,18.8,15.0,17.9,13,11,,10,flat,,8.5,0.25,True,27.0,25.0,25.0
-2026-10-31,401909900,4432158,Evan Mobley,CLE,MIL,starter,True,REB,34.4,8.9,7.1,8.5,6,5,,4,flat,,8.5,0.25,True,5.0,25.0,25.0
-2026-10-31,401909900,4432158,Evan Mobley,CLE,MIL,starter,True,AST,34.4,3.9,3.1,3.7,2,2,,1,flat,,8.5,0.25,True,3.0,25.0,25.0
-2026-10-31,401909900,4432158,Evan Mobley,CLE,MIL,starter,True,3PM,34.4,2.4,1.9,2.3,1,1,,0,flat,,8.5,0.25,True,3.0,25.0,25.0
-2026-10-31,401909900,3908809,Donovan Mitchell,CLE,MIL,starter,True,PTS,34.4,25.2,20.2,23.9,17,15,,14,flat,,8.5,0.25,True,15.0,24.0,25.0
-2026-10-31,401909900,3908809,Donovan Mitchell,CLE,MIL,starter,True,REB,34.4,5.6,4.5,5.3,4,3,,2,flat,,8.5,0.25,True,4.0,24.0,25.0
-2026-10-31,401909900,3908809,Donovan Mitchell,CLE,MIL,starter,True,AST,34.4,4.9,4.0,4.7,3,3,,2,flat,,8.5,0.25,True,3.0,24.0,25.0
-2026-10-31,401909900,3908809,Donovan Mitchell,CLE,MIL,starter,True,3PM,34.4,2.5,2.0,2.4,1,1,,0,flat,,8.5,0.25,True,2.0,24.0,25.0
+2026-10-31,401909900,3992,James Harden,CLE,MIL,starter,False,PTS,35.0,18.1,15.8,17.6,12,10,,11,flat,,8.5,0.25,True,13.0,26.0,25.0
+2026-10-31,401909900,3992,James Harden,CLE,MIL,starter,False,REB,35.0,4.6,4.0,4.5,3,2,,2,flat,,8.5,0.25,True,6.0,26.0,25.0
+2026-10-31,401909900,3992,James Harden,CLE,MIL,starter,False,AST,35.0,6.4,5.6,6.2,4,3,,3,flat,,8.5,0.25,True,7.0,26.0,25.0
+2026-10-31,401909900,3992,James Harden,CLE,MIL,starter,False,3PM,35.0,2.5,2.2,2.4,1,1,,1,flat,,8.5,0.25,True,3.0,26.0,25.0
+2026-10-31,401909900,4432158,Evan Mobley,CLE,MIL,starter,True,PTS,34.4,18.8,16.4,18.2,13,11,,11,flat,,8.5,0.25,True,27.0,25.0,25.0
+2026-10-31,401909900,4432158,Evan Mobley,CLE,MIL,starter,True,REB,34.4,8.9,7.7,8.6,6,5,,4,flat,,8.5,0.25,True,5.0,25.0,25.0
+2026-10-31,401909900,4432158,Evan Mobley,CLE,MIL,starter,True,AST,34.4,3.9,3.4,3.7,2,2,,2,flat,,8.5,0.25,True,3.0,25.0,25.0
+2026-10-31,401909900,4432158,Evan Mobley,CLE,MIL,starter,True,3PM,34.4,2.4,2.1,2.3,1,1,,1,flat,,8.5,0.25,True,3.0,25.0,25.0
+2026-10-31,401909900,3908809,Donovan Mitchell,CLE,MIL,starter,True,PTS,34.4,25.2,21.9,24.4,17,15,,15,flat,,8.5,0.25,True,15.0,24.0,25.0
+2026-10-31,401909900,3908809,Donovan Mitchell,CLE,MIL,starter,True,REB,34.4,5.6,4.9,5.4,4,3,,2,flat,,8.5,0.25,True,4.0,24.0,25.0
+2026-10-31,401909900,3908809,Donovan Mitchell,CLE,MIL,starter,True,AST,34.4,4.9,4.3,4.8,3,3,,2,flat,,8.5,0.25,True,3.0,24.0,25.0
+2026-10-31,401909900,3908809,Donovan Mitchell,CLE,MIL,starter,True,3PM,34.4,2.5,2.2,2.4,1,1,,1,flat,,8.5,0.25,True,2.0,24.0,25.0
 2026-10-31,401909900,4576087,Peyton Watson,CLE,MIL,starter,False,PTS,29.6,12.5,11.3,12.2,9,8,,7,flat,,8.5,0.25,True,5.0,22.0,25.0
 2026-10-31,401909900,4576087,Peyton Watson,CLE,MIL,starter,False,REB,29.6,4.4,4.0,4.3,3,3,,2,flat,,8.5,0.25,True,2.0,22.0,25.0
 2026-10-31,401909900,4576087,Peyton Watson,CLE,MIL,starter,False,AST,29.6,2.5,2.2,2.4,2,1,,1,flat,,8.5,0.25,True,6.0,22.0,25.0
@@ -263,10 +263,10 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-31,401909900,4683747,Jaylon Tyson,CLE,MIL,bench,False,REB,20.8,3.6,3.6,3.6,2,2,,2,flat,,8.5,0.25,False,,,25.0
 2026-10-31,401909900,4683747,Jaylon Tyson,CLE,MIL,bench,False,AST,20.8,2.9,2.9,2.9,2,2,,1,flat,,8.5,0.25,False,,,25.0
 2026-10-31,401909900,4683747,Jaylon Tyson,CLE,MIL,bench,False,3PM,20.8,1.0,1.0,1.0,0,0,,0,flat,,8.5,0.25,False,,,25.0
-2026-10-31,401909900,4395725,Tyler Herro,MIL,CLE,starter,True,PTS,30.8,24.1,19.2,22.9,17,14,,13,flat,,8.5,0.25,True,15.0,27.0,25.0
-2026-10-31,401909900,4395725,Tyler Herro,MIL,CLE,starter,True,REB,30.8,5.3,4.2,5.0,3,3,,2,flat,,8.5,0.25,True,3.0,27.0,25.0
-2026-10-31,401909900,4395725,Tyler Herro,MIL,CLE,starter,True,AST,30.8,4.7,3.8,4.5,3,2,,2,flat,,8.5,0.25,True,2.0,27.0,25.0
-2026-10-31,401909900,4395725,Tyler Herro,MIL,CLE,starter,True,3PM,30.8,3.5,2.8,3.3,2,1,,1,flat,,8.5,0.25,True,4.0,27.0,25.0
+2026-10-31,401909900,4395725,Tyler Herro,MIL,CLE,starter,True,PTS,30.8,24.1,20.9,23.3,17,14,,14,flat,,8.5,0.25,True,15.0,27.0,25.0
+2026-10-31,401909900,4395725,Tyler Herro,MIL,CLE,starter,True,REB,30.8,5.3,4.6,5.1,3,3,,2,flat,,8.5,0.25,True,3.0,27.0,25.0
+2026-10-31,401909900,4395725,Tyler Herro,MIL,CLE,starter,True,AST,30.8,4.7,4.1,4.6,3,2,,2,flat,,8.5,0.25,True,2.0,27.0,25.0
+2026-10-31,401909900,4395725,Tyler Herro,MIL,CLE,starter,True,3PM,30.8,3.5,3.0,3.3,2,1,,1,flat,,8.5,0.25,True,4.0,27.0,25.0
 2026-10-31,401909900,4432848,Jaime Jaquez Jr.,MIL,CLE,starter,False,PTS,29.0,18.3,16.5,17.9,13,11,,11,flat,,8.5,0.25,True,8.0,23.0,25.0
 2026-10-31,401909900,4432848,Jaime Jaquez Jr.,MIL,CLE,starter,False,REB,29.0,7.3,6.6,7.1,5,5,,3,flat,,8.5,0.25,True,7.0,23.0,25.0
 2026-10-31,401909900,4432848,Jaime Jaquez Jr.,MIL,CLE,starter,False,AST,29.0,2.7,2.4,2.6,2,2,,1,flat,,8.5,0.25,True,5.0,23.0,25.0
@@ -295,14 +295,14 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-31,401909900,5105623,Kel'el Ware,MIL,CLE,bench,False,REB,18.8,8.8,8.8,8.8,5,5,,5,flat,,8.5,0.25,True,10.0,24.0,25.0
 2026-10-31,401909900,5105623,Kel'el Ware,MIL,CLE,bench,False,AST,18.8,0.4,0.4,0.4,0,0,,0,flat,,8.5,0.25,True,3.0,24.0,25.0
 2026-10-31,401909900,5105623,Kel'el Ware,MIL,CLE,bench,False,3PM,18.8,0.6,0.6,0.6,0,0,,0,flat,,8.5,0.25,True,3.0,24.0,25.0
-2026-10-31,401909901,4594268,Anthony Edwards,MIN,SA,starter,True,PTS,33.8,33.3,26.6,31.1,22,19,,18,flat,,-12.5,0.324,False,,,10.0
-2026-10-31,401909901,4594268,Anthony Edwards,MIN,SA,starter,True,REB,33.8,5.0,4.0,4.7,3,3,,2,flat,,-12.5,0.324,False,,,10.0
-2026-10-31,401909901,4594268,Anthony Edwards,MIN,SA,starter,True,AST,33.8,3.5,2.8,3.3,2,2,,1,flat,,-12.5,0.324,False,,,10.0
-2026-10-31,401909901,4594268,Anthony Edwards,MIN,SA,starter,True,3PM,33.8,4.5,3.6,4.2,2,2,,1,flat,,-12.5,0.324,False,,,10.0
-2026-10-31,401909901,4431671,Jaden McDaniels,MIN,SA,starter,False,PTS,32.8,17.1,13.7,16.0,12,11,,11,log,,-12.5,0.324,True,19.0,39.0,10.0
-2026-10-31,401909901,4431671,Jaden McDaniels,MIN,SA,starter,False,REB,32.8,6.3,5.1,5.9,5,4,,4,log,,-12.5,0.324,True,3.0,39.0,10.0
-2026-10-31,401909901,4431671,Jaden McDaniels,MIN,SA,starter,False,AST,32.8,3.7,3.0,3.5,2,2,,2,log,,-12.5,0.324,True,3.0,39.0,10.0
-2026-10-31,401909901,4431671,Jaden McDaniels,MIN,SA,starter,False,3PM,32.8,1.3,1.1,1.3,0,0,,0,log,,-12.5,0.324,True,2.0,39.0,10.0
+2026-10-31,401909901,4594268,Anthony Edwards,MIN,SA,starter,True,PTS,33.8,33.3,29.0,31.9,22,19,,20,flat,,-12.5,0.324,False,,,10.0
+2026-10-31,401909901,4594268,Anthony Edwards,MIN,SA,starter,True,REB,33.8,5.0,4.3,4.8,3,3,,2,flat,,-12.5,0.324,False,,,10.0
+2026-10-31,401909901,4594268,Anthony Edwards,MIN,SA,starter,True,AST,33.8,3.5,3.0,3.4,2,2,,1,flat,,-12.5,0.324,False,,,10.0
+2026-10-31,401909901,4594268,Anthony Edwards,MIN,SA,starter,True,3PM,33.8,4.5,4.0,4.4,2,2,,1,flat,,-12.5,0.324,False,,,10.0
+2026-10-31,401909901,4431671,Jaden McDaniels,MIN,SA,starter,False,PTS,32.8,17.1,14.9,16.4,12,11,,12,log,,-12.5,0.324,True,19.0,39.0,10.0
+2026-10-31,401909901,4431671,Jaden McDaniels,MIN,SA,starter,False,REB,32.8,6.3,5.5,6.1,5,4,,4,log,,-12.5,0.324,True,3.0,39.0,10.0
+2026-10-31,401909901,4431671,Jaden McDaniels,MIN,SA,starter,False,AST,32.8,3.7,3.2,3.6,2,2,,2,log,,-12.5,0.324,True,3.0,39.0,10.0
+2026-10-31,401909901,4431671,Jaden McDaniels,MIN,SA,starter,False,3PM,32.8,1.3,1.2,1.3,0,0,,0,log,,-12.5,0.324,True,2.0,39.0,10.0
 2026-10-31,401909901,3032976,Rudy Gobert,MIN,SA,starter,False,PTS,29.8,6.9,6.2,6.7,3,3,,3,log,,-12.5,0.324,False,,,10.0
 2026-10-31,401909901,3032976,Rudy Gobert,MIN,SA,starter,False,REB,29.8,12.1,10.9,11.7,8,7,,7,log,,-12.5,0.324,False,,,10.0
 2026-10-31,401909901,3032976,Rudy Gobert,MIN,SA,starter,False,AST,29.8,1.6,1.4,1.5,1,1,,0,log,,-12.5,0.324,False,,,10.0
@@ -323,26 +323,26 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-31,401909901,4432847,Terrence Shannon Jr.,MIN,SA,bench,False,REB,22.9,3.9,3.9,3.9,2,2,,3,log,,-12.5,0.324,True,3.0,18.0,10.0
 2026-10-31,401909901,4432847,Terrence Shannon Jr.,MIN,SA,bench,False,AST,22.9,2.4,2.4,2.4,1,1,,1,log,,-12.5,0.324,True,4.0,18.0,10.0
 2026-10-31,401909901,4432847,Terrence Shannon Jr.,MIN,SA,bench,False,3PM,22.9,2.2,2.2,2.2,1,1,,2,log,,-12.5,0.324,True,0.0,18.0,10.0
-2026-10-31,401909901,5104157,Victor Wembanyama,SA,MIN,starter,True,PTS,32.2,25.0,20.0,23.4,17,15,,13,flat,,-12.5,0.324,True,43.0,34.0,10.0
-2026-10-31,401909901,5104157,Victor Wembanyama,SA,MIN,starter,True,REB,32.2,11.2,9.0,10.5,7,6,,5,flat,,-12.5,0.324,True,7.0,34.0,10.0
-2026-10-31,401909901,5104157,Victor Wembanyama,SA,MIN,starter,True,AST,32.2,2.8,2.2,2.6,2,1,,1,flat,,-12.5,0.324,True,4.0,34.0,10.0
-2026-10-31,401909901,5104157,Victor Wembanyama,SA,MIN,starter,True,3PM,32.2,1.5,1.2,1.4,0,0,,0,flat,,-12.5,0.324,True,3.0,34.0,10.0
-2026-10-31,401909901,5037871,Dylan Harper,SA,MIN,starter,False,PTS,32.2,17.3,13.9,16.2,11,10,,9,flat,,-12.5,0.324,True,25.0,39.0,10.0
-2026-10-31,401909901,5037871,Dylan Harper,SA,MIN,starter,False,REB,32.2,5.4,4.3,5.0,3,3,,2,flat,,-12.5,0.324,True,7.0,39.0,10.0
-2026-10-31,401909901,5037871,Dylan Harper,SA,MIN,starter,False,AST,32.2,4.6,3.7,4.3,3,2,,2,flat,,-12.5,0.324,True,6.0,39.0,10.0
-2026-10-31,401909901,5037871,Dylan Harper,SA,MIN,starter,False,3PM,32.2,1.2,0.9,1.1,0,0,,0,flat,,-12.5,0.324,True,2.0,39.0,10.0
-2026-10-31,401909901,4395630,Devin Vassell,SA,MIN,starter,False,PTS,31.8,12.6,10.1,11.8,8,7,,7,flat,,-12.5,0.324,True,9.0,34.0,10.0
-2026-10-31,401909901,4395630,Devin Vassell,SA,MIN,starter,False,REB,31.8,4.1,3.3,3.9,3,2,,1,flat,,-12.5,0.324,True,5.0,34.0,10.0
-2026-10-31,401909901,4395630,Devin Vassell,SA,MIN,starter,False,AST,31.8,3.8,3.1,3.6,2,2,,1,flat,,-12.5,0.324,True,2.0,34.0,10.0
-2026-10-31,401909901,4395630,Devin Vassell,SA,MIN,starter,False,3PM,31.8,1.8,1.4,1.6,0,0,,0,flat,,-12.5,0.324,True,0.0,34.0,10.0
-2026-10-31,401909901,4066259,De'Aaron Fox,SA,MIN,starter,False,PTS,31.4,15.4,12.4,14.4,10,9,,8,flat,,-12.5,0.324,True,22.0,35.0,10.0
-2026-10-31,401909901,4066259,De'Aaron Fox,SA,MIN,starter,False,REB,31.4,4.3,3.5,4.1,3,2,,2,flat,,-12.5,0.324,True,8.0,35.0,10.0
-2026-10-31,401909901,4066259,De'Aaron Fox,SA,MIN,starter,False,AST,31.4,7.0,5.6,6.6,4,3,,3,flat,,-12.5,0.324,True,7.0,35.0,10.0
-2026-10-31,401909901,4066259,De'Aaron Fox,SA,MIN,starter,False,3PM,31.4,1.4,1.1,1.3,0,0,,0,flat,,-12.5,0.324,True,0.0,35.0,10.0
-2026-10-31,401909901,4845367,Stephon Castle,SA,MIN,starter,False,PTS,30.8,17.3,13.9,16.2,11,10,,9,flat,,-12.5,0.324,True,0.0,22.0,10.0
-2026-10-31,401909901,4845367,Stephon Castle,SA,MIN,starter,False,REB,30.8,6.0,4.8,5.6,4,3,,2,flat,,-12.5,0.324,True,5.0,22.0,10.0
-2026-10-31,401909901,4845367,Stephon Castle,SA,MIN,starter,False,AST,30.8,5.4,4.3,5.1,3,3,,2,flat,,-12.5,0.324,True,4.0,22.0,10.0
-2026-10-31,401909901,4845367,Stephon Castle,SA,MIN,starter,False,3PM,30.8,2.9,2.3,2.7,1,1,,1,flat,,-12.5,0.324,True,0.0,22.0,10.0
+2026-10-31,401909901,5104157,Victor Wembanyama,SA,MIN,starter,True,PTS,32.2,25.0,21.7,23.9,17,15,,15,flat,,-12.5,0.324,True,43.0,34.0,10.0
+2026-10-31,401909901,5104157,Victor Wembanyama,SA,MIN,starter,True,REB,32.2,11.2,9.7,10.7,7,6,,5,flat,,-12.5,0.324,True,7.0,34.0,10.0
+2026-10-31,401909901,5104157,Victor Wembanyama,SA,MIN,starter,True,AST,32.2,2.8,2.4,2.7,2,1,,1,flat,,-12.5,0.324,True,4.0,34.0,10.0
+2026-10-31,401909901,5104157,Victor Wembanyama,SA,MIN,starter,True,3PM,32.2,1.5,1.3,1.5,0,0,,0,flat,,-12.5,0.324,True,3.0,34.0,10.0
+2026-10-31,401909901,5037871,Dylan Harper,SA,MIN,starter,False,PTS,32.2,17.3,15.1,16.6,11,10,,10,flat,,-12.5,0.324,True,25.0,39.0,10.0
+2026-10-31,401909901,5037871,Dylan Harper,SA,MIN,starter,False,REB,32.2,5.4,4.7,5.1,3,3,,2,flat,,-12.5,0.324,True,7.0,39.0,10.0
+2026-10-31,401909901,5037871,Dylan Harper,SA,MIN,starter,False,AST,32.2,4.6,4.0,4.4,3,2,,2,flat,,-12.5,0.324,True,6.0,39.0,10.0
+2026-10-31,401909901,5037871,Dylan Harper,SA,MIN,starter,False,3PM,32.2,1.2,1.0,1.1,0,0,,0,flat,,-12.5,0.324,True,2.0,39.0,10.0
+2026-10-31,401909901,4395630,Devin Vassell,SA,MIN,starter,False,PTS,31.8,12.6,10.9,12.1,8,7,,7,flat,,-12.5,0.324,True,9.0,34.0,10.0
+2026-10-31,401909901,4395630,Devin Vassell,SA,MIN,starter,False,REB,31.8,4.1,3.6,4.0,3,2,,2,flat,,-12.5,0.324,True,5.0,34.0,10.0
+2026-10-31,401909901,4395630,Devin Vassell,SA,MIN,starter,False,AST,31.8,3.8,3.3,3.7,2,2,,1,flat,,-12.5,0.324,True,2.0,34.0,10.0
+2026-10-31,401909901,4395630,Devin Vassell,SA,MIN,starter,False,3PM,31.8,1.8,1.5,1.7,0,0,,0,flat,,-12.5,0.324,True,0.0,34.0,10.0
+2026-10-31,401909901,4066259,De'Aaron Fox,SA,MIN,starter,False,PTS,31.4,15.4,13.4,14.8,10,9,,9,flat,,-12.5,0.324,True,22.0,35.0,10.0
+2026-10-31,401909901,4066259,De'Aaron Fox,SA,MIN,starter,False,REB,31.4,4.3,3.8,4.2,3,2,,2,flat,,-12.5,0.324,True,8.0,35.0,10.0
+2026-10-31,401909901,4066259,De'Aaron Fox,SA,MIN,starter,False,AST,31.4,7.0,6.1,6.8,4,3,,3,flat,,-12.5,0.324,True,7.0,35.0,10.0
+2026-10-31,401909901,4066259,De'Aaron Fox,SA,MIN,starter,False,3PM,31.4,1.4,1.2,1.3,0,0,,0,flat,,-12.5,0.324,True,0.0,35.0,10.0
+2026-10-31,401909901,4845367,Stephon Castle,SA,MIN,starter,False,PTS,30.8,17.3,15.1,16.6,11,10,,10,flat,,-12.5,0.324,True,0.0,22.0,10.0
+2026-10-31,401909901,4845367,Stephon Castle,SA,MIN,starter,False,REB,30.8,6.0,5.2,5.7,4,3,,3,flat,,-12.5,0.324,True,5.0,22.0,10.0
+2026-10-31,401909901,4845367,Stephon Castle,SA,MIN,starter,False,AST,30.8,5.4,4.7,5.2,3,3,,2,flat,,-12.5,0.324,True,4.0,22.0,10.0
+2026-10-31,401909901,4845367,Stephon Castle,SA,MIN,starter,False,3PM,30.8,2.9,2.6,2.8,1,1,,1,flat,,-12.5,0.324,True,0.0,22.0,10.0
 2026-10-31,401909901,4592479,Julian Champagnie,SA,MIN,bench,False,PTS,28.4,11.3,10.2,11.0,7,7,,7,flat,,-12.5,0.324,True,12.0,27.0,10.0
 2026-10-31,401909901,4592479,Julian Champagnie,SA,MIN,bench,False,REB,28.4,3.3,3.0,3.2,2,2,,1,flat,,-12.5,0.324,True,3.0,27.0,10.0
 2026-10-31,401909901,4592479,Julian Champagnie,SA,MIN,bench,False,AST,28.4,1.4,1.3,1.4,1,1,,0,flat,,-12.5,0.324,True,1.0,27.0,10.0
@@ -351,17 +351,17 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-31,401909901,4395723,Keldon Johnson,SA,MIN,bench,False,REB,22.0,5.1,5.1,5.1,3,3,,3,flat,,-12.5,0.324,True,6.0,24.0,10.0
 2026-10-31,401909901,4395723,Keldon Johnson,SA,MIN,bench,False,AST,22.0,1.4,1.4,1.4,1,1,,0,flat,,-12.5,0.324,True,0.0,24.0,10.0
 2026-10-31,401909901,4395723,Keldon Johnson,SA,MIN,bench,False,3PM,22.0,0.2,0.2,0.2,0,0,,0,flat,,-12.5,0.324,True,0.0,24.0,10.0
-2026-10-31,401909902,4278073,Shai Gilgeous-Alexander,OKC,HOU,starter,True,PTS,33.0,25.5,20.4,24.6,18,15,,14,flat,,-2.5,0.188,True,26.0,31.0,21.0
-2026-10-31,401909902,4278073,Shai Gilgeous-Alexander,OKC,HOU,starter,True,REB,33.0,4.4,3.6,4.3,3,3,,2,flat,,-2.5,0.188,True,4.0,31.0,21.0
-2026-10-31,401909902,4278073,Shai Gilgeous-Alexander,OKC,HOU,starter,True,AST,33.0,3.3,2.6,3.2,2,2,,1,flat,,-2.5,0.188,True,3.0,31.0,21.0
-2026-10-31,401909902,4278073,Shai Gilgeous-Alexander,OKC,HOU,starter,True,3PM,33.0,1.7,1.4,1.7,1,0,,0,flat,,-2.5,0.188,True,3.0,31.0,21.0
-2026-10-31,401909902,4593803,Jalen Williams,OKC,HOU,starter,False,PTS,31.7,13.4,10.7,12.9,9,7,,7,flat,,-2.5,0.188,False,,,21.0
-2026-10-31,401909902,4593803,Jalen Williams,OKC,HOU,starter,False,REB,31.7,4.5,3.6,4.3,3,2,,2,flat,,-2.5,0.188,False,,,21.0
-2026-10-31,401909902,4593803,Jalen Williams,OKC,HOU,starter,False,AST,31.7,3.2,2.6,3.1,2,2,,1,flat,,-2.5,0.188,False,,,21.0
+2026-10-31,401909902,4278073,Shai Gilgeous-Alexander,OKC,HOU,starter,True,PTS,33.0,25.5,22.2,24.9,18,15,,15,flat,,-2.5,0.188,True,26.0,31.0,21.0
+2026-10-31,401909902,4278073,Shai Gilgeous-Alexander,OKC,HOU,starter,True,REB,33.0,4.4,3.9,4.3,3,3,,2,flat,,-2.5,0.188,True,4.0,31.0,21.0
+2026-10-31,401909902,4278073,Shai Gilgeous-Alexander,OKC,HOU,starter,True,AST,33.0,3.3,2.8,3.2,2,2,,1,flat,,-2.5,0.188,True,3.0,31.0,21.0
+2026-10-31,401909902,4278073,Shai Gilgeous-Alexander,OKC,HOU,starter,True,3PM,33.0,1.7,1.5,1.7,1,0,,0,flat,,-2.5,0.188,True,3.0,31.0,21.0
+2026-10-31,401909902,4593803,Jalen Williams,OKC,HOU,starter,False,PTS,31.7,13.4,11.6,13.1,9,7,,8,flat,,-2.5,0.188,False,,,21.0
+2026-10-31,401909902,4593803,Jalen Williams,OKC,HOU,starter,False,REB,31.7,4.5,3.9,4.4,3,2,,2,flat,,-2.5,0.188,False,,,21.0
+2026-10-31,401909902,4593803,Jalen Williams,OKC,HOU,starter,False,AST,31.7,3.2,2.8,3.1,2,2,,1,flat,,-2.5,0.188,False,,,21.0
 2026-10-31,401909902,4593803,Jalen Williams,OKC,HOU,starter,False,3PM,31.7,1.0,0.8,0.9,0,0,,0,flat,,-2.5,0.188,False,,,21.0
-2026-10-31,401909902,4433255,Chet Holmgren,OKC,HOU,starter,False,PTS,30.0,11.4,9.1,10.9,8,6,,6,flat,,-2.5,0.188,False,,,21.0
-2026-10-31,401909902,4433255,Chet Holmgren,OKC,HOU,starter,False,REB,30.0,8.4,6.7,8.0,5,4,,4,flat,,-2.5,0.188,False,,,21.0
-2026-10-31,401909902,4433255,Chet Holmgren,OKC,HOU,starter,False,AST,30.0,1.2,1.0,1.2,1,1,,0,flat,,-2.5,0.188,False,,,21.0
+2026-10-31,401909902,4433255,Chet Holmgren,OKC,HOU,starter,False,PTS,30.0,11.4,9.9,11.1,8,6,,6,flat,,-2.5,0.188,False,,,21.0
+2026-10-31,401909902,4433255,Chet Holmgren,OKC,HOU,starter,False,REB,30.0,8.4,7.3,8.2,5,4,,4,flat,,-2.5,0.188,False,,,21.0
+2026-10-31,401909902,4433255,Chet Holmgren,OKC,HOU,starter,False,AST,30.0,1.2,1.1,1.2,1,1,,0,flat,,-2.5,0.188,False,,,21.0
 2026-10-31,401909902,4433255,Chet Holmgren,OKC,HOU,starter,False,3PM,30.0,0.6,0.5,0.6,0,0,,0,flat,,-2.5,0.188,False,,,21.0
 2026-10-31,401909902,4222252,Isaiah Hartenstein,OKC,HOU,starter,False,PTS,23.8,9.0,9.0,9.0,6,6,,6,flat,,-2.5,0.188,True,10.0,25.0,21.0
 2026-10-31,401909902,4222252,Isaiah Hartenstein,OKC,HOU,starter,False,REB,23.8,8.6,8.6,8.6,6,6,,5,flat,,-2.5,0.188,True,7.0,25.0,21.0
@@ -383,26 +383,26 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-31,401909902,2991350,Alex Caruso,OKC,HOU,bench,False,REB,19.0,4.6,4.6,4.6,3,3,,2,flat,,-2.5,0.188,False,,,21.0
 2026-10-31,401909902,2991350,Alex Caruso,OKC,HOU,bench,False,AST,19.0,3.6,3.6,3.6,2,2,,2,flat,,-2.5,0.188,False,,,21.0
 2026-10-31,401909902,2991350,Alex Caruso,OKC,HOU,bench,False,3PM,19.0,1.9,1.9,1.9,1,1,,0,flat,,-2.5,0.188,False,,,21.0
-2026-10-31,401909902,3202,Kevin Durant,HOU,OKC,starter,True,PTS,34.7,22.3,17.9,21.5,18,15,,15,log,,-2.5,0.188,True,14.0,27.0,21.0
-2026-10-31,401909902,3202,Kevin Durant,HOU,OKC,starter,True,REB,34.7,6.0,4.8,5.8,4,3,,3,log,,-2.5,0.188,True,3.0,27.0,21.0
-2026-10-31,401909902,3202,Kevin Durant,HOU,OKC,starter,True,AST,34.7,3.0,2.4,2.9,2,1,,1,log,,-2.5,0.188,True,4.0,27.0,21.0
-2026-10-31,401909902,3202,Kevin Durant,HOU,OKC,starter,True,3PM,34.7,1.8,1.5,1.7,1,0,,0,log,,-2.5,0.188,True,0.0,27.0,21.0
-2026-10-31,401909902,4684740,Amen Thompson,HOU,OKC,starter,False,PTS,34.8,16.9,13.5,16.2,13,11,,11,log,,-2.5,0.188,True,8.0,28.0,21.0
-2026-10-31,401909902,4684740,Amen Thompson,HOU,OKC,starter,False,REB,34.8,7.2,5.7,6.9,4,3,,3,log,,-2.5,0.188,True,3.0,28.0,21.0
-2026-10-31,401909902,4684740,Amen Thompson,HOU,OKC,starter,False,AST,34.8,4.1,3.3,3.9,3,2,,2,log,,-2.5,0.188,True,1.0,28.0,21.0
+2026-10-31,401909902,3202,Kevin Durant,HOU,OKC,starter,True,PTS,34.7,22.3,19.4,21.8,18,15,,16,log,,-2.5,0.188,True,14.0,27.0,21.0
+2026-10-31,401909902,3202,Kevin Durant,HOU,OKC,starter,True,REB,34.7,6.0,5.3,5.9,4,3,,4,log,,-2.5,0.188,True,3.0,27.0,21.0
+2026-10-31,401909902,3202,Kevin Durant,HOU,OKC,starter,True,AST,34.7,3.0,2.6,2.9,2,1,,1,log,,-2.5,0.188,True,4.0,27.0,21.0
+2026-10-31,401909902,3202,Kevin Durant,HOU,OKC,starter,True,3PM,34.7,1.8,1.6,1.8,1,0,,1,log,,-2.5,0.188,True,0.0,27.0,21.0
+2026-10-31,401909902,4684740,Amen Thompson,HOU,OKC,starter,False,PTS,34.8,16.9,14.7,16.4,13,11,,12,log,,-2.5,0.188,True,8.0,28.0,21.0
+2026-10-31,401909902,4684740,Amen Thompson,HOU,OKC,starter,False,REB,34.8,7.2,6.2,7.0,4,3,,3,log,,-2.5,0.188,True,3.0,28.0,21.0
+2026-10-31,401909902,4684740,Amen Thompson,HOU,OKC,starter,False,AST,34.8,4.1,3.6,4.0,3,2,,2,log,,-2.5,0.188,True,1.0,28.0,21.0
 2026-10-31,401909902,4684740,Amen Thompson,HOU,OKC,starter,False,3PM,34.8,0.3,0.3,0.3,0,0,,0,log,,-2.5,0.188,True,0.0,28.0,21.0
-2026-10-31,401909902,4432639,Jabari Smith Jr.,HOU,OKC,starter,False,PTS,34.4,16.6,13.3,16.0,10,8,,10,log,,-2.5,0.188,True,30.0,33.0,21.0
-2026-10-31,401909902,4432639,Jabari Smith Jr.,HOU,OKC,starter,False,REB,34.4,5.4,4.3,5.2,3,2,,2,log,,-2.5,0.188,True,9.0,33.0,21.0
-2026-10-31,401909902,4432639,Jabari Smith Jr.,HOU,OKC,starter,False,AST,34.4,2.3,1.9,2.2,1,1,,0,log,,-2.5,0.188,True,5.0,33.0,21.0
-2026-10-31,401909902,4432639,Jabari Smith Jr.,HOU,OKC,starter,False,3PM,34.4,2.5,2.0,2.4,1,1,,1,log,,-2.5,0.188,True,6.0,33.0,21.0
-2026-10-31,401909902,4871144,Alperen Sengun,HOU,OKC,starter,True,PTS,34.0,23.2,18.6,22.4,16,13,,13,flat,,-2.5,0.188,True,16.0,33.0,21.0
-2026-10-31,401909902,4871144,Alperen Sengun,HOU,OKC,starter,True,REB,34.0,8.2,6.5,7.9,5,4,,3,flat,,-2.5,0.188,True,9.0,33.0,21.0
-2026-10-31,401909902,4871144,Alperen Sengun,HOU,OKC,starter,True,AST,34.0,6.6,5.2,6.3,4,3,,3,flat,,-2.5,0.188,True,9.0,33.0,21.0
-2026-10-31,401909902,4871144,Alperen Sengun,HOU,OKC,starter,True,3PM,34.0,1.5,1.2,1.4,0,0,,0,flat,,-2.5,0.188,True,0.0,33.0,21.0
-2026-10-31,401909902,2991230,Fred VanVleet,HOU,OKC,starter,False,PTS,30.6,12.6,10.1,12.1,8,7,,7,flat,,-2.5,0.188,False,,,21.0
-2026-10-31,401909902,2991230,Fred VanVleet,HOU,OKC,starter,False,REB,30.6,3.8,3.0,3.6,2,2,,1,flat,,-2.5,0.188,False,,,21.0
-2026-10-31,401909902,2991230,Fred VanVleet,HOU,OKC,starter,False,AST,30.6,6.3,5.0,6.0,4,3,,3,flat,,-2.5,0.188,False,,,21.0
-2026-10-31,401909902,2991230,Fred VanVleet,HOU,OKC,starter,False,3PM,30.6,2.4,1.9,2.3,1,1,,0,flat,,-2.5,0.188,False,,,21.0
+2026-10-31,401909902,4432639,Jabari Smith Jr.,HOU,OKC,starter,False,PTS,34.4,16.6,14.4,16.2,10,8,,11,log,,-2.5,0.188,True,30.0,33.0,21.0
+2026-10-31,401909902,4432639,Jabari Smith Jr.,HOU,OKC,starter,False,REB,34.4,5.4,4.7,5.2,3,2,,2,log,,-2.5,0.188,True,9.0,33.0,21.0
+2026-10-31,401909902,4432639,Jabari Smith Jr.,HOU,OKC,starter,False,AST,34.4,2.3,2.0,2.3,1,1,,0,log,,-2.5,0.188,True,5.0,33.0,21.0
+2026-10-31,401909902,4432639,Jabari Smith Jr.,HOU,OKC,starter,False,3PM,34.4,2.5,2.2,2.4,1,1,,1,log,,-2.5,0.188,True,6.0,33.0,21.0
+2026-10-31,401909902,4871144,Alperen Sengun,HOU,OKC,starter,True,PTS,34.0,23.2,20.2,22.7,16,13,,14,flat,,-2.5,0.188,True,16.0,33.0,21.0
+2026-10-31,401909902,4871144,Alperen Sengun,HOU,OKC,starter,True,REB,34.0,8.2,7.1,8.0,5,4,,4,flat,,-2.5,0.188,True,9.0,33.0,21.0
+2026-10-31,401909902,4871144,Alperen Sengun,HOU,OKC,starter,True,AST,34.0,6.6,5.7,6.4,4,3,,3,flat,,-2.5,0.188,True,9.0,33.0,21.0
+2026-10-31,401909902,4871144,Alperen Sengun,HOU,OKC,starter,True,3PM,34.0,1.5,1.3,1.5,0,0,,0,flat,,-2.5,0.188,True,0.0,33.0,21.0
+2026-10-31,401909902,2991230,Fred VanVleet,HOU,OKC,starter,False,PTS,30.6,12.6,10.9,12.3,8,7,,7,flat,,-2.5,0.188,False,,,21.0
+2026-10-31,401909902,2991230,Fred VanVleet,HOU,OKC,starter,False,REB,30.6,3.8,3.3,3.7,2,2,,1,flat,,-2.5,0.188,False,,,21.0
+2026-10-31,401909902,2991230,Fred VanVleet,HOU,OKC,starter,False,AST,30.6,6.3,5.4,6.1,4,3,,3,flat,,-2.5,0.188,False,,,21.0
+2026-10-31,401909902,2991230,Fred VanVleet,HOU,OKC,starter,False,3PM,30.6,2.4,2.1,2.3,1,1,,1,flat,,-2.5,0.188,False,,,21.0
 2026-10-31,401909902,4433192,Tari Eason,HOU,OKC,bench,False,PTS,26.9,10.5,9.5,10.3,7,6,,6,flat,,-2.5,0.188,True,8.0,19.0,21.0
 2026-10-31,401909902,4433192,Tari Eason,HOU,OKC,bench,False,REB,26.9,7.4,6.6,7.2,5,4,,3,flat,,-2.5,0.188,True,3.0,19.0,21.0
 2026-10-31,401909902,4433192,Tari Eason,HOU,OKC,bench,False,AST,26.9,0.9,0.8,0.9,0,0,,0,flat,,-2.5,0.188,True,2.0,19.0,21.0

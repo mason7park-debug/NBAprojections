@@ -210,10 +210,12 @@
   td.pl{position:sticky;left:0;background:var(--surface);z-index:1}
   details.fold>summary{cursor:pointer;list-style:none;margin-bottom:10px} details.fold>summary::-webkit-details-marker{display:none}
   details.fold>summary::before{content:"▸ "} details.fold[open]>summary::before{content:"▾ "}
+  .mk{font-size:.62rem;margin:0 4px 0 3px;vertical-align:1px} .mk.up,.up{color:var(--good)} .mk.down,.down{color:var(--bad)}
+  a.mlink{display:block;text-decoration:none;color:inherit} a.mlink:hover .g{color:var(--accent)}
 </style></head><body>
 <header class="bar"><div class="wrap bar-in"><div class="mark"><span class="court"></span><h1>Tonight's NBA Edges</h1></div>
 <span class="date" id="hdate"></span><span class="spacer"></span><span class="date" id="hrun"></span></div>
-<div class="wrap"><nav class="jump" id="nav" hidden aria-label="Sections"><a href="#games">Games</a><a href="#targets">Target games</a><a href="#floors">Floors</a><a href="#players">Players</a><a href="#ceiling">Ceiling index</a><a href="#record">Record</a><a href="#method">Method</a></nav></div></header>
+<div class="wrap"><nav class="jump" id="nav" hidden aria-label="Sections"><a href="#games">Games</a><a href="#matchups">Matchups</a><a href="#targets">Target games</a><a href="#floors">Floors</a><a href="#players">Players</a><a href="#ceiling">Ceiling index</a><a href="#record">Record</a><a href="#method">Method</a></nav></div></header>
 <main class="wrap" id="app"><p class="empty">Loading tonight's numbers.</p></main>
 <footer class="wrap">Floors and over chances come from a model built on small samples. They are estimates, not guarantees, and this page is not betting advice.</footer>
 <script src="app.js"></script></body></html>

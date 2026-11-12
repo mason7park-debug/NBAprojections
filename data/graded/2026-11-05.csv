@@ -1,16 +1,16 @@
 date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,expected,floor,blowout_floor,p_over,rule_floor,floor_source,line,spread,p_blowout,played,actual,actual_minutes,final_margin
-2026-11-05,401909936,4566434,Franz Wagner,ORL,PHX,starter,True,PTS,36.5,20.4,16.4,19.7,15,13,,13,log,,-1.5,0.185,True,15.0,38.0,13.0
-2026-11-05,401909936,4566434,Franz Wagner,ORL,PHX,starter,True,REB,36.5,6.0,4.8,5.8,4,3,,3,log,,-1.5,0.185,True,8.0,38.0,13.0
-2026-11-05,401909936,4566434,Franz Wagner,ORL,PHX,starter,True,AST,36.5,7.7,6.2,7.5,5,4,,4,log,,-1.5,0.185,True,15.0,38.0,13.0
-2026-11-05,401909936,4566434,Franz Wagner,ORL,PHX,starter,True,3PM,36.5,1.0,0.8,1.0,0,0,,0,log,,-1.5,0.185,True,0.0,38.0,13.0
-2026-11-05,401909936,4066320,Desmond Bane,ORL,PHX,starter,False,PTS,35.6,18.8,15.0,18.1,13,10,,11,log,,-1.5,0.185,True,15.0,32.0,13.0
-2026-11-05,401909936,4066320,Desmond Bane,ORL,PHX,starter,False,REB,35.6,3.6,2.9,3.5,2,2,,1,log,,-1.5,0.185,True,6.0,32.0,13.0
-2026-11-05,401909936,4066320,Desmond Bane,ORL,PHX,starter,False,AST,35.6,2.6,2.0,2.5,1,1,,0,log,,-1.5,0.185,True,0.0,32.0,13.0
-2026-11-05,401909936,4066320,Desmond Bane,ORL,PHX,starter,False,3PM,35.6,3.8,3.1,3.7,2,1,,1,log,,-1.5,0.185,True,3.0,32.0,13.0
-2026-11-05,401909936,4277847,Wendell Carter Jr.,ORL,PHX,starter,False,PTS,32.8,12.9,10.3,12.4,5,4,,4,log,,-1.5,0.185,True,27.0,34.0,13.0
-2026-11-05,401909936,4277847,Wendell Carter Jr.,ORL,PHX,starter,False,REB,32.8,9.5,7.6,9.1,7,6,,6,log,,-1.5,0.185,True,13.0,34.0,13.0
-2026-11-05,401909936,4277847,Wendell Carter Jr.,ORL,PHX,starter,False,AST,32.8,1.0,0.8,1.0,0,0,,0,log,,-1.5,0.185,True,2.0,34.0,13.0
-2026-11-05,401909936,4277847,Wendell Carter Jr.,ORL,PHX,starter,False,3PM,32.8,0.9,0.7,0.9,0,0,,0,log,,-1.5,0.185,True,2.0,34.0,13.0
+2026-11-05,401909936,4566434,Franz Wagner,ORL,PHX,starter,True,PTS,36.5,20.4,17.8,20.0,15,13,,14,log,,-1.5,0.185,True,15.0,38.0,13.0
+2026-11-05,401909936,4566434,Franz Wagner,ORL,PHX,starter,True,REB,36.5,6.0,5.2,5.8,4,3,,3,log,,-1.5,0.185,True,8.0,38.0,13.0
+2026-11-05,401909936,4566434,Franz Wagner,ORL,PHX,starter,True,AST,36.5,7.7,6.7,7.6,5,4,,4,log,,-1.5,0.185,True,15.0,38.0,13.0
+2026-11-05,401909936,4566434,Franz Wagner,ORL,PHX,starter,True,3PM,36.5,1.0,0.9,1.0,0,0,,0,log,,-1.5,0.185,True,0.0,38.0,13.0
+2026-11-05,401909936,4066320,Desmond Bane,ORL,PHX,starter,False,PTS,35.6,18.8,16.3,18.3,13,10,,12,log,,-1.5,0.185,True,15.0,32.0,13.0
+2026-11-05,401909936,4066320,Desmond Bane,ORL,PHX,starter,False,REB,35.6,3.6,3.2,3.5,2,2,,1,log,,-1.5,0.185,True,6.0,32.0,13.0
+2026-11-05,401909936,4066320,Desmond Bane,ORL,PHX,starter,False,AST,35.6,2.6,2.2,2.5,1,1,,0,log,,-1.5,0.185,True,0.0,32.0,13.0
+2026-11-05,401909936,4066320,Desmond Bane,ORL,PHX,starter,False,3PM,35.6,3.8,3.3,3.7,2,1,,2,log,,-1.5,0.185,True,3.0,32.0,13.0
+2026-11-05,401909936,4277847,Wendell Carter Jr.,ORL,PHX,starter,False,PTS,32.8,12.9,11.2,12.6,5,4,,5,log,,-1.5,0.185,True,27.0,34.0,13.0
+2026-11-05,401909936,4277847,Wendell Carter Jr.,ORL,PHX,starter,False,REB,32.8,9.5,8.2,9.2,7,6,,7,log,,-1.5,0.185,True,13.0,34.0,13.0
+2026-11-05,401909936,4277847,Wendell Carter Jr.,ORL,PHX,starter,False,AST,32.8,1.0,0.9,1.0,0,0,,0,log,,-1.5,0.185,True,2.0,34.0,13.0
+2026-11-05,401909936,4277847,Wendell Carter Jr.,ORL,PHX,starter,False,3PM,32.8,0.9,0.8,0.9,0,0,,0,log,,-1.5,0.185,True,2.0,34.0,13.0
 2026-11-05,401909936,5239561,Jase Richardson,ORL,PHX,starter,False,PTS,22.1,6.3,6.3,6.3,4,4,,4,flat,,-1.5,0.185,True,10.0,26.0,13.0
 2026-11-05,401909936,5239561,Jase Richardson,ORL,PHX,starter,False,REB,22.1,1.9,1.9,1.9,1,1,,1,flat,,-1.5,0.185,True,2.0,26.0,13.0
 2026-11-05,401909936,5239561,Jase Richardson,ORL,PHX,starter,False,AST,22.1,2.5,2.5,2.5,2,2,,1,flat,,-1.5,0.185,True,3.0,26.0,13.0
@@ -23,18 +23,18 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-11-05,401909936,4702382,Tristan da Silva,ORL,PHX,bench,False,REB,29.4,3.3,3.0,3.2,2,2,,1,log,,-1.5,0.185,True,2.0,30.0,13.0
 2026-11-05,401909936,4702382,Tristan da Silva,ORL,PHX,bench,False,AST,29.4,1.7,1.6,1.7,1,1,,0,log,,-1.5,0.185,True,1.0,30.0,13.0
 2026-11-05,401909936,4702382,Tristan da Silva,ORL,PHX,bench,False,3PM,29.4,3.4,3.0,3.3,2,1,,1,log,,-1.5,0.185,True,4.0,30.0,13.0
-2026-11-05,401909936,3136193,Devin Booker,PHX,ORL,starter,True,PTS,34.9,24.4,19.5,23.5,15,13,,13,log,,-1.5,0.185,True,30.0,34.0,13.0
-2026-11-05,401909936,3136193,Devin Booker,PHX,ORL,starter,True,REB,34.9,3.2,2.6,3.1,1,1,,1,log,,-1.5,0.185,True,1.0,34.0,13.0
-2026-11-05,401909936,3136193,Devin Booker,PHX,ORL,starter,True,AST,34.9,4.7,3.7,4.5,2,2,,1,log,,-1.5,0.185,True,8.0,34.0,13.0
-2026-11-05,401909936,3136193,Devin Booker,PHX,ORL,starter,True,3PM,34.9,1.5,1.2,1.4,0,0,,0,log,,-1.5,0.185,True,4.0,34.0,13.0
-2026-11-05,401909936,4066383,Miles Bridges,PHX,ORL,starter,False,PTS,33.1,17.3,13.9,16.7,12,10,,12,log,,-1.5,0.185,True,18.0,31.0,13.0
-2026-11-05,401909936,4066383,Miles Bridges,PHX,ORL,starter,False,REB,33.1,6.9,5.5,6.7,5,4,,4,log,,-1.5,0.185,True,13.0,31.0,13.0
-2026-11-05,401909936,4066383,Miles Bridges,PHX,ORL,starter,False,AST,33.1,3.0,2.4,2.9,2,1,,1,log,,-1.5,0.185,True,5.0,31.0,13.0
-2026-11-05,401909936,4066383,Miles Bridges,PHX,ORL,starter,False,3PM,33.1,2.1,1.7,2.0,1,1,,1,log,,-1.5,0.185,True,3.0,31.0,13.0
-2026-11-05,401909936,3155526,Dillon Brooks,PHX,ORL,starter,False,PTS,31.0,16.5,13.2,15.9,11,9,,10,log,,-1.5,0.185,True,24.0,29.0,13.0
-2026-11-05,401909936,3155526,Dillon Brooks,PHX,ORL,starter,False,REB,31.0,4.3,3.4,4.1,2,1,,1,log,,-1.5,0.185,True,1.0,29.0,13.0
-2026-11-05,401909936,3155526,Dillon Brooks,PHX,ORL,starter,False,AST,31.0,3.1,2.5,3.0,2,1,,1,log,,-1.5,0.185,True,1.0,29.0,13.0
-2026-11-05,401909936,3155526,Dillon Brooks,PHX,ORL,starter,False,3PM,31.0,1.8,1.4,1.7,1,0,,0,log,,-1.5,0.185,True,4.0,29.0,13.0
+2026-11-05,401909936,3136193,Devin Booker,PHX,ORL,starter,True,PTS,34.9,24.4,21.2,23.8,15,13,,15,log,,-1.5,0.185,True,30.0,34.0,13.0
+2026-11-05,401909936,3136193,Devin Booker,PHX,ORL,starter,True,REB,34.9,3.2,2.8,3.1,1,1,,1,log,,-1.5,0.185,True,1.0,34.0,13.0
+2026-11-05,401909936,3136193,Devin Booker,PHX,ORL,starter,True,AST,34.9,4.7,4.1,4.6,2,2,,2,log,,-1.5,0.185,True,8.0,34.0,13.0
+2026-11-05,401909936,3136193,Devin Booker,PHX,ORL,starter,True,3PM,34.9,1.5,1.3,1.4,0,0,,0,log,,-1.5,0.185,True,4.0,34.0,13.0
+2026-11-05,401909936,4066383,Miles Bridges,PHX,ORL,starter,False,PTS,33.1,17.3,15.1,16.9,12,10,,13,log,,-1.5,0.185,True,18.0,31.0,13.0
+2026-11-05,401909936,4066383,Miles Bridges,PHX,ORL,starter,False,REB,33.1,6.9,6.0,6.7,5,4,,4,log,,-1.5,0.185,True,13.0,31.0,13.0
+2026-11-05,401909936,4066383,Miles Bridges,PHX,ORL,starter,False,AST,33.1,3.0,2.6,2.9,2,1,,1,log,,-1.5,0.185,True,5.0,31.0,13.0
+2026-11-05,401909936,4066383,Miles Bridges,PHX,ORL,starter,False,3PM,33.1,2.1,1.8,2.0,1,1,,1,log,,-1.5,0.185,True,3.0,31.0,13.0
+2026-11-05,401909936,3155526,Dillon Brooks,PHX,ORL,starter,False,PTS,31.0,16.5,14.4,16.1,11,9,,11,log,,-1.5,0.185,True,24.0,29.0,13.0
+2026-11-05,401909936,3155526,Dillon Brooks,PHX,ORL,starter,False,REB,31.0,4.3,3.7,4.2,2,1,,1,log,,-1.5,0.185,True,1.0,29.0,13.0
+2026-11-05,401909936,3155526,Dillon Brooks,PHX,ORL,starter,False,AST,31.0,3.1,2.7,3.1,2,1,,1,log,,-1.5,0.185,True,1.0,29.0,13.0
+2026-11-05,401909936,3155526,Dillon Brooks,PHX,ORL,starter,False,3PM,31.0,1.8,1.5,1.7,1,0,,0,log,,-1.5,0.185,True,4.0,29.0,13.0
 2026-11-05,401909936,4437244,Jalen Green,PHX,ORL,starter,False,PTS,29.5,12.7,11.4,12.4,7,7,,7,log,,-1.5,0.185,True,6.0,24.0,13.0
 2026-11-05,401909936,4437244,Jalen Green,PHX,ORL,starter,False,REB,29.5,3.4,3.0,3.3,2,2,,2,log,,-1.5,0.185,True,0.0,24.0,13.0
 2026-11-05,401909936,4437244,Jalen Green,PHX,ORL,starter,False,AST,29.5,3.3,3.0,3.3,2,1,,1,log,,-1.5,0.185,True,3.0,24.0,13.0
@@ -55,17 +55,17 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-11-05,401909936,4278402,Jordan Goodwin,PHX,ORL,bench,False,REB,18.8,3.4,3.4,3.4,2,2,,2,flat,,-1.5,0.185,False,,,13.0
 2026-11-05,401909936,4278402,Jordan Goodwin,PHX,ORL,bench,False,AST,18.8,2.6,2.6,2.6,1,1,,1,flat,,-1.5,0.185,False,,,13.0
 2026-11-05,401909936,4278402,Jordan Goodwin,PHX,ORL,bench,False,3PM,18.8,1.7,1.7,1.7,0,0,,0,flat,,-1.5,0.185,False,,,13.0
-2026-11-05,401909937,4278053,Davion Mitchell,MIA,GS,starter,False,PTS,34.7,15.7,12.5,15.1,10,8,,8,log,,-3.5,0.194,True,22.0,38.0,20.0
-2026-11-05,401909937,4278053,Davion Mitchell,MIA,GS,starter,False,REB,34.7,1.5,1.2,1.5,0,0,,0,log,,-3.5,0.194,True,2.0,38.0,20.0
-2026-11-05,401909937,4278053,Davion Mitchell,MIA,GS,starter,False,AST,34.7,8.5,6.8,8.1,5,4,,5,log,,-3.5,0.194,True,8.0,38.0,20.0
-2026-11-05,401909937,4278053,Davion Mitchell,MIA,GS,starter,False,3PM,34.7,2.0,1.6,1.9,1,0,,0,log,,-3.5,0.194,True,4.0,38.0,20.0
-2026-11-05,401909937,3032977,Giannis Antetokounmpo,MIA,GS,starter,True,PTS,33.9,29.4,23.5,28.3,21,18,,19,log,,-3.5,0.194,True,20.0,31.0,20.0
-2026-11-05,401909937,3032977,Giannis Antetokounmpo,MIA,GS,starter,True,REB,33.9,12.9,10.3,12.4,8,7,,7,log,,-3.5,0.194,True,14.0,31.0,20.0
-2026-11-05,401909937,3032977,Giannis Antetokounmpo,MIA,GS,starter,True,AST,33.9,6.0,4.8,5.7,3,3,,2,log,,-3.5,0.194,True,4.0,31.0,20.0
+2026-11-05,401909937,4278053,Davion Mitchell,MIA,GS,starter,False,PTS,34.7,15.7,13.6,15.3,10,8,,9,log,,-3.5,0.194,True,22.0,38.0,20.0
+2026-11-05,401909937,4278053,Davion Mitchell,MIA,GS,starter,False,REB,34.7,1.5,1.3,1.5,0,0,,0,log,,-3.5,0.194,True,2.0,38.0,20.0
+2026-11-05,401909937,4278053,Davion Mitchell,MIA,GS,starter,False,AST,34.7,8.5,7.4,8.3,5,4,,5,log,,-3.5,0.194,True,8.0,38.0,20.0
+2026-11-05,401909937,4278053,Davion Mitchell,MIA,GS,starter,False,3PM,34.7,2.0,1.7,1.9,1,0,,0,log,,-3.5,0.194,True,4.0,38.0,20.0
+2026-11-05,401909937,3032977,Giannis Antetokounmpo,MIA,GS,starter,True,PTS,33.9,29.4,25.6,28.7,21,18,,20,log,,-3.5,0.194,True,20.0,31.0,20.0
+2026-11-05,401909937,3032977,Giannis Antetokounmpo,MIA,GS,starter,True,REB,33.9,12.9,11.2,12.5,8,7,,8,log,,-3.5,0.194,True,14.0,31.0,20.0
+2026-11-05,401909937,3032977,Giannis Antetokounmpo,MIA,GS,starter,True,AST,33.9,6.0,5.2,5.8,3,3,,3,log,,-3.5,0.194,True,4.0,31.0,20.0
 2026-11-05,401909937,3032977,Giannis Antetokounmpo,MIA,GS,starter,True,3PM,33.9,0.5,0.4,0.5,0,0,,0,log,,-3.5,0.194,True,1.0,31.0,20.0
-2026-11-05,401909937,4066261,Bam Adebayo,MIA,GS,starter,True,PTS,33.0,18.9,15.1,18.2,9,8,,9,log,,-3.5,0.194,True,18.0,33.0,20.0
-2026-11-05,401909937,4066261,Bam Adebayo,MIA,GS,starter,True,REB,33.0,8.0,6.4,7.7,7,6,,5,log,,-3.5,0.194,True,10.0,33.0,20.0
-2026-11-05,401909937,4066261,Bam Adebayo,MIA,GS,starter,True,AST,33.0,3.6,2.9,3.5,3,2,,2,log,,-3.5,0.194,True,0.0,33.0,20.0
+2026-11-05,401909937,4066261,Bam Adebayo,MIA,GS,starter,True,PTS,33.0,18.9,16.4,18.4,9,8,,10,log,,-3.5,0.194,True,18.0,33.0,20.0
+2026-11-05,401909937,4066261,Bam Adebayo,MIA,GS,starter,True,REB,33.0,8.0,7.0,7.8,7,6,,6,log,,-3.5,0.194,True,10.0,33.0,20.0
+2026-11-05,401909937,4066261,Bam Adebayo,MIA,GS,starter,True,AST,33.0,3.6,3.1,3.5,3,2,,2,log,,-3.5,0.194,True,0.0,33.0,20.0
 2026-11-05,401909937,4066261,Bam Adebayo,MIA,GS,starter,True,3PM,33.0,0.6,0.5,0.6,0,0,,0,log,,-3.5,0.194,True,0.0,33.0,20.0
 2026-11-05,401909937,3059319,Andrew Wiggins,MIA,GS,starter,False,PTS,27.0,9.7,8.7,9.5,6,5,,6,log,,-3.5,0.194,True,2.0,21.0,20.0
 2026-11-05,401909937,3059319,Andrew Wiggins,MIA,GS,starter,False,REB,27.0,2.8,2.5,2.8,1,1,,1,log,,-3.5,0.194,True,6.0,21.0,20.0
@@ -75,22 +75,22 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-11-05,401909937,6475,Klay Thompson,MIA,GS,starter,False,REB,23.6,1.8,1.8,1.8,1,1,,1,log,,-3.5,0.194,True,0.0,23.0,20.0
 2026-11-05,401909937,6475,Klay Thompson,MIA,GS,starter,False,AST,23.6,1.6,1.6,1.6,0,0,,0,log,,-3.5,0.194,True,3.0,23.0,20.0
 2026-11-05,401909937,6475,Klay Thompson,MIA,GS,starter,False,3PM,23.6,3.9,3.9,3.9,2,2,,2,log,,-3.5,0.194,True,2.0,23.0,20.0
-2026-11-05,401909937,4601025,Pelle Larsson,MIA,GS,bench,False,PTS,30.5,11.1,8.9,10.7,5,4,,5,log,,-3.5,0.194,True,13.0,29.0,20.0
-2026-11-05,401909937,4601025,Pelle Larsson,MIA,GS,bench,False,REB,30.5,3.4,2.8,3.3,2,2,,1,log,,-3.5,0.194,True,1.0,29.0,20.0
-2026-11-05,401909937,4601025,Pelle Larsson,MIA,GS,bench,False,AST,30.5,3.9,3.1,3.7,2,2,,2,log,,-3.5,0.194,True,4.0,29.0,20.0
-2026-11-05,401909937,4601025,Pelle Larsson,MIA,GS,bench,False,3PM,30.5,0.9,0.7,0.8,0,0,,0,log,,-3.5,0.194,True,3.0,29.0,20.0
+2026-11-05,401909937,4601025,Pelle Larsson,MIA,GS,bench,False,PTS,30.5,11.1,9.7,10.8,5,4,,5,log,,-3.5,0.194,True,13.0,29.0,20.0
+2026-11-05,401909937,4601025,Pelle Larsson,MIA,GS,bench,False,REB,30.5,3.4,3.0,3.4,2,2,,2,log,,-3.5,0.194,True,1.0,29.0,20.0
+2026-11-05,401909937,4601025,Pelle Larsson,MIA,GS,bench,False,AST,30.5,3.9,3.4,3.8,2,2,,2,log,,-3.5,0.194,True,4.0,29.0,20.0
+2026-11-05,401909937,4601025,Pelle Larsson,MIA,GS,bench,False,3PM,30.5,0.9,0.8,0.9,0,0,,0,log,,-3.5,0.194,True,3.0,29.0,20.0
 2026-11-05,401909937,3064482,Bobby Portis,MIA,GS,bench,False,PTS,21.0,8.1,8.1,8.1,4,4,,5,log,,-3.5,0.194,True,0.0,14.0,20.0
 2026-11-05,401909937,3064482,Bobby Portis,MIA,GS,bench,False,REB,21.0,6.9,6.9,6.9,3,3,,3,log,,-3.5,0.194,True,5.0,14.0,20.0
 2026-11-05,401909937,3064482,Bobby Portis,MIA,GS,bench,False,AST,21.0,2.1,2.1,2.1,1,1,,1,log,,-3.5,0.194,True,0.0,14.0,20.0
 2026-11-05,401909937,3064482,Bobby Portis,MIA,GS,bench,False,3PM,21.0,1.5,1.5,1.5,0,0,,0,log,,-3.5,0.194,True,0.0,14.0,20.0
-2026-11-05,401909937,4709138,Brandin Podziemski,GS,MIA,starter,False,PTS,33.5,17.8,14.3,17.1,12,10,,12,log,,-3.5,0.194,True,9.0,32.0,20.0
-2026-11-05,401909937,4709138,Brandin Podziemski,GS,MIA,starter,False,REB,33.5,5.2,4.2,5.0,3,2,,2,log,,-3.5,0.194,True,6.0,32.0,20.0
-2026-11-05,401909937,4709138,Brandin Podziemski,GS,MIA,starter,False,AST,33.5,5.3,4.2,5.1,3,2,,2,log,,-3.5,0.194,True,3.0,32.0,20.0
-2026-11-05,401909937,4709138,Brandin Podziemski,GS,MIA,starter,False,3PM,33.5,2.6,2.1,2.5,1,1,,1,log,,-3.5,0.194,True,2.0,32.0,20.0
-2026-11-05,401909937,5175737,Yaxel Lendeborg,GS,MIA,starter,True,PTS,31.4,21.6,17.3,20.8,13,11,,11,log,,-3.5,0.194,True,17.0,30.0,20.0
-2026-11-05,401909937,5175737,Yaxel Lendeborg,GS,MIA,starter,True,REB,31.4,7.0,5.6,6.7,3,3,,2,log,,-3.5,0.194,True,8.0,30.0,20.0
-2026-11-05,401909937,5175737,Yaxel Lendeborg,GS,MIA,starter,True,AST,31.4,4.0,3.2,3.9,1,1,,1,log,,-3.5,0.194,True,6.0,30.0,20.0
-2026-11-05,401909937,5175737,Yaxel Lendeborg,GS,MIA,starter,True,3PM,31.4,2.7,2.2,2.6,1,1,,0,log,,-3.5,0.194,True,1.0,30.0,20.0
+2026-11-05,401909937,4709138,Brandin Podziemski,GS,MIA,starter,False,PTS,33.5,17.8,15.5,17.4,12,10,,14,log,,-3.5,0.194,True,9.0,32.0,20.0
+2026-11-05,401909937,4709138,Brandin Podziemski,GS,MIA,starter,False,REB,33.5,5.2,4.5,5.1,3,2,,2,log,,-3.5,0.194,True,6.0,32.0,20.0
+2026-11-05,401909937,4709138,Brandin Podziemski,GS,MIA,starter,False,AST,33.5,5.3,4.6,5.1,3,2,,2,log,,-3.5,0.194,True,3.0,32.0,20.0
+2026-11-05,401909937,4709138,Brandin Podziemski,GS,MIA,starter,False,3PM,33.5,2.6,2.3,2.5,1,1,,1,log,,-3.5,0.194,True,2.0,32.0,20.0
+2026-11-05,401909937,5175737,Yaxel Lendeborg,GS,MIA,starter,True,PTS,31.4,21.6,18.8,21.1,13,11,,12,log,,-3.5,0.194,True,17.0,30.0,20.0
+2026-11-05,401909937,5175737,Yaxel Lendeborg,GS,MIA,starter,True,REB,31.4,7.0,6.1,6.8,3,3,,3,log,,-3.5,0.194,True,8.0,30.0,20.0
+2026-11-05,401909937,5175737,Yaxel Lendeborg,GS,MIA,starter,True,AST,31.4,4.0,3.5,3.9,1,1,,1,log,,-3.5,0.194,True,6.0,30.0,20.0
+2026-11-05,401909937,5175737,Yaxel Lendeborg,GS,MIA,starter,True,3PM,31.4,2.7,2.4,2.7,1,1,,0,log,,-3.5,0.194,True,1.0,30.0,20.0
 2026-11-05,401909937,3975,Stephen Curry,GS,MIA,starter,True,PTS,29.6,32.1,28.9,31.4,26,24,,24,log,,-3.5,0.194,True,29.0,28.0,20.0
 2026-11-05,401909937,3975,Stephen Curry,GS,MIA,starter,True,REB,29.6,4.4,4.0,4.4,3,2,,2,log,,-3.5,0.194,True,1.0,28.0,20.0
 2026-11-05,401909937,3975,Stephen Curry,GS,MIA,starter,True,AST,29.6,4.8,4.4,4.7,3,3,,3,log,,-3.5,0.194,True,4.0,28.0,20.0

@@ -89,9 +89,19 @@ def matchup(stat, dvp_factor, opp_games, zone=None):
     return cap(pos)
 
 def blowout_minutes(mpg):
+    # used by the simulation, so by every floor. Deliberately cautious: see PROJ_CUT_30.
     if mpg >= 30: return mpg * 0.80
     if mpg >= 24: return mpg * 0.90
     return mpg
+
+# Share of his usual minutes a 30+ minute player keeps in a blowout, for the projected
+# numbers only (expected, normal game, blowout game). Measured at 0.86 to 0.88 on
+# 2026-11-12 (123 graded and 220 season player-games). Floors keep the 0.80 above:
+# with 0.87 in the simulation, star blowout floors held 71% instead of 80% on the replay.
+PROJ_CUT_30 = 0.87
+
+def projected_blowout_minutes(mpg):
+    return mpg * PROJ_CUT_30 if mpg >= 30 else blowout_minutes(mpg)
 
 def p20(values):
     v = sorted(values)
@@ -103,7 +113,7 @@ def project(per_game, mpg, m, pace_factor, pb, stat, bump=1.0, log_rates=None, r
     rate = blend(per_game / mpg, recent_rate)
     minutes = blend(mpg, recent_min)
     mult = m * pace_factor * bump
-    bmin = blowout_minutes(minutes)
+    bmin = projected_blowout_minutes(minutes)
     normal = rate * minutes * mult
     blow = rate * bmin * mult
     expected = (1 - pb) * normal + pb * blow
@@ -470,6 +480,10 @@ def run_project(date, data, docs, now=None, lock=True):
             old_rows[r["game_id"]].append(r)
         old_preds = {r["game_id"]: r for r in read_csv(data / "gamepreds" / f"{date}.csv")}
 
+    def dvp_block(opp):
+        """What this defense has allowed to each position so far, against the league average (raw)."""
+        return {pos: {s: round(dvp.get(opp, {}).get((pos, s), 1.0), 3) for s in STATS} for pos in ("G", "F", "C")}
+
     def tip_of(g):
         return dt.datetime.fromisoformat(g["date"].replace("Z", "+00:00"))
 
@@ -484,6 +498,10 @@ def run_project(date, data, docs, now=None, lock=True):
                 if kept["pred"]:
                     old_preds[gid] = dict({"date": str(date), "game_id": gid, "home": home, "away": away,
                                            "spread": kept.get("spread"), "market_total": kept.get("total")}, **kept["pred"])
+            for tb in kept.get("teams", []):   # descriptive only; saved numbers are not touched
+                if "dvp" not in tb:
+                    tb["dvp"] = dvp_block(tb["opp"])
+                    tb["opp_games"] = raw.get(tb["opp"], {}).get("games", 0)
             games_out.append(kept)
             proj_rows.extend(old_rows[gid])
             if gid in old_preds:
@@ -553,7 +571,8 @@ def run_project(date, data, docs, now=None, lock=True):
                                         "min_sd": MIN_SD_BENCH if role == "bench" else (MIN_SD if entry["star"] else MIN_SD_STARTER)})
                     rows.append(entry)
             team_blocks.append({"team": team, "opp": opp, "area": {k: round(v, 3) for k, v in area.items()},
-                                "out_scorers": [o[1]["name"] for o in outs], "b2b": adj[team]["b2b"], "players": rows})
+                                "out_scorers": [o[1]["name"] for o in outs], "b2b": adj[team]["b2b"],
+                                "dvp": dvp_block(opp), "opp_games": od["games"], "players": rows})
 
         sims, flags = simulate_game(eff_spread, sim_players, gi)
         for tb in team_blocks:

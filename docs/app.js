@@ -52,6 +52,53 @@
         (adj ? '<div class="gmeta adj">' + adj + '</div>' : '') + '</a>';
     }).join('') + '</div><p class="lead" style="margin-top:12px">Projected score and win chance come from team scoring and defense per possession, pace, home court, missing players and back-to-backs. Fair ML is the win chance written as odds with no sportsbook fee. Blowout risk is the chance of a 20 point margin, and stars lose minutes in those games. Tap a game to jump to its players.</p></section>';
   }
+  // Position matchups. SOFT/TOUGH are raw gaps in what a defense has allowed to a position.
+  // Checked on 1,419 player-games (Oct 30 to Nov 11, 2026): about a fifth of the raw gap
+  // carried over. Points rose against soft spots but did not fall against tough ones, and
+  // threes showed no pattern by position, so those are not flagged.
+  var SOFT = 1.12, TOUGH = 0.88, MSTATS = ['PTS', 'REB', 'AST'], PNAME = { G: 'Guards', F: 'Forwards', C: 'Centers' }, MINV = { PTS: 8, REB: 4, AST: 3 };
+  function spot(t, pos, s) {
+    var v = t.dvp && t.dvp[pos] ? t.dvp[pos][s] : null;
+    if (v == null || MSTATS.indexOf(s) < 0) return 0;
+    if (v >= SOFT) return 1;
+    if (v <= TOUGH && s !== 'PTS') return -1;
+    return 0;
+  }
+  function mark(k) { return k > 0 ? '<span class="mk up" title="Soft position matchup">▲</span>' : (k < 0 ? '<span class="mk down" title="Tough position matchup">▼</span>' : ''); }
+  function matchups(D) {
+    var blocks = []; D.games.forEach(function (g) { g.teams.forEach(function (t) { if (t.dvp) blocks.push({ g: g, t: t }); }); });
+    if (!blocks.length) return '';
+    var soft = [], tough = [];
+    blocks.forEach(function (b) {
+      ['G', 'F', 'C'].forEach(function (pos) {
+        MSTATS.forEach(function (s) {
+          var k = spot(b.t, pos, s); if (!k) return;
+          var pl = b.t.players.filter(function (p) { return p.pos === pos && p.stats[s].expected >= MINV[s]; }).sort(function (x, y) { return y.stats[s].expected - x.stats[s].expected; }).slice(0, 3);
+          if (!pl.length) return;
+          (k > 0 ? soft : tough).push({ v: b.t.dvp[pos][s], pos: pos, s: s, def: b.t.opp, team: b.t.team, gid: b.g.game_id, pl: pl });
+        });
+      });
+    });
+    soft.sort(function (a, b) { return b.v - a.v; }); tough.sort(function (a, b) { return a.v - b.v; });
+    function item(x) {
+      return '<a class="tg mlink" href="#g-' + x.gid + '"><div class="g">' + esc(x.team) + ' ' + PNAME[x.pos].toLowerCase() + ' · ' + x.s + ' <span class="' + (x.v > 1 ? 'up' : 'down') + '">' + rel(x.v) + '</span></div><div class="m">' + esc(x.def) + ' defense vs ' + PNAME[x.pos].toLowerCase() + ', so far</div>' +
+        '<div class="p">' + x.pl.map(function (p) { return esc(p.name) + ' ' + p.stats[x.s].expected; }).join(' · ') + '</div></a>';
+    }
+    function card(title, list, empty) {
+      return '<div class="card"><h3>' + title + '</h3><div class="body">' + (list.length ? list.slice(0, 8).map(item).join('') : '<div class="tg"><div class="p">' + empty + '</div></div>') + '</div></div>';
+    }
+    var tbl = '<div class="ceilwrap" style="margin-top:12px"><table class="ceil"><thead><tr><th class="lft" rowspan="2">Defense</th>' + MSTATS.map(function (s) { return '<th class="grp" colspan="3">' + s + ' allowed</th>'; }).join('') + '</tr><tr>' +
+      MSTATS.map(function () { return '<th class="grp">G</th><th>F</th><th>C</th>'; }).join('') + '</tr></thead><tbody>' +
+      blocks.map(function (b) {
+        return '<tr><td class="g lft">' + esc(b.t.opp) + ' <span class="date">vs ' + esc(b.t.team) + '</span></td>' + MSTATS.map(function (s) {
+          return ['G', 'F', 'C'].map(function (pos, i) { var v = b.t.dvp[pos][s], k = spot(b.t, pos, s); return '<td' + (i ? '' : ' class="gl"') + '><span class="cv" style="' + (Math.abs(v - 1) >= 0.12 ? heat(v) : '') + '">' + rel(v) + '</span>' + mark(k) + '</td>'; }).join('');
+        }).join('') + '</tr>';
+      }).join('') + '</tbody></table></div>';
+    return '<section id="matchups"><div class="eyebrow">Position matchups</div><div class="grid2">' +
+      card('▲ Soft spots tonight', soft, 'No defense tonight has been 12% or more above average against a position.') +
+      card('▼ Tough spots tonight', tough, 'No defense tonight has been 12% or more below average against a position in rebounds or assists.') + '</div>' + tbl +
+      '<p class="lead" style="margin-top:10px">Percentages are what each defense has allowed to that position so far, against the league average. They are small samples, so read them as a lean. On 1,419 player-games this season about a fifth of the gap carried over to the next game: a defense that had allowed 25% more to a position meant about 5% more for the next player there. Points rose against soft spots but did not fall against tough ones, and threes showed no pattern by position, so those are not flagged. The projections already include this at that strength.</p></section>';
+  }
   function load(u) { return fetch(u, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
 
   function gradeBlock(G) {
@@ -138,13 +185,13 @@
         if (all) {
           body += '<tr class="prow' + (p.star ? ' hasub' : '') + '"' + key + '>' + nm + STATS.map(function (s) {
             var x = p.stats[s];
-            return '<td class="ex gl">' + x.expected + (x.check ? '<span class="chk">check</span>' : '') + '</td><td class="fl">' + x.floor + '</td>' + (anyLine ? '<td class="dim">' + dash(x.line) + '</td><td>' + pc(x.p_over) + '</td>' : '');
+            return '<td class="ex gl">' + mark(spot(t, p.pos, s)) + x.expected + (x.check ? '<span class="chk">check</span>' : '') + '</td><td class="fl">' + x.floor + '</td>' + (anyLine ? '<td class="dim">' + dash(x.line) + '</td><td>' + pc(x.p_over) + '</td>' : '');
           }).join('') + '</tr>';
           if (p.star) body += '<tr class="prow"' + key + '><td class="sub"></td><td class="sub" colspan="2">normal / blowout / blowout floor</td>' +
             STATS.map(function (s) { var x = p.stats[s]; return '<td class="sub gl" colspan="' + per + '" style="text-align:right">' + x.normal + ' / ' + x.blowout + ' / ' + dash(x.blowout_floor) + '</td>'; }).join('') + '</tr>';
         } else {
           var x = p.stats[mode], m = x.matchup == null ? null : x.matchup * (x.bump || 1);
-          body += '<tr class="prow"' + key + '>' + nm + '<td class="dim">' + p.season[mode] + '</td><td class="ex">' + x.expected + (x.check ? '<span class="chk">check</span>' : '') + '</td><td class="fl">' + x.floor + '</td><td class="fl">' + dash(x.blowout_floor) +
+          body += '<tr class="prow"' + key + '>' + nm + '<td class="dim">' + p.season[mode] + '</td><td class="ex">' + mark(spot(t, p.pos, mode)) + x.expected + (x.check ? '<span class="chk">check</span>' : '') + '</td><td class="fl">' + x.floor + '</td><td class="fl">' + dash(x.blowout_floor) +
             '</td><td class="dim">' + x.normal + '</td><td class="dim">' + x.blowout + '</td><td class="' + (m == null || Math.abs(m - 1) < 0.03 ? 'dim' : (m > 1 ? 'up' : 'down')) + '">' + (m == null ? '-' : rel(m)) + '</td>' +
             (anyLine ? '<td class="dim">' + dash(x.line) + '</td><td>' + pc(x.p_over) + '</td>' : '') + '</tr>';
         }
@@ -170,6 +217,7 @@
     return '<section id="method"><details class="fold"><summary class="eyebrow">Method and limits</summary><div class="method">' +
       '<p><b>Source.</b> Everything comes from ESPN box scores, odds and injury reports saved in this repo. Player rates, recent form, starters, defense by position (guard, forward, center), area defense (threes, paint, free throws) and pace are all built from those box scores.</p>' +
       '<p><b>History.</b> ' + m.history_days + ' game days, ' + esc(m.history_from) + ' to ' + esc(m.history_to) + '. ' + m.players + ' players projected. ' + m.log_floors + ' floors use the player\'s own game log and ' + m.flat_floors + ' use the flat rule.</p>' +
+      '<p><b>Blowout minutes.</b> In a blowout, players at 30 or more minutes are projected to keep 87% of their minutes, which is what the record measured. Floors use a more cautious 80%. With 87% in the floors, star blowout floors held 71% of the time on the replay, against 80% with the cautious number.</p>' +
       '<p><b>Blowouts.</b> Final margins are assumed to land around the spread with a typical miss of ' + (m.sd || 13) + ' points. That was 13 until Nov 11, 2026, when 159 games this season showed blowouts happening more often than 13 allows. Tags: Low under 21%, Medium 21 to 27%, High over 27%.</p>' +
       '<p><b>Game predictions.</b> A missing rotation player costs his team half of what he scores beyond an average teammate in the same minutes, scaled down if the team has already played games without him. A back-to-back costs 1.5 points. On 108 replayed games these two adjustments did not measurably change accuracy, so treat them as reasonable assumptions that the nightly record will confirm or not.</p>' +
       '<p><b>Minutes swing.</b> Minutes are simulated with a night-to-night swing of 6 for bench players, 5 for starters under 18 points a game and 3 for stars. The first two match what the record shows. On the replay that moved bench points floors from 70% to 74% held and non-star starter floors from 76% to 79%.</p>' +
@@ -190,11 +238,11 @@
     var anyLine = D.method.lines_found > 0, mode = innerWidth < 760 ? 'PTS' : 'ALL';
     try { var saved = localStorage.getItem('nba-mode'); if (saved && (saved === 'ALL' || STATS.indexOf(saved) >= 0)) mode = saved; } catch (e) {}
     app.innerHTML = (D.early_run ? '<div class="warnbar">Early look. Injuries and spreads can still change. This page refreshes at about 2:31pm, 5:37pm and 6:27pm ET, and each game locks at its tip.</div>' : '') +
-      gamesGrid(D) + targets(D) + safest(D) +
+      gamesGrid(D) + matchups(D) + targets(D) + safest(D) +
       '<section id="players"><div class="eyebrow">Players, game by game</div><div class="controls"><input id="q" type="search" placeholder="Find a player" aria-label="Find a player">' +
       '<div class="seg" id="seg" role="group" aria-label="Stat shown">' + ['ALL'].concat(STATS).map(function (s) { return '<button type="button" data-m="' + s + '">' + (s === 'ALL' ? 'All stats' : s) + '</button>'; }).join('') + '</div>' +
       '<button type="button" class="tgl" id="fold">Collapse all</button></div>' +
-      '<p class="lead" style="margin-bottom:14px">Expected already accounts for blowout risk. Floor is the number reached in 80% of 10,000 simulated games. Blowout floor is the same thing in games decided by 20 or more. ★ marks players at 18 or more points a game.</p>' +
+      '<p class="lead" style="margin-bottom:14px">Expected already accounts for blowout risk. Floor is the number reached in 80% of 10,000 simulated games. Blowout floor is the same thing in games decided by 20 or more. ★ marks players at 18 or more points a game. ▲ and ▼ mark a soft or tough position matchup for that stat.</p>' +
       '<div id="tables"></div><p class="empty" id="nomatch" hidden>No player on tonight\'s slate matches that name.</p></section>' + ceiling(D) + gradeBlock(G) + method(D);
 
     var tables = document.getElementById('tables'), q = document.getElementById('q'), seg = document.getElementById('seg'), fold = document.getElementById('fold');

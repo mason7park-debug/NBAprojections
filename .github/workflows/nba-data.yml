@@ -11,27 +11,21 @@ name: NBA nightly projections
 # becomes reachable again it restores the tracking stats ESPN lacks.
 on:
   schedule:
-    # GitHub schedules in UTC, which does not follow daylight saving time. Each run is
-    # listed twice, once for winter (EST) and once for summer (EDT). The "Pick mode"
-    # step checks the real Eastern time and skips whichever copy is an hour off.
-    # Targets in Eastern time: 8:43am results, then 11:31am, 2:31pm, 5:37pm, 6:27pm pregame.
-    - cron: "43 13 * * *"
+    # GitHub starts scheduled runs late on this repo, sometimes by hours, so the run
+    # does not depend on the clock. Every run does both jobs: it grades the last slate
+    # if box scores are in, then projects today's games. Games that have tipped stay
+    # locked, so extra or late runs do no harm. Times are UTC; several are listed so
+    # that at least one lands before the first tip (7pm Eastern on most nights).
     - cron: "43 12 * * *"
-    - cron: "31 16 * * *"
+    - cron: "7 14 * * *"
     - cron: "31 15 * * *"
-    - cron: "31 19 * * *"
+    - cron: "7 17 * * *"
     - cron: "31 18 * * *"
-    - cron: "37 22 * * *"
+    - cron: "7 20 * * *"
     - cron: "37 21 * * *"
-    - cron: "27 23 * * *"
     - cron: "27 22 * * *"
+    - cron: "17 23 * * *"
   workflow_dispatch:
-    inputs:
-      mode:
-        description: "pregame (project tonight) or results (grade last night)"
-        type: choice
-        options: [pregame, results]
-        default: pregame
 
 permissions:
   contents: write
@@ -44,69 +38,52 @@ jobs:
   nightly:
     runs-on: ubuntu-latest
     steps:
-      - name: Pick mode
-        id: mode
-        run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            mode="${{ github.event.inputs.mode }}"
-          else
-            h=$(TZ=America/New_York date +%H); m=$(TZ=America/New_York date +%M)
-            t=$((10#$h * 60 + 10#$m))
-            mode=skip
-            # minutes after midnight Eastern : what to run. A run counts if it starts
-            # from 5 minutes before to 50 minutes after its target.
-            for target in 523:results 691:pregame 871:pregame 1057:pregame 1107:pregame; do
-              at=${target%%:*}
-              if [ "$t" -ge $((at - 5)) ] && [ "$t" -le $((at + 50)) ]; then mode=${target##*:}; fi
-            done
-            echo "Eastern time $h:$m -> $mode"
-          fi
-          echo "mode=$mode" >> "$GITHUB_OUTPUT"
-
       - uses: actions/checkout@v4
-        if: steps.mode.outputs.mode != 'skip'
 
       - uses: actions/setup-python@v5
-        if: steps.mode.outputs.mode != 'skip'
         with:
           python-version: "3.11"
 
-      # A partial fetch still commits what it got; the step result is checked at the end.
-      - name: Fetch from ESPN
-        id: fetch
-        if: steps.mode.outputs.mode != 'skip'
+      # Each fetch commits what it got even if part of it failed; checked at the end.
+      - name: Fetch last night's results
+        id: results
         continue-on-error: true
-        run: python scripts/fetch_espn.py --mode "${{ steps.mode.outputs.mode }}" --out data
+        run: python scripts/fetch_espn.py --mode results --out data
+
+      - name: Grade last night
+        continue-on-error: true
+        run: python scripts/nightly.py grade
+
+      - name: Fetch today's slate, odds and injuries
+        id: pregame
+        continue-on-error: true
+        run: python scripts/fetch_espn.py --mode pregame --out data
 
       # Optional. Does nothing unless the ODDS_API_KEY secret is set.
       - name: Fetch prop lines
-        if: steps.mode.outputs.mode == 'pregame'
         continue-on-error: true
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           PROP_MARKETS: ${{ vars.PROP_MARKETS }}
         run: python scripts/fetch_props.py --out data
 
-      - name: Project tonight
-        if: steps.mode.outputs.mode == 'pregame'
+      - name: Project today
+        id: project
+        continue-on-error: true
         run: python scripts/nightly.py project
 
-      - name: Grade last night
-        if: steps.mode.outputs.mode == 'results'
-        run: python scripts/nightly.py grade
-
       - name: Commit
-        if: always() && steps.mode.outputs.mode != 'skip'
+        if: always()
         run: |
           git config user.name  "nba-data-bot"
           git config user.email "actions@github.com"
           git add data logs docs
-          git diff --staged --quiet || git commit -m "nightly: ${{ steps.mode.outputs.mode }} $(TZ=America/New_York date +%Y-%m-%d)"
+          git diff --staged --quiet || git commit -m "nightly: $(TZ=America/New_York date '+%Y-%m-%d %H:%M ET')"
           git pull --rebase
           git push
 
-      - name: Report fetch problems
-        if: steps.fetch.outcome == 'failure'
+      - name: Report problems
+        if: steps.results.outcome == 'failure' || steps.pregame.outcome == 'failure' || steps.project.outcome == 'failure'
         run: |
-          echo "ESPN fetch was incomplete. What it did get was committed."
+          echo "A fetch or the projection step had a problem. What it did get was committed."
           exit 1

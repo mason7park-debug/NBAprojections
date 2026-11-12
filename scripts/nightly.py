@@ -797,7 +797,12 @@ def main():
         date = today if a.cmd == "project" else today - dt.timedelta(days=1)
     data, docs = pathlib.Path(a.data), pathlib.Path(a.docs)
     if a.cmd == "grade":
-        return run_grade(date, data, docs)
+        if a.date:
+            return run_grade(date, data, docs)
+        # no date given: catch up on the last few days, oldest first, so a missed morning heals itself
+        for back in (4, 3, 2, 1):
+            run_grade(today - dt.timedelta(days=back), data, docs)
+        return
     now = dt.datetime.fromisoformat(a.now).replace(tzinfo=dt.timezone.utc) if a.now else None
     # a past date is a replay: every game is projected fresh, nothing is locked
     run_project(date, data, docs, now=now, lock=(date >= today))

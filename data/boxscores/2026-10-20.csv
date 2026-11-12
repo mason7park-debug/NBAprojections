@@ -1,0 +1,85 @@
+game_id,team,player_id,player,dnp,MIN,PTS,FG,3PT,FT,REB,AST,TO,STL,BLK,OREB,DREB,PF,plusminus,starter,pos
+401909088,BOS,4251,Paul George,False,31,38,12-21,7-12,7-8,5,3,3,5,0,0,5,5,+9,True,F
+401909088,BOS,4065648,Jayson Tatum,False,38,13,6-23,0-7,1-1,4,11,2,0,0,1,3,3,-5,True,F
+401909088,BOS,4351852,Mitchell Robinson,False,18,4,2-2,0-0,0-2,3,1,2,1,2,1,2,2,-8,True,C
+401909088,BOS,3078576,Derrick White,False,36,17,7-13,3-7,0-0,1,8,4,1,0,1,0,2,-4,True,G
+401909088,BOS,4683689,Jordan Walsh,False,13,0,0-2,0-1,0-0,6,1,0,1,1,3,3,0,0,True,G
+401909088,BOS,4065804,Sam Hauser,False,18,11,4-7,3-5,0-0,4,1,0,0,0,1,3,3,+5,False,F
+401909088,BOS,4277951,Luka Garza,False,8,2,1-3,0-2,0-0,2,0,1,0,0,2,0,4,-9,False,C
+401909088,BOS,4397424,Neemias Queta,False,22,3,1-3,0-0,1-2,4,2,1,1,2,1,3,4,+7,False,C
+401909088,BOS,4066354,Payton Pritchard,False,28,17,4-9,2-5,7-8,4,1,0,0,0,2,2,2,-10,False,G
+401909088,BOS,4593841,Baylor Scheierman,False,18,8,3-4,2-2,0-0,3,0,1,1,0,0,3,1,-10,False,G
+401909088,BOS,5175647,Hugo Gonzalez,False,10,0,0-1,0-1,0-0,3,0,0,0,0,0,3,0,-15,False,G
+401909088,BOS,5142621,Chris Cenac Jr.,True,,,,,,,,,,,,,,,False,F
+401909088,BOS,3195,Mike Conley,True,,,,,,,,,,,,,,,False,G
+401909088,BOS,4397251,Ron Harper Jr.,True,,,,,,,,,,,,,,,False,G
+401909088,DET,3157465,Duncan Robinson,False,28,21,5-10,5-9,6-8,2,2,3,1,0,0,2,4,+5,True,F
+401909088,DET,3908845,John Collins,False,25,6,3-7,0-3,0-0,5,1,0,1,1,2,3,0,-13,True,F
+401909088,DET,4433621,Jalen Duren,False,28,22,8-13,0-0,6-7,9,1,1,1,1,3,6,2,-1,True,C
+401909088,DET,4432166,Cade Cunningham,False,35,22,8-18,1-6,5-5,4,8,5,1,1,0,4,0,-1,True,G
+401909088,DET,4684742,Ausar Thompson,False,33,11,4-8,0-1,3-3,11,5,3,1,0,3,8,3,+12,True,G
+401909088,DET,4278562,Paul Reed,False,17,6,2-3,0-0,2-2,6,2,2,1,0,2,4,3,+12,False,F
+401909088,DET,4683771,Ronald Holland II,False,3,0,0-1,0-1,0-0,1,1,1,0,1,1,0,2,-4,False,F
+401909088,DET,2596112,Javonte Green,False,18,19,5-10,5-8,4-4,4,0,0,0,0,1,3,2,+21,False,G
+401909088,DET,4066372,Kevin Huerter,False,18,3,1-4,1-4,0-0,3,2,0,0,0,0,3,2,+5,False,G
+401909088,DET,4395702,Isaiah Joe,False,19,8,2-9,2-7,2-3,2,2,1,1,1,0,2,0,0,False,G
+401909088,DET,5107199,Daniss Jenkins,False,15,3,1-3,1-1,0-0,2,3,1,0,0,2,0,4,+4,False,G
+401909088,DET,4397882,Tolu Smith,True,,,,,,,,,,,,,,,False,F
+401909088,DET,4700852,Chaz Lanier,True,,,,,,,,,,,,,,,False,G
+401909088,DET,5258459,Ebuka Okorie,True,,,,,,,,,,,,,,,False,G
+401909089,PHI,1966,LeBron James,False,34,14,5-13,0-3,4-6,9,7,1,1,1,1,8,4,-2,True,F
+401909089,PHI,3059318,Joel Embiid,False,33,13,4-15,2-7,3-4,11,6,4,2,3,2,9,3,+13,True,C
+401909089,PHI,3917376,Jaylen Brown,False,35,19,7-14,2-4,3-4,8,6,2,1,1,1,7,1,+17,True,G
+401909089,PHI,4431678,Tyrese Maxey,False,40,28,9-19,2-9,8-9,4,5,2,3,3,1,3,3,+11,True,G
+401909089,PHI,5124612,VJ Edgecombe,False,35,9,4-10,0-3,1-2,4,1,1,1,0,0,4,4,0,True,G
+401909089,PHI,4432446,Jabari Walker,False,3,0,0-0,0-0,0-0,0,1,0,0,0,0,0,1,-6,False,F
+401909089,PHI,5105637,Adem Bona,False,10,0,0-0,0-0,0-0,3,1,0,0,1,0,3,2,-1,False,C
+401909089,PHI,2581018,Kentavious Caldwell-Pope,False,26,10,3-8,2-6,2-2,4,1,0,0,1,1,3,3,+3,False,G
+401909089,PHI,4351851,Anfernee Simons,False,25,13,5-10,3-8,0-0,2,0,0,0,0,0,2,2,-5,False,G
+401909089,PHI,4711297,Justin Edwards,True,,,,,,,,,,,,,,,False,F
+401909089,PHI,4433144,Caleb Love,True,,,,,,,,,,,,,,,False,G
+401909089,PHI,4873090,Labaron Philon Jr.,True,,,,,,,,,,,,,,,False,G
+401909089,PHI,5099752,Rayan Rupert,True,,,,,,,,,,,,,,,False,G
+401909089,NY,3934719,OG Anunoby,False,32,10,3-12,1-9,3-3,5,0,2,1,1,1,4,5,-20,True,F
+401909089,NY,3136195,Karl-Anthony Towns,False,24,19,6-9,3-4,4-7,12,1,4,1,2,3,9,4,0,True,C
+401909089,NY,3062679,Josh Hart,False,30,14,5-10,2-5,2-3,7,3,2,1,1,0,7,3,+1,True,G
+401909089,NY,3147657,Mikal Bridges,False,33,4,2-8,0-2,0-0,3,1,0,0,1,1,2,1,-15,True,G
+401909089,NY,3934672,Jalen Brunson,False,34,21,6-19,1-3,8-8,5,3,2,0,0,0,5,1,-11,True,G
+401909089,NY,6585,Andre Drummond,False,24,12,5-13,0-0,2-4,14,4,0,1,2,7,7,3,-6,False,C
+401909089,NY,2528426,Jordan Clarkson,False,8,4,2-4,0-0,0-0,1,1,0,0,0,1,0,2,+8,False,G
+401909089,NY,3914044,Landry Shamet,False,25,5,2-7,1-4,0-2,2,4,2,0,0,1,1,1,+11,False,G
+401909089,NY,4277869,Jose Alvarado,False,17,8,3-7,2-3,0-0,3,3,1,2,0,0,3,2,+6,False,G
+401909089,NY,4431823,Miles McBride,False,14,3,1-5,1-3,0-0,1,1,1,0,1,0,1,0,-4,False,G
+401909089,NY,5211983,Pacome Dadiet,True,,,,,,,,,,,,,,,False,F
+401909089,NY,5289900,Mohamed Diawara,True,,,,,,,,,,,,,,,False,F
+401909089,NY,4432808,James Wiseman,True,,,,,,,,,,,,,,,False,C
+401909089,NY,4411057,Kevin McCullar Jr.,True,,,,,,,,,,,,,,,False,G
+401909089,NY,4433225,Tyler Kolek,True,,,,,,,,,,,,,,,False,G
+401909090,OKC,4222252,Isaiah Hartenstein,False,17,4,2-4,0-0,0-0,3,3,2,1,1,1,2,5,+6,True,C
+401909090,OKC,4433255,Chet Holmgren,False,31,14,3-8,0-1,8-8,7,2,1,0,4,4,3,0,-1,True,C
+401909090,OKC,4278073,Shai Gilgeous-Alexander,False,36,32,13-27,3-7,3-4,6,4,2,3,3,2,4,2,+6,True,G
+401909090,OKC,4593803,Jalen Williams,False,30,12,5-16,1-2,1-2,7,2,0,1,1,0,7,4,-5,True,G
+401909090,OKC,4683692,Cason Wallace,False,19,6,3-8,0-4,0-0,3,2,1,1,0,0,3,3,-5,True,G
+401909090,OKC,4432823,Jaylin Williams,False,17,5,1-6,1-5,2-2,4,1,1,0,0,1,3,1,-4,False,F
+401909090,OKC,4684208,Brooks Barnhizer,False,1,0,0-0,0-0,0-0,0,0,0,0,0,0,0,0,0,False,F
+401909090,OKC,5174983,Aday Mara,False,12,7,3-4,0-0,1-2,2,1,1,0,1,1,1,1,+9,False,C
+401909090,OKC,2991350,Alex Caruso,False,25,9,3-4,2-2,1-2,6,1,0,1,0,0,6,1,+16,False,G
+401909090,OKC,3133626,Kenrich Williams,False,7,3,1-1,1-1,0-0,2,0,0,0,0,1,1,1,+6,False,G
+401909090,OKC,4683778,Jared McCain,False,22,20,7-9,6-8,0-0,2,2,2,1,0,0,2,1,+20,False,G
+401909090,OKC,4900671,Ajay Mitchell,False,23,4,2-8,0-1,0-0,5,6,1,0,0,0,5,3,+12,False,G
+401909090,OKC,5241364,Bennett Stirtz,False,1,0,0-0,0-0,0-0,0,0,0,0,0,0,0,0,0,False,G
+401909090,SA,5104157,Victor Wembanyama,False,34,12,1-13,0-4,10-12,13,3,4,1,6,2,11,3,-2,True,F
+401909090,SA,4066259,De'Aaron Fox,False,32,14,6-9,0-2,2-3,7,7,2,1,0,0,7,1,+1,True,G
+401909090,SA,4395630,Devin Vassell,False,31,7,2-8,1-4,2-2,3,1,0,0,0,0,3,4,+8,True,G
+401909090,SA,4845367,Stephon Castle,False,28,24,9-21,5-12,1-1,7,1,3,0,0,2,5,4,-2,True,G
+401909090,SA,5037871,Dylan Harper,False,32,18,7-17,0-2,4-4,7,5,2,0,0,2,5,5,-6,True,G
+401909090,SA,6578,Harrison Barnes,False,9,3,1-1,1-1,0-0,0,0,0,0,1,0,0,1,-7,False,F
+401909090,SA,4395723,Keldon Johnson,False,20,10,4-8,1-2,1-1,4,1,2,2,0,3,1,2,-12,False,F
+401909090,SA,4592479,Julian Champagnie,False,30,8,3-8,2-6,0-0,3,1,0,2,3,1,2,3,-24,False,F
+401909090,SA,4713010,David Jones Garcia,False,1,2,0-1,0-0,2-2,0,0,0,0,0,0,0,0,0,False,F
+401909090,SA,5061568,Carter Bryant,False,6,0,0-3,0-3,0-0,0,1,0,0,0,0,0,1,-6,False,F
+401909090,SA,5105337,Maliq Brown,False,1,0,0-0,0-0,0-0,0,1,0,0,0,0,0,0,0,False,F
+401909090,SA,3064560,Luke Kornet,False,13,4,2-2,0-0,0-0,1,0,0,0,1,0,1,0,-10,False,C
+401909090,SA,5105809,Tarris Reed Jr.,False,1,0,0-0,0-0,0-0,0,0,0,0,0,0,0,0,0,False,C
+401909090,SA,5107968,Ja'Kobi Gillespie,False,1,2,1-2,0-1,0-0,0,0,0,0,0,0,0,0,0,False,G
+401909090,SA,3134916,Jordan McLaughlin,True,,,,,,,,,,,,,,,False,G

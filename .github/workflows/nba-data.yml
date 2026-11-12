@@ -12,7 +12,9 @@ name: NBA nightly projections
 on:
   schedule:
     # UTC. GitHub's scheduler slips 5-20 min regardless of the minute chosen.
-    - cron: "37 22 * * *"   # ~5:37pm ET -- pregame, before first tip
+    - cron: "31 16 * * *"   # ~11:31am ET -- first look, covers afternoon games
+    - cron: "31 19 * * *"   # ~2:31pm ET -- refresh before mid-afternoon tips
+    - cron: "37 22 * * *"   # ~5:37pm ET -- main pregame run
     - cron: "27 23 * * *"   # ~6:27pm ET -- pregame again, picks up late spreads and scratches
     - cron: "43 13 * * *"   # ~8:43am ET -- results and grading for the night before
   workflow_dispatch:

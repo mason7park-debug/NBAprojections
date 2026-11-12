@@ -37,9 +37,12 @@ CEIL_STATS = ["PTS", "REB", "AST", "3PM", "STL", "BLK"]
 BENCH_MIN = 18.0      # bench players at or above this many minutes are projected
 STAR_PPG = 18.0
 BUMP_PPG = 20.0
+HOME_EDGE = 2.5       # points the home team is worth
+RATE_K = 10           # team ratings are pulled toward average until about this many games
 
 # ============================================================== MODEL (fixed)
-SD = 13.0          # spread of final margin around the point spread
+SD = 15.0          # spread of final margin around the point spread
+                   # (13.0 until 2026-11-11; 159 games this season fit 14.3 to 16)
 BLOWOUT = 20       # a blowout is a final margin of 20 or more
 FLOOR = {'PTS': 0.70, 'REB': 0.60, 'AST': 0.60, '3PM': 0.50}   # flat rule
 MIN_LOG_GAMES = 6  # games needed before a player's own log sets his floor
@@ -190,7 +193,8 @@ def norm(name):
     return " ".join(w for w in n.split() if w not in ("jr", "sr", "ii", "iii", "iv"))
 
 def tag(pb):
-    return "Low" if pb < 0.15 else ("Medium" if pb <= 0.25 else "High")
+    # cut points sit at a 5 point and a 10 point spread
+    return "Low" if pb < 0.21 else ("Medium" if pb <= 0.27 else "High")
 
 
 # ------------------------------------------------------------------- history
@@ -240,7 +244,7 @@ def team_tables(team_games, allowed_pos):
     by_game = {(r["game_id"], r["team"]): r for rows in team_games.values() for r in rows}
     raw = {}
     for team, rows in team_games.items():
-        allow = defaultdict(list); pace = []
+        allow = defaultdict(list); pace = []; pf = 0.0; pa = 0.0
         for r in rows:
             o = by_game.get((r["game_id"], r["opp"]))
             if not o:
@@ -252,9 +256,12 @@ def team_tables(team_games, allowed_pos):
             a, b = poss(r), poss(o)
             if a is not None and b is not None:
                 pace.append((a + b) / 2)
+                pf += fnum(r.get("PTS"), 0.0); pa += fnum(o.get("PTS"), 0.0)
         raw[team] = {"games": len(rows),
                      "allow": {s: statistics.mean(v) for s, v in allow.items() if v},
-                     "pace": statistics.mean(pace) if pace else None}
+                     "pace": statistics.mean(pace) if pace else None,
+                     "off": pf / sum(pace) if pace else None,      # points per possession
+                     "def": pa / sum(pace) if pace else None}
     lg = {}
     for s in CEIL_STATS + ["FTM", "PAINT"]:
         vals = [t["allow"][s] for t in raw.values() if s in t["allow"]]
@@ -275,7 +282,37 @@ def team_tables(team_games, allowed_pos):
         avg = statistics.mean(vals) if vals else 0
         for t in dvp_raw:
             dvp[t][key] = dvp_raw[t][key] / avg if avg else 1.0
+    offs = [t["off"] for t in raw.values() if t["off"]]
+    lg["PPP"] = statistics.mean(offs) if offs else None
     return raw, lg, lg_pace, dvp
+
+
+def fair_line(p):
+    """Win chance as a no-fee moneyline."""
+    p = max(0.01, min(0.99, p))
+    return int(round(-100 * p / (1 - p))) if p >= 0.5 else int(round(100 * (1 - p) / p))
+
+
+def game_prediction(home, away, raw, lg, lg_pace, spread, total):
+    """Projected score and win chance from team scoring and defense per possession."""
+    h, a, L = raw.get(home), raw.get(away), lg.get("PPP")
+    if not h or not a or not L or not lg_pace or not all((h["off"], h["def"], a["off"], a["def"], h["pace"], a["pace"])):
+        return None
+    def r(t, k, avg):
+        return avg + (t[k] - avg) * t["games"] / (t["games"] + RATE_K)
+    poss = r(h, "pace", lg_pace) * r(a, "pace", lg_pace) / lg_pace
+    hp = poss * r(h, "off", L) * r(a, "def", L) / L + HOME_EDGE / 2
+    ap = poss * r(a, "off", L) * r(h, "def", L) / L - HOME_EDGE / 2
+    pw = phi((hp - ap) / SD)
+    out = {"home_pts": round(hp, 1), "away_pts": round(ap, 1), "margin": round(hp - ap, 1),
+           "total": round(hp + ap, 1), "home_win": round(pw, 3),
+           "home_ml": fair_line(pw), "away_ml": fair_line(1 - pw),
+           "market_home_win": round(phi(-spread / SD), 3) if spread is not None else None,
+           "market_home_pts": None, "market_away_pts": None}
+    if spread is not None and total is not None:
+        out["market_home_pts"] = round((total - spread) / 2, 1)
+        out["market_away_pts"] = round((total + spread) / 2, 1)
+    return out
 
 
 def player_profile(p):
@@ -302,7 +339,7 @@ def player_profile(p):
 
 # ------------------------------------------------------------------- project
 
-def run_project(date, data, docs):
+def run_project(date, data, docs, now=None, lock=True):
     slate = read_csv(data / "slate" / f"{date}.csv")
     if not slate:
         print(f"no games found for {date}; nothing to project")
@@ -346,15 +383,52 @@ def run_project(date, data, docs):
         return [pr["name"] for pid, pr in by_team.get(team, [])
                 if pid in out_ids and pr["PTS"] >= BUMP_PPG]
 
-    games_out, proj_rows, notes = [], [], []
+    games_out, proj_rows, notes, pred_rows = [], [], [], []
     slate = sorted(slate, key=lambda r: (r["date"], r["game_id"]))
+
+    # Lock at tip: a game that has started keeps the numbers from the last run before it tipped.
+    now = now or dt.datetime.now(dt.timezone.utc)
+    old_games, old_rows, old_preds = {}, defaultdict(list), {}
+    prev = docs / "data" / f"{date}.json"
+    if lock and prev.exists():
+        try:
+            old_games = {g["game_id"]: g for g in json.loads(prev.read_text())["games"]}
+        except (ValueError, KeyError):
+            old_games = {}
+        for r in read_csv(data / "projections" / f"{date}.csv"):
+            old_rows[r["game_id"]].append(r)
+        old_preds = {r["game_id"]: r for r in read_csv(data / "gamepreds" / f"{date}.csv")}
+
+    def tip_of(g):
+        return dt.datetime.fromisoformat(g["date"].replace("Z", "+00:00"))
+
     for gi, g in enumerate(slate):
         home, away, gid = g["home"], g["away"], g["game_id"]
+        started = lock and tip_of(g) <= now
+        if started and gid in old_games and old_rows.get(gid):
+            kept = old_games[gid]
+            kept["locked"] = True
+            if not kept.get("pred"):     # saved before game predictions existed; uses pre-date history only
+                kept["pred"] = game_prediction(home, away, raw, lg, lg_pace, kept.get("spread"), kept.get("total"))
+                if kept["pred"]:
+                    old_preds[gid] = dict({"date": str(date), "game_id": gid, "home": home, "away": away,
+                                           "spread": kept.get("spread"), "market_total": kept.get("total")}, **kept["pred"])
+            games_out.append(kept)
+            proj_rows.extend(old_rows[gid])
+            if gid in old_preds:
+                pred_rows.append(old_preds[gid])
+            continue
+        if started:
+            notes.append(f"{away} at {home}: already under way at run time with no earlier run saved, so this is not a pregame number.")
         o = odds.get(gid, {})
         spread, total = fnum(o.get("spread")), fnum(o.get("over_under"))
+        pred = game_prediction(home, away, raw, lg, lg_pace, spread, total)
+        # the spread sets blowout risk; with no spread posted, the model's own margin stands in
+        eff_spread = spread if spread is not None else (-pred["margin"] if pred else 0.0)
         if spread is None:
-            notes.append(f"{away} at {home}: no spread posted at fetch time, treated as an even game.")
-        pb = p_blowout(spread if spread is not None else 0.0)
+            notes.append(f"{away} at {home}: no spread posted at fetch time, so blowout risk uses "
+                         + (f"the model margin ({home} {pred['margin']:+.1f})." if pred else "an even game."))
+        pb = p_blowout(eff_spread)
         ph, pa = raw.get(home, {}).get("pace"), raw.get(away, {}).get("pace")
         pace_factor = ((ph + pa) / 2 / lg_pace) if ph and pa and lg_pace else 1.0
 
@@ -403,7 +477,7 @@ def run_project(date, data, docs):
             team_blocks.append({"team": team, "opp": opp, "area": {k: round(v, 3) for k, v in area.items()},
                                 "out_scorers": outs, "players": rows})
 
-        sims, flags = simulate_game(spread if spread is not None else 0.0, sim_players, gi)
+        sims, flags = simulate_game(eff_spread, sim_players, gi)
         for tb in team_blocks:
             for e in tb["players"]:
                 for s in STATS:
@@ -425,8 +499,11 @@ def run_project(date, data, docs):
                         "spread": spread, "p_blowout": round(pb, 3)})
         games_out.append({"game_id": gid, "home": home, "away": away, "tip": g["date"],
                           "spread": spread, "total": total, "favorite": o.get("details"),
-                          "p_blowout": round(pb, 3), "tag": tag(pb) if spread is not None else None,
+                          "p_blowout": round(pb, 3), "tag": tag(pb), "locked": False, "pred": pred,
                           "pace": round(pace_factor, 3), "ceiling": ceil, "teams": team_blocks})
+        if pred:
+            pred_rows.append(dict({"date": str(date), "game_id": gid, "home": home, "away": away,
+                                   "spread": spread, "market_total": total}, **pred))
 
     # target games by stat
     targets = {}
@@ -458,8 +535,8 @@ def run_project(date, data, docs):
     hist_dates = sorted({r["_date"] for rows in team_games.values() for r in rows})
     n_log = sum(1 for r in proj_rows if r["floor_source"] == "log")
     now_et = dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=5)
-    first_tip = min(dt.datetime.fromisoformat(g["date"].replace("Z", "+00:00")) for g in slate)
-    hours_early = (first_tip - dt.datetime.now(dt.timezone.utc)).total_seconds() / 3600
+    open_tips = [tip_of(g) for g in slate if tip_of(g) > now]
+    hours_early = (min(open_tips) - now).total_seconds() / 3600 if open_tips else 0
     payload = {
         "date": str(date), "run_time_et": now_et.strftime("%Y-%m-%d %I:%M %p ET"),
         "early_run": hours_early > 3,
@@ -469,12 +546,16 @@ def run_project(date, data, docs):
             "history_from": str(hist_dates[0]) if hist_dates else None,
             "history_to": str(hist_dates[-1]) if hist_dates else None,
             "log_floors": n_log, "flat_floors": len(proj_rows) - n_log,
-            "lines_found": sum(1 for r in proj_rows if r["line"] is not None),
+            "lines_found": sum(1 for r in proj_rows if fnum(r["line"]) is not None),
             "players": len(proj_rows) // len(STATS),
+            "locked_games": sum(1 for g in games_out if g.get("locked")),
+            "sd": SD,
             "notes": notes[:40],
         },
     }
     write_csv(proj_rows, data / "projections" / f"{date}.csv")
+    if pred_rows:
+        write_csv(pred_rows, data / "gamepreds" / f"{date}.csv")
     (docs / "data").mkdir(parents=True, exist_ok=True)
     for name in ("latest.json", f"{date}.json"):
         (docs / "data" / name).write_text(json.dumps(payload, separators=(",", ":")))
@@ -557,6 +638,43 @@ def summarize_grades(rows):
     return res, games
 
 
+def grade_games(data, dates):
+    """Score and winner predictions against final scores, next to the market."""
+    rows = []
+    for d in dates:
+        final = {r["game_id"]: r for r in read_csv(data / "teamstats" / f"{d}.csv") if str(r["home"]).lower() == "true"}
+        for r in read_csv(data / "gamepreds" / f"{d}.csv"):
+            t = final.get(r["game_id"])
+            if t:
+                rows.append((r, fnum(t["PTS"]), fnum(t["OPP_PTS"])))
+    if not rows:
+        return None
+    n = len(rows)
+    out = {"games": n,
+           "winner_hit": round(sum((fnum(r["margin"]) > 0) == (hp > ap) for r, hp, ap in rows) / n, 3),
+           "margin_mae": round(statistics.mean(abs(fnum(r["margin"]) - (hp - ap)) for r, hp, ap in rows), 1),
+           "total_mae": round(statistics.mean(abs(fnum(r["total"]) - (hp + ap)) for r, hp, ap in rows), 1),
+           "team_score_mae": round(statistics.mean((abs(fnum(r["home_pts"]) - hp) + abs(fnum(r["away_pts"]) - ap)) / 2 for r, hp, ap in rows), 1)}
+    m = [(r, hp, ap) for r, hp, ap in rows if fnum(r["spread"]) is not None]
+    out["market_games"] = len(m)
+    if m:
+        sp = [x for x in m if fnum(x[0]["spread"]) != 0]
+        out["market_winner_hit"] = round(sum((fnum(r["spread"]) < 0) == (hp > ap) for r, hp, ap in sp) / len(sp), 3) if sp else None
+        out["market_margin_mae"] = round(statistics.mean(abs(-fnum(r["spread"]) - (hp - ap)) for r, hp, ap in m), 1)
+        out["model_margin_mae_same_games"] = round(statistics.mean(abs(fnum(r["margin"]) - (hp - ap)) for r, hp, ap in m), 1)
+        mt = [x for x in m if fnum(x[0]["market_total"]) is not None]
+        out["market_total_mae"] = round(statistics.mean(abs(fnum(r["market_total"]) - (hp + ap)) for r, hp, ap in mt), 1) if mt else None
+    # do the win chances mean what they say?
+    cal = []
+    for label, lo, hi in (("50 to 60%", .5, .6), ("60 to 70%", .6, .7), ("70 to 80%", .7, .8), ("80% and up", .8, 1.01)):
+        z = [(max(fnum(r["home_win"]), 1 - fnum(r["home_win"])), (fnum(r["home_win"]) >= .5) == (hp > ap)) for r, hp, ap in rows]
+        z = [w for p_, w in z if lo <= p_ < hi]
+        if z:
+            cal.append({"bucket": label, "n": len(z), "won": round(sum(z) / len(z), 3)})
+    out["win_check"] = cal
+    return out
+
+
 def run_grade(date, data, docs):
     rows = grade_one(date, data)
     if rows is None:
@@ -572,6 +690,8 @@ def run_grade(date, data, docs):
         every.extend(read_csv(p))
     allnights, _ = summarize_grades(every)
     allnights["nights"] = len({r["date"] for r in every})
+    last["game_preds"] = grade_games(data, [str(date)])
+    allnights["game_preds"] = grade_games(data, sorted(p.stem for p in (data / "gamepreds").glob("*.csv")))
     (docs / "data").mkdir(parents=True, exist_ok=True)
     (docs / "data" / "grade.json").write_text(json.dumps({"last": last, "all": allnights}, separators=(",", ":")))
     s = last["stats"].get("PTS", {})
@@ -585,6 +705,7 @@ def main():
     ap.add_argument("--date", help="YYYY-MM-DD; default is today (US Eastern) for project, yesterday for grade")
     ap.add_argument("--data", default="data")
     ap.add_argument("--docs", default="docs")
+    ap.add_argument("--now", help="testing: pretend the run happens at this UTC time (ISO format)")
     a = ap.parse_args()
     today = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=5)).date()
     if a.date:
@@ -592,7 +713,11 @@ def main():
     else:
         date = today if a.cmd == "project" else today - dt.timedelta(days=1)
     data, docs = pathlib.Path(a.data), pathlib.Path(a.docs)
-    (run_project if a.cmd == "project" else run_grade)(date, data, docs)
+    if a.cmd == "grade":
+        return run_grade(date, data, docs)
+    now = dt.datetime.fromisoformat(a.now).replace(tzinfo=dt.timezone.utc) if a.now else None
+    # a past date is a replay: every game is projected fresh, nothing is locked
+    run_project(date, data, docs, now=now, lock=(date >= today))
 
 
 if __name__ == "__main__":

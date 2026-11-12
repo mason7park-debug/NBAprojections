@@ -7,11 +7,31 @@
   function pc(v) { return v == null ? '-' : Math.round(v * 100) + '%'; }
   function rel(v) { var d = Math.round((v - 1) * 100); return (d > 0 ? '+' : '') + d + '%'; }
   function tagEl(t) { return '<span class="tag ' + (t || 'none') + '">' + (t || 'no line') + '</span>'; }
-  function spreadTxt(g) { return g.favorite ? esc(g.favorite) : 'no spread'; }
+  function spreadTxt(g) { return g.favorite ? esc(g.favorite) : (g.pred ? 'model ' + esc(g.pred.margin >= 0 ? g.home : g.away) + ' -' + Math.abs(g.pred.margin).toFixed(1) : 'no spread'); }
   function heat(v) {
     if (v == null) return '';
     var d = v - 1, a = Math.min(0.5, Math.abs(d) * 4);
     return 'background:rgba(var(--' + (d >= 0 ? 'good' : 'bad') + '-rgb),' + a.toFixed(2) + ')';
+  }
+  function ml(v) { return v == null ? '-' : (v > 0 ? '+' : '') + v; }
+  function gp(x) {
+    var p = x.game_preds; if (!p) return '';
+    var t = '<p><b>Game predictions.</b> Winner right in ' + pc(p.winner_hit) + ' of ' + p.games + ' games. Avg miss: margin ' + p.margin_mae + ', total ' + p.total_mae + ', team score ' + p.team_score_mae + '.';
+    if (p.market_games) t += ' The betting line on the same nights: favorite won ' + pc(p.market_winner_hit) + ', margin miss ' + p.market_margin_mae + ', total miss ' + dash(p.market_total_mae) + '.';
+    if (p.win_check && p.win_check.length && p.games >= 30) t += ' Win chance check: ' + p.win_check.map(function (b) { return b.bucket + ' picks won ' + pc(b.won) + ' (' + b.n + ')'; }).join(' · ') + '.';
+    return t + '</p>';
+  }
+  function gamePreds(D) {
+    var gs = D.games.filter(function (g) { return g.pred; });
+    if (!gs.length) return '';
+    return '<section><div class="eyebrow">Game predictions</div><div class="ceilwrap"><table class="ceil"><thead><tr><th class="lft">Game</th><th>Projected score</th><th>Pick</th><th>Win chance</th><th>Fair moneyline</th><th>Line says</th><th>Line win chance</th></tr></thead><tbody>' +
+      gs.map(function (g) {
+        var p = g.pred, homeFav = p.home_win >= 0.5, fav = homeFav ? g.home : g.away, w = homeFav ? p.home_win : 1 - p.home_win;
+        var mk = p.market_home_pts == null ? '-' : esc(g.away) + ' ' + p.market_away_pts + ', ' + esc(g.home) + ' ' + p.market_home_pts;
+        var mw = p.market_home_win == null ? '-' : (p.market_home_win >= 0.5 ? esc(g.home) + ' ' + pc(p.market_home_win) : esc(g.away) + ' ' + pc(1 - p.market_home_win));
+        return '<tr><td class="g lft">' + esc(g.away) + ' at ' + esc(g.home) + '</td><td>' + esc(g.away) + ' ' + p.away_pts + ', ' + esc(g.home) + ' ' + p.home_pts + '</td><td class="g">' + esc(fav) + ' by ' + Math.abs(p.margin).toFixed(1) +
+          '</td><td>' + pc(w) + '</td><td>' + esc(g.away) + ' ' + ml(p.away_ml) + ' / ' + esc(g.home) + ' ' + ml(p.home_ml) + '</td><td>' + mk + '</td><td>' + mw + '</td></tr>';
+      }).join('') + '</tbody></table></div><p class="lead" style="margin-top:10px">Projected score comes from each team\'s scoring and defense per possession, pace, and 2.5 points for home court. It does not know who is injured tonight. Fair moneyline is the win chance written as odds with no sportsbook fee. "Line says" is the score the posted spread and total imply.</p></section>';
   }
   function load(u) { return fetch(u, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
 
@@ -47,18 +67,18 @@
       '<div class="card"><h3>Last slate · ' + esc(L.date) + ' · ' + L.player_games + ' player-games</h3>' + tbl(L) + '<div class="body">' +
       '<p><b>Star points floors:</b> ' + pc(L.star_floor_hit) + ' of ' + L.star_floors + ' held.</p>' +
       '<p><b>Star minutes.</b> ' + mins(L) + '</p><p><b>Blowout calls.</b> ' + calls + '</p>' +
-      '<p><b>Projected but did not play (' + L.did_not_play.length + '):</b> ' + (L.did_not_play.map(esc).join(', ') || 'none') + '</p></div></div>' +
+      gp(L) + '<p><b>Projected but did not play (' + L.did_not_play.length + '):</b> ' + (L.did_not_play.map(esc).join(', ') || 'none') + '</p></div></div>' +
       '<div class="card"><h3>All nights · ' + A.nights + ' nights · ' + A.player_games + ' player-games</h3>' + tbl(A) + '<div class="body">' +
       '<p><b>Star points floors:</b> ' + pc(A.star_floor_hit) + ' of ' + A.star_floors + ' held. The target is about 80%.</p>' +
       '<p><b>Star minutes.</b> ' + mins(A) + '</p><p><b>Games decided by 20 or more, by tag.</b> ' + tags(A) + '</p>' +
-      '<p><b>Over-chance check.</b> ' + over(A) + '</p></div></div></div></section>';
+      '<p><b>Over-chance check.</b> ' + over(A) + '</p>' + gp(A) + '</div></div></div></section>';
   }
 
   function blowoutBoard(D) {
     var gs = D.games.slice().sort(function (a, b) { return b.p_blowout - a.p_blowout; });
     return '<section><div class="eyebrow">Blowout board</div><div class="ceilwrap"><table class="ceil"><thead><tr><th class="lft">Game</th><th>Spread</th><th>Total</th><th>Blowout risk</th><th>Tag</th></tr></thead><tbody>' +
       gs.map(function (g) {
-        return '<tr><td class="g lft">' + esc(g.away) + ' at ' + esc(g.home) + '</td><td>' + spreadTxt(g) + '</td><td>' + dash(g.total) + '</td><td>' + (g.spread == null ? '-' : pc(g.p_blowout)) + '</td><td>' + tagEl(g.tag) + '</td></tr>';
+        return '<tr><td class="g lft">' + esc(g.away) + ' at ' + esc(g.home) + '</td><td>' + spreadTxt(g) + '</td><td>' + dash(g.total) + '</td><td>' + pc(g.p_blowout) + '</td><td>' + tagEl(g.tag) + '</td></tr>';
       }).join('') + '</tbody></table></div><p class="lead" style="margin-top:10px">Blowout risk is the chance the final margin is 20 or more, from the spread. Stars lose minutes in those games.</p></section>';
   }
 
@@ -106,7 +126,7 @@
     });
     var tip = new Date(g.tip).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }) + ' ET';
     return '<div class="game"><div class="ghead"><span class="ttl">' + esc(g.away) + ' at ' + esc(g.home) + '</span><div class="meta"><span class="pill">' + tip + '</span><span class="pill">' + spreadTxt(g) +
-      '</span><span class="pill ou">O/U ' + dash(g.total) + '</span>' + tagEl(g.tag) + '</div></div><div class="tscroll"><table><thead>' + head + '</thead><tbody>' + body + '</tbody></table></div></div>';
+      '</span><span class="pill ou">O/U ' + dash(g.total) + '</span>' + tagEl(g.tag) + (g.locked ? '<span class="pill">locked at tip</span>' : '') + '</div></div><div class="tscroll"><table><thead>' + head + '</thead><tbody>' + body + '</tbody></table></div></div>';
   }
 
   function ceiling(D) {
@@ -124,6 +144,8 @@
     return '<section><div class="eyebrow">Method</div><div class="method">' +
       '<p><b>Source.</b> Everything comes from ESPN box scores, odds and injury reports saved in this repo. Player rates, recent form, starters, defense by position (guard, forward, center), area defense (threes, paint, free throws) and pace are all built from those box scores.</p>' +
       '<p><b>History.</b> ' + m.history_days + ' game days, ' + esc(m.history_from) + ' to ' + esc(m.history_to) + '. ' + m.players + ' players projected. ' + m.log_floors + ' floors use the player\'s own game log and ' + m.flat_floors + ' use the flat rule.</p>' +
+      '<p><b>Blowouts.</b> Final margins are assumed to land around the spread with a typical miss of ' + (m.sd || 13) + ' points. That was 13 until Nov 11, 2026, when 159 games this season showed blowouts happening more often than 13 allows. Tags: Low under 21%, Medium 21 to 27%, High over 27%.</p>' +
+      '<p><b>Runs.</b> About 11:30am, 2:30pm, 5:37pm and 6:27pm ET. A game that has tipped keeps the numbers from the last run before tip' + (m.locked_games ? ' (' + m.locked_games + ' locked now)' : '') + '.</p>' +
       '<p><b>Lines.</b> ' + (m.lines_found ? m.lines_found + ' prop lines loaded. They never feed the projection.' : 'No prop lines loaded, so Line and Over chance are hidden.') + '</p>' +
       '<p><b>Limits.</b> Starters are taken from each team\'s last five games, not from tonight\'s posted lineup. Positions are ESPN\'s three groups. A late scratch after the run is not reflected.</p>' +
       '<p><b>Record.</b> Nights from Oct 30 to Nov 10, 2026 were replayed after the fact, each using only data from before that night. Later nights are graded live.</p>' +
@@ -137,7 +159,7 @@
     document.getElementById('hrun').textContent = 'Run ' + D.run_time_et;
     var anyLine = D.method.lines_found > 0;
     app.innerHTML = (D.early_run ? '<div class="warnbar">Early run. Lineups are not final. Run again closer to tip.</div>' : '') +
-      gradeBlock(G) + blowoutBoard(D) + targets(D) + safest(D) +
+      gradeBlock(G) + gamePreds(D) + blowoutBoard(D) + targets(D) + safest(D) +
       '<section><div class="eyebrow">Game by game</div><p class="lead" style="margin-bottom:14px">Exp is the expected value after blowout risk. Floor is the number reached in 80% of 10,000 simulated games.</p>' +
       D.games.map(function (g) { return gameTable(g, anyLine); }).join('') + '</section>' + ceiling(D) + method(D);
   });

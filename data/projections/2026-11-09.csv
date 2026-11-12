@@ -272,7 +272,7 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-11-09,401909956,5106060,Jarace Walker,IND,DAL,bench,False,AST,24.6,2.0,1.8,2.0,1,1,,1,log,,-4.5,0.202
 2026-11-09,401909956,5106060,Jarace Walker,IND,DAL,bench,False,3PM,24.6,1.1,1.0,1.1,0,0,,0,log,,-4.5,0.202
 2026-11-09,401909956,4278355,Obi Toppin,IND,DAL,bench,False,PTS,21.9,12.7,12.7,12.7,9,9,,10,log,,-4.5,0.202
-2026-11-09,401909956,4278355,Obi Toppin,IND,DAL,bench,False,REB,21.9,5.3,5.3,5.3,3,4,,4,log,,-4.5,0.202
+2026-11-09,401909956,4278355,Obi Toppin,IND,DAL,bench,False,REB,21.9,5.3,5.3,5.3,3,3,,4,log,,-4.5,0.202
 2026-11-09,401909956,4278355,Obi Toppin,IND,DAL,bench,False,AST,21.9,1.2,1.2,1.2,1,1,,0,log,,-4.5,0.202
 2026-11-09,401909956,4278355,Obi Toppin,IND,DAL,bench,False,3PM,21.9,1.8,1.8,1.8,1,1,,0,log,,-4.5,0.202
 2026-11-09,401909956,4592829,Quenton Jackson,IND,DAL,bench,False,PTS,22.6,12.2,12.2,12.2,7,7,,8,log,,-4.5,0.202

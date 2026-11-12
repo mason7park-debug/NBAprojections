@@ -561,6 +561,10 @@ def run_project(date, data, docs, now=None, lock=True):
                 for s in STATS:
                     st = e["stats"][s]
                     res = summarize(sims[e["id"]][s], flags, st["line"])
+                    # whole-number rounding can push a tiny floor above the expected value
+                    res["floor"] = min(res["floor"], int(st["expected"]))
+                    if res["blowout_floor"] is not None:
+                        res["blowout_floor"] = min(res["blowout_floor"], res["floor"])
                     st.update(floor=res["floor"], blowout_floor=res["blowout_floor"],
                               p_over=res["p_over"], sim_mean=res["sim_mean"])
                     st["gap"] = (res["floor"] - st["line"]) if st["line"] is not None else None

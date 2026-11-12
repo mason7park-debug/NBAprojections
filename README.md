@@ -1,11 +1,21 @@
-# nba-data
+# NBA nightly projections
 
-Nightly NBA data snapshots for the `nba-projections` skill.
+Runs by itself on GitHub Actions and publishes a results page with GitHub Pages.
 
-Sandboxed agents can't reliably reach sports data sources. This repo bridges
-that gap: GitHub Actions fetches the data and commits it, and the agent reads
-the committed CSVs over `raw.githubusercontent.com`. The commits also serve as
-the persistent projection log.
+- **Page:** the `docs/` folder, served by GitHub Pages (Settings, Pages, branch `main`, folder `/docs`).
+- **Run it by hand:** Actions tab, "NBA nightly projections", Run workflow.
+- **Schedule (US Eastern):** projections at about 11:31am, 2:31pm, 5:37pm and 6:27pm. Grading at about 8:43am the next day. A game that has tipped keeps the numbers from the last run before tip.
+
+## How it works
+
+1. `scripts/fetch_espn.py` saves the slate, odds, injuries and box scores from ESPN into `data/`.
+2. `scripts/nightly.py project` builds everything from those files: player projections, blowout risk, simulated floors, target games and game predictions. It writes `data/projections/`, `data/gamepreds/` and `docs/data/latest.json`.
+3. `scripts/nightly.py grade` compares the last slate with the final box scores and updates the all-nights record in `docs/data/grade.json`.
+4. `scripts/fetch_props.py` is optional. With an `ODDS_API_KEY` secret it adds prop lines. It has not been run with a real key yet.
+
+The model's settings are fixed constants at the top of `scripts/nightly.py`. Grading reports how they are doing and never changes them. Change them by hand, in one commit, when the record says so.
+
+Nothing here is betting advice. Floors and win chances are estimates from small samples.
 
 ## Layout
 

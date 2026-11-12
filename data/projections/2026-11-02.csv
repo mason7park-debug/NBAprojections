@@ -237,7 +237,7 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-11-02,401909910,4712896,Noah Clowney,BKN,NY,bench,False,3PM,22.0,0.7,0.7,0.7,0,0,,0,log,,-14.5,0.368
 2026-11-02,401909910,5174655,Chaney Johnson,BKN,NY,bench,False,PTS,23.4,6.5,6.5,6.5,4,4,,4,flat,,-14.5,0.368
 2026-11-02,401909910,5174655,Chaney Johnson,BKN,NY,bench,False,REB,23.4,3.1,3.1,3.1,2,2,,1,flat,,-14.5,0.368
-2026-11-02,401909910,5174655,Chaney Johnson,BKN,NY,bench,False,AST,23.4,0.9,0.9,0.9,1,1,,0,flat,,-14.5,0.368
+2026-11-02,401909910,5174655,Chaney Johnson,BKN,NY,bench,False,AST,23.4,0.9,0.9,0.9,0,0,,0,flat,,-14.5,0.368
 2026-11-02,401909910,5174655,Chaney Johnson,BKN,NY,bench,False,3PM,23.4,0.9,0.9,0.9,0,0,,0,flat,,-14.5,0.368
 2026-11-02,401909910,3150844,Moritz Wagner,BKN,NY,bench,False,PTS,18.7,11.7,11.7,11.7,7,7,,8,flat,,-14.5,0.368
 2026-11-02,401909910,3150844,Moritz Wagner,BKN,NY,bench,False,REB,18.7,4.0,4.0,4.0,2,2,,2,flat,,-14.5,0.368
@@ -295,7 +295,7 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-11-02,401909911,5104155,Bilal Coulibaly,WSH,ORL,bench,False,REB,26.1,4.0,3.6,3.9,2,2,,1,log,,-2.5,0.188
 2026-11-02,401909911,5104155,Bilal Coulibaly,WSH,ORL,bench,False,AST,26.1,0.5,0.4,0.5,0,0,,0,log,,-2.5,0.188
 2026-11-02,401909911,5104155,Bilal Coulibaly,WSH,ORL,bench,False,3PM,26.1,0.5,0.4,0.5,0,0,,0,log,,-2.5,0.188
-2026-11-02,401909911,5238230,Tre Johnson,WSH,ORL,bench,False,PTS,20.8,10.2,10.2,10.2,6,7,,7,flat,,-2.5,0.188
+2026-11-02,401909911,5238230,Tre Johnson,WSH,ORL,bench,False,PTS,20.8,10.2,10.2,10.2,6,6,,7,flat,,-2.5,0.188
 2026-11-02,401909911,5238230,Tre Johnson,WSH,ORL,bench,False,REB,20.8,2.0,2.0,2.0,1,1,,1,flat,,-2.5,0.188
 2026-11-02,401909911,5238230,Tre Johnson,WSH,ORL,bench,False,AST,20.8,0.8,0.8,0.8,0,0,,0,flat,,-2.5,0.188
 2026-11-02,401909911,5238230,Tre Johnson,WSH,ORL,bench,False,3PM,20.8,1.4,1.4,1.4,0,0,,0,flat,,-2.5,0.188
@@ -465,7 +465,7 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-11-02,401909914,5144091,Jeremiah Fears,NO,MEM,starter,False,3PM,25.7,1.2,1.1,1.1,0,0,,0,log,,-5.5,0.211
 2026-11-02,401909914,3442,DeAndre Jordan,NO,MEM,starter,False,PTS,16.5,5.9,5.9,5.9,4,4,,4,flat,,-5.5,0.211
 2026-11-02,401909914,3442,DeAndre Jordan,NO,MEM,starter,False,REB,16.5,6.2,6.2,6.2,4,4,,3,flat,,-5.5,0.211
-2026-11-02,401909914,3442,DeAndre Jordan,NO,MEM,starter,False,AST,16.5,0.9,0.9,0.9,1,1,,0,flat,,-5.5,0.211
+2026-11-02,401909914,3442,DeAndre Jordan,NO,MEM,starter,False,AST,16.5,0.9,0.9,0.9,0,0,,0,flat,,-5.5,0.211
 2026-11-02,401909914,3442,DeAndre Jordan,NO,MEM,starter,False,3PM,16.5,0.0,0.0,0.0,0,0,,0,flat,,-5.5,0.211
 2026-11-02,401909914,4397136,Saddiq Bey,NO,MEM,bench,False,PTS,24.5,15.2,13.6,14.8,9,8,,9,log,,-5.5,0.211
 2026-11-02,401909914,4397136,Saddiq Bey,NO,MEM,bench,False,REB,24.5,3.8,3.4,3.7,2,2,,3,log,,-5.5,0.211
@@ -536,7 +536,7 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-11-02,401909915,5214640,Kasparas Jakucionis,MIL,MIN,bench,False,AST,22.2,4.0,4.0,4.0,2,2,,2,log,,-11.5,0.303
 2026-11-02,401909915,5214640,Kasparas Jakucionis,MIL,MIN,bench,False,3PM,22.2,0.6,0.6,0.6,0,0,,0,log,,-11.5,0.303
 2026-11-02,401909915,5105623,Kel'el Ware,MIL,MIN,bench,False,PTS,20.1,13.8,13.8,13.8,9,9,,9,flat,,-11.5,0.303
-2026-11-02,401909915,5105623,Kel'el Ware,MIL,MIN,bench,False,REB,20.1,9.2,9.2,9.2,5,6,,5,flat,,-11.5,0.303
+2026-11-02,401909915,5105623,Kel'el Ware,MIL,MIN,bench,False,REB,20.1,9.2,9.2,9.2,5,5,,5,flat,,-11.5,0.303
 2026-11-02,401909915,5105623,Kel'el Ware,MIL,MIN,bench,False,AST,20.1,0.8,0.8,0.8,0,0,,0,flat,,-11.5,0.303
 2026-11-02,401909915,5105623,Kel'el Ware,MIL,MIN,bench,False,3PM,20.1,1.1,1.1,1.1,0,0,,0,flat,,-11.5,0.303
 2026-11-02,401909915,4397475,AJ Green,MIL,MIN,bench,False,PTS,19.5,6.7,6.7,6.7,2,2,,2,log,,-11.5,0.303
@@ -600,7 +600,7 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-11-02,401909916,4066354,Payton Pritchard,BOS,HOU,bench,False,AST,27.6,3.4,3.1,3.3,2,1,,2,log,,-4.5,0.202
 2026-11-02,401909916,4066354,Payton Pritchard,BOS,HOU,bench,False,3PM,27.6,2.1,1.9,2.0,1,1,,0,log,,-4.5,0.202
 2026-11-02,401909916,4397424,Neemias Queta,BOS,HOU,bench,False,PTS,20.7,8.4,8.4,8.4,4,4,,5,log,,-4.5,0.202
-2026-11-02,401909916,4397424,Neemias Queta,BOS,HOU,bench,False,REB,20.7,4.9,4.9,4.9,3,4,,3,log,,-4.5,0.202
+2026-11-02,401909916,4397424,Neemias Queta,BOS,HOU,bench,False,REB,20.7,4.9,4.9,4.9,3,3,,3,log,,-4.5,0.202
 2026-11-02,401909916,4397424,Neemias Queta,BOS,HOU,bench,False,AST,20.7,1.1,1.1,1.1,0,0,,0,log,,-4.5,0.202
 2026-11-02,401909916,4397424,Neemias Queta,BOS,HOU,bench,False,3PM,20.7,0.2,0.2,0.2,0,0,,0,log,,-4.5,0.202
 2026-11-02,401909916,4065804,Sam Hauser,BOS,HOU,bench,False,PTS,20.3,7.8,7.8,7.8,4,4,,5,log,,-4.5,0.202
@@ -787,7 +787,7 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-11-02,401909919,4278585,Collin Gillespie,PHX,GS,bench,False,REB,26.2,2.2,2.0,2.2,1,1,,1,flat,,-2.5,0.188
 2026-11-02,401909919,4278585,Collin Gillespie,PHX,GS,bench,False,AST,26.2,5.7,5.1,5.6,3,3,,3,flat,,-2.5,0.188
 2026-11-02,401909919,4278585,Collin Gillespie,PHX,GS,bench,False,3PM,26.2,2.2,2.0,2.1,1,1,,0,flat,,-2.5,0.188
-2026-11-02,401909919,4278402,Jordan Goodwin,PHX,GS,bench,False,PTS,21.0,8.6,8.6,8.6,5,6,,6,flat,,-2.5,0.188
+2026-11-02,401909919,4278402,Jordan Goodwin,PHX,GS,bench,False,PTS,21.0,8.6,8.6,8.6,5,5,,6,flat,,-2.5,0.188
 2026-11-02,401909919,4278402,Jordan Goodwin,PHX,GS,bench,False,REB,21.0,3.7,3.7,3.7,2,2,,2,flat,,-2.5,0.188
 2026-11-02,401909919,4278402,Jordan Goodwin,PHX,GS,bench,False,AST,21.0,2.7,2.7,2.7,2,2,,1,flat,,-2.5,0.188
 2026-11-02,401909919,4278402,Jordan Goodwin,PHX,GS,bench,False,3PM,21.0,2.2,2.2,2.2,1,1,,1,flat,,-2.5,0.188
@@ -848,7 +848,7 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-11-02,401909920,4432241,Jamal Shead,TOR,LAC,bench,False,AST,22.7,5.4,5.4,5.4,3,3,,4,log,,6.5,0.223
 2026-11-02,401909920,4432241,Jamal Shead,TOR,LAC,bench,False,3PM,22.7,0.5,0.5,0.5,0,0,,0,log,,6.5,0.223
 2026-11-02,401909920,5093267,Collin Murray-Boyles,TOR,LAC,bench,False,PTS,19.1,7.6,7.6,7.6,3,3,,3,log,,6.5,0.223
-2026-11-02,401909920,5093267,Collin Murray-Boyles,TOR,LAC,bench,False,REB,19.1,4.5,4.5,4.5,2,3,,2,log,,6.5,0.223
+2026-11-02,401909920,5093267,Collin Murray-Boyles,TOR,LAC,bench,False,REB,19.1,4.5,4.5,4.5,2,2,,2,log,,6.5,0.223
 2026-11-02,401909920,5093267,Collin Murray-Boyles,TOR,LAC,bench,False,AST,19.1,1.3,1.3,1.3,0,0,,0,log,,6.5,0.223
 2026-11-02,401909920,5093267,Collin Murray-Boyles,TOR,LAC,bench,False,3PM,19.1,0.5,0.5,0.5,0,0,,0,log,,6.5,0.223
 2026-11-02,401909920,4396907,Darius Garland,LAC,TOR,starter,True,PTS,32.5,20.9,16.7,19.9,14,12,,11,log,,6.5,0.223

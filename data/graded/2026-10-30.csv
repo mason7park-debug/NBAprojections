@@ -157,7 +157,7 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-30,401909279,3064514,Julius Randle,BKN,DET,starter,True,3PM,35.2,1.2,1.0,1.2,0,0,,0,flat,,8.5,0.25,True,3.0,25.0,16.0
 2026-10-30,401909279,4278104,Michael Porter Jr.,BKN,DET,starter,True,PTS,32.0,22.3,17.8,21.2,15,13,,12,flat,,8.5,0.25,True,13.0,26.0,16.0
 2026-10-30,401909279,4278104,Michael Porter Jr.,BKN,DET,starter,True,REB,32.0,6.9,5.5,6.6,4,4,,3,flat,,8.5,0.25,True,7.0,26.0,16.0
-2026-10-30,401909279,4278104,Michael Porter Jr.,BKN,DET,starter,True,AST,32.0,1.0,0.8,0.9,1,1,,0,flat,,8.5,0.25,True,1.0,26.0,16.0
+2026-10-30,401909279,4278104,Michael Porter Jr.,BKN,DET,starter,True,AST,32.0,1.0,0.8,0.9,0,0,,0,flat,,8.5,0.25,True,1.0,26.0,16.0
 2026-10-30,401909279,4278104,Michael Porter Jr.,BKN,DET,starter,True,3PM,32.0,3.7,3.0,3.5,2,2,,1,flat,,8.5,0.25,True,2.0,26.0,16.0
 2026-10-30,401909279,5175643,Egor Demin,BKN,DET,starter,False,PTS,21.8,7.6,7.6,7.6,5,5,,5,flat,,8.5,0.25,False,,,16.0
 2026-10-30,401909279,5175643,Egor Demin,BKN,DET,starter,False,REB,21.8,2.2,2.2,2.2,1,1,,1,flat,,8.5,0.25,False,,,16.0
@@ -173,7 +173,7 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-30,401909279,4702177,Keon Ellis,BKN,DET,starter,False,3PM,26.0,1.0,0.9,1.0,0,0,,0,flat,,8.5,0.25,True,2.0,21.0,16.0
 2026-10-30,401909279,5101761,Mikel Brown Jr.,BKN,DET,bench,False,PTS,22.7,10.1,10.1,10.1,7,7,,7,flat,,8.5,0.25,True,10.0,23.0,16.0
 2026-10-30,401909279,5101761,Mikel Brown Jr.,BKN,DET,bench,False,REB,22.7,3.3,3.3,3.3,2,2,,1,flat,,8.5,0.25,True,0.0,23.0,16.0
-2026-10-30,401909279,5101761,Mikel Brown Jr.,BKN,DET,bench,False,AST,22.7,4.2,4.2,4.2,2,3,,2,flat,,8.5,0.25,True,4.0,23.0,16.0
+2026-10-30,401909279,5101761,Mikel Brown Jr.,BKN,DET,bench,False,AST,22.7,4.2,4.2,4.2,2,2,,2,flat,,8.5,0.25,True,4.0,23.0,16.0
 2026-10-30,401909279,5101761,Mikel Brown Jr.,BKN,DET,bench,False,3PM,22.7,2.3,2.3,2.3,1,1,,1,flat,,8.5,0.25,True,0.0,23.0,16.0
 2026-10-30,401909279,4712896,Noah Clowney,BKN,DET,bench,False,PTS,21.5,6.1,6.1,6.1,4,4,,4,flat,,8.5,0.25,True,3.0,22.0,16.0
 2026-10-30,401909279,4712896,Noah Clowney,BKN,DET,bench,False,REB,21.5,3.9,3.9,3.9,2,2,,2,flat,,8.5,0.25,True,9.0,22.0,16.0
@@ -332,7 +332,7 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-30,401909282,4592829,Quenton Jackson,IND,MIA,bench,False,AST,18.4,3.3,3.3,3.3,2,2,,1,flat,,-8.5,0.25,True,1.0,24.0,20.0
 2026-10-30,401909282,4592829,Quenton Jackson,IND,MIA,bench,False,3PM,18.4,0.2,0.2,0.2,0,0,,0,flat,,-8.5,0.25,True,2.0,24.0,20.0
 2026-10-30,401909282,4278053,Davion Mitchell,MIA,IND,starter,False,PTS,34.0,16.5,13.2,15.6,11,9,,9,flat,,-8.5,0.25,True,15.0,35.0,20.0
-2026-10-30,401909282,4278053,Davion Mitchell,MIA,IND,starter,False,REB,34.0,0.8,0.6,0.8,1,0,,0,flat,,-8.5,0.25,True,6.0,35.0,20.0
+2026-10-30,401909282,4278053,Davion Mitchell,MIA,IND,starter,False,REB,34.0,0.8,0.6,0.8,0,0,,0,flat,,-8.5,0.25,True,6.0,35.0,20.0
 2026-10-30,401909282,4278053,Davion Mitchell,MIA,IND,starter,False,AST,34.0,7.5,6.0,7.2,4,4,,3,flat,,-8.5,0.25,True,11.0,35.0,20.0
 2026-10-30,401909282,4278053,Davion Mitchell,MIA,IND,starter,False,3PM,34.0,1.8,1.4,1.7,1,0,,0,flat,,-8.5,0.25,True,3.0,35.0,20.0
 2026-10-30,401909282,3032977,Giannis Antetokounmpo,MIA,IND,starter,True,PTS,31.6,27.9,22.3,26.5,19,16,,15,flat,,-8.5,0.25,True,31.0,31.0,20.0
@@ -439,7 +439,7 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-30,401909284,3936099,Derrick Jones Jr.,LAC,MIN,starter,False,REB,29.8,5.2,4.6,5.0,3,3,,2,flat,,-6.5,0.223,True,1.0,26.0,26.0
 2026-10-30,401909284,3936099,Derrick Jones Jr.,LAC,MIN,starter,False,AST,29.8,1.8,1.6,1.7,1,1,,0,flat,,-6.5,0.223,True,1.0,26.0,26.0
 2026-10-30,401909284,3936099,Derrick Jones Jr.,LAC,MIN,starter,False,3PM,29.8,2.4,2.1,2.3,1,1,,1,flat,,-6.5,0.223,True,2.0,26.0,26.0
-2026-10-30,401909284,4432170,Isaiah Jackson,LAC,MIN,starter,False,PTS,21.5,8.3,8.3,8.3,5,6,,5,flat,,-6.5,0.223,True,10.0,22.0,26.0
+2026-10-30,401909284,4432170,Isaiah Jackson,LAC,MIN,starter,False,PTS,21.5,8.3,8.3,8.3,5,5,,5,flat,,-6.5,0.223,True,10.0,22.0,26.0
 2026-10-30,401909284,4432170,Isaiah Jackson,LAC,MIN,starter,False,REB,21.5,5.4,5.4,5.4,3,3,,3,flat,,-6.5,0.223,True,7.0,22.0,26.0
 2026-10-30,401909284,4432170,Isaiah Jackson,LAC,MIN,starter,False,AST,21.5,2.0,2.0,2.0,1,1,,1,flat,,-6.5,0.223,True,4.0,22.0,26.0
 2026-10-30,401909284,4432170,Isaiah Jackson,LAC,MIN,starter,False,3PM,21.5,0.0,0.0,0.0,0,0,,0,flat,,-6.5,0.223,True,0.0,22.0,26.0
@@ -451,7 +451,7 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-30,401909284,3448,Brook Lopez,LAC,MIN,bench,False,REB,23.0,4.8,4.8,4.8,3,3,,2,flat,,-6.5,0.223,True,6.0,21.0,26.0
 2026-10-30,401909284,3448,Brook Lopez,LAC,MIN,bench,False,AST,23.0,1.5,1.5,1.5,1,1,,0,flat,,-6.5,0.223,True,0.0,21.0,26.0
 2026-10-30,401909284,3448,Brook Lopez,LAC,MIN,bench,False,3PM,23.0,1.5,1.5,1.5,0,0,,0,flat,,-6.5,0.223,True,1.0,21.0,26.0
-2026-10-30,401909284,4702352,Kobe Sanders,LAC,MIN,bench,False,PTS,21.2,6.9,6.9,6.9,4,5,,4,flat,,-6.5,0.223,True,7.0,24.0,26.0
+2026-10-30,401909284,4702352,Kobe Sanders,LAC,MIN,bench,False,PTS,21.2,6.9,6.9,6.9,4,4,,4,flat,,-6.5,0.223,True,7.0,24.0,26.0
 2026-10-30,401909284,4702352,Kobe Sanders,LAC,MIN,bench,False,REB,21.2,2.8,2.8,2.8,2,2,,1,flat,,-6.5,0.223,True,4.0,24.0,26.0
 2026-10-30,401909284,4702352,Kobe Sanders,LAC,MIN,bench,False,AST,21.2,2.5,2.5,2.5,1,1,,1,flat,,-6.5,0.223,True,2.0,24.0,26.0
 2026-10-30,401909284,4702352,Kobe Sanders,LAC,MIN,bench,False,3PM,21.2,1.0,1.0,1.0,0,0,,0,flat,,-6.5,0.223,True,1.0,24.0,26.0
@@ -469,7 +469,7 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-30,401909284,4433247,Jonathan Kuminga,MIN,LAC,starter,False,3PM,30.2,1.9,1.5,1.8,1,0,,0,flat,,-6.5,0.223,True,1.0,22.0,26.0
 2026-10-30,401909284,3032976,Rudy Gobert,MIN,LAC,starter,False,PTS,30.0,6.7,5.3,6.4,4,4,,3,flat,,-6.5,0.223,True,9.0,30.0,26.0
 2026-10-30,401909284,3032976,Rudy Gobert,MIN,LAC,starter,False,REB,30.0,12.1,9.7,11.6,7,6,,5,flat,,-6.5,0.223,True,13.0,30.0,26.0
-2026-10-30,401909284,3032976,Rudy Gobert,MIN,LAC,starter,False,AST,30.0,1.0,0.8,0.9,1,0,,0,flat,,-6.5,0.223,True,4.0,30.0,26.0
+2026-10-30,401909284,3032976,Rudy Gobert,MIN,LAC,starter,False,AST,30.0,1.0,0.8,0.9,0,0,,0,flat,,-6.5,0.223,True,4.0,30.0,26.0
 2026-10-30,401909284,3032976,Rudy Gobert,MIN,LAC,starter,False,3PM,30.0,0.0,0.0,0.0,0,0,,0,flat,,-6.5,0.223,True,0.0,30.0,26.0
 2026-10-30,401909284,4432816,LaMelo Ball,MIN,LAC,starter,False,PTS,25.6,13.3,12.0,13.0,9,8,,8,flat,,-6.5,0.223,True,24.0,29.0,26.0
 2026-10-30,401909284,4432816,LaMelo Ball,MIN,LAC,starter,False,REB,25.6,2.2,2.0,2.2,1,1,,1,flat,,-6.5,0.223,True,4.0,29.0,26.0
@@ -545,7 +545,7 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-10-30,401909285,2990969,Georges Niang,GS,LAL,bench,False,3PM,19.4,0.8,0.8,0.8,0,0,,0,flat,,2.5,0.188,True,3.0,19.0,17.0
 2026-10-30,401909285,3213,Al Horford,GS,LAL,bench,False,PTS,18.2,4.4,4.4,4.4,3,3,,3,flat,,2.5,0.188,True,3.0,17.0,17.0
 2026-10-30,401909285,3213,Al Horford,GS,LAL,bench,False,REB,18.2,4.0,4.0,4.0,2,2,,2,flat,,2.5,0.188,True,2.0,17.0,17.0
-2026-10-30,401909285,3213,Al Horford,GS,LAL,bench,False,AST,18.2,0.9,0.9,0.9,1,1,,0,flat,,2.5,0.188,True,0.0,17.0,17.0
+2026-10-30,401909285,3213,Al Horford,GS,LAL,bench,False,AST,18.2,0.9,0.9,0.9,0,0,,0,flat,,2.5,0.188,True,0.0,17.0,17.0
 2026-10-30,401909285,3213,Al Horford,GS,LAL,bench,False,3PM,18.2,1.0,1.0,1.0,0,0,,0,flat,,2.5,0.188,True,1.0,17.0,17.0
 2026-10-30,401909286,3936299,Jamal Murray,DEN,PHX,starter,True,PTS,38.5,22.5,18.0,21.6,16,13,,12,flat,,4.5,0.202,True,39.0,37.0,7.0
 2026-10-30,401909286,3936299,Jamal Murray,DEN,PHX,starter,True,REB,38.5,4.9,3.9,4.7,3,3,,2,flat,,4.5,0.202,True,8.0,37.0,7.0

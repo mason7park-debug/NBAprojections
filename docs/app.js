@@ -21,27 +21,41 @@
     if (p.win_check && p.win_check.length && p.games >= 30) t += ' Win chance check: ' + p.win_check.map(function (b) { return b.bucket + ' picks won ' + pc(b.won) + ' (' + b.n + ')'; }).join(' · ') + '.';
     return t + '</p>';
   }
-  function gamePreds(D) {
-    var gs = D.games.filter(function (g) { return g.pred; });
-    if (!gs.length) return '';
-    return '<section><div class="eyebrow">Game predictions</div><div class="ceilwrap"><table class="ceil"><thead><tr><th class="lft">Game</th><th>Projected score</th><th>Pick</th><th>Win chance</th><th>Fair moneyline</th><th>Line says</th><th>Line win chance</th><th class="lft">Adjusted for</th></tr></thead><tbody>' +
-      gs.map(function (g) {
-        var p = g.pred, homeFav = p.home_win >= 0.5, fav = homeFav ? g.home : g.away, w = homeFav ? p.home_win : 1 - p.home_win;
-        var mk = p.market_home_pts == null ? '-' : esc(g.away) + ' ' + p.market_away_pts + ', ' + esc(g.home) + ' ' + p.market_home_pts;
-        var mw = p.market_home_win == null ? '-' : (p.market_home_win >= 0.5 ? esc(g.home) + ' ' + pc(p.market_home_win) : esc(g.away) + ' ' + pc(1 - p.market_home_win));
-        var notes = [[g.away, p.away_adj], [g.home, p.home_adj]].map(function (x) {
-          var a = x[1]; if (!a || !a.minus) return '';
-          var why = a.missing.slice(0, 3).map(esc); if (a.missing.length > 3) why.push('+' + (a.missing.length - 3) + ' more'); if (a.b2b) why.push('back-to-back');
-          return esc(x[0]) + ' -' + a.minus + ' (' + why.join(', ') + ')';
-        }).filter(Boolean).join('; ') || '-';
-        return '<tr><td class="g lft">' + esc(g.away) + ' at ' + esc(g.home) + '</td><td>' + esc(g.away) + ' ' + p.away_pts + ', ' + esc(g.home) + ' ' + p.home_pts + '</td><td class="g">' + esc(fav) + ' by ' + Math.abs(p.margin).toFixed(1) +
-          '</td><td>' + pc(w) + '</td><td>' + esc(g.away) + ' ' + ml(p.away_ml) + ' / ' + esc(g.home) + ' ' + ml(p.home_ml) + '</td><td>' + mk + '</td><td>' + mw + '</td><td class="lft" style="font-family:var(--body);font-size:.78rem;color:var(--muted);min-width:220px">' + notes + '</td></tr>';
-      }).join('') + '</tbody></table></div><p class="lead" style="margin-top:10px">Projected score comes from each team\'s scoring and defense per possession, pace, and 2.5 points for home court. Points come off for rotation players who are out and for the second night of a back-to-back, shown under "Adjusted for". Fair moneyline is the win chance written as odds with no sportsbook fee. "Line says" is the score the posted spread and total imply.</p></section>';
+  function adjNote(g) {
+    var p = g.pred; if (!p) return '';
+    return [[g.away, p.away_adj], [g.home, p.home_adj]].map(function (x) {
+      var a = x[1]; if (!a || !a.minus) return '';
+      var why = a.missing.slice(0, 2).map(esc); if (a.missing.length > 2) why.push('+' + (a.missing.length - 2) + ' more'); if (a.b2b) why.push('back-to-back');
+      return esc(x[0]) + ' -' + a.minus + ' pts: ' + why.join(', ');
+    }).filter(Boolean).join(' · ');
+  }
+  function tipTxt(g) { return new Date(g.tip).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }) + ' ET'; }
+  function gamesGrid(D) {
+    return '<section id="games"><div class="eyebrow">Tonight\'s games</div><div class="gcards">' + D.games.map(function (g) {
+      var p = g.pred, rows = '';
+      if (p) {
+        var hw = p.home_win, pickHome = hw >= 0.5;
+        rows = [[g.away, p.away_pts, 1 - hw, p.away_ml, !pickHome], [g.home, p.home_pts, hw, p.home_ml, pickHome]].map(function (r) {
+          return '<div class="gteam' + (r[4] ? ' pick' : '') + '"><span class="ab">' + esc(r[0]) + '</span><span class="sc">' + r[1].toFixed(1) + '</span><span class="wp">' + pc(r[2]) + '</span><span class="mlv">' + ml(r[3]) + '</span></div>';
+        }).join('') + '<div class="winbar" title="win chance"><i style="width:' + Math.round((1 - hw) * 100) + '%"></i></div>';
+      }
+      var line = g.favorite ? 'Line ' + esc(g.favorite) + (g.total != null ? ' · O/U ' + g.total : '') : 'No line posted';
+      var cmp = '';
+      if (p && p.market_home_pts != null) {
+        var d = p.margin + g.spread;   // model margin minus line margin, home side
+        cmp = Math.abs(d) < 3 ? 'Model agrees with the line' : 'Model leans ' + esc(d > 0 ? g.home : g.away) + ' by ' + Math.abs(d).toFixed(1) + ' more than the line';
+      }
+      var adj = adjNote(g);
+      return '<a class="gc" href="#g-' + g.game_id + '"><div class="gtop"><span class="gtime">' + tipTxt(g) + (g.locked ? ' · locked' : '') + '</span>' + tagEl(g.tag) + '</div>' +
+        (p ? '<div class="ghdr"><span></span><span>score</span><span>win</span><span>fair ML</span></div>' : '') + rows +
+        '<div class="gmeta">' + line + '</div><div class="gmeta">Blowout risk ' + pc(g.p_blowout) + (cmp ? ' · ' + cmp : '') + '</div>' +
+        (adj ? '<div class="gmeta adj">' + adj + '</div>' : '') + '</a>';
+    }).join('') + '</div><p class="lead" style="margin-top:12px">Projected score and win chance come from team scoring and defense per possession, pace, home court, missing players and back-to-backs. Fair ML is the win chance written as odds with no sportsbook fee. Blowout risk is the chance of a 20 point margin, and stars lose minutes in those games. Tap a game to jump to its players.</p></section>';
   }
   function load(u) { return fetch(u, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
 
   function gradeBlock(G) {
-    if (!G) return '<section><div class="eyebrow">Last slate grade and record</div><p class="lead">No graded nights yet. This fills in the morning after the first projected slate.</p></section>';
+    if (!G) return '<section id="record"><div class="eyebrow">Last slate grade and record</div><p class="lead">No graded nights yet. This fills in the morning after the first projected slate.</p></section>';
     function rows(x) {
       return STATS.map(function (s) {
         var a = x.stats[s]; if (!a) return '';
@@ -68,7 +82,7 @@
     }
     var L = G.last, A = G.all;
     var calls = L.blowout_calls.map(function (c) { return esc(c.game) + ' ' + pc(c.p_blowout) + ' → final margin ' + c.margin; }).join(' · ');
-    return '<section><div class="eyebrow">Last slate grade and all-nights record</div><div class="grid2">' +
+    return '<section id="record"><div class="eyebrow">Last slate grade and all-nights record</div><div class="grid2">' +
       '<div class="card"><h3>Last slate · ' + esc(L.date) + ' · ' + L.player_games + ' player-games</h3>' + tbl(L) + '<div class="body">' +
       '<p><b>Star points floors:</b> ' + pc(L.star_floor_hit) + ' of ' + L.star_floors + ' held.</p>' +
       '<p><b>Star minutes.</b> ' + mins(L) + '</p><p><b>Blowout calls.</b> ' + calls + '</p>' +
@@ -79,16 +93,8 @@
       '<p><b>Over-chance check.</b> ' + over(A) + '</p>' + gp(A) + '</div></div></div></section>';
   }
 
-  function blowoutBoard(D) {
-    var gs = D.games.slice().sort(function (a, b) { return b.p_blowout - a.p_blowout; });
-    return '<section><div class="eyebrow">Blowout board</div><div class="ceilwrap"><table class="ceil"><thead><tr><th class="lft">Game</th><th>Spread</th><th>Total</th><th>Blowout risk</th><th>Tag</th></tr></thead><tbody>' +
-      gs.map(function (g) {
-        return '<tr><td class="g lft">' + esc(g.away) + ' at ' + esc(g.home) + '</td><td>' + spreadTxt(g) + '</td><td>' + dash(g.total) + '</td><td>' + pc(g.p_blowout) + '</td><td>' + tagEl(g.tag) + '</td></tr>';
-      }).join('') + '</tbody></table></div><p class="lead" style="margin-top:10px">Blowout risk is the chance the final margin is 20 or more, from the spread. Stars lose minutes in those games.</p></section>';
-  }
-
   function targets(D) {
-    return '<section><div class="eyebrow">Target games by stat</div><div class="grid2">' + CEIL.map(function (s) {
+    return '<section id="targets"><div class="eyebrow">Target games by stat</div><div class="grid2">' + CEIL.map(function (s) {
       var t = D.targets[s] || [];
       var body = t.length ? t.map(function (g) {
         return '<div class="tg"><div class="g">' + esc(g.away) + ' at ' + esc(g.home) + ' ' + tagEl(g.tag) + '</div><div class="m">index ' + g.index.toFixed(2) + ' · total ' + dash(g.total) +
@@ -102,40 +108,54 @@
   function safest(D) {
     if (!D.safest.length) return '';
     var anyLine = D.safest.some(function (r) { return r.line != null; });
-    return '<section><div class="eyebrow">' + (anyLine ? 'Safest lines' : 'Steadiest floors') + '</div><div class="ceilwrap"><table class="ceil"><thead><tr><th class="lft">Player</th><th>Stat</th><th>Expected</th><th>Line</th><th>Over chance</th><th>Floor</th><th>Blowout floor</th></tr></thead><tbody>' +
+    return '<section id="floors"><div class="eyebrow">' + (anyLine ? 'Safest lines' : 'Steadiest floors') + '</div><div class="ceilwrap"><table class="ceil"><thead><tr><th class="lft">Player</th><th>Stat</th><th>Expected</th><th>Line</th><th>Over chance</th><th>Floor</th><th>Blowout floor</th></tr></thead><tbody>' +
       D.safest.map(function (r) {
         return '<tr><td class="g lft">' + esc(r.name) + ' <span class="date">' + esc(r.team) + '</span></td><td>' + r.stat + '</td><td>' + r.expected + '</td><td>' + dash(r.line) + '</td><td>' + pc(r.p_over) + '</td><td>' + r.floor + '</td><td>' + dash(r.blowout_floor) + '</td></tr>';
       }).join('') + '</tbody></table></div>' + (anyLine ? '' : '<p class="lead" style="margin-top:10px">No prop lines were loaded tonight, so these are the stars whose floor sits closest to their expected value.</p>') + '</section>';
   }
 
-  function gameTable(g, anyLine) {
-    var per = anyLine ? 4 : 2;
-    var head = '<tr><th class="lft">Pos</th><th class="lft">Player</th><th>Min</th>' + STATS.map(function (s) { return '<th class="grp" colspan="' + per + '">' + s + '</th>'; }).join('') + '</tr>' +
-      '<tr><th></th><th></th><th></th>' + STATS.map(function () { return '<th class="grp">Exp</th><th>Floor</th>' + (anyLine ? '<th>Line</th><th>Over</th>' : ''); }).join('') + '</tr>';
-    var cols = 3 + per * 4, body = '';
+  function gameTable(g, anyLine, mode) {
+    var all = mode === 'ALL', head, cols, body = '';
+    if (all) {
+      var per = anyLine ? 4 : 2;
+      head = '<tr><th class="lft">Pos</th><th class="lft">Player</th><th>Min</th>' + STATS.map(function (s) { return '<th class="grp" colspan="' + per + '">' + s + '</th>'; }).join('') + '</tr>' +
+        '<tr><th></th><th></th><th></th>' + STATS.map(function () { return '<th class="grp">Exp</th><th>Floor</th>' + (anyLine ? '<th>Line</th><th>Over</th>' : ''); }).join('') + '</tr>';
+      cols = 3 + per * 4;
+    } else {
+      head = '<tr><th class="lft">Pos</th><th class="lft">Player</th><th>Min</th><th>Season</th><th>Expected</th><th>Floor</th><th>Blowout floor</th><th>Normal game</th><th>Blowout game</th><th>Matchup</th>' + (anyLine ? '<th>Line</th><th>Over chance</th>' : '') + '</tr>';
+      cols = 10 + (anyLine ? 2 : 0);
+    }
     g.teams.forEach(function (t) {
       var a = t.area;
-      body += '<tr class="teamsplit"><td colspan="' + cols + '">' + esc(t.team) + ' vs ' + esc(t.opp) + ' defense · threes ' + rel(a.f3) + ' · paint ' + rel(a.fpaint) + ' · free throws ' + rel(a.fft) +
-        (t.b2b ? ' · back-to-back' : '') + (t.out_scorers.length ? ' · out: ' + t.out_scorers.map(esc).join(', ') : '') + '</td></tr>';
+      body += '<tr class="teamsplit"><td colspan="' + cols + '">' + esc(t.team) + ' <span class="vs">vs ' + esc(t.opp) + ' defense: threes ' + rel(a.f3) + ', paint ' + rel(a.fpaint) + ', free throws ' + rel(a.fft) +
+        (t.b2b ? ' · back-to-back' : '') + (t.out_scorers.length ? ' · out: ' + t.out_scorers.map(esc).join(', ') : '') + '</span></td></tr>';
       var bench = false;
       t.players.forEach(function (p) {
         if (p.role === 'bench' && !bench) { bench = true; body += '<tr class="benchrow"><td colspan="' + cols + '">Bench</td></tr>'; }
-        body += '<tr' + (p.star ? ' class="hasub"' : '') + '><td class="pos">' + p.pos + '</td><td class="pl">' + esc(p.name) + (p.gtd ? '<span class="gtd">GTD</span>' : '') + '</td><td class="dim">' + p.min + '</td>' +
-          STATS.map(function (s) {
+        var nm = '<td class="pos">' + p.pos + '</td><td class="pl">' + esc(p.name) + (p.star ? '<span class="starmk" title="18 or more points a game">★</span>' : '') + (p.gtd ? '<span class="gtd">GTD</span>' : '') + '</td><td class="dim">' + p.min + '</td>';
+        var key = ' data-n="' + esc(p.name.toLowerCase()) + '"';
+        if (all) {
+          body += '<tr class="prow' + (p.star ? ' hasub' : '') + '"' + key + '>' + nm + STATS.map(function (s) {
             var x = p.stats[s];
             return '<td class="ex gl">' + x.expected + (x.check ? '<span class="chk">check</span>' : '') + '</td><td class="fl">' + x.floor + '</td>' + (anyLine ? '<td class="dim">' + dash(x.line) + '</td><td>' + pc(x.p_over) + '</td>' : '');
           }).join('') + '</tr>';
-        if (p.star) body += '<tr><td class="sub"></td><td class="sub" colspan="2">normal / blowout / blowout floor</td>' +
-          STATS.map(function (s) { var x = p.stats[s]; return '<td class="sub gl" colspan="' + per + '" style="text-align:right">' + x.normal + ' / ' + x.blowout + ' / ' + dash(x.blowout_floor) + '</td>'; }).join('') + '</tr>';
+          if (p.star) body += '<tr class="prow"' + key + '><td class="sub"></td><td class="sub" colspan="2">normal / blowout / blowout floor</td>' +
+            STATS.map(function (s) { var x = p.stats[s]; return '<td class="sub gl" colspan="' + per + '" style="text-align:right">' + x.normal + ' / ' + x.blowout + ' / ' + dash(x.blowout_floor) + '</td>'; }).join('') + '</tr>';
+        } else {
+          var x = p.stats[mode], m = x.matchup == null ? null : x.matchup * (x.bump || 1);
+          body += '<tr class="prow"' + key + '>' + nm + '<td class="dim">' + p.season[mode] + '</td><td class="ex">' + x.expected + (x.check ? '<span class="chk">check</span>' : '') + '</td><td class="fl">' + x.floor + '</td><td class="fl">' + dash(x.blowout_floor) +
+            '</td><td class="dim">' + x.normal + '</td><td class="dim">' + x.blowout + '</td><td class="' + (m == null || Math.abs(m - 1) < 0.03 ? 'dim' : (m > 1 ? 'up' : 'down')) + '">' + (m == null ? '-' : rel(m)) + '</td>' +
+            (anyLine ? '<td class="dim">' + dash(x.line) + '</td><td>' + pc(x.p_over) + '</td>' : '') + '</tr>';
+        }
       });
     });
-    var tip = new Date(g.tip).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }) + ' ET';
-    return '<div class="game"><div class="ghead"><span class="ttl">' + esc(g.away) + ' at ' + esc(g.home) + '</span><div class="meta"><span class="pill">' + tip + '</span><span class="pill">' + spreadTxt(g) +
-      '</span><span class="pill ou">O/U ' + dash(g.total) + '</span>' + tagEl(g.tag) + (g.locked ? '<span class="pill">locked at tip</span>' : '') + '</div></div><div class="tscroll"><table><thead>' + head + '</thead><tbody>' + body + '</tbody></table></div></div>';
+    var pick = g.pred ? ' · model ' + esc(g.pred.margin >= 0 ? g.home : g.away) + ' by ' + Math.abs(g.pred.margin).toFixed(1) : '';
+    return '<details class="game" id="g-' + g.game_id + '" open><summary class="ghead"><span class="ttl">' + esc(g.away) + ' at ' + esc(g.home) + '</span><div class="meta"><span class="pill">' + tipTxt(g) + '</span><span class="pill">' + spreadTxt(g) +
+      '</span><span class="pill ou">O/U ' + dash(g.total) + '</span>' + tagEl(g.tag) + (g.locked ? '<span class="pill">locked at tip</span>' : '') + '</div></summary><div class="tscroll"><table class="' + (all ? 'tall' : 'tone') + '"><thead>' + head + '</thead><tbody>' + body + '</tbody></table></div></details>';
   }
 
   function ceiling(D) {
-    return '<section><div class="eyebrow">Ceiling index</div><div class="ceilwrap"><table class="ceil"><thead><tr><th class="lft">Game</th>' + CEIL.map(function (s) { return '<th>' + s + '</th>'; }).join('') + '<th>Pace</th></tr></thead><tbody>' +
+    return '<section id="ceiling"><div class="eyebrow">Ceiling index</div><div class="ceilwrap"><table class="ceil"><thead><tr><th class="lft">Game</th>' + CEIL.map(function (s) { return '<th>' + s + '</th>'; }).join('') + '<th>Pace</th></tr></thead><tbody>' +
       D.games.map(function (g) {
         return '<tr><td class="g lft">' + esc(g.away) + ' at ' + esc(g.home) + '</td>' + CEIL.map(function (s) {
           var v = g.ceiling[s], flag = v != null && (v >= 1.08 || v <= 0.92);
@@ -146,7 +166,7 @@
 
   function method(D) {
     var m = D.method;
-    return '<section><div class="eyebrow">Method</div><div class="method">' +
+    return '<section id="method"><details class="fold"><summary class="eyebrow">Method and limits</summary><div class="method">' +
       '<p><b>Source.</b> Everything comes from ESPN box scores, odds and injury reports saved in this repo. Player rates, recent form, starters, defense by position (guard, forward, center), area defense (threes, paint, free throws) and pace are all built from those box scores.</p>' +
       '<p><b>History.</b> ' + m.history_days + ' game days, ' + esc(m.history_from) + ' to ' + esc(m.history_to) + '. ' + m.players + ' players projected. ' + m.log_floors + ' floors use the player\'s own game log and ' + m.flat_floors + ' use the flat rule.</p>' +
       '<p><b>Blowouts.</b> Final margins are assumed to land around the spread with a typical miss of ' + (m.sd || 13) + ' points. That was 13 until Nov 11, 2026, when 159 games this season showed blowouts happening more often than 13 allows. Tags: Low under 21%, Medium 21 to 27%, High over 27%.</p>' +
@@ -157,18 +177,52 @@
       '<p><b>Lines.</b> ' + (m.lines_found ? m.lines_found + ' prop lines loaded. They never feed the projection.' : 'No prop lines loaded, so Line and Over chance are hidden.') + '</p>' +
       '<p><b>Limits.</b> Starters are taken from each team\'s last five games, not from tonight\'s posted lineup. Positions are ESPN\'s three groups. A late scratch after the run is not reflected.</p>' +
       '<p><b>Record.</b> Nights from Oct 30 to Nov 10, 2026 were replayed after the fact, each using only data from before that night. Later nights are graded live.</p>' +
-      (m.notes.length ? '<p><b>Notes.</b> ' + m.notes.map(esc).join(' ') + '</p>' : '') + '</div></section>';
+      (m.notes.length ? '<p><b>Notes.</b> ' + m.notes.map(esc).join(' ') + '</p>' : '') + '</div></details></section>';
   }
 
   Promise.all([load('data/latest.json'), load('data/grade.json')]).then(function (r) {
     var D = r[0], G = r[1], app = document.getElementById('app');
     if (!D) { app.innerHTML = '<p class="empty">No projections yet. They appear after the first pregame run.</p>'; return; }
-    document.getElementById('hdate').textContent = new Date(D.date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }) + ' · ' + D.games.length + ' games';
-    document.getElementById('hrun').textContent = 'Run ' + D.run_time_et;
-    var anyLine = D.method.lines_found > 0;
-    app.innerHTML = (D.early_run ? '<div class="warnbar">Early run. Lineups are not final. Run again closer to tip.</div>' : '') +
-      gradeBlock(G) + gamePreds(D) + blowoutBoard(D) + targets(D) + safest(D) +
-      '<section><div class="eyebrow">Game by game</div><p class="lead" style="margin-bottom:14px">Exp is the expected value after blowout risk. Floor is the number reached in 80% of 10,000 simulated games.</p>' +
-      D.games.map(function (g) { return gameTable(g, anyLine); }).join('') + '</section>' + ceiling(D) + method(D);
+    document.getElementById('hdate').textContent = new Date(D.date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) + ' · ' + D.games.length + ' games';
+    document.getElementById('hrun').textContent = 'Updated ' + D.run_time_et.replace(/^\d{4}-\d{2}-\d{2} 0?/, '');
+    document.getElementById('nav').hidden = false;
+    var anyLine = D.method.lines_found > 0, mode = innerWidth < 760 ? 'PTS' : 'ALL';
+    try { var saved = localStorage.getItem('nba-mode'); if (saved && (saved === 'ALL' || STATS.indexOf(saved) >= 0)) mode = saved; } catch (e) {}
+    app.innerHTML = (D.early_run ? '<div class="warnbar">Early look. Injuries and spreads can still change. This page refreshes at about 2:31pm, 5:37pm and 6:27pm ET, and each game locks at its tip.</div>' : '') +
+      gamesGrid(D) + targets(D) + safest(D) +
+      '<section id="players"><div class="eyebrow">Players, game by game</div><div class="controls"><input id="q" type="search" placeholder="Find a player" aria-label="Find a player">' +
+      '<div class="seg" id="seg" role="group" aria-label="Stat shown">' + ['ALL'].concat(STATS).map(function (s) { return '<button type="button" data-m="' + s + '">' + (s === 'ALL' ? 'All stats' : s) + '</button>'; }).join('') + '</div>' +
+      '<button type="button" class="tgl" id="fold">Collapse all</button></div>' +
+      '<p class="lead" style="margin-bottom:14px">Expected already accounts for blowout risk. Floor is the number reached in 80% of 10,000 simulated games. Blowout floor is the same thing in games decided by 20 or more. ★ marks players at 18 or more points a game.</p>' +
+      '<div id="tables"></div><p class="empty" id="nomatch" hidden>No player on tonight\'s slate matches that name.</p></section>' + ceiling(D) + gradeBlock(G) + method(D);
+
+    var tables = document.getElementById('tables'), q = document.getElementById('q'), seg = document.getElementById('seg'), fold = document.getElementById('fold');
+    function filter() {
+      var v = q.value.trim().toLowerCase(), any = false;
+      tables.querySelectorAll('details.game').forEach(function (d) {
+        var hit = false;
+        d.querySelectorAll('tr.prow').forEach(function (tr) { var ok = !v || tr.getAttribute('data-n').indexOf(v) >= 0; tr.hidden = !ok; if (ok) hit = true; });
+        d.querySelectorAll('tr.teamsplit, tr.benchrow').forEach(function (tr) { tr.hidden = !!v; });
+        d.hidden = !hit; if (v && hit) d.open = true; if (hit) any = true;
+      });
+      document.getElementById('nomatch').hidden = any;
+    }
+    function draw() {
+      tables.innerHTML = D.games.map(function (g) { return gameTable(g, anyLine, mode); }).join('');
+      seg.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-m') === mode ? 'true' : 'false'); });
+      filter();
+    }
+    seg.addEventListener('click', function (e) {
+      var m = e.target.getAttribute && e.target.getAttribute('data-m'); if (!m) return;
+      mode = m; try { localStorage.setItem('nba-mode', m); } catch (err) {} draw();
+    });
+    q.addEventListener('input', filter);
+    fold.addEventListener('click', function () {
+      var open = fold.textContent === 'Expand all';
+      tables.querySelectorAll('details.game').forEach(function (d) { d.open = open; });
+      fold.textContent = open ? 'Collapse all' : 'Expand all';
+    });
+    draw();
+    if (location.hash && document.getElementById(location.hash.slice(1))) document.getElementById(location.hash.slice(1)).scrollIntoView();
   });
 })();

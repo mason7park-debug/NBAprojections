@@ -174,9 +174,46 @@
   .chk{color:var(--bad);font-size:.64rem;font-weight:700;margin-left:4px}
   .benchrow td{background:var(--surface-2);font-family:var(--head);font-size:.64rem;letter-spacing:.09em;text-transform:uppercase;color:var(--violet);text-align:left;padding:4px 10px;font-weight:700}
   .empty{color:var(--muted);font-size:.86rem;padding:14px}
+
+  html{scroll-behavior:smooth} section,details.game{scroll-margin-top:104px}
+  nav.jump{display:flex;gap:6px;overflow-x:auto;padding-bottom:10px;scrollbar-width:none} nav.jump::-webkit-scrollbar{display:none}
+  nav.jump a{flex:none;text-decoration:none;font-size:.78rem;font-weight:600;color:var(--muted);background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:5px 12px}
+  nav.jump a:hover{color:var(--fg);border-color:var(--accent)}
+  .bar-in{padding-bottom:8px}
+  .gcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+  a.gc{display:flex;flex-direction:column;gap:5px;text-decoration:none;color:var(--fg);border:1px solid var(--border);border-radius:13px;background:var(--surface);box-shadow:var(--shadow);padding:12px 14px;min-width:0}
+  a.gc:hover{border-color:var(--accent)}
+  .gtop{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .gtime{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+  .ghdr,.gteam{display:grid;grid-template-columns:1fr 58px 44px 54px;align-items:baseline;gap:6px;text-align:right}
+  .ghdr{font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+  .gteam .ab{text-align:left;font-family:var(--head);font-weight:600;font-size:1.02rem;color:var(--muted)}
+  .gteam .sc{font-family:var(--mono);font-size:1.02rem;color:var(--muted)}
+  .gteam .wp,.gteam .mlv{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+  .gteam.pick .ab,.gteam.pick .sc{color:var(--fg);font-weight:700} .gteam.pick .wp{color:var(--accent);font-weight:700}
+  .winbar{height:5px;border-radius:3px;background:var(--accent);overflow:hidden;margin:3px 0 4px;display:flex}
+  .winbar i{display:block;background:var(--surface-2);border-right:2px solid var(--surface)}
+  .gmeta{font-size:.76rem;color:var(--muted)} .gmeta.adj{color:var(--warn)}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+  .controls input{flex:1 1 180px;min-width:0;height:36px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--fg);font:inherit;font-size:.88rem;padding:0 12px}
+  .controls input:focus{outline:2px solid var(--accent);outline-offset:1px}
+  .seg{display:flex;border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--surface)}
+  .seg button{appearance:none;border:0;background:transparent;color:var(--muted);font:inherit;font-size:.8rem;font-weight:600;height:34px;padding:0 11px;cursor:pointer;border-right:1px solid var(--border)}
+  .seg button:last-child{border-right:0} .seg button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent)}
+  details.game>summary{cursor:pointer;list-style:none} details.game>summary::-webkit-details-marker{display:none}
+  details.game>summary .ttl::before{content:"▸";display:inline-block;margin-right:8px;color:var(--muted);transition:transform .15s}
+  details.game[open]>summary .ttl::before{transform:rotate(90deg)}
+  details.game:not([open])>summary{border-bottom:0}
+  table.tone{min-width:640px} table.tone td.ex{font-size:.95rem}
+  .teamsplit td{color:var(--fg);font-size:.82rem} .teamsplit .vs{color:var(--muted);font-weight:500;font-family:var(--body);letter-spacing:0;margin-left:6px}
+  .starmk{color:var(--accent);font-size:.7rem;margin-left:5px}
+  td.pl{position:sticky;left:0;background:var(--surface);z-index:1}
+  details.fold>summary{cursor:pointer;list-style:none;margin-bottom:10px} details.fold>summary::-webkit-details-marker{display:none}
+  details.fold>summary::before{content:"▸ "} details.fold[open]>summary::before{content:"▾ "}
 </style></head><body>
 <header class="bar"><div class="wrap bar-in"><div class="mark"><span class="court"></span><h1>Tonight's NBA Edges</h1></div>
-<span class="date" id="hdate"></span><span class="spacer"></span><span class="date" id="hrun"></span></div></header>
+<span class="date" id="hdate"></span><span class="spacer"></span><span class="date" id="hrun"></span></div>
+<div class="wrap"><nav class="jump" id="nav" hidden aria-label="Sections"><a href="#games">Games</a><a href="#targets">Target games</a><a href="#floors">Floors</a><a href="#players">Players</a><a href="#ceiling">Ceiling index</a><a href="#record">Record</a><a href="#method">Method</a></nav></div></header>
 <main class="wrap" id="app"><p class="empty">Loading tonight's numbers.</p></main>
 <footer class="wrap">Floors and over chances come from a model built on small samples. They are estimates, not guarantees, and this page is not betting advice.</footer>
 <script src="app.js"></script></body></html>

@@ -76,7 +76,7 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-11-01,401909904,4278104,Michael Porter Jr.,BKN,IND,starter,True,AST,30.8,1.1,0.9,1.0,1,1,,0,flat,,-3.5,0.194,True,3.0,36.0,8.0
 2026-11-01,401909904,4278104,Michael Porter Jr.,BKN,IND,starter,True,3PM,30.8,3.5,2.8,3.4,2,1,,1,flat,,-3.5,0.194,True,3.0,36.0,8.0
 2026-11-01,401909904,4432194,Day'Ron Sharpe,BKN,IND,starter,False,PTS,22.0,6.9,6.9,6.9,5,5,,4,flat,,-3.5,0.194,True,15.0,26.0,8.0
-2026-11-01,401909904,4432194,Day'Ron Sharpe,BKN,IND,starter,False,REB,22.0,7.1,7.1,7.1,4,5,,4,flat,,-3.5,0.194,True,13.0,26.0,8.0
+2026-11-01,401909904,4432194,Day'Ron Sharpe,BKN,IND,starter,False,REB,22.0,7.1,7.1,7.1,4,4,,4,flat,,-3.5,0.194,True,13.0,26.0,8.0
 2026-11-01,401909904,4432194,Day'Ron Sharpe,BKN,IND,starter,False,AST,22.0,1.2,1.2,1.2,1,1,,0,flat,,-3.5,0.194,True,4.0,26.0,8.0
 2026-11-01,401909904,4432194,Day'Ron Sharpe,BKN,IND,starter,False,3PM,22.0,0.4,0.4,0.4,0,0,,0,flat,,-3.5,0.194,True,1.0,26.0,8.0
 2026-11-01,401909904,5175643,Egor Demin,BKN,IND,starter,False,PTS,21.8,8.0,8.0,8.0,5,5,,5,flat,,-3.5,0.194,False,,,8.0
@@ -131,12 +131,12 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-11-01,401909904,3133603,Kelly Oubre Jr.,IND,BKN,bench,False,REB,23.5,2.7,2.7,2.7,2,2,,2,log,,-3.5,0.194,True,2.0,20.0,8.0
 2026-11-01,401909904,3133603,Kelly Oubre Jr.,IND,BKN,bench,False,AST,23.5,1.7,1.7,1.7,1,1,,1,log,,-3.5,0.194,True,1.0,20.0,8.0
 2026-11-01,401909904,3133603,Kelly Oubre Jr.,IND,BKN,bench,False,3PM,23.5,0.9,0.9,0.9,0,0,,0,log,,-3.5,0.194,True,2.0,20.0,8.0
-2026-11-01,401909904,4278355,Obi Toppin,IND,BKN,bench,False,PTS,23.0,15.8,15.8,15.8,10,11,,11,flat,,-3.5,0.194,False,,,8.0
+2026-11-01,401909904,4278355,Obi Toppin,IND,BKN,bench,False,PTS,23.0,15.8,15.8,15.8,10,10,,11,flat,,-3.5,0.194,False,,,8.0
 2026-11-01,401909904,4278355,Obi Toppin,IND,BKN,bench,False,REB,23.0,5.2,5.2,5.2,3,3,,3,flat,,-3.5,0.194,False,,,8.0
 2026-11-01,401909904,4278355,Obi Toppin,IND,BKN,bench,False,AST,23.0,1.2,1.2,1.2,1,1,,0,flat,,-3.5,0.194,False,,,8.0
 2026-11-01,401909904,4278355,Obi Toppin,IND,BKN,bench,False,3PM,23.0,2.3,2.3,2.3,1,1,,1,flat,,-3.5,0.194,False,,,8.0
 2026-11-01,401909904,5106060,Jarace Walker,IND,BKN,bench,False,PTS,22.6,7.4,7.4,7.4,4,4,,3,log,,-3.5,0.194,True,6.0,20.0,8.0
-2026-11-01,401909904,5106060,Jarace Walker,IND,BKN,bench,False,REB,22.6,6.1,6.1,6.1,3,4,,4,log,,-3.5,0.194,True,6.0,20.0,8.0
+2026-11-01,401909904,5106060,Jarace Walker,IND,BKN,bench,False,REB,22.6,6.1,6.1,6.1,3,3,,4,log,,-3.5,0.194,True,6.0,20.0,8.0
 2026-11-01,401909904,5106060,Jarace Walker,IND,BKN,bench,False,AST,22.6,1.9,1.9,1.9,1,1,,1,log,,-3.5,0.194,True,3.0,20.0,8.0
 2026-11-01,401909904,5106060,Jarace Walker,IND,BKN,bench,False,3PM,22.6,1.2,1.2,1.2,0,0,,0,log,,-3.5,0.194,True,2.0,20.0,8.0
 2026-11-01,401909904,4592829,Quenton Jackson,IND,BKN,bench,False,PTS,19.6,8.9,8.9,8.9,6,6,,6,flat,,-3.5,0.194,True,12.0,24.0,8.0
@@ -225,7 +225,7 @@ date,game_id,player_id,player,team,opp,role,star,stat,minutes,normal,blowout,exp
 2026-11-01,401909906,6450,Kawhi Leonard,TOR,LAL,starter,True,3PM,26.0,2.0,1.8,2.0,1,1,,0,flat,,-3.5,0.194,False,,,6.0
 2026-11-01,401909906,3134908,Jakob Poeltl,TOR,LAL,starter,False,PTS,20.2,4.5,4.5,4.5,3,3,,3,flat,,-3.5,0.194,False,,,6.0
 2026-11-01,401909906,3134908,Jakob Poeltl,TOR,LAL,starter,False,REB,20.2,5.5,5.5,5.5,4,4,,3,flat,,-3.5,0.194,False,,,6.0
-2026-11-01,401909906,3134908,Jakob Poeltl,TOR,LAL,starter,False,AST,20.2,0.9,0.9,0.9,1,1,,0,flat,,-3.5,0.194,False,,,6.0
+2026-11-01,401909906,3134908,Jakob Poeltl,TOR,LAL,starter,False,AST,20.2,0.9,0.9,0.9,0,0,,0,flat,,-3.5,0.194,False,,,6.0
 2026-11-01,401909906,3134908,Jakob Poeltl,TOR,LAL,starter,False,3PM,20.2,0.0,0.0,0.0,0,0,,0,flat,,-3.5,0.194,False,,,6.0
 2026-11-01,401909906,4684272,Ja'Kobe Walter,TOR,LAL,bench,False,PTS,27.6,12.6,11.3,12.3,8,7,,7,flat,,-3.5,0.194,True,11.0,33.0,6.0
 2026-11-01,401909906,4684272,Ja'Kobe Walter,TOR,LAL,bench,False,REB,27.6,3.9,3.5,3.8,2,2,,2,flat,,-3.5,0.194,True,4.0,33.0,6.0

@@ -674,6 +674,18 @@ def grade_one(date, data):
     return out
 
 
+def left_early(r):
+    """A starter who played under half his projected minutes in a game that was not a blowout.
+
+    Usually an injury exit, sometimes fouls or an ejection. No projection can see it coming,
+    so floors are reported both with and without these players."""
+    mins, proj = fnum(r.get("actual_minutes")), fnum(r.get("minutes"))
+    if r.get("role") != "starter":      # a bench player losing his minutes is a real miss and still counts
+        return False
+    return (str(r["played"]) == "True" and mins is not None and proj and mins < 0.5 * proj
+            and fnum(r.get("final_margin"), 0) < BLOWOUT)
+
+
 def summarize_grades(rows):
     played = [r for r in rows if str(r["played"]) == "True"]
     res = {"player_games": len({(r["date"], r["player_id"]) for r in played})}
@@ -692,6 +704,8 @@ def summarize_grades(rows):
                   "floor_hit": round(sum(f(r, "actual") >= f(r, "floor") for r in fl) / len(fl), 3) if fl else None,
                   "blowout_floor_hit": round(sum(f(r, "actual") >= f(r, "blowout_floor") for r in bl) / len(bl), 3) if bl else None,
                   "blowout_floor_n": len(bl)}
+        full = [r for r in fl if not left_early(r)]
+        acc[s]["floor_hit_full"] = round(sum(f(r, "actual") >= f(r, "floor") for r in full) / len(full), 3) if full else None
         for src in ("log", "flat"):
             z = [r for r in q if r["floor_source"] == src]
             acc[s][f"rule_floor_hit_{src}"] = (round(sum(f(r, "actual") >= f(r, "rule_floor") for r in z) / len(z), 3) if z else None)
@@ -700,6 +714,10 @@ def summarize_grades(rows):
     stars = [r for r in played if r["stat"] == "PTS" and str(r["star"]) == "True"]
     res["star_floors"] = len(stars)
     res["star_floor_hit"] = round(sum(f(r, "actual") >= f(r, "floor") for r in stars) / len(stars), 3) if stars else None
+    sfull = [r for r in stars if not left_early(r)]
+    res["star_floors_full"] = len(sfull)
+    res["star_floor_hit_full"] = round(sum(f(r, "actual") >= f(r, "floor") for r in sfull) / len(sfull), 3) if sfull else None
+    res["left_early_n"] = len({(r["date"], r["player_id"]) for r in played if left_early(r)})
     for label, test in (("close", lambda m: m < BLOWOUT), ("blowout", lambda m: m >= BLOWOUT)):
         z = [r for r in stars if test(fnum(r["final_margin"], 0))]
         res[f"star_minutes_{label}"] = ({"n": len(z), "projected": round(statistics.mean(f(r, "minutes") for r in z), 1),
@@ -765,6 +783,7 @@ def run_grade(date, data, docs):
         return
     last, games = summarize_grades(rows)
     last["date"] = str(date)
+    last["left_early"] = sorted({f"{r['player']} ({fnum(r['actual_minutes']):.0f} min)" for r in rows if left_early(r)})
     last["did_not_play"] = sorted({r["player"] for r in rows if str(r["played"]) != "True"})
     last["blowout_calls"] = [{"game": f"{g[3]} / {g[2]}", "p_blowout": g[0], "margin": g[1]}
                              for g in sorted(games.values(), key=lambda g: -g[0])]

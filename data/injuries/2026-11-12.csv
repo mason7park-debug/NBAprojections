@@ -1,12 +1,12 @@
 game_id,team,player_id,player,status,type
-401909976,PHI,1966,LeBron James,Day-To-Day,Back
+401909976,PHI,1966,LeBron James,Out,Back
+401909976,PHI,4870562,Dominick Barlow,Out,Back
 401909976,PHI,5105637,Adem Bona,Out,Back
 401909976,PHI,3059318,Joel Embiid,Day-To-Day,Foot
-401909976,PHI,4870562,Dominick Barlow,Out,Back
 401909976,PHI,4871141,Ariel Hukporti,Out,Achilles
-401909976,TOR,4431684,Trayce Jackson-Davis,Day-To-Day,Illness
-401909976,TOR,6450,Kawhi Leonard,Out,Knee
+401909976,TOR,4431684,Trayce Jackson-Davis,Out,Illness
 401909976,TOR,4433134,Scottie Barnes,Out,Groin
+401909976,TOR,6450,Kawhi Leonard,Out,Knee
 401909976,TOR,4432586,Nate Bittle,Out,Foot
 401909977,WSH,4997537,Tristan Vukcevic,Out,Hip
 401909977,WSH,4432187,Reece Beekman,Out,Shoulder
@@ -22,8 +22,6 @@ game_id,team,player_id,player,status,type
 401909978,DAL,5279129,Sergio de Larrea,Out,Knee
 401909978,DAL,4873153,Morez Johnson Jr.,Day-To-Day,Lower Leg
 401909979,PHX,4701232,Mark Williams,Out,Shoulder
-401909979,CHA,4066218,Grant Williams,Out,Hamstring
-401909979,CHA,4433249,Moussa Diabate,Day-To-Day,Quadriceps
 401909979,CHA,4433287,Brandon Miller,Out,Groin
 401909979,CHA,5061575,Kon Knueppel,Out,Hamstring
 401909979,CHA,3032979,Dennis Schroder,Out,Hamstring

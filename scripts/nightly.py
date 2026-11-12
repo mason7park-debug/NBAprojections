@@ -29,7 +29,7 @@ Where each input comes from (all ESPN, via fetch_espn.py):
   prop lines (optional)         data/props/<date>.csv  (player, stat, line)
 """
 
-import argparse, csv, datetime as dt, json, math, pathlib, random, re, statistics, unicodedata
+import argparse, csv, datetime as dt, json, math, os, pathlib, random, re, statistics, unicodedata
 from collections import defaultdict
 
 STATS = ["PTS", "REB", "AST", "3PM"]
@@ -39,6 +39,9 @@ STAR_PPG = 18.0
 BUMP_PPG = 20.0
 HOME_EDGE = 2.5       # points the home team is worth
 RATE_K = 10           # team ratings are pulled toward average until about this many games
+INJ_K = float(os.environ.get("NBA_INJ_K", 0.5))    # share of a missing player's scoring edge the team loses
+B2B_PTS = float(os.environ.get("NBA_B2B", 1.5))    # points a team loses on the second night of a back-to-back
+MIN_SD_BENCH = float(os.environ.get("NBA_MIN_SD_BENCH", 6.0))   # bench minutes swing more than starters'
 
 # ============================================================== MODEL (fixed)
 SD = 15.0          # spread of final margin around the point spread
@@ -132,7 +135,7 @@ def simulate_game(home_spread, players, game_index):
         blow_flags.append(blow)
         for p in players:
             base = blowout_minutes(p['minutes']) if blow else p['minutes']
-            mins = max(0.0, rng.gauss(base, MIN_SD))
+            mins = max(0.0, rng.gauss(base, p.get('min_sd', MIN_SD)))
             for s, d in p['stats'].items():
                 mean = d['rate'] * mins * d['mult']
                 if s == '3PM':
@@ -293,7 +296,35 @@ def fair_line(p):
     return int(round(-100 * p / (1 - p))) if p >= 0.5 else int(round(100 * (1 - p) / p))
 
 
-def game_prediction(home, away, raw, lg, lg_pace, spread, total):
+def team_absences(team, by_team, out_ids, gtd_ids, team_games, date):
+    """Scoring a team is missing tonight: rotation players who are Out or have not played lately.
+
+    A player's edge is what he scores beyond an average teammate in the same minutes.
+    It is scaled by the share of team games he played, because the team's season
+    numbers already include the games he missed."""
+    rows = team_games.get(team, [])
+    days = sorted({r["_date"] for r in rows})
+    if not days:
+        return 0.0, []
+    cutoff = days[-4:][0]
+    ppm = statistics.mean(fnum(r["PTS"], 0.0) for r in rows) / 240.0
+    lost, names = 0.0, []
+    for pid, pr in by_team.get(team, []):
+        missing = pid in out_ids or (pr["last_date"] < cutoff and pid not in gtd_ids)
+        if not missing or pr["gp"] < 3 or pr["mpg"] < 15:
+            continue
+        edge = max(0.0, pr["PTS"] - pr["mpg"] * ppm) * min(1.0, pr["gp"] / len(days))
+        if edge > 0:
+            lost += edge
+            names.append(pr["name"])
+    return lost, names
+
+
+def on_back_to_back(team, team_games, date):
+    return any(r["_date"] == date - dt.timedelta(days=1) for r in team_games.get(team, []))
+
+
+def game_prediction(home, away, raw, lg, lg_pace, spread, total, home_minus=0.0, away_minus=0.0):
     """Projected score and win chance from team scoring and defense per possession."""
     h, a, L = raw.get(home), raw.get(away), lg.get("PPP")
     if not h or not a or not L or not lg_pace or not all((h["off"], h["def"], a["off"], a["def"], h["pace"], a["pace"])):
@@ -301,8 +332,8 @@ def game_prediction(home, away, raw, lg, lg_pace, spread, total):
     def r(t, k, avg):
         return avg + (t[k] - avg) * t["games"] / (t["games"] + RATE_K)
     poss = r(h, "pace", lg_pace) * r(a, "pace", lg_pace) / lg_pace
-    hp = poss * r(h, "off", L) * r(a, "def", L) / L + HOME_EDGE / 2
-    ap = poss * r(a, "off", L) * r(h, "def", L) / L - HOME_EDGE / 2
+    hp = poss * r(h, "off", L) * r(a, "def", L) / L + HOME_EDGE / 2 - home_minus
+    ap = poss * r(a, "off", L) * r(h, "def", L) / L - HOME_EDGE / 2 - away_minus
     pw = phi((hp - ap) / SD)
     out = {"home_pts": round(hp, 1), "away_pts": round(ap, 1), "margin": round(hp - ap, 1),
            "total": round(hp + ap, 1), "home_win": round(pw, 3),
@@ -422,7 +453,14 @@ def run_project(date, data, docs, now=None, lock=True):
             notes.append(f"{away} at {home}: already under way at run time with no earlier run saved, so this is not a pregame number.")
         o = odds.get(gid, {})
         spread, total = fnum(o.get("spread")), fnum(o.get("over_under"))
-        pred = game_prediction(home, away, raw, lg, lg_pace, spread, total)
+        adj = {}
+        for t in (home, away):
+            lost, names = team_absences(t, by_team, out_ids, gtd_ids, team_games, date)
+            b2b = on_back_to_back(t, team_games, date)
+            adj[t] = {"missing": names, "b2b": b2b, "minus": round(INJ_K * lost + (B2B_PTS if b2b else 0.0), 1)}
+        pred = game_prediction(home, away, raw, lg, lg_pace, spread, total, adj[home]["minus"], adj[away]["minus"])
+        if pred:
+            pred["home_adj"], pred["away_adj"] = adj[home], adj[away]
         # the spread sets blowout risk; with no spread posted, the model's own margin stands in
         eff_spread = spread if spread is not None else (-pred["margin"] if pred else 0.0)
         if spread is None:
@@ -472,10 +510,11 @@ def run_project(date, data, docs, now=None, lock=True):
                                              "matchup": round(m, 3), "line": lines.get((norm(pr["name"]), s))}
                         sim_stats[s] = {"rate": blend(pr[s] / pr["mpg"], rr), "mult": m * pace_factor * bump,
                                         "log_rates": lr}
-                    sim_players.append({"name": pid, "minutes": entry["min"], "stats": sim_stats})
+                    sim_players.append({"name": pid, "minutes": entry["min"], "stats": sim_stats,
+                                        "min_sd": MIN_SD_BENCH if role == "bench" else MIN_SD})
                     rows.append(entry)
             team_blocks.append({"team": team, "opp": opp, "area": {k: round(v, 3) for k, v in area.items()},
-                                "out_scorers": outs, "players": rows})
+                                "out_scorers": outs, "b2b": adj[team]["b2b"], "players": rows})
 
         sims, flags = simulate_game(eff_spread, sim_players, gi)
         for tb in team_blocks:
@@ -503,7 +542,8 @@ def run_project(date, data, docs, now=None, lock=True):
                           "pace": round(pace_factor, 3), "ceiling": ceil, "teams": team_blocks})
         if pred:
             pred_rows.append(dict({"date": str(date), "game_id": gid, "home": home, "away": away,
-                                   "spread": spread, "market_total": total}, **pred))
+                                   "spread": spread, "market_total": total},
+                                  **{k: v for k, v in pred.items() if not isinstance(v, dict)}))
 
     # target games by stat
     targets = {}

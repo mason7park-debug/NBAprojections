@@ -24,14 +24,19 @@
   function gamePreds(D) {
     var gs = D.games.filter(function (g) { return g.pred; });
     if (!gs.length) return '';
-    return '<section><div class="eyebrow">Game predictions</div><div class="ceilwrap"><table class="ceil"><thead><tr><th class="lft">Game</th><th>Projected score</th><th>Pick</th><th>Win chance</th><th>Fair moneyline</th><th>Line says</th><th>Line win chance</th></tr></thead><tbody>' +
+    return '<section><div class="eyebrow">Game predictions</div><div class="ceilwrap"><table class="ceil"><thead><tr><th class="lft">Game</th><th>Projected score</th><th>Pick</th><th>Win chance</th><th>Fair moneyline</th><th>Line says</th><th>Line win chance</th><th class="lft">Adjusted for</th></tr></thead><tbody>' +
       gs.map(function (g) {
         var p = g.pred, homeFav = p.home_win >= 0.5, fav = homeFav ? g.home : g.away, w = homeFav ? p.home_win : 1 - p.home_win;
         var mk = p.market_home_pts == null ? '-' : esc(g.away) + ' ' + p.market_away_pts + ', ' + esc(g.home) + ' ' + p.market_home_pts;
         var mw = p.market_home_win == null ? '-' : (p.market_home_win >= 0.5 ? esc(g.home) + ' ' + pc(p.market_home_win) : esc(g.away) + ' ' + pc(1 - p.market_home_win));
+        var notes = [[g.away, p.away_adj], [g.home, p.home_adj]].map(function (x) {
+          var a = x[1]; if (!a || !a.minus) return '';
+          var why = a.missing.slice(0, 3).map(esc); if (a.missing.length > 3) why.push('+' + (a.missing.length - 3) + ' more'); if (a.b2b) why.push('back-to-back');
+          return esc(x[0]) + ' -' + a.minus + ' (' + why.join(', ') + ')';
+        }).filter(Boolean).join('; ') || '-';
         return '<tr><td class="g lft">' + esc(g.away) + ' at ' + esc(g.home) + '</td><td>' + esc(g.away) + ' ' + p.away_pts + ', ' + esc(g.home) + ' ' + p.home_pts + '</td><td class="g">' + esc(fav) + ' by ' + Math.abs(p.margin).toFixed(1) +
-          '</td><td>' + pc(w) + '</td><td>' + esc(g.away) + ' ' + ml(p.away_ml) + ' / ' + esc(g.home) + ' ' + ml(p.home_ml) + '</td><td>' + mk + '</td><td>' + mw + '</td></tr>';
-      }).join('') + '</tbody></table></div><p class="lead" style="margin-top:10px">Projected score comes from each team\'s scoring and defense per possession, pace, and 2.5 points for home court. It does not know who is injured tonight. Fair moneyline is the win chance written as odds with no sportsbook fee. "Line says" is the score the posted spread and total imply.</p></section>';
+          '</td><td>' + pc(w) + '</td><td>' + esc(g.away) + ' ' + ml(p.away_ml) + ' / ' + esc(g.home) + ' ' + ml(p.home_ml) + '</td><td>' + mk + '</td><td>' + mw + '</td><td class="lft" style="font-family:var(--body);font-size:.78rem;color:var(--muted);min-width:220px">' + notes + '</td></tr>';
+      }).join('') + '</tbody></table></div><p class="lead" style="margin-top:10px">Projected score comes from each team\'s scoring and defense per possession, pace, and 2.5 points for home court. Points come off for rotation players who are out and for the second night of a back-to-back, shown under "Adjusted for". Fair moneyline is the win chance written as odds with no sportsbook fee. "Line says" is the score the posted spread and total imply.</p></section>';
   }
   function load(u) { return fetch(u, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
 
@@ -111,7 +116,7 @@
     g.teams.forEach(function (t) {
       var a = t.area;
       body += '<tr class="teamsplit"><td colspan="' + cols + '">' + esc(t.team) + ' vs ' + esc(t.opp) + ' defense · threes ' + rel(a.f3) + ' · paint ' + rel(a.fpaint) + ' · free throws ' + rel(a.fft) +
-        (t.out_scorers.length ? ' · out: ' + t.out_scorers.map(esc).join(', ') : '') + '</td></tr>';
+        (t.b2b ? ' · back-to-back' : '') + (t.out_scorers.length ? ' · out: ' + t.out_scorers.map(esc).join(', ') : '') + '</td></tr>';
       var bench = false;
       t.players.forEach(function (p) {
         if (p.role === 'bench' && !bench) { bench = true; body += '<tr class="benchrow"><td colspan="' + cols + '">Bench</td></tr>'; }
@@ -145,6 +150,8 @@
       '<p><b>Source.</b> Everything comes from ESPN box scores, odds and injury reports saved in this repo. Player rates, recent form, starters, defense by position (guard, forward, center), area defense (threes, paint, free throws) and pace are all built from those box scores.</p>' +
       '<p><b>History.</b> ' + m.history_days + ' game days, ' + esc(m.history_from) + ' to ' + esc(m.history_to) + '. ' + m.players + ' players projected. ' + m.log_floors + ' floors use the player\'s own game log and ' + m.flat_floors + ' use the flat rule.</p>' +
       '<p><b>Blowouts.</b> Final margins are assumed to land around the spread with a typical miss of ' + (m.sd || 13) + ' points. That was 13 until Nov 11, 2026, when 159 games this season showed blowouts happening more often than 13 allows. Tags: Low under 21%, Medium 21 to 27%, High over 27%.</p>' +
+      '<p><b>Game predictions.</b> A missing rotation player costs his team half of what he scores beyond an average teammate in the same minutes, scaled down if the team has already played games without him. A back-to-back costs 1.5 points. On 108 replayed games these two adjustments did not measurably change accuracy, so treat them as reasonable assumptions that the nightly record will confirm or not.</p>' +
+      '<p><b>Bench floors.</b> Bench minutes are simulated with a swing of 6 minutes a night, which is what the record shows, against 3 for starters. That moved bench points floors from 70% to 74% held on the replay.</p>' +
       '<p><b>Runs.</b> About 11:30am, 2:30pm, 5:37pm and 6:27pm ET. A game that has tipped keeps the numbers from the last run before tip' + (m.locked_games ? ' (' + m.locked_games + ' locked now)' : '') + '.</p>' +
       '<p><b>Lines.</b> ' + (m.lines_found ? m.lines_found + ' prop lines loaded. They never feed the projection.' : 'No prop lines loaded, so Line and Over chance are hidden.') + '</p>' +
       '<p><b>Limits.</b> Starters are taken from each team\'s last five games, not from tonight\'s posted lineup. Positions are ESPN\'s three groups. A late scratch after the run is not reflected.</p>' +

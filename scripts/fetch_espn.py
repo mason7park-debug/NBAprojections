@@ -27,6 +27,7 @@ notice -- that is the tradeoff for them being reachable at all.
 """
 
 import argparse
+from zoneinfo import ZoneInfo
 import datetime as dt
 import json
 import pathlib
@@ -419,7 +420,7 @@ def main():
     # The schedule runs on UTC machines, but a "day" of NBA games is a US
     # Eastern day. At 01:00 UTC it is still the previous evening in the US.
     today = (dt.date.fromisoformat(args.date) if args.date
-             else (dt.datetime.utcnow() - dt.timedelta(hours=5)).date())
+             else dt.datetime.now(ZoneInfo("America/New_York")).date())
     print(f"date={today} season={season_year(today)}")
 
     if args.mode == "pregame":

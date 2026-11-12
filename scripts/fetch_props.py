@@ -18,6 +18,7 @@ NOTE: written from the API's public documentation and not yet run with a
 real key. Check the first night's file before trusting it.
 """
 import argparse, csv, datetime as dt, json, os, pathlib, statistics, sys, urllib.parse, urllib.request
+from zoneinfo import ZoneInfo
 
 BASE = "https://api.the-odds-api.com/v4/sports/basketball_nba"
 STAT = {"player_points": "PTS", "player_rebounds": "REB", "player_assists": "AST", "player_threes": "3PM"}
@@ -37,7 +38,7 @@ def main():
     if not key:
         print("ODDS_API_KEY not set; skipping prop lines")
         return
-    et = dt.timezone(dt.timedelta(hours=-5))
+    et = ZoneInfo("America/New_York")
     date = dt.date.fromisoformat(a.date) if a.date else dt.datetime.now(et).date()
     markets = os.environ.get("PROP_MARKETS", "").strip() or "player_points"
     try:

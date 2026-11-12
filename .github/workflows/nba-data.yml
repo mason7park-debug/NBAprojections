@@ -11,12 +11,20 @@ name: NBA nightly projections
 # becomes reachable again it restores the tracking stats ESPN lacks.
 on:
   schedule:
-    # UTC. GitHub's scheduler slips 5-20 min regardless of the minute chosen.
-    - cron: "31 16 * * *"   # ~11:31am ET -- first look, covers afternoon games
-    - cron: "31 19 * * *"   # ~2:31pm ET -- refresh before mid-afternoon tips
-    - cron: "37 22 * * *"   # ~5:37pm ET -- main pregame run
-    - cron: "27 23 * * *"   # ~6:27pm ET -- pregame again, picks up late spreads and scratches
-    - cron: "43 13 * * *"   # ~8:43am ET -- results and grading for the night before
+    # GitHub schedules in UTC, which does not follow daylight saving time. Each run is
+    # listed twice, once for winter (EST) and once for summer (EDT). The "Pick mode"
+    # step checks the real Eastern time and skips whichever copy is an hour off.
+    # Targets in Eastern time: 8:43am results, then 11:31am, 2:31pm, 5:37pm, 6:27pm pregame.
+    - cron: "43 13 * * *"
+    - cron: "43 12 * * *"
+    - cron: "31 16 * * *"
+    - cron: "31 15 * * *"
+    - cron: "31 19 * * *"
+    - cron: "31 18 * * *"
+    - cron: "37 22 * * *"
+    - cron: "37 21 * * *"
+    - cron: "27 23 * * *"
+    - cron: "27 22 * * *"
   workflow_dispatch:
     inputs:
       mode:
@@ -36,26 +44,37 @@ jobs:
   nightly:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
       - name: Pick mode
         id: mode
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "mode=${{ github.event.inputs.mode }}" >> "$GITHUB_OUTPUT"
-          elif [ "${{ github.event.schedule }}" = "43 13 * * *" ]; then
-            echo "mode=results" >> "$GITHUB_OUTPUT"
+            mode="${{ github.event.inputs.mode }}"
           else
-            echo "mode=pregame" >> "$GITHUB_OUTPUT"
+            h=$(TZ=America/New_York date +%H); m=$(TZ=America/New_York date +%M)
+            t=$((10#$h * 60 + 10#$m))
+            mode=skip
+            # minutes after midnight Eastern : what to run. A run counts if it starts
+            # from 5 minutes before to 50 minutes after its target.
+            for target in 523:results 691:pregame 871:pregame 1057:pregame 1107:pregame; do
+              at=${target%%:*}
+              if [ "$t" -ge $((at - 5)) ] && [ "$t" -le $((at + 50)) ]; then mode=${target##*:}; fi
+            done
+            echo "Eastern time $h:$m -> $mode"
           fi
+          echo "mode=$mode" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+        if: steps.mode.outputs.mode != 'skip'
+
+      - uses: actions/setup-python@v5
+        if: steps.mode.outputs.mode != 'skip'
+        with:
+          python-version: "3.11"
 
       # A partial fetch still commits what it got; the step result is checked at the end.
       - name: Fetch from ESPN
         id: fetch
+        if: steps.mode.outputs.mode != 'skip'
         continue-on-error: true
         run: python scripts/fetch_espn.py --mode "${{ steps.mode.outputs.mode }}" --out data
 
@@ -77,12 +96,13 @@ jobs:
         run: python scripts/nightly.py grade
 
       - name: Commit
-        if: always()
+        if: always() && steps.mode.outputs.mode != 'skip'
         run: |
           git config user.name  "nba-data-bot"
           git config user.email "actions@github.com"
           git add data logs docs
-          git diff --staged --quiet || git commit -m "nightly: ${{ steps.mode.outputs.mode }} $(date -u +%Y-%m-%d)"
+          git diff --staged --quiet || git commit -m "nightly: ${{ steps.mode.outputs.mode }} $(TZ=America/New_York date +%Y-%m-%d)"
+          git pull --rebase
           git push
 
       - name: Report fetch problems

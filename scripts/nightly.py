@@ -31,7 +31,9 @@ Where each input comes from (all ESPN, via fetch_espn.py):
 
 import argparse, csv, datetime as dt, json, math, os, pathlib, random, re, statistics, unicodedata
 from collections import defaultdict
+from zoneinfo import ZoneInfo
 
+ET = ZoneInfo("America/New_York")     # follows daylight saving time
 STATS = ["PTS", "REB", "AST", "3PM"]
 CEIL_STATS = ["PTS", "REB", "AST", "3PM", "STL", "BLK"]
 BENCH_MIN = 18.0      # bench players at or above this many minutes are projected
@@ -41,6 +43,10 @@ HOME_EDGE = 2.5       # points the home team is worth
 RATE_K = 10           # team ratings are pulled toward average until about this many games
 INJ_K = float(os.environ.get("NBA_INJ_K", 0.5))    # share of a missing player's scoring edge the team loses
 B2B_PTS = float(os.environ.get("NBA_B2B", 1.5))    # points a team loses on the second night of a back-to-back
+MIN_SD_STARTER = float(os.environ.get("NBA_MIN_SD_STARTER", 5.0))   # starters under 18 points a game (measured 5.3)
+BUMP_MODE = os.environ.get("NBA_BUMP", "log")     # "log" = from each player's own games, "flat" = old +5% rule
+BUMP_TRIGGER = 15.0   # a missing teammate scoring this much can move the others
+BUMP_SHRINK = 4       # games without the teammate before the player's own numbers are trusted
 MIN_SD_BENCH = float(os.environ.get("NBA_MIN_SD_BENCH", 6.0))   # bench minutes swing more than starters'
 
 # ============================================================== MODEL (fixed)
@@ -411,8 +417,42 @@ def run_project(date, data, docs, now=None, lock=True):
         return starters, bench
 
     def out_scorers(team):
-        return [pr["name"] for pid, pr in by_team.get(team, [])
-                if pid in out_ids and pr["PTS"] >= BUMP_PPG]
+        """Scorers this team is missing tonight: on the report as Out, or not seen lately."""
+        days = sorted({r["_date"] for r in team_games.get(team, [])})
+        cutoff = days[-4:][0] if days else date
+        trigger = BUMP_PPG if BUMP_MODE == "flat" else BUMP_TRIGGER
+        res = []
+        for pid, pr in by_team.get(team, []):
+            missing = pid in out_ids or (BUMP_MODE != "flat" and pr["last_date"] < cutoff and pid not in gtd_ids)
+            if missing and pr["PTS"] >= trigger and pr["gp"] >= 3:
+                share = min(1.0, pr["gp"] / max(1, len(days)))
+                res.append((pid, pr, share))
+        return res
+
+    def teammate_bump(pid, team, outs, stat):
+        """How this player's per-minute rate changes without the missing teammates.
+
+        Compared with his season rate, which already includes any games the teammate
+        missed, so a long absence is not counted twice. With few such games the number
+        is pulled toward a small default lift."""
+        if BUMP_MODE == "flat":
+            return min(1.10, 1.0 + 0.05 * len(outs))
+        mine = [g for g in players[pid]["games"] if g["MIN"] >= 15 and g["team"] == team]
+        tot_min = sum(g["MIN"] for g in mine)
+        base = sum(g[stat] for g in mine) / tot_min if tot_min else 0.0
+        b = 1.0
+        for opid, opr, share in outs:
+            prior = 1.0 + (0.05 if opr["PTS"] >= BUMP_PPG else 0.03) * share
+            seen = {g["date"] for g in players[opid]["games"]}
+            wo = [g for g in mine if g["date"] not in seen]
+            wmin = sum(g["MIN"] for g in wo)
+            # points only: assists without a teammate were too noisy to beat the default on the replay
+            if stat == "PTS" and len(mine) >= 5 and wo and wmin and base > 0:
+                ratio = (sum(g[stat] for g in wo) / wmin) / base
+                b *= prior + (ratio - prior) * len(wo) / (len(wo) + BUMP_SHRINK)
+            else:
+                b *= prior
+        return max(0.90, min(1.25, b))
 
     games_out, proj_rows, notes, pred_rows = [], [], [], []
     slate = sorted(slate, key=lambda r: (r["date"], r["game_id"]))
@@ -481,7 +521,6 @@ def run_project(date, data, docs, now=None, lock=True):
             area = {k: (od["allow"][src] / lg[src] if src in od["allow"] and lg.get(src) else 1.0)
                     for k, src in (("f3", "3PM"), ("fpaint", "PAINT"), ("fft", "FTM"))}
             outs = out_scorers(team)
-            bump_val = min(1.10, 1.0 + 0.05 * len(outs))
             starters, bench = pool(team)
             rows = []
             for role, group in (("starter", starters), ("bench", bench)):
@@ -499,7 +538,7 @@ def run_project(date, data, docs, now=None, lock=True):
                         elif s == "3PM":
                             zone = area["f3"]
                         m = matchup(s, f, od["games"], zone)
-                        bump = bump_val if s in ("PTS", "AST") else 1.0
+                        bump = teammate_bump(pid, team, outs, s) if (outs and s in ("PTS", "AST")) else 1.0
                         lr = pr["log_rates"][s] or None
                         rr = pr["recent_rate"][s] if pr["recent_rate"] else None
                         normal, blow, expected, rfloor, src, minutes = project(
@@ -507,14 +546,14 @@ def run_project(date, data, docs, now=None, lock=True):
                         entry["min"] = minutes
                         entry["stats"][s] = {"normal": normal, "blowout": blow, "expected": expected,
                                              "rule_floor": rfloor, "floor_source": src,
-                                             "matchup": round(m, 3), "line": lines.get((norm(pr["name"]), s))}
+                                             "matchup": round(m, 3), "bump": round(bump, 3), "line": lines.get((norm(pr["name"]), s))}
                         sim_stats[s] = {"rate": blend(pr[s] / pr["mpg"], rr), "mult": m * pace_factor * bump,
                                         "log_rates": lr}
                     sim_players.append({"name": pid, "minutes": entry["min"], "stats": sim_stats,
-                                        "min_sd": MIN_SD_BENCH if role == "bench" else MIN_SD})
+                                        "min_sd": MIN_SD_BENCH if role == "bench" else (MIN_SD if entry["star"] else MIN_SD_STARTER)})
                     rows.append(entry)
             team_blocks.append({"team": team, "opp": opp, "area": {k: round(v, 3) for k, v in area.items()},
-                                "out_scorers": outs, "b2b": adj[team]["b2b"], "players": rows})
+                                "out_scorers": [o[1]["name"] for o in outs], "b2b": adj[team]["b2b"], "players": rows})
 
         sims, flags = simulate_game(eff_spread, sim_players, gi)
         for tb in team_blocks:
@@ -574,7 +613,7 @@ def run_project(date, data, docs, now=None, lock=True):
 
     hist_dates = sorted({r["_date"] for rows in team_games.values() for r in rows})
     n_log = sum(1 for r in proj_rows if r["floor_source"] == "log")
-    now_et = dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=5)
+    now_et = dt.datetime.now(ET)
     open_tips = [tip_of(g) for g in slate if tip_of(g) > now]
     hours_early = (min(open_tips) - now).total_seconds() / 3600 if open_tips else 0
     payload = {
@@ -747,7 +786,7 @@ def main():
     ap.add_argument("--docs", default="docs")
     ap.add_argument("--now", help="testing: pretend the run happens at this UTC time (ISO format)")
     a = ap.parse_args()
-    today = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=5)).date()
+    today = dt.datetime.now(ET).date()
     if a.date:
         date = dt.date.fromisoformat(a.date)
     else:

@@ -56,7 +56,7 @@
   // Checked on 1,419 player-games (Oct 30 to Nov 11, 2026): about a fifth of the raw gap
   // carried over. Points rose against soft spots but did not fall against tough ones, and
   // threes showed no pattern by position, so those are not flagged.
-  var SOFT = 1.12, TOUGH = 0.88, MSTATS = ['PTS', 'REB', 'AST'], PNAME = { G: 'Guards', F: 'Forwards', C: 'Centers' }, MINV = { PTS: 8, REB: 4, AST: 3 };
+  var SOFT = 1.12, TOUGH = 0.88, MSTATS = ['PTS', 'REB', 'AST'], TSTATS = ['PTS', 'REB', 'AST', '3PM'], PNAME = { G: 'Guards', F: 'Forwards', C: 'Centers' }, MINV = { PTS: 8, REB: 4, AST: 3 };
   function spot(t, pos, s) {
     var v = t.dvp && t.dvp[pos] ? t.dvp[pos][s] : null;
     if (v == null || MSTATS.indexOf(s) < 0) return 0;
@@ -87,17 +87,26 @@
     function card(title, list, empty) {
       return '<div class="card"><h3>' + title + '</h3><div class="body">' + (list.length ? list.slice(0, 8).map(item).join('') : '<div class="tg"><div class="p">' + empty + '</div></div>') + '</div></div>';
     }
-    var tbl = '<div class="ceilwrap" style="margin-top:12px"><table class="ceil"><thead><tr><th class="lft" rowspan="2">Defense</th>' + MSTATS.map(function (s) { return '<th class="grp" colspan="3">' + s + ' allowed</th>'; }).join('') + '</tr><tr>' +
-      MSTATS.map(function () { return '<th class="grp">G</th><th>F</th><th>C</th>'; }).join('') + '</tr></thead><tbody>' +
+    var tbl = '<div class="ceilwrap" style="margin-top:12px"><table class="ceil"><thead><tr><th class="lft" rowspan="2">Defense</th>' + TSTATS.map(function (s) { return '<th class="grp" colspan="3">' + s + ' allowed</th>'; }).join('') + '</tr><tr>' +
+      TSTATS.map(function () { return '<th class="grp">G</th><th>F</th><th>C</th>'; }).join('') + '</tr></thead><tbody>' +
       blocks.map(function (b) {
-        return '<tr><td class="g lft">' + esc(b.t.opp) + ' <span class="date">vs ' + esc(b.t.team) + '</span></td>' + MSTATS.map(function (s) {
+        return '<tr><td class="g lft">' + esc(b.t.opp) + ' <span class="date">vs ' + esc(b.t.team) + '</span></td>' + TSTATS.map(function (s) {
           return ['G', 'F', 'C'].map(function (pos, i) { var v = b.t.dvp[pos][s], k = spot(b.t, pos, s); return '<td' + (i ? '' : ' class="gl"') + '><span class="cv" style="' + (Math.abs(v - 1) >= 0.12 ? heat(v) : '') + '">' + rel(v) + '</span>' + mark(k) + '</td>'; }).join('');
         }).join('') + '</tr>';
       }).join('') + '</tbody></table></div>';
     return '<section id="matchups"><div class="eyebrow">Position matchups</div><div class="grid2">' +
       card('▲ Soft spots tonight', soft, 'No defense tonight has been 12% or more above average against a position.') +
       card('▼ Tough spots tonight', tough, 'No defense tonight has been 12% or more below average against a position in rebounds or assists.') + '</div>' + tbl +
-      '<p class="lead" style="margin-top:10px">Percentages are what each defense has allowed to that position so far, against the league average. They are small samples, so read them as a lean. On 1,419 player-games this season about a fifth of the gap carried over to the next game: a defense that had allowed 25% more to a position meant about 5% more for the next player there. Points rose against soft spots but did not fall against tough ones, and threes showed no pattern by position, so those are not flagged. The projections already include this at that strength.</p></section>';
+      '<p class="lead" style="margin-top:10px">Percentages are what each defense has allowed to that position so far, against the league average. They are small samples, so read them as a lean. On 1,419 player-games this season about a fifth of the gap carried over to the next game: a defense that had allowed 25% more to a position meant about 5% more for the next player there. Points rose against soft spots but did not fall against tough ones, so tough spots are not flagged for points. Threes are in the table but not flagged: so far neither a defense\'s record against a position nor its threes allowed overall has carried over to the next game. The Record section tracks all four stats every night, so this will show if a pattern appears. The projections already include position defense at the strength the record supports.</p></section>';
+  }
+  function mcheck(x) {
+    var m = x.matchup_check; if (!m || !Object.keys(m).length) return '';
+    function cell(c) { return c && c.ratio != null ? '<td><span class="cv" style="' + (Math.abs(c.ratio - 1) >= 0.05 ? heat(c.ratio) : '') + '">' + rel(c.ratio) + '</span> <span class="dim">(' + c.n + ')</span></td>' : '<td>-</td>'; }
+    var names = { PTS: 'Points', REB: 'Rebounds', AST: 'Assists', '3PM': 'Threes, by position', '3PM_team': 'Threes, team defense' };
+    return '<div class="tscroll" style="border-top:1px solid var(--border)"><table><thead><tr><th class="lft">Matchup check</th><th>Tough</th><th>Middle</th><th>Soft</th></tr></thead><tbody>' +
+      ['PTS', 'REB', 'AST', '3PM', '3PM_team'].filter(function (k) { return m[k]; }).map(function (k) {
+        return '<tr><td class="pl">' + names[k] + '</td>' + cell(m[k].tough) + cell(m[k].middle) + cell(m[k].soft) + '</tr>';
+      }).join('') + '</tbody></table></div><div class="body"><p>How players did against their own usual rate, grouped by how the defense had done against their position (12% or more below or above average; 8% for team threes). If matchups matter, Soft should sit above Middle and Tough below it.</p></div>';
   }
   function load(u) { return fetch(u, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
 
@@ -138,7 +147,7 @@
       '<div class="card"><h3>All nights · ' + A.nights + ' nights · ' + A.player_games + ' player-games</h3>' + tbl(A) + '<div class="body">' +
       '<p><b>Star points floors:</b> ' + pc(A.star_floor_hit) + ' of ' + A.star_floors + ' held' + (A.left_early_n ? ', or ' + pc(A.star_floor_hit_full) + ' of ' + A.star_floors_full + ' leaving out the ' + A.left_early_n + ' players who left early' : '') + '. The target is about 80%.</p>' +
       '<p><b>Star minutes.</b> ' + mins(A) + '</p><p><b>Games decided by 20 or more, by tag.</b> ' + tags(A) + '</p>' +
-      '<p><b>Over-chance check.</b> ' + over(A) + '</p>' + gp(A) + '</div></div></div></section>';
+      '<p><b>Over-chance check.</b> ' + over(A) + '</p>' + gp(A) + '</div>' + mcheck(A) + '</div></div></section>';
   }
 
   function targets(D) {

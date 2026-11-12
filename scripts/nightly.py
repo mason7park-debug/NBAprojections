@@ -199,9 +199,13 @@ def read_csv(path):
 
 def write_csv(rows, path):
     path.parent.mkdir(parents=True, exist_ok=True)
-    cols = list(rows[0].keys()) if rows else []
+    cols = []                      # union of keys, so rows saved by an older version still fit
+    for r in rows:
+        for k in r:
+            if k not in cols:
+                cols.append(k)
     with path.open("w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=cols)
+        w = csv.DictWriter(f, fieldnames=cols, restval="")
         w.writeheader()
         w.writerows(rows)
 
@@ -564,7 +568,8 @@ def run_project(date, data, docs, now=None, lock=True):
                         entry["min"] = minutes
                         entry["stats"][s] = {"normal": normal, "blowout": blow, "expected": expected,
                                              "rule_floor": rfloor, "floor_source": src,
-                                             "matchup": round(m, 3), "bump": round(bump, 3), "line": lines.get((norm(pr["name"]), s))}
+                                             "matchup": round(m, 3), "bump": round(bump, 3),
+                                             "dvp": round(f, 3), "base_rate": round(pr[s] / pr["mpg"], 5), "line": lines.get((norm(pr["name"]), s))}
                         sim_stats[s] = {"rate": blend(pr[s] / pr["mpg"], rr), "mult": m * pace_factor * bump,
                                         "log_rates": lr}
                     sim_players.append({"name": pid, "minutes": entry["min"], "stats": sim_stats,
@@ -597,7 +602,9 @@ def run_project(date, data, docs, now=None, lock=True):
                         "expected": st["expected"], "floor": st["floor"], "blowout_floor": st["blowout_floor"],
                         "p_over": st["p_over"], "rule_floor": st["rule_floor"],
                         "floor_source": st["floor_source"], "line": st["line"],
-                        "spread": spread, "p_blowout": round(pb, 3)})
+                        "spread": spread, "p_blowout": round(pb, 3),
+                        # kept so the morning grade can check whether matchups carry over
+                        "pos": e["pos"], "dvp": st["dvp"], "area3": tb["area"]["f3"], "base_rate": st["base_rate"]})
         games_out.append({"game_id": gid, "home": home, "away": away, "tip": g["date"],
                           "spread": spread, "total": total, "favorite": o.get("details"),
                           "p_blowout": round(pb, 3), "tag": tag(pb), "locked": False, "pred": pred,
@@ -741,6 +748,23 @@ def summarize_grades(rows):
         z = [r for r in stars if test(fnum(r["final_margin"], 0))]
         res[f"star_minutes_{label}"] = ({"n": len(z), "projected": round(statistics.mean(f(r, "minutes") for r in z), 1),
                                          "actual": round(statistics.mean(f(r, "actual_minutes") for r in z), 1)} if z else None)
+    # Matchup check: did players do better against defenses that had been soft at their position?
+    # Baseline is the player's own pre-game rate times the minutes he actually played.
+    def carry(z, key, lo, hi):
+        out = {}
+        for label, test in (("tough", lambda v: v <= lo), ("middle", lambda v: lo < v < hi), ("soft", lambda v: v >= hi)):
+            q = [r for r in z if test(f(r, key))]
+            base = sum(f(r, "base_rate") * f(r, "actual_minutes") for r in q)
+            out[label] = {"n": len(q), "ratio": round(sum(f(r, "actual") for r in q) / base, 3) if base else None}
+        return out
+    res["matchup_check"] = {}
+    for s in STATS:
+        z = [r for r in played if r["stat"] == s and fnum(r.get("dvp")) is not None and fnum(r.get("base_rate"))
+             and fnum(r.get("actual_minutes"), 0) >= 15]
+        if z:
+            res["matchup_check"][s] = carry(z, "dvp", 0.88, 1.12)
+            if s == "3PM" and all(fnum(r.get("area3")) is not None for r in z):
+                res["matchup_check"]["3PM_team"] = carry(z, "area3", 0.92, 1.08)
     buckets = [("under 50%", 0, .5), ("50 to 70%", .5, .7), ("70 to 85%", .7, .85), ("85% and up", .85, 1.01)]
     lined = [r for r in played if f(r, "p_over") is not None and f(r, "line") is not None]
     res["over_check"] = [{"bucket": b, "n": len(z), "went_over": round(sum(f(r, "actual") > f(r, "line") for r in z) / len(z), 3)}

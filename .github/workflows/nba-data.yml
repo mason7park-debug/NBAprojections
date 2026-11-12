@@ -1,4 +1,4 @@
-name: NBA data snapshot
+name: NBA nightly projections
 
 # Fetches from ESPN, not stats.nba.com.
 #
@@ -13,19 +13,25 @@ on:
   schedule:
     # UTC. GitHub's scheduler slips 5-20 min regardless of the minute chosen.
     - cron: "37 22 * * *"   # ~5:37pm ET -- pregame, before first tip
-    - cron: "43 13 * * *"   # ~8:43am ET -- results from the night before
+    - cron: "27 23 * * *"   # ~6:27pm ET -- pregame again, picks up late spreads and scratches
+    - cron: "43 13 * * *"   # ~8:43am ET -- results and grading for the night before
   workflow_dispatch:
     inputs:
       mode:
-        description: "pregame or results"
-        required: true
+        description: "pregame (project tonight) or results (grade last night)"
+        type: choice
+        options: [pregame, results]
         default: pregame
 
 permissions:
   contents: write
 
+concurrency:
+  group: nba-nightly
+  cancel-in-progress: false
+
 jobs:
-  snapshot:
+  nightly:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,25 +40,51 @@ jobs:
         with:
           python-version: "3.11"
 
-
       - name: Pick mode
         id: mode
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "mode=${{ github.event.inputs.mode }}" >> "$GITHUB_OUTPUT"
-          elif [ "${{ github.event.schedule }}" = "37 22 * * *" ]; then
-            echo "mode=pregame" >> "$GITHUB_OUTPUT"
-          else
+          elif [ "${{ github.event.schedule }}" = "43 13 * * *" ]; then
             echo "mode=results" >> "$GITHUB_OUTPUT"
+          else
+            echo "mode=pregame" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Fetch
+      # A partial fetch still commits what it got; the step result is checked at the end.
+      - name: Fetch from ESPN
+        id: fetch
+        continue-on-error: true
         run: python scripts/fetch_espn.py --mode "${{ steps.mode.outputs.mode }}" --out data
 
+      # Optional. Does nothing unless the ODDS_API_KEY secret is set.
+      - name: Fetch prop lines
+        if: steps.mode.outputs.mode == 'pregame'
+        continue-on-error: true
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          PROP_MARKETS: ${{ vars.PROP_MARKETS }}
+        run: python scripts/fetch_props.py --out data
+
+      - name: Project tonight
+        if: steps.mode.outputs.mode == 'pregame'
+        run: python scripts/nightly.py project
+
+      - name: Grade last night
+        if: steps.mode.outputs.mode == 'results'
+        run: python scripts/nightly.py grade
+
       - name: Commit
+        if: always()
         run: |
           git config user.name  "nba-data-bot"
           git config user.email "actions@github.com"
-          git add data logs
-          git diff --staged --quiet || git commit -m "snapshot: ${{ steps.mode.outputs.mode }} $(date -u +%Y-%m-%d)"
+          git add data logs docs
+          git diff --staged --quiet || git commit -m "nightly: ${{ steps.mode.outputs.mode }} $(date -u +%Y-%m-%d)"
           git push
+
+      - name: Report fetch problems
+        if: steps.fetch.outcome == 'failure'
+        run: |
+          echo "ESPN fetch was incomplete. What it did get was committed."
+          exit 1

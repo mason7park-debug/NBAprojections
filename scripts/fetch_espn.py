@@ -14,6 +14,13 @@ without them -- see the skill's notes on REB and AST.
 
   --mode pregame   slate, odds, injuries, season baselines
   --mode results   final box scores for the previous day
+  --mode backfill  box scores for every date from --start to yesterday
+                   (one-time, or to repair gaps)
+
+Results and backfill also write data/teamstats/<date>.csv: one row per team
+per game with threes, free throws, points in the paint, rebounds, assists,
+steals, blocks and turnovers, plus the opponent and final margin. The model
+derives area defense and pace from those rows.
 
 No API key. No auth. Undocumented public endpoints, so they can change without
 notice -- that is the tradeoff for them being reachable at all.
@@ -36,6 +43,7 @@ UA = "nba-projections/1.0 (personal research project)"
 
 FAILED = []
 WROTE = []
+SB_ODDS = {}   # game_id -> odds row seen on the scoreboard (fallback)
 
 
 def get(url, label, attempts=4):
@@ -182,6 +190,14 @@ def fetch_scoreboard(date, out, label):
     for e in events:
         comp = (e.get("competitions") or [{}])[0]
         teams = {c.get("homeAway"): c for c in comp.get("competitors", [])}
+        for o in (comp.get("odds") or [])[:1]:
+            SB_ODDS[e.get("id")] = {
+                "game_id": e.get("id"),
+                "provider": (o.get("provider") or {}).get("name"),
+                "spread": o.get("spread"),
+                "over_under": o.get("overUnder"),
+                "details": o.get("details"),
+            }
         rows.append({
             "game_id": e.get("id"),
             "date": e.get("date"),
@@ -198,19 +214,73 @@ def fetch_scoreboard(date, out, label):
 
 # ------------------------------------------------------- per-game summary data
 
+BOX_LABELS = ["MIN", "PTS", "FG", "3PT", "FT", "REB", "AST", "TO", "STL",
+              "BLK", "OREB", "DREB", "PF", "plusminus"]
+
+
+def _made_att(v):
+    try:
+        m, a = str(v).split("-")
+        return int(m), int(a)
+    except Exception:
+        return None, None
+
+
+def _num(v):
+    try:
+        return int(float(v))
+    except Exception:
+        return None
+
+
+def team_stat_rows(d, gid):
+    """One row per team for a finished game: totals, opponent, final margin."""
+    score, home = {}, {}
+    comps = ((d.get("header") or {}).get("competitions") or [{}])[0]
+    for c in comps.get("competitors", []):
+        ab = (c.get("team") or {}).get("abbreviation")
+        score[ab] = _num(c.get("score"))
+        home[ab] = c.get("homeAway") == "home"
+    rows = []
+    for t in (d.get("boxscore") or {}).get("teams", []):
+        ab = (t.get("team") or {}).get("abbreviation")
+        st = {s.get("name"): s.get("displayValue") for s in t.get("statistics", [])}
+        fgm, fga = _made_att(st.get("fieldGoalsMade-fieldGoalsAttempted"))
+        tpm, tpa = _made_att(st.get("threePointFieldGoalsMade-threePointFieldGoalsAttempted"))
+        ftm, fta = _made_att(st.get("freeThrowsMade-freeThrowsAttempted"))
+        opp = next((k for k in score if k != ab), None)
+        pts, opp_pts = score.get(ab), score.get(opp)
+        rows.append({
+            "game_id": gid, "team": ab, "opp": opp, "home": home.get(ab),
+            "PTS": pts, "OPP_PTS": opp_pts,
+            "margin": (pts - opp_pts) if pts is not None and opp_pts is not None else None,
+            "FGM": fgm, "FGA": fga, "3PM": tpm, "3PA": tpa, "FTM": ftm, "FTA": fta,
+            "REB": _num(st.get("totalRebounds")), "OREB": _num(st.get("offensiveRebounds")),
+            "AST": _num(st.get("assists")), "STL": _num(st.get("steals")),
+            "BLK": _num(st.get("blocks")),
+            "TOV": _num(st.get("totalTurnovers") or st.get("turnovers")),
+            "PAINT": _num(st.get("pointsInPaint")),
+        })
+    return rows
+
+
 def fetch_summaries(game_ids, date, out, want_box):
     """
     One call per game returns box score, injuries and betting lines together.
     """
-    box_rows, inj_rows, odds_rows = [], [], []
+    box_rows, inj_rows, odds_rows, team_rows = [], [], [], []
 
     for gid in game_ids:
         d = get(f"{SITE}/summary?event={gid}", f"summary[{gid}]")
         if not d:
             continue
 
-        # --- betting lines
+        # --- betting lines (summary first, scoreboard as fallback)
+        got_line = False
         for o in (d.get("pickcenter") or d.get("odds") or [])[:1]:
+            if o.get("spread") is None and o.get("overUnder") is None:
+                continue
+            got_line = True
             odds_rows.append({
                 "game_id": gid,
                 "provider": (o.get("provider") or {}).get("name"),
@@ -218,6 +288,8 @@ def fetch_summaries(game_ids, date, out, want_box):
                 "over_under": o.get("overUnder"),
                 "details": o.get("details"),
             })
+        if not got_line and gid in SB_ODDS:
+            odds_rows.append(SB_ODDS[gid])
 
         # --- injuries
         for t in d.get("injuries", []):
@@ -245,14 +317,29 @@ def fetch_summaries(game_ids, date, out, want_box):
                                "player_id": ath.get("id"),
                                "player": ath.get("displayName"),
                                "dnp": a.get("didNotPlay", False)}
+                        # Every row carries every column, so DNP rows (which
+                        # have no stats) cannot shift the CSV header.
+                        for lab in BOX_LABELS:
+                            row[lab] = ""
                         for lab, val in zip(labels, a.get("stats", [])):
                             row[lab.replace("+/-", "plusminus")] = val
+                        row["starter"] = a.get("starter", False)
+                        row["pos"] = (ath.get("position") or {}).get("abbreviation")
                         box_rows.append(row)
+            team_rows.extend(team_stat_rows(d, gid))
 
-    write_csv(odds_rows, out / "odds" / f"{date}.csv", "odds")
-    write_csv(inj_rows, out / "injuries" / f"{date}.csv", "injuries")
+    # Odds and injuries are point-in-time. A pregame run always writes them.
+    # A post-game run must not replace the pregame snapshot with what the feed
+    # says the morning after, so it only fills files that do not exist yet.
+    for rows, kind in ((odds_rows, "odds"), (inj_rows, "injuries")):
+        path = out / kind / f"{date}.csv"
+        if want_box and path.exists():
+            print(f"  keep {path} (pregame snapshot)")
+            continue
+        write_csv(rows, path, kind)
     if want_box:
         write_csv(box_rows, out / "boxscores" / f"{date}.csv", "boxscores")
+        write_csv(team_rows, out / "teamstats" / f"{date}.csv", "teamstats")
 
 
 # ----------------------------------------------------------------------- main
@@ -273,20 +360,76 @@ def results(out, today):
     print(f"  {len(gids)} games to grade")
     if gids:
         fetch_summaries(gids, yday, out, want_box=True)
+    # Repair pass: if an earlier results run failed, its date has a slate but
+    # no box score. Refill up to 5 such dates so the history has no holes.
+    fixed = 0
+    for p in sorted((out / "slate").glob("*.csv"), reverse=True):
+        try:
+            d = dt.date.fromisoformat(p.stem)
+        except ValueError:
+            continue
+        if d >= yday or (out / "boxscores" / f"{d}.csv").exists():
+            continue
+        fill_date(out, d)
+        fixed += 1
+        if fixed >= 5:
+            break
+
+
+def fill_date(out, d):
+    """Box scores and team stats for one past date. No games is not an error."""
+    data = get(f"{SITE}/scoreboard?dates={espn_date(d)}", f"scoreboard[{d}]")
+    if not data:
+        return
+    if not data.get("events"):
+        print(f"  {d}: no games")
+        return
+    before = list(FAILED)
+    gids = fetch_scoreboard(d, out, f"slate[{d}]")
+    done = [g for g in gids]
+    if done:
+        fetch_summaries(done, d, out, want_box=True)
+    # injuries and odds are point-in-time; for a past date they are optional
+    for lab in ("odds", "injuries"):
+        if lab in FAILED and lab not in before:
+            FAILED.remove(lab)
+
+
+def backfill(out, today, start):
+    print(f"mode=backfill from {start}")
+    d = start
+    while d < today:
+        if (out / "boxscores" / f"{d}.csv").exists() and (out / "teamstats" / f"{d}.csv").exists():
+            print(f"  {d}: already have it")
+        else:
+            fill_date(out, d)
+        d += dt.timedelta(days=1)
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--mode", choices=["pregame", "results"], required=True)
+    ap.add_argument("--mode", choices=["pregame", "results", "backfill"], required=True)
     ap.add_argument("--out", default="data")
+    ap.add_argument("--date", help="run as if today were this date (YYYY-MM-DD)")
+    ap.add_argument("--start", help="backfill: first date to fetch (YYYY-MM-DD)")
     ap.add_argument("--allow-partial", action="store_true")
     args = ap.parse_args()
 
     out = pathlib.Path(args.out)
-    today = dt.date.today()
+    # The schedule runs on UTC machines, but a "day" of NBA games is a US
+    # Eastern day. At 01:00 UTC it is still the previous evening in the US.
+    today = (dt.date.fromisoformat(args.date) if args.date
+             else (dt.datetime.utcnow() - dt.timedelta(hours=5)).date())
     print(f"date={today} season={season_year(today)}")
 
-    (pregame if args.mode == "pregame" else results)(out, today)
+    if args.mode == "pregame":
+        pregame(out, today)
+    elif args.mode == "results":
+        results(out, today)
+    else:
+        if not args.start:
+            ap.error("--mode backfill needs --start YYYY-MM-DD")
+        backfill(out, today, dt.date.fromisoformat(args.start))
 
     print(f"\nwrote: {WROTE or 'nothing'}")
     if FAILED:

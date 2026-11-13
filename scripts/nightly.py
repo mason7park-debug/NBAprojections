@@ -145,6 +145,18 @@ def project(per_game, mpg, m, pace_factor, pb, stat, bump=1.0, log_rates=None, r
         floor, source = math.floor(blow * FLOOR[stat]), 'flat'
     return round(normal, 1), round(blow, 1), round(expected, 1), floor, source, round(minutes, 1)
 
+# What a player keeps when his team LOSES by 20 or more, against a close game: share of his
+# minutes, and his per-minute production. Measured on 32,022 player-games from 2024-25 and
+# 2025-26, by his usual minutes. (In blowout wins players lose minutes but produce more per
+# minute, so their totals barely drop: stars kept 93 to 98% of their points.)
+LOSS_MIN = {"30+": 0.862, "24-30": 0.915, "15-24": 1.023}
+LOSS_RATE = {"30+":   {"PTS": 0.880, "REB": 0.922, "AST": 0.888, "3PM": 0.848},
+             "24-30": {"PTS": 0.940, "REB": 0.909, "AST": 0.904, "3PM": 0.889},
+             "15-24": {"PTS": 0.968, "REB": 0.918, "AST": 1.000, "3PM": 0.915}}
+
+def min_bucket(mpg):
+    return "30+" if mpg >= 30 else ("24-30" if mpg >= 24 else "15-24")
+
 SIMS = 10000
 SEED = 2026
 MIN_SD = 3.0                                   # night-to-night swing in minutes
@@ -167,10 +179,12 @@ def simulate_game(home_spread, players, game_index):
     rng = random.Random(SEED + game_index)
     out = {p['name']: {s: [] for s in p['stats']} for p in players}
     blow_flags = []
+    margins = []        # home team's simulated final margin, one per run
     for _ in range(SIMS):
         margin = rng.gauss(-home_spread, SD)
         blow = abs(margin) >= BLOWOUT
         blow_flags.append(blow)
+        margins.append(margin)
         for p in players:
             base = blowout_minutes(p['minutes']) if blow else p['minutes']
             mins = max(0.0, rng.gauss(base, p.get('min_sd', MIN_SD)))
@@ -186,6 +200,7 @@ def simulate_game(home_spread, players, game_index):
                         v = max(0.0, rng.gauss(mean, CV[s] * mean))
                     v = int(v + 0.5)
                 out[p['name']][s].append(v)
+    simulate_game.margins = margins     # kept on the side so the return value stays as the skill has it
     return out, blow_flags
 
 def summarize(vals, blow_flags, line=None):
@@ -664,6 +679,17 @@ def run_project(date, data, docs, now=None, lock=True):
                         bv = sorted(v for v, b in zip(vals, flags) if b)
                         if len(bv) >= 200:
                             res["blowout_floor"] = int(pct(bv, FLOOR_Q_BENCH_PTS))
+                    # Blown-out floor: the number reached in 80% of the simulated games his team LOST by 20+,
+                    # with the measured drop in minutes and per-minute production applied. Display only:
+                    # it does not change any other number.
+                    if e["min"]:
+                        b_ = min_bucket(e["min"]); is_home = e["team"] == home
+                        k_ = LOSS_RATE[b_][s] * LOSS_MIN[b_] / (blowout_minutes(e["min"]) / e["min"])
+                        lv = sorted(v * k_ for v, m_ in zip(vals, simulate_game.margins)
+                                    if (m_ <= -BLOWOUT if is_home else m_ >= BLOWOUT))
+                        st["loss_floor"] = min(int(pct(lv, 0.20)), res["floor"]) if len(lv) >= 100 else None
+                    else:
+                        st["loss_floor"] = None
                     if s == "3PM":      # a floor of 0 says little, so threes also get "at least" chances
                         st["at_least"] = {str(k): round(sum(1 for v in vals if v >= k) / len(vals), 3) for k in (1, 2, 3)}
                     # whole-number rounding can push a tiny floor above the expected value
@@ -688,7 +714,7 @@ def run_project(date, data, docs, now=None, lock=True):
                         "spread": spread, "p_blowout": round(pb, 3),
                         # kept so the morning grade can check whether matchups carry over
                         "pos": e["pos"], "dvp": st["dvp"], "area3": tb["area"]["f3"], "base_rate": st["base_rate"],
-                        "season_avg": st["season_avg"], "model": MODEL_VERSION,
+                        "season_avg": st["season_avg"], "model": MODEL_VERSION, "loss_floor": st["loss_floor"],
                         "p_ge1": st.get("at_least", {}).get("1", ""), "p_ge2": st.get("at_least", {}).get("2", ""),
                         "p_ge3": st.get("at_least", {}).get("3", "")})
         games_out.append({"game_id": gid, "home": home, "away": away, "tip": g["date"],
@@ -724,7 +750,8 @@ def run_project(date, data, docs, now=None, lock=True):
     no_line = sorted([x for x in flat if x[2]["line"] is None and x[0]["star"] and x[2]["expected"] >= 3],
                      key=lambda x: -(x[2]["floor"] / x[2]["expected"]))
     safest = [{"name": e["name"], "team": e["team"], "stat": s, "line": st["line"], "p_over": st["p_over"],
-               "floor": st["floor"], "blowout_floor": st["blowout_floor"], "expected": st["expected"]}
+               "floor": st["floor"], "blowout_floor": st["blowout_floor"], "loss_floor": st.get("loss_floor"),
+               "expected": st["expected"]}
               for e, s, st in (with_line + no_line)[:10]]
 
     hist_dates = sorted({r["_date"] for rows in team_games.values() for r in rows})
@@ -768,6 +795,7 @@ def grade_one(date, data):
     if not proj or not box or not teams:
         return None
     margin = {(r["game_id"], r["team"]): abs(fnum(r["margin"], 0)) for r in teams}
+    signed = {(r["game_id"], r["team"]): fnum(r["margin"], 0) for r in teams}
     act = {}
     for r in box:
         played = str(r.get("dnp", "")).lower() != "true" and fnum(r.get("MIN"), 0) > 0
@@ -782,6 +810,7 @@ def grade_one(date, data):
         r["actual"] = a[r["stat"]] if r["played"] else ""
         r["actual_minutes"] = a["MIN"] if r["played"] else ""
         r["final_margin"] = margin.get((r["game_id"], r["team"]), "")
+        r["team_margin"] = signed.get((r["game_id"], r["team"]), "")      # negative = his team lost
         out.append(r)
     write_csv(out, data / "graded" / f"{date}.csv")
     return out
@@ -831,6 +860,15 @@ def summarize_grades(rows):
     stars = [r for r in played if r["stat"] == "PTS" and str(r["star"]) == "True"]
     res["star_floors"] = len(stars)
     res["star_floor_hit"] = round(sum(f(r, "actual") >= f(r, "floor") for r in stars) / len(stars), 3) if stars else None
+    # Blowouts split by side: stars hold up when their team wins big and struggle when it loses big.
+    def held(z, key):
+        z = [r for r in z if f(r, key) is not None]
+        return {"n": len(z), "hit": round(sum(f(r, "actual") >= f(r, key) for r in z) / len(z), 3)} if z else None
+    sm = [r for r in stars if fnum(r.get("team_margin")) is not None]
+    won, lost = [r for r in sm if f(r, "team_margin") >= BLOWOUT], [r for r in sm if f(r, "team_margin") <= -BLOWOUT]
+    res["star_blowout_sides"] = {"won_floor": held(won, "floor"), "lost_floor": held(lost, "floor"),
+                                 "lost_blowout_floor": held(lost, "blowout_floor"),
+                                 "lost_loss_floor": held([r for r in lost if r.get("loss_floor") not in (None, "", "None")], "loss_floor")}
     sfull = [r for r in stars if not left_early(r)]
     res["star_floors_full"] = len(sfull)
     res["star_floor_hit_full"] = round(sum(f(r, "actual") >= f(r, "floor") for r in sfull) / len(sfull), 3) if sfull else None

@@ -112,6 +112,8 @@
         return '<tr><td class="pl">' + names[k] + '</td>' + cell(m[k].tough) + cell(m[k].middle) + cell(m[k].soft) + '</tr>';
       }).join('') + '</tbody></table></div><div class="body"><p>How players did against their own usual rate, grouped by how the defense had done against their position (12% or more below or above average; 8% for team threes). If matchups matter, Soft should sit above Middle and Tough below it.</p></div>';
   }
+  // the blowout floor shown is the blown-out version when there is one: it assumes his team is the one losing big
+  function bfl(x) { return x.loss_floor != null ? x.loss_floor : x.blowout_floor; }
   function load(u) { return fetch(u, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
 
   function gradeBlock(G) {
@@ -181,6 +183,7 @@
       gp(L) + '<p><b>Projected but did not play (' + L.did_not_play.length + '):</b> ' + (L.did_not_play.map(esc).join(', ') || 'none') + '</p></div></div>' + liveCard +
       '<div class="card"><h3>All nights, replayed and live · ' + A.nights + ' nights · ' + A.player_games + ' player-games</h3>' + tbl(A) + '<div class="body">' +
       '<p><b>Star points floors:</b> ' + pc(A.star_floor_hit) + ' of ' + A.star_floors + ' held' + (A.left_early_n ? ', or ' + pc(A.star_floor_hit_full) + ' of ' + A.star_floors_full + ' leaving out the ' + A.left_early_n + ' players who left early' : '') + '. The target is about 80%.</p>' +
+      (A.star_blowout_sides && A.star_blowout_sides.lost_floor ? '<p><b>Stars in blowouts, by side.</b> Team won by 20 or more: floor held ' + pc(A.star_blowout_sides.won_floor.hit) + ' of ' + A.star_blowout_sides.won_floor.n + '. Team lost by 20 or more: floor held ' + pc(A.star_blowout_sides.lost_floor.hit) + ' of ' + A.star_blowout_sides.lost_floor.n + (A.star_blowout_sides.lost_loss_floor ? ', blowout floor held ' + pc(A.star_blowout_sides.lost_loss_floor.hit) + ' of ' + A.star_blowout_sides.lost_loss_floor.n : '') + '.</p>' : '') +
       '<p><b>Star minutes.</b> ' + mins(A) + '</p><p><b>Games decided by 20 or more, by tag.</b> ' + tags(A) + '</p>' +
       '<p><b>Over-chance check.</b> ' + over(A) + '</p>' + gp(A) + '</div>' + mcheck(A) + tcheck(A) + '</div></div></section>';
   }
@@ -202,7 +205,7 @@
     var anyLine = D.safest.some(function (r) { return r.line != null; });
     return '<section id="floors"><div class="eyebrow">' + (anyLine ? 'Safest lines' : 'Steadiest floors') + '</div><div class="ceilwrap"><table class="ceil"><thead><tr><th class="lft">Player</th><th>Stat</th><th>Expected</th><th>Line</th><th>Over chance</th><th>Floor</th><th>Blowout floor</th></tr></thead><tbody>' +
       D.safest.map(function (r) {
-        return '<tr><td class="g lft">' + esc(r.name) + ' <span class="date">' + esc(r.team) + '</span></td><td>' + r.stat + '</td><td>' + r.expected + '</td><td>' + dash(r.line) + '</td><td>' + pc(r.p_over) + '</td><td>' + r.floor + '</td><td>' + dash(r.blowout_floor) + '</td></tr>';
+        return '<tr><td class="g lft">' + esc(r.name) + ' <span class="date">' + esc(r.team) + '</span></td><td>' + r.stat + '</td><td>' + r.expected + '</td><td>' + dash(r.line) + '</td><td>' + pc(r.p_over) + '</td><td>' + r.floor + '</td><td>' + dash(bfl(r)) + '</td></tr>';
       }).join('') + '</tbody></table></div>' + (anyLine ? '' : '<p class="lead" style="margin-top:10px">No prop lines were loaded tonight, so these are the stars whose floor sits closest to their expected value.</p>') + '</section>';
   }
 
@@ -235,14 +238,14 @@
             return '<td class="ex gl">' + mark(spot(t, p.pos, s)) + x.expected + (x.check ? '<span class="chk">check</span>' : '') + '</td><td class="fl">' + (s === '3PM' ? (x.at_least ? pc(x.at_least['1']) : '-') : x.floor) + '</td>' + (anyLine ? '<td class="dim">' + dash(x.line) + '</td><td>' + pc(x.p_over) + '</td>' : '');
           }).join('') + '</tr>';
           if (p.star) body += '<tr class="prow"' + key + '><td class="sub"></td><td class="sub" colspan="2">normal / blowout / blowout floor</td>' +
-            STATS.map(function (s) { var x = p.stats[s]; return '<td class="sub gl" colspan="' + per + '" style="text-align:right">' + x.normal + ' / ' + x.blowout + ' / ' + dash(x.blowout_floor) + '</td>'; }).join('') + '</tr>';
+            STATS.map(function (s) { var x = p.stats[s]; return '<td class="sub gl" colspan="' + per + '" style="text-align:right">' + x.normal + ' / ' + x.blowout + ' / ' + dash(bfl(x)) + '</td>'; }).join('') + '</tr>';
         } else if (mode === '3PM') {
           var y = p.stats['3PM'], al = y.at_least || {};
           body += '<tr class="prow"' + key + '>' + nm + '<td class="dim">' + p.season['3PM'] + '</td><td class="ex">' + y.expected + '</td>' + ['1', '2', '3'].map(function (k) { return '<td class="fl">' + (al[k] == null ? '-' : pc(al[k])) + '</td>'; }).join('') +
             '<td class="dim">' + y.normal + '</td><td class="dim">' + y.blowout + '</td>' + (anyLine ? '<td class="dim">' + dash(y.line) + '</td><td>' + pc(y.p_over) + '</td>' : '') + '</tr>';
         } else {
           var x = p.stats[mode], m = x.matchup == null ? null : x.matchup * (x.bump || 1);
-          body += '<tr class="prow"' + key + '>' + nm + '<td class="dim">' + p.season[mode] + '</td><td class="ex">' + mark(spot(t, p.pos, mode)) + x.expected + (x.check ? '<span class="chk">check</span>' : '') + '</td><td class="fl">' + x.floor + '</td><td class="fl">' + dash(x.blowout_floor) +
+          body += '<tr class="prow"' + key + '>' + nm + '<td class="dim">' + p.season[mode] + '</td><td class="ex">' + mark(spot(t, p.pos, mode)) + x.expected + (x.check ? '<span class="chk">check</span>' : '') + '</td><td class="fl">' + x.floor + '</td><td class="fl">' + dash(bfl(x)) +
             '</td><td class="dim">' + x.normal + '</td><td class="dim">' + x.blowout + '</td><td class="' + (m == null || Math.abs(m - 1) < 0.03 ? 'dim' : (m > 1 ? 'up' : 'down')) + '">' + (m == null ? '-' : rel(m)) + '</td>' +
             (anyLine ? '<td class="dim">' + dash(x.line) + '</td><td>' + pc(x.p_over) + '</td>' : '') + '</tr>';
         }
@@ -273,6 +276,7 @@
       '<p><b>Bench points floors.</b> Bench players\' points floors use the number reached in 88% of simulated games, not 80%. With the usual rule they held 74% of the time on the replay, and with this one 81%. Their minutes are less predictable than starters\'.</p>' +
       '<p><b>Tested and left out.</b> Making each team\'s minutes add up to 240, opponent-adjusted team ratings, and heavier or lighter weight on recent form were all tested on the replay and did not reduce the miss.</p>' +
       '<p><b>Threes.</b> Three-point projections use the player\'s own rate, minutes and game pace. They are not adjusted for the opposing defense, because so far this season neither threes allowed overall nor threes allowed to a position has carried over to the next game. The matchup check in the Record section tracks this every night.</p>' +
+      '<p><b>Blowout floor.</b> Two seasons of games (32,000 player performances) show that a blowout win barely hurts a star: he loses minutes but scores 93 to 98% of his usual points. A blowout loss is what hurts: stars scored 77 to 80% of usual and had a bad night twice as often. So the blowout floor on this page assumes his team is the one losing big, with the measured drop in minutes and scoring applied. On the replay it held for stars in 74% of real blowout losses, against 40% for the regular floor. For players on heavy favorites there are too few losing runs to measure, and the older version (any blowout) is shown.</p>' +
       '<p><b>Blowout minutes.</b> In a blowout, players at 30 or more minutes are projected to keep 87% of their minutes, which is what the record measured. Floors use a more cautious 80%. With 87% in the floors, star blowout floors held 71% of the time on the replay, against 80% with the cautious number.</p>' +
       '<p><b>Blowouts.</b> Final margins are assumed to land around the spread with a typical miss of ' + (m.sd || 13) + ' points. That was 13 until Nov 11, 2026, when 159 games this season showed blowouts happening more often than 13 allows. Tags: Low under 21%, Medium 21 to 27%, High over 27%.</p>' +
       '<p><b>Game predictions.</b> A missing rotation player costs his team half of what he scores beyond an average teammate in the same minutes, scaled down if the team has already played games without him. A back-to-back costs 1.5 points. On 108 replayed games these two adjustments did not measurably change accuracy, so treat them as reasonable assumptions that the nightly record will confirm or not.</p>' +
@@ -305,7 +309,7 @@
       '<section id="players"><div class="eyebrow">Players, game by game</div><div class="controls"><input id="q" type="search" placeholder="Find a player" aria-label="Find a player">' +
       '<div class="seg" id="seg" role="group" aria-label="Stat shown">' + ['ALL'].concat(STATS).map(function (s) { return '<button type="button" data-m="' + s + '">' + (s === 'ALL' ? 'All stats' : s) + '</button>'; }).join('') + '</div>' +
       '<button type="button" class="tgl" id="fold">Collapse all</button></div>' +
-      '<p class="lead" style="margin-bottom:14px">Expected already accounts for blowout risk. Floor is the number reached in 80% of 10,000 simulated games. Blowout floor is the same thing in games decided by 20 or more. ★ marks players at 18 or more points a game. ▲ and ▼ mark a soft or tough position matchup for that stat. For threes the page shows the chance of making at least 1, 2 or 3, because a floor of 0 says little.</p>' +
+      '<p class="lead" style="margin-bottom:14px">Expected already accounts for blowout risk. Floor is the number reached in 80% of 10,000 simulated games. Blowout floor is the number reached in 80% of the simulated games where his team loses by 20 or more, which is the case that actually hurts. ★ marks players at 18 or more points a game. ▲ and ▼ mark a soft or tough position matchup for that stat. For threes the page shows the chance of making at least 1, 2 or 3, because a floor of 0 says little.</p>' +
       '<div id="tables"></div><p class="empty" id="nomatch" hidden>No player on tonight\'s slate matches that name.</p></section>' + ceiling(D) + gradeBlock(G) + method(D);
 
     var tables = document.getElementById('tables'), q = document.getElementById('q'), seg = document.getElementById('seg'), fold = document.getElementById('fold');

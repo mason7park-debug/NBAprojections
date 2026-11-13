@@ -39,6 +39,13 @@ CEIL_STATS = ["PTS", "REB", "AST", "3PM", "STL", "BLK"]
 BENCH_MIN = 18.0      # bench players at or above this many minutes are projected
 STAR_PPG = 18.0
 BUMP_PPG = 20.0
+# Settings were frozen on this date. The plan: no changes until 15 live nights are graded,
+# and then only changes that hold up on the live record as well as the replay.
+MODEL_VERSION = "2026-11-12"
+LIVE_FROM = dt.date(2026, 11, 12)     # first slate projected before tip by the scheduled runs
+# Percentile used for bench players' points floors. Everyone else uses the 20th.
+# The 12th held 81% of 439 bench cases on the replay; the 20th held only 74%.
+FLOOR_Q_BENCH_PTS = float(os.environ.get("NBA_FLOOR_Q_BENCH", 0.12))
 HOME_EDGE = 2.5       # points the home team is worth
 RATE_K = 10           # team ratings are pulled toward average until about this many games
 INJ_K = float(os.environ.get("NBA_INJ_K", 0.5))    # share of a missing player's scoring edge the team loses
@@ -576,7 +583,8 @@ def run_project(date, data, docs, now=None, lock=True):
                         entry["stats"][s] = {"normal": normal, "blowout": blow, "expected": expected,
                                              "rule_floor": rfloor, "floor_source": src,
                                              "matchup": round(m, 3), "bump": round(bump, 3),
-                                             "dvp": round(f, 3), "base_rate": round(pr[s] / pr["mpg"], 5), "line": lines.get((norm(pr["name"]), s))}
+                                             "dvp": round(f, 3), "base_rate": round(pr[s] / pr["mpg"], 5),
+                                             "season_avg": round(pr[s], 2), "line": lines.get((norm(pr["name"]), s))}
                         sim_stats[s] = {"rate": blend(pr[s] / pr["mpg"], rr), "mult": m * pace_factor * bump,
                                         "log_rates": lr}
                     sim_players.append({"name": pid, "minutes": entry["min"], "stats": sim_stats,
@@ -591,7 +599,15 @@ def run_project(date, data, docs, now=None, lock=True):
             for e in tb["players"]:
                 for s in STATS:
                     st = e["stats"][s]
-                    res = summarize(sims[e["id"]][s], flags, st["line"])
+                    vals = sims[e["id"]][s]
+                    res = summarize(vals, flags, st["line"])
+                    if s == "PTS" and e["role"] == "bench" and FLOOR_Q_BENCH_PTS != 0.20:
+                        res["floor"] = int(pct(sorted(vals), FLOOR_Q_BENCH_PTS))
+                        bv = sorted(v for v, b in zip(vals, flags) if b)
+                        if len(bv) >= 200:
+                            res["blowout_floor"] = int(pct(bv, FLOOR_Q_BENCH_PTS))
+                    if s == "3PM":      # a floor of 0 says little, so threes also get "at least" chances
+                        st["at_least"] = {str(k): round(sum(1 for v in vals if v >= k) / len(vals), 3) for k in (1, 2, 3)}
                     # whole-number rounding can push a tiny floor above the expected value
                     res["floor"] = min(res["floor"], int(st["expected"]))
                     if res["blowout_floor"] is not None:
@@ -611,7 +627,10 @@ def run_project(date, data, docs, now=None, lock=True):
                         "floor_source": st["floor_source"], "line": st["line"],
                         "spread": spread, "p_blowout": round(pb, 3),
                         # kept so the morning grade can check whether matchups carry over
-                        "pos": e["pos"], "dvp": st["dvp"], "area3": tb["area"]["f3"], "base_rate": st["base_rate"]})
+                        "pos": e["pos"], "dvp": st["dvp"], "area3": tb["area"]["f3"], "base_rate": st["base_rate"],
+                        "season_avg": st["season_avg"], "model": MODEL_VERSION,
+                        "p_ge1": st.get("at_least", {}).get("1", ""), "p_ge2": st.get("at_least", {}).get("2", ""),
+                        "p_ge3": st.get("at_least", {}).get("3", "")})
         games_out.append({"game_id": gid, "home": home, "away": away, "tip": g["date"],
                           "spread": spread, "total": total, "favorite": o.get("details"),
                           "p_blowout": round(pb, 3), "tag": tag(pb), "locked": False, "pred": pred,
@@ -655,6 +674,7 @@ def run_project(date, data, docs, now=None, lock=True):
     hours_early = (min(open_tips) - now).total_seconds() / 3600 if open_tips else 0
     payload = {
         "date": str(date), "run_time_et": now_et.strftime("%Y-%m-%d %I:%M %p ET"),
+        "run_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "model": MODEL_VERSION,
         "early_run": hours_early > 3,
         "games": games_out, "targets": targets, "safest": safest,
         "method": {
@@ -737,6 +757,10 @@ def summarize_grades(rows):
                   "floor_hit": round(sum(f(r, "actual") >= f(r, "floor") for r in fl) / len(fl), 3) if fl else None,
                   "blowout_floor_hit": round(sum(f(r, "actual") >= f(r, "blowout_floor") for r in bl) / len(bl), 3) if bl else None,
                   "blowout_floor_n": len(bl)}
+        nv = [r for r in q if fnum(r.get("season_avg")) is not None]
+        if nv:      # the simplest possible projection: his season average
+            acc[s]["naive_mae"] = round(statistics.mean(abs(f(r, "actual") - f(r, "season_avg")) for r in nv), 3)
+            acc[s]["model_mae_same"] = round(statistics.mean(abs(f(r, "actual") - f(r, "expected")) for r in nv), 3)
         full = [r for r in fl if not left_early(r)]
         acc[s]["floor_hit_full"] = round(sum(f(r, "actual") >= f(r, "floor") for r in full) / len(full), 3) if full else None
         for src in ("log", "flat"):
@@ -772,6 +796,17 @@ def summarize_grades(rows):
             res["matchup_check"][s] = carry(z, "dvp", 0.88, 1.12)
             if s == "3PM" and all(fnum(r.get("area3")) is not None for r in z):
                 res["matchup_check"]["3PM_team"] = carry(z, "area3", 0.92, 1.08)
+    # Threes: do the "at least 1 / 2 / 3" chances mean what they say?
+    tz = [r for r in played if r["stat"] == "3PM" and fnum(r.get("p_ge1")) is not None]
+    res["threes_check"] = {}
+    for k in (1, 2, 3):
+        rowsk = []
+        for label, lo, hi in (("under 30%", 0, .3), ("30 to 50%", .3, .5), ("50 to 70%", .5, .7), ("70 to 85%", .7, .85), ("85% and up", .85, 1.01)):
+            z = [r for r in tz if lo <= f(r, f"p_ge{k}") < hi]
+            if z:
+                rowsk.append({"bucket": label, "n": len(z), "made": round(sum(f(r, "actual") >= k for r in z) / len(z), 3)})
+        if rowsk:
+            res["threes_check"][str(k)] = rowsk
     buckets = [("under 50%", 0, .5), ("50 to 70%", .5, .7), ("70 to 85%", .7, .85), ("85% and up", .85, 1.01)]
     lined = [r for r in played if f(r, "p_over") is not None and f(r, "line") is not None]
     res["over_check"] = [{"bucket": b, "n": len(z), "went_over": round(sum(f(r, "actual") > f(r, "line") for r in z) / len(z), 3)}
@@ -845,7 +880,17 @@ def run_grade(date, data, docs):
     last["game_preds"] = grade_games(data, [str(date)])
     allnights["game_preds"] = grade_games(data, sorted(p.stem for p in (data / "gamepreds").glob("*.csv")))
     (docs / "data").mkdir(parents=True, exist_ok=True)
-    (docs / "data" / "grade.json").write_text(json.dumps({"last": last, "all": allnights}, separators=(",", ":")))
+    # the live record: only slates projected before tip by the scheduled runs
+    live_rows = [r for r in every if dt.date.fromisoformat(r["date"]) >= LIVE_FROM]
+    live = None
+    if live_rows:
+        live, _ = summarize_grades(live_rows)
+        live["nights"] = len({r["date"] for r in live_rows})
+        live["game_preds"] = grade_games(data, sorted(p.stem for p in (data / "gamepreds").glob("*.csv")
+                                                      if dt.date.fromisoformat(p.stem) >= LIVE_FROM))
+    (docs / "data" / "grade.json").write_text(json.dumps(
+        {"last": last, "all": allnights, "live": live, "live_from": str(LIVE_FROM), "model": MODEL_VERSION},
+        separators=(",", ":")))
     s = last["stats"].get("PTS", {})
     print(f"graded {date}: {last['player_games']} player-games, PTS bias {s.get('bias')} MAE {s.get('mae')}, "
           f"floor hit {s.get('floor_hit')}; all nights: {allnights['nights']}")

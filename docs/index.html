@@ -212,6 +212,13 @@
   details.fold>summary::before{content:"▸ "} details.fold[open]>summary::before{content:"▾ "}
   .mk{font-size:.62rem;margin:0 4px 0 3px;vertical-align:1px} .mk.up,.up{color:var(--good)} .mk.down,.down{color:var(--bad)}
   a.mlink{display:block;text-decoration:none;color:inherit} a.mlink:hover .g{color:var(--accent)}
+  .scwrap{margin-bottom:12px} .scl{font-size:.78rem;color:var(--muted);margin-bottom:6px}
+  .scards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+  .scd{border:1px solid var(--border);border-radius:11px;background:var(--surface);padding:10px 12px;min-width:0}
+  .rgrid{grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr))}
+  .scn{font-size:.72rem;color:var(--muted)} .scv{font-family:var(--head);font-weight:700;font-size:1.15rem;margin:2px 0}
+  .scj{font-size:.76rem;font-weight:600} .scj.warn{color:var(--warn)} .scj.none{color:var(--muted)}
+  .ghdr .src{text-align:left;text-transform:none;letter-spacing:0;font-size:.68rem}
 </style></head><body>
 <header class="bar"><div class="wrap bar-in"><div class="mark"><span class="court"></span><h1>Tonight's NBA Edges</h1></div>
 <span class="date" id="hdate"></span><span class="spacer"></span><span class="date" id="hrun"></span></div>

@@ -15,6 +15,10 @@ Runs by itself on GitHub Actions and publishes a results page with GitHub Pages.
 
 The model's settings are fixed constants at the top of `scripts/nightly.py`. Grading reports how they are doing and never changes them. Change them by hand, in one commit, when the record says so.
 
+## Frozen settings and the live record
+
+The settings were frozen on 2026-11-12 (`MODEL_VERSION` in `scripts/nightly.py`). The record on the page is split in two: nights from Oct 30 to Nov 11 were replayed or projected late, and nights from Nov 12 on are live, projected before tip by the scheduled runs. Judge the model on the live nights. No setting changes until 15 live nights are graded, and a change then has to hold up on the live record as well as the replay.
+
 Nothing here is betting advice. Floors and win chances are estimates from small samples.
 
 ## Layout

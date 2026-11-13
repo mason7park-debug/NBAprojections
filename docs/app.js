@@ -30,28 +30,32 @@
     }).filter(Boolean).join(' · ');
   }
   function tipTxt(g) { return new Date(g.tip).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }) + ' ET'; }
+  function fairMl(p) { p = Math.max(0.01, Math.min(0.99, p)); return p >= 0.5 ? Math.round(-100 * p / (1 - p)) : Math.round(100 * (1 - p) / p); }
   function gamesGrid(D) {
     return '<section id="games"><div class="eyebrow">Tonight\'s games</div><div class="gcards">' + D.games.map(function (g) {
-      var p = g.pred, rows = '';
+      var p = g.pred, rows = '', src = '', hasLine = p && p.market_home_pts != null && p.market_home_win != null;
       if (p) {
-        var hw = p.home_win, pickHome = hw >= 0.5;
-        rows = [[g.away, p.away_pts, 1 - hw, p.away_ml, !pickHome], [g.home, p.home_pts, hw, p.home_ml, pickHome]].map(function (r) {
+        var hw = hasLine ? p.market_home_win : p.home_win, hp = hasLine ? p.market_home_pts : p.home_pts, ap = hasLine ? p.market_away_pts : p.away_pts;
+        var pickHome = hw >= 0.5;
+        src = hasLine ? 'line' : 'model';
+        rows = [[g.away, ap, 1 - hw, fairMl(1 - hw), !pickHome], [g.home, hp, hw, fairMl(hw), pickHome]].map(function (r) {
           return '<div class="gteam' + (r[4] ? ' pick' : '') + '"><span class="ab">' + esc(r[0]) + '</span><span class="sc">' + r[1].toFixed(1) + '</span><span class="wp">' + pc(r[2]) + '</span><span class="mlv">' + ml(r[3]) + '</span></div>';
         }).join('') + '<div class="winbar" title="win chance"><i style="width:' + Math.round((1 - hw) * 100) + '%"></i></div>';
       }
       var line = g.favorite ? 'Line ' + esc(g.favorite) + (g.total != null ? ' · O/U ' + g.total : '') : 'No line posted';
-      var cmp = '';
-      if (p && p.market_home_pts != null) {
+      var model = '';
+      if (p && hasLine) {
         var d = p.margin + g.spread;   // model margin minus line margin, home side
-        cmp = Math.abs(d) < 3 ? 'Model agrees with the line' : 'Model leans ' + esc(d > 0 ? g.home : g.away) + ' by ' + Math.abs(d).toFixed(1) + ' more than the line';
+        model = 'Model: ' + esc(g.away) + ' ' + p.away_pts + ', ' + esc(g.home) + ' ' + p.home_pts + (Math.abs(d) >= 3 ? ' (' + Math.abs(d).toFixed(1) + ' off the line)' : '');
       }
       var adj = adjNote(g);
       return '<a class="gc" href="#g-' + g.game_id + '"><div class="gtop"><span class="gtime">' + tipTxt(g) + (g.locked ? ' · locked' : '') + '</span>' + tagEl(g.tag) + '</div>' +
-        (p ? '<div class="ghdr"><span></span><span>score</span><span>win</span><span>fair ML</span></div>' : '') + rows +
-        '<div class="gmeta">' + line + '</div><div class="gmeta">Blowout risk ' + pc(g.p_blowout) + (cmp ? ' · ' + cmp : '') + '</div>' +
-        (adj ? '<div class="gmeta adj">' + adj + '</div>' : '') + '</a>';
-    }).join('') + '</div><p class="lead" style="margin-top:12px">Projected score and win chance come from team scoring and defense per possession, pace, home court, missing players and back-to-backs. Fair ML is the win chance written as odds with no sportsbook fee. Blowout risk is the chance of a 20 point margin, and stars lose minutes in those games. Tap a game to jump to its players.</p></section>';
+        (p ? '<div class="ghdr"><span class="src">' + src + '</span><span>score</span><span>win</span><span>fair ML</span></div>' : '') + rows +
+        '<div class="gmeta">' + line + ' · blowout risk ' + pc(g.p_blowout) + '</div>' + (model ? '<div class="gmeta">' + model + '</div>' : '') +
+        (adj ? '<div class="gmeta adj">Model adjusted: ' + adj + '</div>' : '') + '</a>';
+    }).join('') + '</div><p class="lead" style="margin-top:12px">When a betting line is posted, the score and win chance shown are the ones the line implies, because the line has been more accurate than this page\'s own game model (see Record). The model\'s score sits underneath as a second opinion, and it is the main number only when no line is posted. When the two differed by 3 or more points, the line was closer about 2 times in 3. Fair ML is the win chance written as odds with no sportsbook fee. Blowout risk is a weak signal: games tagged Low still ended by 20 or more about 1 time in 5, and High about 1 in 3, so lean on the blowout floor. Tap a game to jump to its players.</p></section>';
   }
+
   // Position matchups. SOFT/TOUGH are raw gaps in what a defense has allowed to a position.
   // Checked on 1,419 player-games (Oct 30 to Nov 11, 2026): about a fifth of the raw gap
   // carried over. Points rose against soft spots but did not fall against tough ones, and
@@ -115,12 +119,12 @@
     function rows(x) {
       return STATS.map(function (s) {
         var a = x.stats[s]; if (!a) return '';
-        return '<tr><td class="pl">' + s + '</td><td>' + a.n + '</td><td>' + (a.bias > 0 ? '+' : '') + a.bias + '</td><td>' + a.mae + '</td><td>' + pc(a.floor_hit) +
+        return '<tr><td class="pl">' + s + '</td><td>' + a.n + '</td><td>' + (a.bias > 0 ? '+' : '') + a.bias + '</td><td>' + a.mae + '</td><td class="dim">' + (a.naive_mae == null ? '-' : a.naive_mae.toFixed(2)) + '</td><td>' + pc(a.floor_hit) +
           '</td><td>' + pc(a.floor_hit_full) + '</td><td>' + pc(a.blowout_floor_hit) + ' <span class="dim">(' + a.blowout_floor_n + ')</span></td><td>' + pc(a.rule_floor_hit_log) + '</td><td>' + pc(a.rule_floor_hit_flat) + '</td></tr>';
       }).join('');
     }
     function tbl(x) {
-      return '<div class="tscroll"><table><thead><tr><th class="lft">Stat</th><th>Players</th><th>Avg miss</th><th>Avg abs miss</th><th>Floor hit</th><th title="Leaving out players who left early">Full games</th><th>Blowout floor hit</th><th>Log rule</th><th>Flat rule</th></tr></thead><tbody>' + rows(x) + '</tbody></table></div>';
+      return '<div class="tscroll"><table><thead><tr><th class="lft">Stat</th><th>Players</th><th>Avg miss</th><th>Avg abs miss</th><th title="Average miss if you had just used each player\'s season average">Season avg miss</th><th>Floor hit</th><th title="Leaving out players who left early">Full games</th><th>Blowout floor hit</th><th>Log rule</th><th>Flat rule</th></tr></thead><tbody>' + rows(x) + '</tbody></table></div>';
     }
     function mins(x) {
       var c = x.star_minutes_close, b = x.star_minutes_blowout, o = [];
@@ -136,18 +140,49 @@
       return x.over_check.map(function (b) { return b.bucket + ': went over ' + pc(b.went_over) + ' (' + b.n + ')'; }).join(' · ') +
         (x.line_check ? '. Avg abs miss: model ' + x.line_check.model_mae + ', line ' + x.line_check.line_mae + '.' : '');
     }
-    var L = G.last, A = G.all;
+    function tcheck(x) {
+      var t = x.threes_check; if (!t || !Object.keys(t).length) return '';
+      var cols = ['under 30%', '30 to 50%', '50 to 70%', '70 to 85%', '85% and up'];
+      return '<div class="tscroll" style="border-top:1px solid var(--border)"><table><thead><tr><th class="lft">Threes check</th>' + cols.map(function (c) { return '<th>' + c + '</th>'; }).join('') + '</tr></thead><tbody>' +
+        ['1', '2', '3'].filter(function (k) { return t[k]; }).map(function (k) {
+          var by = {}; t[k].forEach(function (b) { by[b.bucket] = b; });
+          return '<tr><td class="pl">Made ' + k + ' or more</td>' + cols.map(function (c) { return by[c] ? '<td>' + pc(by[c].made) + ' <span class="dim">(' + by[c].n + ')</span></td>' : '<td>-</td>'; }).join('') + '</tr>';
+        }).join('') + '</tbody></table></div><div class="body"><p>Columns are the chance the page gave. Cells are how often it happened. They should land inside their column.</p></div>';
+    }
+    function score(x, label) {
+      function chip(name, val, verdict, cls) { return '<div class="scd"><div class="scn">' + name + '</div><div class="scv">' + val + '</div><div class="scj ' + cls + '">' + verdict + '</div></div>'; }
+      function fl(v) { return v == null ? ['-', 'none'] : (v < 0.77 ? ['running low', 'down'] : (v > 0.84 ? ['cautious', 'warn'] : ['on target', 'up'])); }
+      var out = '', sf = fl(x.star_floor_hit), p = x.stats.PTS || {}, af = fl(p.floor_hit);
+      out += chip('Star points floors', pc(x.star_floor_hit), sf[0], sf[1]);
+      out += chip('All points floors', pc(p.floor_hit), af[0], af[1]);
+      if (p.naive_mae != null) {
+        var d = (p.model_mae_same - p.naive_mae) / p.naive_mae;
+        out += chip('Points miss vs season average', p.model_mae_same.toFixed(2) + ' vs ' + p.naive_mae.toFixed(2), d < -0.02 ? 'model is better' : (d > 0.02 ? 'season average is better' : 'about even'), d < -0.02 ? 'up' : (d > 0.02 ? 'down' : 'warn'));
+      }
+      var g = x.game_preds;
+      if (g && g.market_winner_hit != null) {
+        var dd = g.winner_hit - g.market_winner_hit;
+        out += chip('Winners: model vs line', pc(g.winner_hit) + ' vs ' + pc(g.market_winner_hit), dd > 0.03 ? 'model ahead' : (dd < -0.03 ? 'line ahead' : 'about even'), dd > 0.03 ? 'up' : (dd < -0.03 ? 'down' : 'warn'));
+      }
+      return '<div class="scwrap"><div class="scl">' + label + '</div><div class="scards">' + out + '</div></div>';
+    }
+    var L = G.last, A = G.all, V = G.live;
+    var useLive = V && V.nights >= 5;
+    var liveCard = V ? '<div class="card"><h3>Live nights · ' + V.nights + ' since ' + esc(G.live_from) + ' · ' + V.player_games + ' player-games</h3>' + tbl(V) + '<div class="body">' +
+      '<p>Only slates projected before tip by the scheduled runs, with the settings frozen. This is the record to trust.</p>' +
+      '<p><b>Star points floors:</b> ' + pc(V.star_floor_hit) + ' of ' + V.star_floors + ' held.</p>' + gp(V) + '</div></div>'
+      : '<div class="card"><h3>Live nights</h3><div class="body"><p>Starts with the first slate graded after ' + esc(G.live_from || '') + '. Only slates projected before tip by the scheduled runs count here, with the settings frozen. Until then the record below is mostly replayed nights.</p></div></div>';
     var calls = L.blowout_calls.map(function (c) { return esc(c.game) + ' ' + pc(c.p_blowout) + ' → final margin ' + c.margin; }).join(' · ');
-    return '<section id="record"><div class="eyebrow">Last slate grade and all-nights record</div><div class="grid2">' +
+    return '<section id="record"><div class="eyebrow">Record</div>' + score(useLive ? V : A, useLive ? 'Scorecard, live nights' : 'Scorecard, all ' + A.nights + ' nights (mostly replayed)') + '<div class="grid2 rgrid">' +
       '<div class="card"><h3>Last slate · ' + esc(L.date) + ' · ' + L.player_games + ' player-games</h3>' + tbl(L) + '<div class="body">' +
       '<p><b>Star points floors:</b> ' + pc(L.star_floor_hit) + ' of ' + L.star_floors + ' held' + (L.left_early_n ? ', or ' + pc(L.star_floor_hit_full) + ' of ' + L.star_floors_full + ' leaving out players who left early' : '') + '.</p>' +
       (L.left_early && L.left_early.length ? '<p><b>Left early (' + L.left_early.length + '):</b> ' + L.left_early.map(esc).join(', ') + '. Starters who played under half their projected minutes in a game that was not a blowout, usually an injury.</p>' : '') +
       '<p><b>Star minutes.</b> ' + mins(L) + '</p><p><b>Blowout calls.</b> ' + calls + '</p>' +
-      gp(L) + '<p><b>Projected but did not play (' + L.did_not_play.length + '):</b> ' + (L.did_not_play.map(esc).join(', ') || 'none') + '</p></div></div>' +
-      '<div class="card"><h3>All nights · ' + A.nights + ' nights · ' + A.player_games + ' player-games</h3>' + tbl(A) + '<div class="body">' +
+      gp(L) + '<p><b>Projected but did not play (' + L.did_not_play.length + '):</b> ' + (L.did_not_play.map(esc).join(', ') || 'none') + '</p></div></div>' + liveCard +
+      '<div class="card"><h3>All nights, replayed and live · ' + A.nights + ' nights · ' + A.player_games + ' player-games</h3>' + tbl(A) + '<div class="body">' +
       '<p><b>Star points floors:</b> ' + pc(A.star_floor_hit) + ' of ' + A.star_floors + ' held' + (A.left_early_n ? ', or ' + pc(A.star_floor_hit_full) + ' of ' + A.star_floors_full + ' leaving out the ' + A.left_early_n + ' players who left early' : '') + '. The target is about 80%.</p>' +
       '<p><b>Star minutes.</b> ' + mins(A) + '</p><p><b>Games decided by 20 or more, by tag.</b> ' + tags(A) + '</p>' +
-      '<p><b>Over-chance check.</b> ' + over(A) + '</p>' + gp(A) + '</div>' + mcheck(A) + '</div></div></section>';
+      '<p><b>Over-chance check.</b> ' + over(A) + '</p>' + gp(A) + '</div>' + mcheck(A) + tcheck(A) + '</div></div></section>';
   }
 
   function targets(D) {
@@ -176,8 +211,11 @@
     if (all) {
       var per = anyLine ? 4 : 2;
       head = '<tr><th class="lft">Pos</th><th class="lft">Player</th><th>Min</th>' + STATS.map(function (s) { return '<th class="grp" colspan="' + per + '">' + s + '</th>'; }).join('') + '</tr>' +
-        '<tr><th></th><th></th><th></th>' + STATS.map(function () { return '<th class="grp">Exp</th><th>Floor</th>' + (anyLine ? '<th>Line</th><th>Over</th>' : ''); }).join('') + '</tr>';
+        '<tr><th></th><th></th><th></th>' + STATS.map(function (s) { return '<th class="grp">Exp</th><th' + (s === '3PM' ? ' title="Chance of at least one three">1+' : '>Floor') + '</th>' + (anyLine ? '<th>Line</th><th>Over</th>' : ''); }).join('') + '</tr>';
       cols = 3 + per * 4;
+    } else if (mode === '3PM') {
+      head = '<tr><th class="lft">Pos</th><th class="lft">Player</th><th>Min</th><th>Season</th><th>Expected</th><th>1 or more</th><th>2 or more</th><th>3 or more</th><th>Normal game</th><th>Blowout game</th>' + (anyLine ? '<th>Line</th><th>Over chance</th>' : '') + '</tr>';
+      cols = 10 + (anyLine ? 2 : 0);
     } else {
       head = '<tr><th class="lft">Pos</th><th class="lft">Player</th><th>Min</th><th>Season</th><th>Expected</th><th>Floor</th><th>Blowout floor</th><th>Normal game</th><th>Blowout game</th><th>Matchup</th>' + (anyLine ? '<th>Line</th><th>Over chance</th>' : '') + '</tr>';
       cols = 10 + (anyLine ? 2 : 0);
@@ -194,10 +232,14 @@
         if (all) {
           body += '<tr class="prow' + (p.star ? ' hasub' : '') + '"' + key + '>' + nm + STATS.map(function (s) {
             var x = p.stats[s];
-            return '<td class="ex gl">' + mark(spot(t, p.pos, s)) + x.expected + (x.check ? '<span class="chk">check</span>' : '') + '</td><td class="fl">' + x.floor + '</td>' + (anyLine ? '<td class="dim">' + dash(x.line) + '</td><td>' + pc(x.p_over) + '</td>' : '');
+            return '<td class="ex gl">' + mark(spot(t, p.pos, s)) + x.expected + (x.check ? '<span class="chk">check</span>' : '') + '</td><td class="fl">' + (s === '3PM' ? (x.at_least ? pc(x.at_least['1']) : '-') : x.floor) + '</td>' + (anyLine ? '<td class="dim">' + dash(x.line) + '</td><td>' + pc(x.p_over) + '</td>' : '');
           }).join('') + '</tr>';
           if (p.star) body += '<tr class="prow"' + key + '><td class="sub"></td><td class="sub" colspan="2">normal / blowout / blowout floor</td>' +
             STATS.map(function (s) { var x = p.stats[s]; return '<td class="sub gl" colspan="' + per + '" style="text-align:right">' + x.normal + ' / ' + x.blowout + ' / ' + dash(x.blowout_floor) + '</td>'; }).join('') + '</tr>';
+        } else if (mode === '3PM') {
+          var y = p.stats['3PM'], al = y.at_least || {};
+          body += '<tr class="prow"' + key + '>' + nm + '<td class="dim">' + p.season['3PM'] + '</td><td class="ex">' + y.expected + '</td>' + ['1', '2', '3'].map(function (k) { return '<td class="fl">' + (al[k] == null ? '-' : pc(al[k])) + '</td>'; }).join('') +
+            '<td class="dim">' + y.normal + '</td><td class="dim">' + y.blowout + '</td>' + (anyLine ? '<td class="dim">' + dash(y.line) + '</td><td>' + pc(y.p_over) + '</td>' : '') + '</tr>';
         } else {
           var x = p.stats[mode], m = x.matchup == null ? null : x.matchup * (x.bump || 1);
           body += '<tr class="prow"' + key + '>' + nm + '<td class="dim">' + p.season[mode] + '</td><td class="ex">' + mark(spot(t, p.pos, mode)) + x.expected + (x.check ? '<span class="chk">check</span>' : '') + '</td><td class="fl">' + x.floor + '</td><td class="fl">' + dash(x.blowout_floor) +
@@ -226,6 +268,9 @@
     return '<section id="method"><details class="fold"><summary class="eyebrow">Method and limits</summary><div class="method">' +
       '<p><b>Source.</b> Everything comes from ESPN box scores, odds and injury reports saved in this repo. Player rates, recent form, starters, defense by position (guard, forward, center), area defense (threes, paint, free throws) and pace are all built from those box scores.</p>' +
       '<p><b>History.</b> ' + m.history_days + ' game days, ' + esc(m.history_from) + ' to ' + esc(m.history_to) + '. ' + m.players + ' players projected. ' + m.log_floors + ' floors use the player\'s own game log and ' + m.flat_floors + ' use the flat rule.</p>' +
+      '<p><b>Frozen settings.</b> The model\'s settings were frozen on ' + esc(D.model || 'Nov 12, 2026') + '. They stay put until 15 live nights are graded, and a change then has to hold up on the live record as well as the replay.</p>' +
+      '<p><b>Bench points floors.</b> Bench players\' points floors use the number reached in 88% of simulated games, not 80%. With the usual rule they held 74% of the time on the replay, and with this one 81%. Their minutes are less predictable than starters\'.</p>' +
+      '<p><b>Tested and left out.</b> Making each team\'s minutes add up to 240, opponent-adjusted team ratings, and heavier or lighter weight on recent form were all tested on the replay and did not reduce the miss.</p>' +
       '<p><b>Threes.</b> Three-point projections use the player\'s own rate, minutes and game pace. They are not adjusted for the opposing defense, because so far this season neither threes allowed overall nor threes allowed to a position has carried over to the next game. The matchup check in the Record section tracks this every night.</p>' +
       '<p><b>Blowout minutes.</b> In a blowout, players at 30 or more minutes are projected to keep 87% of their minutes, which is what the record measured. Floors use a more cautious 80%. With 87% in the floors, star blowout floors held 71% of the time on the replay, against 80% with the cautious number.</p>' +
       '<p><b>Blowouts.</b> Final margins are assumed to land around the spread with a typical miss of ' + (m.sd || 13) + ' points. That was 13 until Nov 11, 2026, when 159 games this season showed blowouts happening more often than 13 allows. Tags: Low under 21%, Medium 21 to 27%, High over 27%.</p>' +
@@ -247,12 +292,19 @@
     document.getElementById('nav').hidden = false;
     var anyLine = D.method.lines_found > 0, mode = innerWidth < 760 ? 'PTS' : 'ALL';
     try { var saved = localStorage.getItem('nba-mode'); if (saved && (saved === 'ALL' || STATS.indexOf(saved) >= 0)) mode = saved; } catch (e) {}
-    app.innerHTML = (D.early_run ? '<div class="warnbar">Early look. Injuries and spreads can still change. This page refreshes at about 2:31pm, 5:37pm and 6:27pm ET, and each game locks at its tip.</div>' : '') +
+    var stale = '';
+    if (D.run_utc) {
+      var age = (Date.now() - Date.parse(D.run_utc)) / 3.6e6, open = D.games.filter(function (g) { return Date.parse(g.tip) > Date.now(); }).length;
+      var todayEt = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+      if (open && age > 3) stale = '<div class="warnbar">These numbers are ' + Math.round(age) + ' hours old and ' + open + (open === 1 ? ' game has' : ' games have') + ' not tipped. Late injury news may be missing. To refresh now, open the repo\'s Actions tab, pick "NBA nightly projections" and click Run workflow.</div>';
+      else if (!open && D.date < todayEt) stale = '<div class="warnbar">Showing ' + esc(D.date) + '. Today\'s games appear after the first run of the day.</div>';
+    }
+    app.innerHTML = stale + (D.early_run && !stale ? '<div class="warnbar">Early look. Injuries and spreads can still change. This page refreshes at about 2:31pm, 5:37pm and 6:27pm ET, and each game locks at its tip.</div>' : '') +
       gamesGrid(D) + matchups(D) + targets(D) + safest(D) +
       '<section id="players"><div class="eyebrow">Players, game by game</div><div class="controls"><input id="q" type="search" placeholder="Find a player" aria-label="Find a player">' +
       '<div class="seg" id="seg" role="group" aria-label="Stat shown">' + ['ALL'].concat(STATS).map(function (s) { return '<button type="button" data-m="' + s + '">' + (s === 'ALL' ? 'All stats' : s) + '</button>'; }).join('') + '</div>' +
       '<button type="button" class="tgl" id="fold">Collapse all</button></div>' +
-      '<p class="lead" style="margin-bottom:14px">Expected already accounts for blowout risk. Floor is the number reached in 80% of 10,000 simulated games. Blowout floor is the same thing in games decided by 20 or more. ★ marks players at 18 or more points a game. ▲ and ▼ mark a soft or tough position matchup for that stat.</p>' +
+      '<p class="lead" style="margin-bottom:14px">Expected already accounts for blowout risk. Floor is the number reached in 80% of 10,000 simulated games. Blowout floor is the same thing in games decided by 20 or more. ★ marks players at 18 or more points a game. ▲ and ▼ mark a soft or tough position matchup for that stat. For threes the page shows the chance of making at least 1, 2 or 3, because a floor of 0 says little.</p>' +
       '<div id="tables"></div><p class="empty" id="nomatch" hidden>No player on tonight\'s slate matches that name.</p></section>' + ceiling(D) + gradeBlock(G) + method(D);
 
     var tables = document.getElementById('tables'), q = document.getElementById('q'), seg = document.getElementById('seg'), fold = document.getElementById('fold');

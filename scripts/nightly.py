@@ -45,6 +45,11 @@ INJ_K = float(os.environ.get("NBA_INJ_K", 0.5))    # share of a missing player's
 B2B_PTS = float(os.environ.get("NBA_B2B", 1.5))    # points a team loses on the second night of a back-to-back
 MIN_SD_STARTER = float(os.environ.get("NBA_MIN_SD_STARTER", 5.0))   # starters under 18 points a game (measured 5.3)
 BUMP_MODE = os.environ.get("NBA_BUMP", "log")     # "log" = from each player's own games, "flat" = old +5% rule
+# Matchup nudge for threes: "none", "pos" (position only) or "full" (threes allowed + position).
+# "full" until 2026-11-12. On 1,232 replayed player-games neither kind of threes defense carried
+# over, and dropping the nudge missed by slightly less (1.027 vs 1.030), so it is off. The nightly
+# matchup check in the record shows whether that changes; pace still applies.
+TPM_MATCHUP = os.environ.get("NBA_3PM_MATCHUP", "none")
 BUMP_TRIGGER = 15.0   # a missing teammate scoring this much can move the others
 BUMP_SHRINK = 4       # games without the teammate before the player's own numbers are trusted
 MIN_SD_BENCH = float(os.environ.get("NBA_MIN_SD_BENCH", 6.0))   # bench minutes swing more than starters'
@@ -560,6 +565,8 @@ def run_project(date, data, docs, now=None, lock=True):
                         elif s == "3PM":
                             zone = area["f3"]
                         m = matchup(s, f, od["games"], zone)
+                        if s == "3PM" and TPM_MATCHUP != "full":
+                            m = 1.0 if TPM_MATCHUP == "none" else matchup(s, f, od["games"], None)
                         bump = teammate_bump(pid, team, outs, s) if (outs and s in ("PTS", "AST")) else 1.0
                         lr = pr["log_rates"][s] or None
                         rr = pr["recent_rate"][s] if pr["recent_rate"] else None

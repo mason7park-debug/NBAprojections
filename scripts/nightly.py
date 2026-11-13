@@ -41,7 +41,7 @@ STAR_PPG = 18.0
 BUMP_PPG = 20.0
 # Settings were frozen on this date. The plan: no changes until 15 live nights are graded,
 # and then only changes that hold up on the live record as well as the replay.
-MODEL_VERSION = "2026-11-12"
+MODEL_VERSION = "2026-11-12b"
 LIVE_FROM = dt.date(2026, 11, 12)     # first slate projected before tip by the scheduled runs
 # Percentile used for bench players' points floors. Everyone else uses the 20th.
 # The 12th held 81% of 439 bench cases on the replay; the 20th held only 74%.
@@ -49,9 +49,9 @@ FLOOR_Q_BENCH_PTS = float(os.environ.get("NBA_FLOOR_Q_BENCH", 0.12))
 # Last season as a starting point. A player's per-minute rates and minutes are blended with
 # last season's, counted as PRIOR_KMIN minutes and PRIOR_KG games of evidence, so the blend
 # fades on its own as this season's sample grows. Team ratings for the game margin are blended
-# the same way with PRIOR_TEAM_K games. "off" keeps the frozen model; "on" was tested on the
-# replay on 2026-11-12 and beat the season average on all four stats.
-USE_PRIOR = os.environ.get("NBA_PRIOR", "off") == "on"
+# the same way with PRIOR_TEAM_K games. Switched on 2026-11-12 after it beat the season
+# average on all four stats on the replay (points miss 5.10 -> 5.05).
+USE_PRIOR = os.environ.get("NBA_PRIOR", "on") == "on"
 PRIOR_KMIN = 100.0
 PRIOR_KG = 3.0
 PRIOR_TEAM_K = 20.0

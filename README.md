@@ -17,7 +17,7 @@ The model's settings are fixed constants at the top of `scripts/nightly.py`. Gra
 
 ## Frozen settings and the live record
 
-The settings were frozen on 2026-11-12 (`MODEL_VERSION` in `scripts/nightly.py`). The record on the page is split in two: nights from Oct 30 to Nov 11 were replayed or projected late, and nights from Nov 12 on are live, projected before tip by the scheduled runs. Judge the model on the live nights. No setting changes until 15 live nights are graded, and a change then has to hold up on the live record as well as the replay.
+The settings were frozen on 2026-11-12 (`MODEL_VERSION` in `scripts/nightly.py`). One change was made after that, the same night, at the owner's request: last season's numbers as a starting point (version `2026-11-12b`, data in `data/prior/`). The record on the page is split in two: nights from Oct 30 to Nov 11 were replayed or projected late, and nights from Nov 12 on are live, projected before tip by the scheduled runs. Judge the model on the live nights. No setting changes until 15 live nights are graded, and a change then has to hold up on the live record as well as the replay.
 
 Nothing here is betting advice. Floors and win chances are estimates from small samples.
 

@@ -233,4 +233,7 @@
 <div class="wrap"><nav class="jump" id="nav" hidden aria-label="Sections"><a href="#games">Games</a><a href="#matchups">Matchups</a><a href="#ceilings">Could go off</a><a href="#targets">Target games</a><a href="#floors">Floors</a><a href="#players">Players</a><a href="#ceiling">Ceiling index</a><a href="#record">Record</a><a href="#method">Method</a></nav></div></header>
 <main class="wrap" id="app"><p class="empty">Loading tonight's numbers.</p></main>
 <footer class="wrap">Floors and over chances come from a model built on small samples. They are estimates, not guarantees, and this page is not betting advice.</footer>
-<script src="app.js"></script></body></html>
+<script>
+  // load the page script fresh on every visit, so a new version shows up without a hard refresh
+  (function () { var s = document.createElement('script'); s.src = 'app.js?v=' + Date.now(); document.body.appendChild(s); })();
+</script></body></html>

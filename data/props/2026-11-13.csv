@@ -4,11 +4,11 @@ game_id,player_id,player,stat,line,source
 401909296,3062679,Josh Hart,PTS,9.5,Draft Kings
 401909296,3062679,Josh Hart,REB,7.5,Draft Kings
 401909296,3133603,Kelly Oubre Jr.,3PM,1.5,Draft Kings
-401909296,3133603,Kelly Oubre Jr.,PTS,11.5,Draft Kings
+401909296,3133603,Kelly Oubre Jr.,PTS,10.5,Draft Kings
 401909296,3133603,Kelly Oubre Jr.,REB,3.5,Draft Kings
 401909296,3136195,Karl-Anthony Towns,3PM,1.5,Draft Kings
 401909296,3136195,Karl-Anthony Towns,AST,3.5,Draft Kings
-401909296,3136195,Karl-Anthony Towns,PTS,21.5,Draft Kings
+401909296,3136195,Karl-Anthony Towns,PTS,20.5,Draft Kings
 401909296,3136195,Karl-Anthony Towns,REB,12.5,Draft Kings
 401909296,3147657,Mikal Bridges,3PM,1.5,Draft Kings
 401909296,3147657,Mikal Bridges,AST,1.5,Draft Kings
@@ -16,7 +16,7 @@ game_id,player_id,player,stat,line,source
 401909296,3147657,Mikal Bridges,REB,2.5,Draft Kings
 401909296,3149673,Pascal Siakam,3PM,1.5,Draft Kings
 401909296,3149673,Pascal Siakam,AST,3.5,Draft Kings
-401909296,3149673,Pascal Siakam,PTS,20.5,Draft Kings
+401909296,3149673,Pascal Siakam,PTS,21.5,Draft Kings
 401909296,3149673,Pascal Siakam,REB,6.5,Draft Kings
 401909296,3914044,Landry Shamet,3PM,1.5,Draft Kings
 401909296,3914044,Landry Shamet,AST,1.5,Draft Kings
@@ -165,7 +165,7 @@ game_id,player_id,player,stat,line,source
 401909299,4432822,Isaac Okoro,PTS,8.5,Draft Kings
 401909299,4432822,Isaac Okoro,REB,2.5,Draft Kings
 401909299,4701230,Jalen Johnson,3PM,1.5,Draft Kings
-401909299,4701230,Jalen Johnson,AST,6.5,Draft Kings
+401909299,4701230,Jalen Johnson,AST,7.5,Draft Kings
 401909299,4701230,Jalen Johnson,PTS,22.5,Draft Kings
 401909299,4701230,Jalen Johnson,REB,9.5,Draft Kings
 401909299,4711294,Matas Buzelis,3PM,2.5,Draft Kings

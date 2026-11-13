@@ -114,6 +114,30 @@
   }
   // the blowout floor shown is the blown-out version when there is one: it assumes his team is the one losing big
   function bfl(x) { return x.loss_floor != null ? x.loss_floor : x.blowout_floor; }
+  // Players who could go off: the highest ceilings tonight. A ceiling is the number reached in about
+  // 1 simulated game in 10 (on the replay, points ceilings were reached about 1 time in 7).
+  function goOff(D) {
+    var all = [];
+    D.games.forEach(function (g) { g.teams.forEach(function (t) { t.players.forEach(function (p) { all.push({ g: g, t: t, p: p }); }); }); });
+    if (!all.length || all[0].p.stats.PTS.ceiling == null && !all.some(function (x) { return x.p.stats.PTS.ceiling != null; })) return '';
+    function why(x, s) {
+      var o = [], st = x.p.stats[s];
+      if (spot(x.t, x.p.pos, s) > 0) o.push('soft matchup');
+      if ((s === 'PTS' || s === 'AST') && st.bump >= 1.03 && x.t.out_scorers.length) o.push(esc(x.t.out_scorers[0].split(' ').slice(-1)[0]) + ' out');
+      if (x.g.ceiling && x.g.ceiling[s] >= 1.05) o.push('target game');
+      else if (x.g.pace >= 1.03) o.push('fast game');
+      return o;
+    }
+    var names = { PTS: 'Points', REB: 'Rebounds', AST: 'Assists', '3PM': 'Threes' };
+    return '<section id="ceilings"><div class="eyebrow">Could go off</div><div class="grid2">' + STATS.map(function (s) {
+      var top = all.filter(function (x) { return x.p.stats[s].ceiling != null; }).sort(function (a, b) { return b.p.stats[s].ceiling - a.p.stats[s].ceiling || b.p.stats[s].expected - a.p.stats[s].expected; }).slice(0, 6);
+      return '<div class="card"><h3>' + names[s] + '</h3><div class="body">' + top.map(function (x) {
+        var st = x.p.stats[s], w = why(x, s);
+        return '<a class="tg mlink" href="#g-' + x.g.game_id + '"><div class="g">' + esc(x.p.name) + ' <span class="date">' + esc(x.t.team) + '</span> <span class="ceilv">' + st.ceiling + '</span></div>' +
+          '<div class="m">expected ' + st.expected + (st.line != null ? ' · line ' + st.line : '') + (w.length ? ' · <span class="up">' + w.join(', ') + '</span>' : '') + '</div></a>';
+      }).join('') + '</div></div>';
+    }).join('') + '</div><p class="lead" style="margin-top:10px">The big number is the ceiling: what he reaches in his best 1 game in 10 according to the simulation. On the replay, points ceilings were reached about 1 time in 7, so they run slightly low. Ranking by ceiling does find the big games: the top tenth of ceilings produced 35 of the 60 games of 30 or more points. The green notes are leans, not guarantees. Ranking players by how far their ceiling sits above their expected value did not pick out who goes off, so the page does not do that.</p></section>';
+  }
   function load(u) { return fetch(u, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
 
   function gradeBlock(G) {
@@ -121,12 +145,12 @@
     function rows(x) {
       return STATS.map(function (s) {
         var a = x.stats[s]; if (!a) return '';
-        return '<tr><td class="pl">' + s + '</td><td>' + a.n + '</td><td>' + (a.bias > 0 ? '+' : '') + a.bias + '</td><td>' + a.mae + '</td><td class="dim">' + (a.naive_mae == null ? '-' : a.naive_mae.toFixed(2)) + '</td><td>' + pc(a.floor_hit) +
+        return '<tr><td class="pl">' + s + '</td><td>' + a.n + '</td><td>' + (a.bias > 0 ? '+' : '') + a.bias + '</td><td>' + a.mae + '</td><td class="dim">' + pc(a.ceiling_hit) + '</td><td class="dim">' + (a.naive_mae == null ? '-' : a.naive_mae.toFixed(2)) + '</td><td>' + pc(a.floor_hit) +
           '</td><td>' + pc(a.floor_hit_full) + '</td><td>' + pc(a.blowout_floor_hit) + ' <span class="dim">(' + a.blowout_floor_n + ')</span></td><td>' + pc(a.rule_floor_hit_log) + '</td><td>' + pc(a.rule_floor_hit_flat) + '</td></tr>';
       }).join('');
     }
     function tbl(x) {
-      return '<div class="tscroll"><table><thead><tr><th class="lft">Stat</th><th>Players</th><th>Avg miss</th><th>Avg abs miss</th><th title="Average miss if you had just used each player\'s season average">Season avg miss</th><th>Floor hit</th><th title="Leaving out players who left early">Full games</th><th>Blowout floor hit</th><th>Log rule</th><th>Flat rule</th></tr></thead><tbody>' + rows(x) + '</tbody></table></div>';
+      return '<div class="tscroll"><table><thead><tr><th class="lft">Stat</th><th>Players</th><th>Avg miss</th><th>Avg abs miss</th><th title="How often the ceiling was reached. It is meant to be about 1 time in 10.">Ceiling reached</th><th title="Average miss if you had just used each player\'s season average">Season avg miss</th><th>Floor hit</th><th title="Leaving out players who left early">Full games</th><th>Blowout floor hit</th><th>Log rule</th><th>Flat rule</th></tr></thead><tbody>' + rows(x) + '</tbody></table></div>';
     }
     function mins(x) {
       var c = x.star_minutes_close, b = x.star_minutes_blowout, o = [];
@@ -220,8 +244,8 @@
       head = '<tr><th class="lft">Pos</th><th class="lft">Player</th><th>Min</th><th>Season</th><th>Expected</th><th>1 or more</th><th>2 or more</th><th>3 or more</th><th>Normal game</th><th>Blowout game</th>' + (anyLine ? '<th>Line</th><th>Over chance</th>' : '') + '</tr>';
       cols = 10 + (anyLine ? 2 : 0);
     } else {
-      head = '<tr><th class="lft">Pos</th><th class="lft">Player</th><th>Min</th><th>Season</th><th>Expected</th><th>Floor</th><th>Blowout floor</th><th>Normal game</th><th>Blowout game</th><th>Matchup</th>' + (anyLine ? '<th>Line</th><th>Over chance</th>' : '') + '</tr>';
-      cols = 10 + (anyLine ? 2 : 0);
+      head = '<tr><th class="lft">Pos</th><th class="lft">Player</th><th>Min</th><th>Season</th><th>Expected</th><th>Floor</th><th>Blowout floor</th><th>Ceiling</th><th>Normal game</th><th>Blowout game</th><th>Matchup</th>' + (anyLine ? '<th>Line</th><th>Over chance</th>' : '') + '</tr>';
+      cols = 11 + (anyLine ? 2 : 0);
     }
     g.teams.forEach(function (t) {
       var a = t.area;
@@ -246,7 +270,7 @@
         } else {
           var x = p.stats[mode], m = x.matchup == null ? null : x.matchup * (x.bump || 1);
           body += '<tr class="prow"' + key + '>' + nm + '<td class="dim">' + p.season[mode] + '</td><td class="ex">' + mark(spot(t, p.pos, mode)) + x.expected + (x.check ? '<span class="chk">check</span>' : '') + '</td><td class="fl">' + x.floor + '</td><td class="fl">' + dash(bfl(x)) +
-            '</td><td class="dim">' + x.normal + '</td><td class="dim">' + x.blowout + '</td><td class="' + (m == null || Math.abs(m - 1) < 0.03 ? 'dim' : (m > 1 ? 'up' : 'down')) + '">' + (m == null ? '-' : rel(m)) + '</td>' +
+            '</td><td class="cl">' + dash(x.ceiling) + '</td><td class="dim">' + x.normal + '</td><td class="dim">' + x.blowout + '</td><td class="' + (m == null || Math.abs(m - 1) < 0.03 ? 'dim' : (m > 1 ? 'up' : 'down')) + '">' + (m == null ? '-' : rel(m)) + '</td>' +
             (anyLine ? '<td class="dim">' + dash(x.line) + '</td><td>' + pc(x.p_over) + '</td>' : '') + '</tr>';
         }
       });
@@ -305,7 +329,7 @@
       else if (!open && D.date < todayEt) stale = '<div class="warnbar">Showing ' + esc(D.date) + '. Today\'s games appear after the first run of the day.</div>';
     }
     app.innerHTML = stale + (D.early_run && !stale ? '<div class="warnbar">Early look. Injuries and spreads can still change. This page refreshes at about 2:31pm, 5:37pm and 6:27pm ET, and each game locks at its tip.</div>' : '') +
-      gamesGrid(D) + matchups(D) + targets(D) + safest(D) +
+      gamesGrid(D) + matchups(D) + goOff(D) + targets(D) + safest(D) +
       '<section id="players"><div class="eyebrow">Players, game by game</div><div class="controls"><input id="q" type="search" placeholder="Find a player" aria-label="Find a player">' +
       '<div class="seg" id="seg" role="group" aria-label="Stat shown">' + ['ALL'].concat(STATS).map(function (s) { return '<button type="button" data-m="' + s + '">' + (s === 'ALL' ? 'All stats' : s) + '</button>'; }).join('') + '</div>' +
       '<button type="button" class="tgl" id="fold">Collapse all</button></div>' +

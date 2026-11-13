@@ -679,6 +679,8 @@ def run_project(date, data, docs, now=None, lock=True):
                         bv = sorted(v for v, b in zip(vals, flags) if b)
                         if len(bv) >= 200:
                             res["blowout_floor"] = int(pct(bv, FLOOR_Q_BENCH_PTS))
+                    # Ceiling: the number he reaches in about 1 simulated game in 10. Display only.
+                    st["ceiling"] = int(pct(sorted(vals), 0.90))
                     # Blown-out floor: the number reached in 80% of the simulated games his team LOST by 20+,
                     # with the measured drop in minutes and per-minute production applied. Display only:
                     # it does not change any other number.
@@ -715,6 +717,7 @@ def run_project(date, data, docs, now=None, lock=True):
                         # kept so the morning grade can check whether matchups carry over
                         "pos": e["pos"], "dvp": st["dvp"], "area3": tb["area"]["f3"], "base_rate": st["base_rate"],
                         "season_avg": st["season_avg"], "model": MODEL_VERSION, "loss_floor": st["loss_floor"],
+                        "ceiling": st["ceiling"],
                         "p_ge1": st.get("at_least", {}).get("1", ""), "p_ge2": st.get("at_least", {}).get("2", ""),
                         "p_ge3": st.get("at_least", {}).get("3", "")})
         games_out.append({"game_id": gid, "home": home, "away": away, "tip": g["date"],
@@ -846,6 +849,10 @@ def summarize_grades(rows):
                   "floor_hit": round(sum(f(r, "actual") >= f(r, "floor") for r in fl) / len(fl), 3) if fl else None,
                   "blowout_floor_hit": round(sum(f(r, "actual") >= f(r, "blowout_floor") for r in bl) / len(bl), 3) if bl else None,
                   "blowout_floor_n": len(bl)}
+        cz = [r for r in q if fnum(r.get("ceiling")) is not None]
+        if cz:      # a ceiling should be reached about 1 time in 10
+            acc[s]["ceiling_hit"] = round(sum(f(r, "actual") >= f(r, "ceiling") for r in cz) / len(cz), 3)
+            acc[s]["ceiling_n"] = len(cz)
         nv = [r for r in q if fnum(r.get("season_avg")) is not None]
         if nv:      # the simplest possible projection: his season average
             acc[s]["naive_mae"] = round(statistics.mean(abs(f(r, "actual") - f(r, "season_avg")) for r in nv), 3)

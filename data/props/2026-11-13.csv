@@ -8,7 +8,7 @@ game_id,player_id,player,stat,line,source
 401909296,3133603,Kelly Oubre Jr.,REB,3.5,DraftKings
 401909296,3136195,Karl-Anthony Towns,3PM,1.5,DraftKings
 401909296,3136195,Karl-Anthony Towns,AST,3.5,DraftKings
-401909296,3136195,Karl-Anthony Towns,PTS,21.5,DraftKings
+401909296,3136195,Karl-Anthony Towns,PTS,20.5,DraftKings
 401909296,3136195,Karl-Anthony Towns,REB,12.5,DraftKings
 401909296,3147657,Mikal Bridges,3PM,1.5,DraftKings
 401909296,3147657,Mikal Bridges,AST,1.5,DraftKings
@@ -16,7 +16,7 @@ game_id,player_id,player,stat,line,source
 401909296,3147657,Mikal Bridges,REB,2.5,DraftKings
 401909296,3149673,Pascal Siakam,3PM,1.5,DraftKings
 401909296,3149673,Pascal Siakam,AST,3.5,DraftKings
-401909296,3149673,Pascal Siakam,PTS,21.5,DraftKings
+401909296,3149673,Pascal Siakam,PTS,20.5,DraftKings
 401909296,3149673,Pascal Siakam,REB,6.5,DraftKings
 401909296,3914044,Landry Shamet,3PM,1.5,DraftKings
 401909296,3914044,Landry Shamet,AST,1.5,DraftKings
@@ -33,13 +33,13 @@ game_id,player_id,player,stat,line,source
 401909296,4017837,,PTS,12.5,DraftKings
 401909296,4017837,,REB,9.5,DraftKings
 401909296,4278355,Obi Toppin,3PM,1.5,DraftKings
-401909296,4278355,Obi Toppin,PTS,10.5,DraftKings
+401909296,4278355,Obi Toppin,PTS,9.5,DraftKings
 401909296,4278355,Obi Toppin,REB,3.5,DraftKings
 401909296,4395712,Andrew Nembhard,3PM,1.5,DraftKings
 401909296,4395712,Andrew Nembhard,AST,7.5,DraftKings
 401909296,4395712,Andrew Nembhard,PTS,15.5,DraftKings
 401909296,4395712,Andrew Nembhard,REB,2.5,DraftKings
-401909296,4396909,Aaron Nesmith,3PM,2.5,DraftKings
+401909296,4396909,Aaron Nesmith,3PM,1.5,DraftKings
 401909296,4396909,Aaron Nesmith,AST,1.5,DraftKings
 401909296,4396909,Aaron Nesmith,PTS,11.5,DraftKings
 401909296,4396909,Aaron Nesmith,REB,3.5,DraftKings
@@ -73,6 +73,7 @@ game_id,player_id,player,stat,line,source
 401909297,4432848,Jaime Jaquez Jr.,3PM,1.5,DraftKings
 401909297,4432848,Jaime Jaquez Jr.,AST,3.5,DraftKings
 401909297,4432848,Jaime Jaquez Jr.,PTS,13.5,DraftKings
+401909297,4432848,Jaime Jaquez Jr.,REB,4.5,DraftKings
 401909297,4566434,Franz Wagner,3PM,1.5,DraftKings
 401909297,4566434,Franz Wagner,AST,6.5,DraftKings
 401909297,4566434,Franz Wagner,PTS,24.5,DraftKings
@@ -83,7 +84,7 @@ game_id,player_id,player,stat,line,source
 401909297,4712849,Anthony Black,3PM,1.5,DraftKings
 401909297,4712849,Anthony Black,AST,4.5,DraftKings
 401909297,4712849,Anthony Black,PTS,15.5,DraftKings
-401909297,4712849,Anthony Black,REB,5.5,DraftKings
+401909297,4712849,Anthony Black,REB,4.5,DraftKings
 401909297,5082206,Brayden Burries,3PM,1.5,DraftKings
 401909297,5082206,Brayden Burries,AST,2.5,DraftKings
 401909297,5082206,Brayden Burries,PTS,11.5,DraftKings
@@ -96,10 +97,12 @@ game_id,player_id,player,stat,line,source
 401909298,2995706,Mario Hezonja,REB,4.5,DraftKings
 401909298,3032977,Giannis Antetokounmpo,AST,5.5,DraftKings
 401909298,3032977,Giannis Antetokounmpo,PTS,29.5,DraftKings
-401909298,3032977,Giannis Antetokounmpo,REB,11.5,DraftKings
+401909298,3032977,Giannis Antetokounmpo,REB,12.5,DraftKings
 401909298,3059319,Andrew Wiggins,3PM,1.5,DraftKings
 401909298,3059319,Andrew Wiggins,PTS,11.5,DraftKings
 401909298,3059319,Andrew Wiggins,REB,3.5,DraftKings
+401909298,3064482,Bobby Portis,PTS,8.5,DraftKings
+401909298,3064482,Bobby Portis,REB,5.5,DraftKings
 401909298,3908809,Donovan Mitchell,3PM,2.5,DraftKings
 401909298,3908809,Donovan Mitchell,AST,5.5,DraftKings
 401909298,3908809,Donovan Mitchell,PTS,26.5,DraftKings
@@ -124,7 +127,7 @@ game_id,player_id,player,stat,line,source
 401909298,4576087,Peyton Watson,PTS,13.5,DraftKings
 401909298,4576087,Peyton Watson,REB,4.5,DraftKings
 401909298,4683747,,3PM,1.5,DraftKings
-401909298,4683747,,PTS,11.5,DraftKings
+401909298,4683747,,PTS,10.5,DraftKings
 401909298,4683747,,REB,4.5,DraftKings
 401909298,5023693,Tyrese Proctor,3PM,1.5,DraftKings
 401909298,5023693,Tyrese Proctor,AST,2.5,DraftKings
@@ -136,10 +139,10 @@ game_id,player_id,player,stat,line,source
 401909298,5041951,Meleek Thomas,REB,3.5,DraftKings
 401909298,6475,Klay Thompson,3PM,3.5,DraftKings
 401909298,6475,Klay Thompson,AST,1.5,DraftKings
-401909298,6475,Klay Thompson,PTS,13.5,DraftKings
+401909298,6475,Klay Thompson,PTS,14.5,DraftKings
 401909298,6475,Klay Thompson,REB,2.5,DraftKings
 401909299,2490149,CJ McCollum,3PM,1.5,DraftKings
-401909299,2490149,CJ McCollum,PTS,14.5,DraftKings
+401909299,2490149,CJ McCollum,PTS,15.5,DraftKings
 401909299,2595516,Norman Powell,3PM,2.5,DraftKings
 401909299,2595516,Norman Powell,AST,1.5,DraftKings
 401909299,2595516,Norman Powell,PTS,21.5,DraftKings
@@ -194,7 +197,7 @@ game_id,player_id,player,stat,line,source
 401909300,4277813,Herbert Jones,3PM,1.5,DraftKings
 401909300,4277813,Herbert Jones,PTS,8.5,DraftKings
 401909300,4277813,Herbert Jones,REB,3.5,DraftKings
-401909300,4395628,Zion Williamson,AST,3.5,DraftKings
+401909300,4395628,Zion Williamson,AST,2.5,DraftKings
 401909300,4395628,Zion Williamson,PTS,22.5,DraftKings
 401909300,4395628,Zion Williamson,REB,5.5,DraftKings
 401909300,4397136,Saddiq Bey,3PM,1.5,DraftKings
@@ -207,7 +210,7 @@ game_id,player_id,player,stat,line,source
 401909300,4433083,Cam Spencer,PTS,8.5,DraftKings
 401909300,4433083,Cam Spencer,REB,2.5,DraftKings
 401909300,4869780,Derik Queen,AST,2.5,DraftKings
-401909300,4869780,Derik Queen,PTS,11.5,DraftKings
+401909300,4869780,Derik Queen,PTS,10.5,DraftKings
 401909300,4869780,Derik Queen,REB,6.5,DraftKings
 401909300,4903027,Cedric Coward,3PM,1.5,DraftKings
 401909300,4903027,Cedric Coward,AST,2.5,DraftKings
@@ -230,7 +233,7 @@ game_id,player_id,player,stat,line,source
 401909301,2991230,Fred VanVleet,3PM,2.5,DraftKings
 401909301,2991230,Fred VanVleet,AST,4.5,DraftKings
 401909301,2991230,Fred VanVleet,PTS,13.5,DraftKings
-401909301,2991230,Fred VanVleet,REB,3.5,DraftKings
+401909301,2991230,Fred VanVleet,REB,2.5,DraftKings
 401909301,3202,Kevin Durant,3PM,1.5,DraftKings
 401909301,3202,Kevin Durant,AST,3.5,DraftKings
 401909301,3202,Kevin Durant,PTS,21.5,DraftKings
@@ -243,34 +246,40 @@ game_id,player_id,player,stat,line,source
 401909301,4432639,Jabari Smith Jr.,PTS,14.5,DraftKings
 401909301,4432639,Jabari Smith Jr.,REB,6.5,DraftKings
 401909301,4432811,Josh Green,3PM,0.5,DraftKings
+401909301,4432811,Josh Green,AST,1.5,DraftKings
 401909301,4432811,Josh Green,PTS,4.5,DraftKings
 401909301,4432811,Josh Green,REB,2.5,DraftKings
 401909301,4433192,Tari Eason,3PM,1.5,DraftKings
 401909301,4433192,Tari Eason,AST,1.5,DraftKings
 401909301,4433192,Tari Eason,PTS,9.5,DraftKings
 401909301,4433192,Tari Eason,REB,5.5,DraftKings
-401909301,4433627,Keyonte George,3PM,2.5,DraftKings
+401909301,4433627,Keyonte George,3PM,1.5,DraftKings
 401909301,4433627,Keyonte George,AST,5.5,DraftKings
 401909301,4433627,Keyonte George,PTS,20.5,DraftKings
 401909301,4433627,Keyonte George,REB,3.5,DraftKings
 401909301,4683766,Isaiah Collier,AST,3.5,DraftKings
 401909301,4683766,Isaiah Collier,PTS,6.5,DraftKings
 401909301,4684740,Amen Thompson,AST,3.5,DraftKings
-401909301,4684740,Amen Thompson,PTS,15.5,DraftKings
+401909301,4684740,Amen Thompson,PTS,16.5,DraftKings
 401909301,4684740,Amen Thompson,REB,7.5,DraftKings
 401909301,4711272,Reed Sheppard,3PM,2.5,DraftKings
 401909301,4711272,Reed Sheppard,AST,2.5,DraftKings
 401909301,4711272,Reed Sheppard,PTS,11.5,DraftKings
+401909301,4871144,Alperen Sengun,3PM,0.5,DraftKings
 401909301,4871144,Alperen Sengun,AST,6.5,DraftKings
 401909301,4871144,Alperen Sengun,PTS,20.5,DraftKings
 401909301,4871144,Alperen Sengun,REB,9.5,DraftKings
 401909301,4873138,Ace Bailey,3PM,2.5,DraftKings
+401909301,4873138,Ace Bailey,AST,2.5,DraftKings
 401909301,4873138,Ace Bailey,PTS,14.5,DraftKings
 401909301,4873138,Ace Bailey,REB,5.5,DraftKings
 401909301,5041955,Darryn Peterson,3PM,2.5,DraftKings
 401909301,5041955,Darryn Peterson,AST,4.5,DraftKings
 401909301,5041955,Darryn Peterson,PTS,18.5,DraftKings
 401909301,5041955,Darryn Peterson,REB,4.5,DraftKings
+401909301,5105839,Brice Sensabaugh,3PM,1.5,DraftKings
+401909301,5105839,Brice Sensabaugh,PTS,8.5,DraftKings
+401909301,5105839,Brice Sensabaugh,REB,2.5,DraftKings
 401909302,3213,Al Horford,3PM,1.5,DraftKings
 401909302,3213,Al Horford,AST,1.5,DraftKings
 401909302,3213,Al Horford,PTS,6.5,DraftKings
@@ -336,8 +345,10 @@ game_id,player_id,player,stat,line,source
 401909303,4066211,Robert Williams III,REB,5.5,DraftKings
 401909303,4431736,Toumani Camara,3PM,2.5,DraftKings
 401909303,4431736,Toumani Camara,AST,1.5,DraftKings
-401909303,4431736,Toumani Camara,PTS,12.5,DraftKings
+401909303,4431736,Toumani Camara,PTS,11.5,DraftKings
 401909303,4431736,Toumani Camara,REB,4.5,DraftKings
+401909303,4433174,,PTS,5.5,DraftKings
+401909303,4433174,,REB,6.5,DraftKings
 401909303,4594327,,3PM,1.5,DraftKings
 401909303,4594327,,AST,1.5,DraftKings
 401909303,4594327,,PTS,11.5,DraftKings
@@ -351,7 +362,7 @@ game_id,player_id,player,stat,line,source
 401909303,4683678,Scoot Henderson,PTS,10.5,DraftKings
 401909303,4683678,Scoot Henderson,REB,2.5,DraftKings
 401909303,5081727,Sidy Cissoko,3PM,1.5,DraftKings
-401909303,5081727,Sidy Cissoko,AST,2.5,DraftKings
+401909303,5081727,Sidy Cissoko,AST,1.5,DraftKings
 401909303,5081727,Sidy Cissoko,PTS,8.5,DraftKings
 401909303,5081727,Sidy Cissoko,REB,3.5,DraftKings
 401909303,5105565,Donovan Clingan,3PM,0.5,DraftKings
@@ -368,7 +379,7 @@ game_id,player_id,player,stat,line,source
 401909303,6606,Damian Lillard,REB,3.5,DraftKings
 401909304,2991139,Kris Dunn,3PM,0.5,DraftKings
 401909304,2991139,Kris Dunn,AST,3.5,DraftKings
-401909304,2991139,Kris Dunn,PTS,7.5,DraftKings
+401909304,2991139,Kris Dunn,PTS,6.5,DraftKings
 401909304,2991139,Kris Dunn,REB,3.5,DraftKings
 401909304,2991350,Alex Caruso,3PM,1.5,DraftKings
 401909304,2991350,Alex Caruso,AST,2.5,DraftKings

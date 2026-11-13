@@ -1,13 +1,13 @@
 game_id,team,player_id,player,status,type
-401909976,PHI,1966,LeBron James,Out,Back
+401909976,PHI,1966,LeBron James,Day-To-Day,Back
 401909976,PHI,4870562,Dominick Barlow,Out,Back
 401909976,PHI,5105637,Adem Bona,Out,Back
 401909976,PHI,4871141,Ariel Hukporti,Out,Achilles
-401909976,TOR,4431684,Trayce Jackson-Davis,Out,Illness
+401909976,TOR,4431684,Trayce Jackson-Davis,Day-To-Day,Illness
 401909976,TOR,4433134,Scottie Barnes,Out,Groin
 401909976,TOR,6450,Kawhi Leonard,Out,Knee
 401909976,TOR,4432586,Nate Bittle,Out,Foot
-401909977,WSH,4845374,Bub Carrington,Out,Chest
+401909977,WSH,4845374,Bub Carrington,Day-To-Day,Chest
 401909977,WSH,4997537,Tristan Vukcevic,Out,Hip
 401909977,WSH,4432187,Reece Beekman,Out,Shoulder
 401909977,WSH,4432907,Justin Champagnie,Out,Foot

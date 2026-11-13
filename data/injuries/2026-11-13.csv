@@ -1,6 +1,4 @@
 game_id,team,player_id,player,status,type
-401909296,IND,2530530,T.J. McConnell,Day-To-Day,Hamstring
-401909296,IND,4396909,Aaron Nesmith,Day-To-Day,Knee
 401909296,IND,4396993,Tyrese Haliburton,Out,Hamstring
 401909296,IND,5157066,Johnny Furphy,Out,Knee
 401909296,IND,4433076,Ben Sheppard,Out,Knee
@@ -8,13 +6,12 @@ game_id,team,player_id,player,status,type
 401909297,ORL,4432573,Paolo Banchero,Out,Ankle
 401909297,ORL,5214637,Noah Penda,Out,Hamstring
 401909297,ORL,5107251,Izaiyah Nelson,Out,Ankle
-401909298,MIA,6475,Klay Thompson,Day-To-Day,Ankle
-401909298,MIA,4601025,Pelle Larsson,Day-To-Day,Illness
+401909298,MIA,6475,Klay Thompson,Out,Ankle
+401909298,MIA,4601025,Pelle Larsson,Out,Illness
 401909298,CLE,4432158,Evan Mobley,Out,Toe
 401909298,CLE,4066757,Sam Merrill,Out,Elbow
 401909299,CHI,5105555,Tobe Awaka,Out,Back
 401909299,CHI,4848625,Dailyn Swain,Day-To-Day,Back
-401909299,CHI,2595516,Norman Powell,Day-To-Day,Shoulder
 401909299,CHI,5095151,Caleb Wilson,Out,Hand
 401909299,ATL,4712863,Mouhamed Gueye,Out,Foot
 401909299,ATL,4585618,Keshon Gilbert,Out,Knee

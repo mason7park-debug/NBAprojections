@@ -10,7 +10,6 @@ game_id,team,player_id,player,status,type
 401909297,ORL,4065654,Jonathan Isaac,Out,Knee
 401909297,ORL,4432573,Paolo Banchero,Out,Ankle
 401909298,MIA,6475,Klay Thompson,Day-To-Day,Ankle
-401909298,MIA,3032977,Giannis Antetokounmpo,Day-To-Day,Wrist
 401909298,MIA,4601025,Pelle Larsson,Day-To-Day,Illness
 401909298,CLE,4432158,Evan Mobley,Out,Toe
 401909298,CLE,4066757,Sam Merrill,Out,Elbow
@@ -23,11 +22,11 @@ game_id,team,player_id,player,status,type
 401909299,ATL,4873201,Asa Newell,Out,Toe
 401909299,ATL,5149077,Kingston Flemings,Day-To-Day,Back
 401909299,ATL,5105571,Henri Veesaar,Out,Knee
-401909300,NO,4576086,Bryce McGowens,Day-To-Day,Elbow
-401909300,NO,4431675,Trendon Watford,Out,Ankle
-401909300,NO,4683634,Bennedict Mathurin,Day-To-Day,Thumb
+401909300,NO,4576086,Bryce McGowens,Out,Elbow
 401909300,NO,5061589,Yves Missi,Out,Knee
-401909300,NO,4397688,Trey Murphy III,Day-To-Day,Knee
+401909300,NO,4683634,Bennedict Mathurin,Day-To-Day,Thumb
+401909300,NO,3907497,Dejounte Murray,Day-To-Day,Ankle
+401909300,NO,4397688,Trey Murphy III,Out,Knee
 401909300,MEM,4593016,Quinten Post,Out,Concussion
 401909300,MEM,4600663,Zach Edey,Out,Ankle
 401909300,MEM,4431785,Scotty Pippen Jr.,Out,Back

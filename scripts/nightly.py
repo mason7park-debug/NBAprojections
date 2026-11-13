@@ -26,7 +26,7 @@ Where each input comes from (all ESPN, via fetch_espn.py):
   area defense, pace            data/teamstats/*.csv (threes, paint, free throws)
   spread, total                 data/odds/<date>.csv
   injuries                      data/injuries/<date>.csv
-  prop lines (optional)         data/props/<date>.csv  (player, stat, line)
+  prop lines                    data/props/<date>.csv  (ESPN odds feed, via fetch_props.py)
 """
 
 import argparse, csv, datetime as dt, json, math, os, pathlib, random, re, statistics, unicodedata
@@ -46,6 +46,16 @@ LIVE_FROM = dt.date(2026, 11, 12)     # first slate projected before tip by the 
 # Percentile used for bench players' points floors. Everyone else uses the 20th.
 # The 12th held 81% of 439 bench cases on the replay; the 20th held only 74%.
 FLOOR_Q_BENCH_PTS = float(os.environ.get("NBA_FLOOR_Q_BENCH", 0.12))
+# Last season as a starting point. A player's per-minute rates and minutes are blended with
+# last season's, counted as PRIOR_KMIN minutes and PRIOR_KG games of evidence, so the blend
+# fades on its own as this season's sample grows. Team ratings for the game margin are blended
+# the same way with PRIOR_TEAM_K games. "off" keeps the frozen model; "on" was tested on the
+# replay on 2026-11-12 and beat the season average on all four stats.
+USE_PRIOR = os.environ.get("NBA_PRIOR", "off") == "on"
+PRIOR_KMIN = 100.0
+PRIOR_KG = 3.0
+PRIOR_TEAM_K = 20.0
+PRIOR_SEASON = "2025-26"
 HOME_EDGE = 2.5       # points the home team is worth
 RATE_K = 10           # team ratings are pulled toward average until about this many games
 INJ_K = float(os.environ.get("NBA_INJ_K", 0.5))    # share of a missing player's scoring edge the team loses
@@ -356,7 +366,26 @@ def on_back_to_back(team, team_games, date):
     return any(r["_date"] == date - dt.timedelta(days=1) for r in team_games.get(team, []))
 
 
-def game_prediction(home, away, raw, lg, lg_pace, spread, total, home_minus=0.0, away_minus=0.0):
+def load_prior(data):
+    """Last season's per-minute rates, minutes and team scoring, or empty if switched off."""
+    if not USE_PRIOR:
+        return {}, {}
+    players = {}
+    for r in read_csv(data / "prior" / f"players_{PRIOR_SEASON}.csv"):
+        m, gp = fnum(r["minutes"], 0.0), fnum(r["gp"], 0.0)
+        if m >= 300 and gp >= 1:
+            players[r["player_id"]] = {"gp": gp, "mpg": m / gp,
+                                       "rate": {"PTS": fnum(r["pts"], 0.0) / m, "REB": fnum(r["reb"], 0.0) / m,
+                                                "AST": fnum(r["ast"], 0.0) / m, "3PM": fnum(r["tpm"], 0.0) / m}}
+    t = read_csv(data / "prior" / f"teams_{PRIOR_SEASON}.csv")
+    teams = {}
+    if t:
+        mf = statistics.mean(fnum(r["pts_for"]) for r in t); ma = statistics.mean(fnum(r["pts_against"]) for r in t)
+        teams = {r["team"]: {"off": fnum(r["pts_for"]) / mf, "def": fnum(r["pts_against"]) / ma} for r in t}
+    return players, teams
+
+
+def game_prediction(home, away, raw, lg, lg_pace, spread, total, home_minus=0.0, away_minus=0.0, prior=None):
     """Projected score and win chance from team scoring and defense per possession."""
     h, a, L = raw.get(home), raw.get(away), lg.get("PPP")
     if not h or not a or not L or not lg_pace or not all((h["off"], h["def"], a["off"], a["def"], h["pace"], a["pace"])):
@@ -366,6 +395,14 @@ def game_prediction(home, away, raw, lg, lg_pace, spread, total, home_minus=0.0,
     poss = r(h, "pace", lg_pace) * r(a, "pace", lg_pace) / lg_pace
     hp = poss * r(h, "off", L) * r(a, "def", L) / L + HOME_EDGE / 2 - home_minus
     ap = poss * r(a, "off", L) * r(h, "def", L) / L - HOME_EDGE / 2 - away_minus
+    if prior and home in prior and away in prior:
+        # the margin leans on last season's team strength; the total stays on this season's scoring
+        def rp(team, t, k):
+            return (t[k] * t["games"] + PRIOR_TEAM_K * L * prior[team][k]) / (t["games"] + PRIOR_TEAM_K)
+        m2 = (poss * rp(home, h, "off") * rp(away, a, "def") / L + HOME_EDGE / 2 - home_minus) \
+            - (poss * rp(away, a, "off") * rp(home, h, "def") / L - HOME_EDGE / 2 - away_minus)
+        tot = hp + ap
+        hp, ap = (tot + m2) / 2, (tot - m2) / 2
     pw = phi((hp - ap) / SD)
     out = {"home_pts": round(hp, 1), "away_pts": round(ap, 1), "margin": round(hp - ap, 1),
            "total": round(hp + ap, 1), "home_win": round(pw, 3),
@@ -411,11 +448,29 @@ def run_project(date, data, docs, now=None, lock=True):
     inj = read_csv(data / "injuries" / f"{date}.csv")
     out_ids = {r["player_id"] for r in inj if (r.get("status") or "").lower() == "out"}
     gtd_ids = {r["player_id"] for r in inj if (r.get("status") or "").lower() != "out"}
-    lines = {(norm(r["player"]), r["stat"]): fnum(r["line"]) for r in read_csv(data / "props" / f"{date}.csv")}
+    lines = {}      # prop lines, matched by ESPN player id when the file has one, by name otherwise
+    for r in read_csv(data / "props" / f"{date}.csv"):
+        v = fnum(r.get("line"))
+        if v is None:
+            continue
+        if r.get("player_id"):
+            lines[(r["player_id"], r["stat"])] = v
+        if r.get("player"):
+            lines[(norm(r["player"]), r["stat"])] = v
 
     players, team_games, allowed_pos = load_history(data, date)
     raw, lg, lg_pace, dvp = team_tables(team_games, allowed_pos)
     profs = {pid: player_profile(p) for pid, p in players.items() if p["games"]}
+    prior_players, prior_teams = load_prior(data)
+    for pid, pr in profs.items():       # "a_" values are what the projection uses; raw season averages stay as they are
+        pri = prior_players.get(pid)
+        pr["a_mpg"] = ((pr["mpg"] * pr["gp"] + PRIOR_KG * pri["mpg"]) / (pr["gp"] + PRIOR_KG)
+                       if pri and pri["gp"] >= 20 else pr["mpg"])
+        for s in STATS:
+            rate = pr[s] / pr["mpg"]
+            if pri:
+                rate = (pr[s] * pr["gp"] + PRIOR_KMIN * pri["rate"][s]) / (pr["mpg"] * pr["gp"] + PRIOR_KMIN)
+            pr["a_" + s] = rate * pr["a_mpg"]
     by_team = defaultdict(list)
     for pid, pr in profs.items():
         by_team[pr["team"]].append((pid, pr))
@@ -510,7 +565,8 @@ def run_project(date, data, docs, now=None, lock=True):
             kept = old_games[gid]
             kept["locked"] = True
             if not kept.get("pred"):     # saved before game predictions existed; uses pre-date history only
-                kept["pred"] = game_prediction(home, away, raw, lg, lg_pace, kept.get("spread"), kept.get("total"))
+                kept["pred"] = game_prediction(home, away, raw, lg, lg_pace, kept.get("spread"), kept.get("total"),
+                                               prior=prior_teams)
                 if kept["pred"]:
                     old_preds[gid] = dict({"date": str(date), "game_id": gid, "home": home, "away": away,
                                            "spread": kept.get("spread"), "market_total": kept.get("total")}, **kept["pred"])
@@ -532,7 +588,8 @@ def run_project(date, data, docs, now=None, lock=True):
             lost, names = team_absences(t, by_team, out_ids, gtd_ids, team_games, date)
             b2b = on_back_to_back(t, team_games, date)
             adj[t] = {"missing": names, "b2b": b2b, "minus": round(INJ_K * lost + (B2B_PTS if b2b else 0.0), 1)}
-        pred = game_prediction(home, away, raw, lg, lg_pace, spread, total, adj[home]["minus"], adj[away]["minus"])
+        pred = game_prediction(home, away, raw, lg, lg_pace, spread, total, adj[home]["minus"], adj[away]["minus"],
+                               prior=prior_teams)
         if pred:
             pred["home_adj"], pred["away_adj"] = adj[home], adj[away]
         # the spread sets blowout risk; with no spread posted, the model's own margin stands in
@@ -578,14 +635,15 @@ def run_project(date, data, docs, now=None, lock=True):
                         lr = pr["log_rates"][s] or None
                         rr = pr["recent_rate"][s] if pr["recent_rate"] else None
                         normal, blow, expected, rfloor, src, minutes = project(
-                            pr[s], pr["mpg"], m, pace_factor, pb, s, bump, lr, rr, pr["recent_min"])
+                            pr["a_" + s], pr["a_mpg"], m, pace_factor, pb, s, bump, lr, rr, pr["recent_min"])
                         entry["min"] = minutes
                         entry["stats"][s] = {"normal": normal, "blowout": blow, "expected": expected,
                                              "rule_floor": rfloor, "floor_source": src,
                                              "matchup": round(m, 3), "bump": round(bump, 3),
                                              "dvp": round(f, 3), "base_rate": round(pr[s] / pr["mpg"], 5),
-                                             "season_avg": round(pr[s], 2), "line": lines.get((norm(pr["name"]), s))}
-                        sim_stats[s] = {"rate": blend(pr[s] / pr["mpg"], rr), "mult": m * pace_factor * bump,
+                                             "season_avg": round(pr[s], 2),
+                                             "line": lines.get((pid, s), lines.get((norm(pr["name"]), s)))}
+                        sim_stats[s] = {"rate": blend(pr["a_" + s] / pr["a_mpg"], rr), "mult": m * pace_factor * bump,
                                         "log_rates": lr}
                     sim_players.append({"name": pid, "minutes": entry["min"], "stats": sim_stats,
                                         "min_sd": MIN_SD_BENCH if role == "bench" else (MIN_SD if entry["star"] else MIN_SD_STARTER)})
@@ -615,7 +673,9 @@ def run_project(date, data, docs, now=None, lock=True):
                     st.update(floor=res["floor"], blowout_floor=res["blowout_floor"],
                               p_over=res["p_over"], sim_mean=res["sim_mean"])
                     st["gap"] = (res["floor"] - st["line"]) if st["line"] is not None else None
-                    st["check"] = bool(st["line"] and abs(st["expected"] - st["line"]) / st["line"] >= 0.20)
+                    # 20% away from the line, and at least 1.5 in absolute terms so small numbers do not all flag
+                    st["check"] = bool(st["line"] and abs(st["expected"] - st["line"]) / st["line"] >= 0.20
+                                       and abs(st["expected"] - st["line"]) >= 1.5)
                     if st["expected"] >= 5 and abs(res["sim_mean"] - st["expected"]) / st["expected"] > 0.05:
                         notes.append(f"{e['name']} {s}: simulation average {res['sim_mean']} vs expected {st['expected']}.")
                     proj_rows.append({

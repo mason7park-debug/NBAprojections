@@ -219,6 +219,12 @@
   .scn{font-size:.72rem;color:var(--muted)} .scv{font-family:var(--head);font-weight:700;font-size:1.15rem;margin:2px 0}
   .scj{font-size:.76rem;font-weight:600} .scj.warn{color:var(--warn)} .scj.none{color:var(--muted)}
   .ghdr .src{text-align:left;text-transform:none;letter-spacing:0;font-size:.68rem}
+  @media (max-width:600px){
+    table.tone{min-width:0}
+    table.tone thead th:nth-child(1),table.tone tr.prow td:nth-child(1),table.tone thead th:nth-child(4),table.tone tr.prow td:nth-child(4){display:none}
+    table.tone th,table.tone td{padding-left:6px;padding-right:6px}
+    table.tone td.pl{max-width:128px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  }
 </style></head><body>
 <header class="bar"><div class="wrap bar-in"><div class="mark"><span class="court"></span><h1>Tonight's NBA Edges</h1></div>
 <span class="date" id="hdate"></span><span class="spacer"></span><span class="date" id="hrun"></span></div>

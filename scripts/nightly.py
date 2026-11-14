@@ -966,6 +966,139 @@ def grade_games(data, dates):
     return out
 
 
+# ------------------------------------------------------------------- report
+
+CLOSE = {"PTS": 3, "REB": 2, "AST": 2, "3PM": 1}     # "close" in the stat's own units
+
+
+def report_group(z):
+    """How a set of graded player-stat rows did against their expected number, floor and ceiling."""
+    f = lambda r, k: fnum(r.get(k))
+    z = [r for r in z if f(r, "expected") is not None and f(r, "actual") is not None]
+    if not z:
+        return None
+    stat = z[0]["stat"]
+    n = len(z)
+    pos = [r for r in z if f(r, "expected") > 0]
+    ratios = sorted(f(r, "actual") / f(r, "expected") for r in pos)
+    share = lambda test, rows=z: round(sum(1 for r in rows if test(r)) / len(rows), 3) if rows else None
+    out = {"n": n,
+           "avg_expected": round(statistics.mean(f(r, "expected") for r in z), 2),
+           "avg_actual": round(statistics.mean(f(r, "actual") for r in z), 2),
+           "bias": round(statistics.mean(f(r, "actual") - f(r, "expected") for r in z), 2),
+           "mae": round(statistics.mean(abs(f(r, "actual") - f(r, "expected")) for r in z), 2),
+           "reached": share(lambda r: f(r, "actual") >= f(r, "expected")),
+           "within10": share(lambda r: f(r, "actual") >= 0.9 * f(r, "expected")),
+           "within20": share(lambda r: f(r, "actual") >= 0.8 * f(r, "expected")),
+           "close_abs": share(lambda r: f(r, "actual") >= f(r, "expected") - CLOSE[stat]),
+           "way_short": share(lambda r: f(r, "actual") < 0.6 * f(r, "expected")),
+           "ladder": {str(k): share(lambda r, k=k: f(r, "actual") >= k / 100 * f(r, "expected")) for k in (100, 90, 80, 70, 60, 50)},
+           # the share of his expected number a player reached 4 times out of 5, and 2 times out of 3
+           "reach80": round(ratios[int(0.20 * (len(ratios) - 1))], 2) if ratios else None,
+           "reach67": round(ratios[int(0.33 * (len(ratios) - 1))], 2) if ratios else None}
+    nv = [r for r in z if f(r, "season_avg") is not None]
+    if nv:
+        out["naive_mae"] = round(statistics.mean(abs(f(r, "actual") - f(r, "season_avg")) for r in nv), 2)
+        out["mae_same"] = round(statistics.mean(abs(f(r, "actual") - f(r, "expected")) for r in nv), 2)
+    for key, name in (("floor", "floor_hit"), ("ceiling", "ceiling_hit")):
+        q = [r for r in z if f(r, key) is not None]
+        out[name] = share(lambda r: f(r, "actual") >= f(r, key), q)
+        out[name + "_n"] = len(q)
+    lost = [r for r in z if f(r, "team_margin") is not None and f(r, "team_margin") <= -BLOWOUT]
+    for key, name in (("floor", "lost_floor"), ("loss_floor", "lost_blowout_floor")):
+        q = [r for r in lost if f(r, key) is not None]
+        out[name] = share(lambda r: f(r, "actual") >= f(r, key), q)
+        out[name + "_n"] = len(q)
+    return out
+
+
+def report_lines(z):
+    """How projections and over chances did against the posted prop lines."""
+    f = lambda r, k: fnum(r.get(k))
+    z = [r for r in z if f(r, "line") is not None and f(r, "p_over") is not None and f(r, "actual") is not None]
+    if not z:
+        return None
+    share = lambda test, rows: round(sum(1 for r in rows if test(r)) / len(rows), 3) if rows else None
+    over = lambda r: f(r, "actual") > f(r, "line")
+    out = {"n": len(z), "went_over": share(over, z),
+           "model_mae": round(statistics.mean(abs(f(r, "actual") - f(r, "expected")) for r in z), 2),
+           "line_mae": round(statistics.mean(abs(f(r, "actual") - f(r, "line")) for r in z), 2),
+           "model_closer": share(lambda r: abs(f(r, "actual") - f(r, "expected")) < abs(f(r, "actual") - f(r, "line")), z),
+           "buckets": []}
+    for label, lo, hi in (("under 30%", 0, .3), ("30 to 40%", .3, .4), ("40 to 50%", .4, .5), ("50 to 60%", .5, .6),
+                          ("60 to 70%", .6, .7), ("70% and up", .7, 1.01)):
+        q = [r for r in z if lo <= f(r, "p_over") < hi]
+        if q:
+            out["buckets"].append({"bucket": label, "n": len(q), "went_over": share(over, q),
+                                   "avg_chance": round(statistics.mean(f(r, "p_over") for r in q), 3)})
+    hi_, lo_ = [r for r in z if f(r, "p_over") >= 0.6], [r for r in z if f(r, "p_over") <= 0.4]
+    out["lean_over"] = {"n": len(hi_), "right": share(over, hi_)}
+    out["lean_under"] = {"n": len(lo_), "right": share(lambda r: f(r, "actual") < f(r, "line"), lo_)}
+    fl = [r for r in z if f(r, "floor") is not None and f(r, "floor") > f(r, "line")]
+    out["floor_above_line"] = {"n": len(fl), "went_over": share(over, fl)}
+    return out
+
+
+def build_report(every, docs):
+    """Everything the Report page shows. Rebuilt from the graded files each morning."""
+    played = [r for r in every if str(r["played"]) == "True"]
+    groups = (("everyone", lambda r: True), ("stars", lambda r: str(r["star"]) == "True"),
+              ("starters", lambda r: r["role"] == "starter" and str(r["star"]) != "True"),
+              ("bench", lambda r: r["role"] == "bench"))
+    sizes = {"PTS": ((25, 99, "25 or more"), (18, 25, "18 to 25"), (12, 18, "12 to 18"), (0, 12, "under 12")),
+             "REB": ((8, 99, "8 or more"), (5, 8, "5 to 8"), (0, 5, "under 5")),
+             "AST": ((6, 99, "6 or more"), (3, 6, "3 to 6"), (0, 3, "under 3")),
+             "3PM": ((2.5, 99, "2.5 or more"), (1.5, 2.5, "1.5 to 2.5"), (0, 1.5, "under 1.5"))}
+
+    def scope(rows):
+        if not rows:
+            return None
+        out = {"nights": len({r["date"] for r in rows}), "player_games": len({(r["date"], r["player_id"]) for r in rows}),
+               "from": min(r["date"] for r in rows), "to": max(r["date"] for r in rows), "stats": {}, "lines": {}}
+        for s in STATS:
+            z = [r for r in rows if r["stat"] == s]
+            out["stats"][s] = {"groups": {name: report_group([r for r in z if test(r)]) for name, test in groups},
+                               "by_size": [dict(report_group([r for r in z if lo <= fnum(r["expected"], 0) < hi]) or {}, label=label)
+                                           for lo, hi, label in sizes[s]]}
+            out["lines"][s] = report_lines(z)
+        out["lines"]["all"] = report_lines(rows)
+        return out
+
+    nights = []
+    for d in sorted({r["date"] for r in played}):
+        z = [r for r in played if r["date"] == d]
+        pts = report_group([r for r in z if r["stat"] == "PTS"])
+        row = {"date": d, "live": dt.date.fromisoformat(d) >= LIVE_FROM, "players": len({r["player_id"] for r in z}),
+               "games": len({r["game_id"] for r in z})}
+        for s in STATS:
+            g = report_group([r for r in z if r["stat"] == s])
+            row[s] = {k: g.get(k) for k in ("reached", "within20", "floor_hit", "mae", "naive_mae", "bias")} if g else None
+        ln = report_lines(z)
+        row["lines"] = {"n": ln["n"], "went_over": ln["went_over"], "model_closer": ln["model_closer"]} if ln else None
+        nights.append(row)
+
+    last_date = max(r["date"] for r in played) if played else None
+    last = [r for r in played if r["date"] == last_date]
+    def card(r):
+        return {"player": r["player"], "team": r["team"], "stat": r["stat"], "expected": fnum(r["expected"]),
+                "actual": fnum(r["actual"]), "floor": fnum(r["floor"]), "line": fnum(r.get("line")),
+                "minutes": fnum(r["actual_minutes"]), "proj_minutes": fnum(r["minutes"])}
+    pts_last = [r for r in last if r["stat"] == "PTS"]
+    by_gap = sorted(pts_last, key=lambda r: fnum(r["actual"]) - fnum(r["expected"]))
+    report = {
+        "generated_et": dt.datetime.now(ET).strftime("%Y-%m-%d %I:%M %p ET"), "live_from": str(LIVE_FROM), "model": MODEL_VERSION,
+        "close": CLOSE,
+        "live": scope([r for r in played if dt.date.fromisoformat(r["date"]) >= LIVE_FROM]),
+        "all": scope(played),
+        "last": {"date": last_date, "scope": scope(last), "misses": [card(r) for r in by_gap[:8]],
+                 "beats": [card(r) for r in by_gap[::-1][:8]]},
+        "nights": nights,
+    }
+    (docs / "data").mkdir(parents=True, exist_ok=True)
+    (docs / "data" / "report.json").write_text(json.dumps(report, separators=(",", ":")))
+    return report
+
+
 def run_grade(date, data, docs):
     rows = grade_one(date, data)
     if rows is None:
@@ -996,6 +1129,7 @@ def run_grade(date, data, docs):
     (docs / "data" / "grade.json").write_text(json.dumps(
         {"last": last, "all": allnights, "live": live, "live_from": str(LIVE_FROM), "model": MODEL_VERSION},
         separators=(",", ":")))
+    build_report(every, docs)
     s = last["stats"].get("PTS", {})
     print(f"graded {date}: {last['player_games']} player-games, PTS bias {s.get('bias')} MAE {s.get('mae')}, "
           f"floor hit {s.get('floor_hit')}; all nights: {allnights['nights']}")

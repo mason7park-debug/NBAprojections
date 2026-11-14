@@ -1,4 +1,5 @@
 game_id,team,player_id,player,status,type
+401909296,IND,4396909,Aaron Nesmith,Day-To-Day,Hand
 401909296,IND,4396993,Tyrese Haliburton,Out,Hamstring
 401909296,IND,5157066,Johnny Furphy,Out,Knee
 401909296,IND,4433076,Ben Sheppard,Out,Knee
@@ -30,6 +31,7 @@ game_id,team,player_id,player,status,type
 401909301,HOU,2990992,Marcus Smart,Suspension,Suspension
 401909301,HOU,3102529,Clint Capela,Out,Ankle
 401909301,HOU,2991235,Steven Adams,Out,Calf
+401909301,UTAH,4397077,Jaxson Hayes,Day-To-Day,Knee
 401909301,UTAH,4433268,Trey Alexander,Out,Ankle
 401909301,UTAH,4066336,Lauri Markkanen,Out,Hand
 401909301,UTAH,3102530,Jusuf Nurkic,Out,Foot
@@ -52,8 +54,8 @@ game_id,team,player_id,player,status,type
 401909304,LAC,5108024,Yanic Konan Niederhauser,Out,Foot
 401909304,LAC,6580,Bradley Beal,Out,Knee
 401909304,LAC,4396818,Jordan Miller,Out,Shoulder
+401909304,OKC,4900671,Ajay Mitchell,Out,Ankle
 401909304,OKC,5061603,Thomas Sorber,Out,Knee
-401909304,OKC,4900671,Ajay Mitchell,Day-To-Day,Ankle
 401909304,OKC,4432823,Jaylin Williams,Out,Back
 401909304,OKC,4683692,Cason Wallace,Out,Shoulder
 401909304,OKC,4433255,Chet Holmgren,Out,Knee

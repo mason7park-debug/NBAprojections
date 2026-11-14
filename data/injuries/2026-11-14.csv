@@ -14,8 +14,7 @@ game_id,team,player_id,player,status,type
 401909981,DAL,4683688,Dereck Lively II,Out,Foot
 401909981,DAL,5148538,Tarik Biberovic,Out,Heel
 401909981,DAL,5279129,Sergio de Larrea,Out,Knee
-401909982,MIA,4601025,Pelle Larsson,Day-To-Day,Illness
-401909982,MIA,6475,Klay Thompson,Day-To-Day,Ankle
+401909982,MIA,4601025,Pelle Larsson,Out,Illness
 401909982,DET,5037878,Ugonna Onyenso,Day-To-Day,Foot
 401909982,DET,4395702,Isaiah Joe,Out,Hip
 401909982,DET,4433621,Jalen Duren,Out,Hamstring
@@ -25,12 +24,10 @@ game_id,team,player_id,player,status,type
 401909983,MEM,4065733,Ty Jerome,Out,Hip
 401909983,MEM,4431785,Scotty Pippen Jr.,Out,Back
 401909983,BKN,4278104,Michael Porter Jr.,Day-To-Day,Personal
-401909983,BKN,5101761,Mikel Brown Jr.,Day-To-Day,Illness
-401909983,BKN,5279130,Nolan Traore,Day-To-Day,Calf
 401909984,MIN,4594268,Anthony Edwards,Out,Knee
 401909984,MIN,3934673,Donte DiVincenzo,Out,Achilles
+401909984,CHI,4397189,Jalen Smith,Out,Finger
 401909984,CHI,5105555,Tobe Awaka,Out,Back
 401909984,CHI,4278067,Nic Claxton,Day-To-Day,Hamstring
-401909984,CHI,4397189,Jalen Smith,Day-To-Day,Finger
-401909984,CHI,2595516,Norman Powell,Day-To-Day,Back
+401909984,CHI,2595516,Norman Powell,Day-To-Day,
 401909984,CHI,5095151,Caleb Wilson,Out,Hand

@@ -4,7 +4,7 @@ game_id,player_id,player,stat,line,source
 401909980,3064290,Aaron Gordon,PTS,13.5,DraftKings
 401909980,3064290,Aaron Gordon,REB,4.5,DraftKings
 401909980,3112335,Nikola Jokic,3PM,1.5,DraftKings
-401909980,3112335,Nikola Jokic,AST,10.5,DraftKings
+401909980,3112335,Nikola Jokic,AST,9.5,DraftKings
 401909980,3112335,Nikola Jokic,PTS,26.5,DraftKings
 401909980,3112335,Nikola Jokic,REB,11.5,DraftKings
 401909980,3138196,Cameron Johnson,3PM,1.5,DraftKings
@@ -13,7 +13,7 @@ game_id,player_id,player,stat,line,source
 401909980,3138196,Cameron Johnson,REB,3.5,DraftKings
 401909980,3936299,Jamal Murray,3PM,2.5,DraftKings
 401909980,3936299,Jamal Murray,AST,6.5,DraftKings
-401909980,3936299,Jamal Murray,PTS,23.5,DraftKings
+401909980,3936299,Jamal Murray,PTS,24.5,DraftKings
 401909980,3936299,Jamal Murray,REB,4.5,DraftKings
 401909980,3978,DeMar DeRozan,AST,2.5,DraftKings
 401909980,3978,DeMar DeRozan,PTS,10.5,DraftKings
@@ -31,7 +31,7 @@ game_id,player_id,player,stat,line,source
 401909980,4431767,Christian Braun,3PM,1.5,DraftKings
 401909980,4431767,Christian Braun,AST,2.5,DraftKings
 401909980,4431767,Christian Braun,PTS,11.5,DraftKings
-401909980,4431767,Christian Braun,REB,3.5,DraftKings
+401909980,4431767,Christian Braun,REB,4.5,DraftKings
 401909980,5144091,Jeremiah Fears,3PM,1.5,DraftKings
 401909980,5144091,Jeremiah Fears,AST,5.5,DraftKings
 401909980,5144091,Jeremiah Fears,PTS,18.5,DraftKings
@@ -117,11 +117,10 @@ game_id,player_id,player,stat,line,source
 401909982,6475,Klay Thompson,3PM,3.5,DraftKings
 401909982,6475,Klay Thompson,PTS,13.5,DraftKings
 401909983,2991070,Jerami Grant,3PM,1.5,DraftKings
-401909983,2991070,Jerami Grant,PTS,10.5,DraftKings
 401909983,2991070,Jerami Grant,REB,2.5,DraftKings
 401909983,3064514,Julius Randle,3PM,1.5,DraftKings
 401909983,3064514,Julius Randle,AST,4.5,DraftKings
-401909983,3064514,Julius Randle,PTS,21.5,DraftKings
+401909983,3064514,Julius Randle,PTS,20.5,DraftKings
 401909983,3064514,Julius Randle,REB,6.5,DraftKings
 401909983,4065733,Ty Jerome,3PM,2.5,DraftKings
 401909983,4065733,Ty Jerome,AST,5.5,DraftKings
@@ -129,10 +128,10 @@ game_id,player_id,player,stat,line,source
 401909983,4065733,Ty Jerome,REB,2.5,DraftKings
 401909983,4278104,Michael Porter Jr.,3PM,3.5,DraftKings
 401909983,4278104,Michael Porter Jr.,AST,2.5,DraftKings
-401909983,4278104,Michael Porter Jr.,PTS,23.5,DraftKings
+401909983,4278104,Michael Porter Jr.,PTS,22.5,DraftKings
 401909983,4278104,Michael Porter Jr.,REB,6.5,DraftKings
-401909983,4432194,Day'Ron Sharpe,AST,4.5,DraftKings
-401909983,4432194,Day'Ron Sharpe,PTS,9.5,DraftKings
+401909983,4432194,Day'Ron Sharpe,AST,3.5,DraftKings
+401909983,4432194,Day'Ron Sharpe,PTS,8.5,DraftKings
 401909983,4432194,Day'Ron Sharpe,REB,7.5,DraftKings
 401909983,4600663,Zach Edey,PTS,8.5,DraftKings
 401909983,4600663,Zach Edey,REB,7.5,DraftKings
@@ -150,7 +149,7 @@ game_id,player_id,player,stat,line,source
 401909983,5112087,Jaylen Wells,REB,2.5,DraftKings
 401909983,5175643,,3PM,1.5,DraftKings
 401909983,5175643,,AST,2.5,DraftKings
-401909983,5175643,,PTS,11.5,DraftKings
+401909983,5175643,,PTS,10.5,DraftKings
 401909983,5175643,,REB,2.5,DraftKings
 401909983,5279130,Nolan Traore,3PM,1.5,DraftKings
 401909983,5279130,Nolan Traore,AST,3.5,DraftKings

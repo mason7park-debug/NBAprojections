@@ -53,6 +53,7 @@
     function lines(L, label) {
       if (!L) return '<p class="note">No prop lines graded in this view yet. Lines started on Nov 13, 2026.</p>';
       return '<div class="tiles"><div class="tile"><div class="k">Lines graded, ' + label + '</div><div class="v">' + L.n + '</div><div class="s">' + pc(L.went_over) + ' went over</div></div>' +
+        '<div class="tile"><div class="k">Avg over chance the page gave</div><div class="v">' + pc(L.avg_chance) + '</div><div class="s">' + (L.avg_chance == null ? '' : (Math.abs(L.avg_chance - L.went_over) <= 0.03 ? 'in line with what happened' : (L.avg_chance < L.went_over ? 'runs low: ' : 'runs high: ') + pc(L.went_over) + ' went over')) + '</div></div>' +
         '<div class="tile"><div class="k">Avg miss: model vs line</div><div class="v">' + num(L.model_mae, 2) + ' vs ' + num(L.line_mae, 2) + '</div><div class="s">' + (L.model_mae < L.line_mae ? 'model closer on average' : 'line closer on average') + '</div></div>' +
         '<div class="tile"><div class="k">Model closer than the line</div><div class="v">' + pc(L.model_closer) + '</div><div class="s">50% would be even</div></div>' +
         '<div class="tile"><div class="k">Page leaned over (60%+)</div><div class="v">' + pc(L.lean_over.right) + '</div><div class="s">went over, of ' + L.lean_over.n + '</div></div>' +

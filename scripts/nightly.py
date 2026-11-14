@@ -461,8 +461,11 @@ def run_project(date, data, docs, now=None, lock=True):
         return
     odds = {r["game_id"]: r for r in read_csv(data / "odds" / f"{date}.csv")}
     inj = read_csv(data / "injuries" / f"{date}.csv")
-    out_ids = {r["player_id"] for r in inj if (r.get("status") or "").lower() == "out"}
-    gtd_ids = {r["player_id"] for r in inj if (r.get("status") or "").lower() != "out"}
+    # Only these statuses mean "might play". Anything else on the report (Out, Suspension,
+    # and any status not seen before) is treated as not playing.
+    maybe = ("day-to-day", "questionable", "probable", "game time decision", "gtd")
+    gtd_ids = {r["player_id"] for r in inj if (r.get("status") or "").strip().lower() in maybe}
+    out_ids = {r["player_id"] for r in inj} - gtd_ids
     lines = {}      # prop lines, matched by ESPN player id when the file has one, by name otherwise
     for r in read_csv(data / "props" / f"{date}.csv"):
         v = fnum(r.get("line"))
@@ -1021,6 +1024,7 @@ def report_lines(z):
     share = lambda test, rows: round(sum(1 for r in rows if test(r)) / len(rows), 3) if rows else None
     over = lambda r: f(r, "actual") > f(r, "line")
     out = {"n": len(z), "went_over": share(over, z),
+           "avg_chance": round(statistics.mean(f(r, "p_over") for r in z), 3),
            "model_mae": round(statistics.mean(abs(f(r, "actual") - f(r, "expected")) for r in z), 2),
            "line_mae": round(statistics.mean(abs(f(r, "actual") - f(r, "line")) for r in z), 2),
            "model_closer": share(lambda r: abs(f(r, "actual") - f(r, "expected")) < abs(f(r, "actual") - f(r, "line")), z),

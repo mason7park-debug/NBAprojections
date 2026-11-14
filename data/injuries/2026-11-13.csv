@@ -34,15 +34,13 @@ game_id,team,player_id,player,status,type
 401909301,UTAH,4066336,Lauri Markkanen,Out,Hand
 401909301,UTAH,3102530,Jusuf Nurkic,Out,Foot
 401909301,UTAH,4277961,Jaren Jackson Jr.,Out,Knee
-401909302,SA,4395630,Devin Vassell,Day-To-Day,Groin
-401909302,SA,4066259,De'Aaron Fox,Day-To-Day,Hip
 401909302,SA,6440,Tobias Harris,Out,Calf
 401909302,SA,5101845,Jayden Quaintance,Out,Knee
-401909302,GS,4397886,Charles Bassey,Day-To-Day,Toe
 401909302,GS,3975,Stephen Curry,Out,Abdomen
 401909302,GS,4397040,Brandon Williams,Out,Hamstring
 401909302,GS,3102531,Kristaps Porzingis,Out,Illness
 401909302,GS,4432171,Moses Moody,Out,Knee
+401909302,GS,6430,Jimmy Butler III,Out,Knee
 401909303,SAC,4431679,Precious Achiuwa,Out,Ankle
 401909303,SAC,4898371,Maxime Raynaud,Out,Knee
 401909303,SAC,3907387,Ben Simmons,Out,Achilles

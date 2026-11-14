@@ -78,9 +78,18 @@ jobs:
           git config user.name  "nba-data-bot"
           git config user.email "actions@github.com"
           git add data logs docs
-          git diff --staged --quiet || git commit -m "nightly: $(TZ=America/New_York date '+%Y-%m-%d %H:%M ET')"
-          git pull --rebase
-          git push
+          if git diff --staged --quiet; then echo "Nothing new to save."; exit 0; fi
+          git commit -m "nightly: $(TZ=America/New_York date '+%Y-%m-%d %H:%M ET')"
+          # Two runs can start seconds apart (GitHub's own schedule plus an outside timer).
+          # Whichever finishes first publishes. If this run's files clash with what the other
+          # one just published, drop this copy: the other run's numbers are just as fresh.
+          git fetch origin main
+          if ! git rebase origin/main; then
+            git rebase --abort
+            echo "Another run published while this one was working. Dropping this copy."
+            exit 0
+          fi
+          git push || echo "Another run published first. Dropping this copy."
 
       - name: Report problems
         if: steps.results.outcome == 'failure' || steps.pregame.outcome == 'failure' || steps.project.outcome == 'failure'

@@ -268,7 +268,7 @@ game_id,player_id,player,stat,line,source
 401909991,3202,Kevin Durant,PTS,21.5,Draft Kings
 401909991,3202,Kevin Durant,REB,5.5,Draft Kings
 401909991,4277905,Trae Young,3PM,2.5,Draft Kings
-401909991,4277905,Trae Young,AST,8.5,Draft Kings
+401909991,4277905,Trae Young,AST,7.5,Draft Kings
 401909991,4277905,Trae Young,PTS,18.5,Draft Kings
 401909991,4277905,Trae Young,REB,2.5,Draft Kings
 401909991,4432639,Jabari Smith Jr.,3PM,2.5,Draft Kings
@@ -284,14 +284,16 @@ game_id,player_id,player,stat,line,source
 401909991,4684740,Amen Thompson,REB,7.5,Draft Kings
 401909991,4711272,Reed Sheppard,3PM,2.5,Draft Kings
 401909991,4711272,Reed Sheppard,AST,3.5,Draft Kings
-401909991,4711272,Reed Sheppard,PTS,13.5,Draft Kings
-401909991,4711272,Reed Sheppard,REB,3.5,Draft Kings
+401909991,4711272,Reed Sheppard,PTS,12.5,Draft Kings
+401909991,4711272,Reed Sheppard,REB,2.5,Draft Kings
 401909991,4871144,Alperen Sengun,3PM,0.5,Draft Kings
 401909991,4871144,Alperen Sengun,AST,7.5,Draft Kings
-401909991,4871144,Alperen Sengun,PTS,20.5,Draft Kings
-401909991,4871144,Alperen Sengun,REB,9.5,Draft Kings
+401909991,4871144,Alperen Sengun,PTS,19.5,Draft Kings
+401909991,4871144,Alperen Sengun,REB,8.5,Draft Kings
+401909991,5104155,Bilal Coulibaly,PTS,7.5,Draft Kings
+401909991,5104155,Bilal Coulibaly,REB,3.5,Draft Kings
 401909991,5142718,AJ Dybantsa,3PM,1.5,Draft Kings
-401909991,5142718,AJ Dybantsa,AST,2.5,Draft Kings
+401909991,5142718,AJ Dybantsa,AST,1.5,Draft Kings
 401909991,5142718,AJ Dybantsa,PTS,15.5,Draft Kings
 401909991,5142718,AJ Dybantsa,REB,5.5,Draft Kings
 401909991,5160992,Alex Sarr,3PM,0.5,Draft Kings
@@ -302,14 +304,10 @@ game_id,player_id,player,stat,line,source
 401909991,5174563,Kyshawn George,AST,3.5,Draft Kings
 401909991,5174563,Kyshawn George,PTS,14.5,Draft Kings
 401909991,5174563,Kyshawn George,REB,4.5,Draft Kings
-401909991,5238230,Tre Johnson,3PM,1.5,Draft Kings
-401909991,5238230,Tre Johnson,AST,1.5,Draft Kings
-401909991,5238230,Tre Johnson,PTS,9.5,Draft Kings
-401909991,5238230,Tre Johnson,REB,2.5,Draft Kings
 401909991,6583,Anthony Davis,3PM,0.5,Draft Kings
-401909991,6583,Anthony Davis,AST,2.5,Draft Kings
+401909991,6583,Anthony Davis,AST,1.5,Draft Kings
 401909991,6583,Anthony Davis,PTS,22.5,Draft Kings
-401909991,6583,Anthony Davis,REB,10.5,Draft Kings
+401909991,6583,Anthony Davis,REB,9.5,Draft Kings
 401909992,2490149,CJ McCollum,3PM,2.5,Draft Kings
 401909992,2490149,CJ McCollum,AST,4.5,Draft Kings
 401909992,2490149,CJ McCollum,PTS,16.5,Draft Kings

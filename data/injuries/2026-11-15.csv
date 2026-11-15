@@ -23,13 +23,14 @@ game_id,team,player_id,player,status,type
 401909988,UTAH,4066336,Lauri Markkanen,Out,Hand
 401909988,UTAH,3102530,Jusuf Nurkic,Out,Foot
 401909988,UTAH,4277961,Jaren Jackson Jr.,Out,Knee
+401909988,SA,4066259,De'Aaron Fox,Day-To-Day,Hip
 401909988,SA,6440,Tobias Harris,Out,Calf
 401909988,SA,5101845,Jayden Quaintance,Out,Knee
-401909989,DAL,4278049,Daniel Gafford,Day-To-Day,Face
+401909989,DAL,4593125,Santi Aldama,Day-To-Day,Ankle
 401909989,DAL,4432582,Max Christie,Day-To-Day,Ankle
+401909989,DAL,6442,Kyrie Irving,Day-To-Day,Knee
+401909989,DAL,4278049,Daniel Gafford,Day-To-Day,Shoulder
 401909989,DAL,4683688,Dereck Lively II,Out,Foot
-401909989,DAL,5148538,Tarik Biberovic,Out,Heel
-401909989,DAL,5279129,Sergio de Larrea,Out,Knee
 401909990,TOR,4432586,Nate Bittle,Out,Foot
 401909990,TOR,4433134,Scottie Barnes,Out,Groin
 401909990,TOR,4411057,Kevin McCullar Jr.,Day-To-Day,Illness
@@ -40,16 +41,15 @@ game_id,team,player_id,player,status,type
 401909991,WSH,4997537,Tristan Vukcevic,Out,Hip
 401909991,WSH,4432187,Reece Beekman,Out,Shoulder
 401909991,HOU,3102529,Clint Capela,Out,Ankle
-401909991,HOU,2991235,Steven Adams,Out,Calf
 401909991,HOU,2991230,Fred VanVleet,Out,Knee
 401909991,HOU,2990992,Marcus Smart,Suspension,Suspension
 401909992,MIL,4591725,Ryan Rollins,Day-To-Day,Illness
 401909992,MIL,4997526,Ousmane Dieng,Out,Finger
+401909992,ATL,3146557,Jock Landale,Day-To-Day,Hip
 401909992,ATL,5149077,Kingston Flemings,Out,Back
 401909992,ATL,4712863,Mouhamed Gueye,Out,Foot
 401909992,ATL,4585618,Keshon Gilbert,Out,Knee
 401909992,ATL,4873201,Asa Newell,Out,Toe
-401909992,ATL,5105571,Henri Veesaar,Out,Knee
 401909993,SAC,4898371,Maxime Raynaud,Out,Knee
 401909993,SAC,4594327,Keegan Murray,Day-To-Day,Illness
 401909993,SAC,4431679,Precious Achiuwa,Day-To-Day,Ankle

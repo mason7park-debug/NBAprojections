@@ -1,0 +1,61 @@
+game_id,team,player_id,player,status,type
+401909985,PHI,3059318,Joel Embiid,Out,Foot
+401909985,PHI,4870562,Dominick Barlow,Out,Back
+401909985,PHI,5105637,Adem Bona,Out,Back
+401909985,PHI,4871141,Ariel Hukporti,Out,Achilles
+401909985,IND,4395712,Andrew Nembhard,Day-To-Day,Hip
+401909985,IND,2530530,T.J. McConnell,Day-To-Day,Hamstring
+401909985,IND,4396909,Aaron Nesmith,Day-To-Day,Hand
+401909985,IND,4396993,Tyrese Haliburton,Out,Hamstring
+401909985,IND,5157066,Johnny Furphy,Out,Knee
+401909986,PHX,4431695,Drew Timme,Day-To-Day,Hand
+401909986,PHX,4701232,Mark Williams,Out,Shoulder
+401909986,LAL,5060631,Adou Thiero,Day-To-Day,Ankle
+401909986,LAL,4277811,Collin Sexton,Day-To-Day,Head
+401909986,LAL,4066457,Austin Reaves,Out,Heel
+401909987,LAC,3913176,Brandon Ingram,Out,Achilles
+401909987,LAC,5108024,Yanic Konan Niederhauser,Out,Foot
+401909987,LAC,6580,Bradley Beal,Out,Knee
+401909987,LAC,4396818,Jordan Miller,Out,Shoulder
+401909987,CHA,5061575,Kon Knueppel,Out,Hamstring
+401909987,CHA,3032979,Dennis Schroder,Out,Hamstring
+401909988,UTAH,4397077,Jaxson Hayes,Out,Knee
+401909988,UTAH,4433268,Trey Alexander,Out,Ankle
+401909988,UTAH,4066336,Lauri Markkanen,Out,Hand
+401909988,UTAH,3102530,Jusuf Nurkic,Out,Foot
+401909988,UTAH,4277961,Jaren Jackson Jr.,Out,Knee
+401909988,SA,6440,Tobias Harris,Out,Calf
+401909988,SA,5101845,Jayden Quaintance,Out,Knee
+401909989,DAL,4278049,Daniel Gafford,Out,Face
+401909989,DAL,4432582,Max Christie,Out,Ankle
+401909989,DAL,4683688,Dereck Lively II,Out,Foot
+401909989,DAL,5148538,Tarik Biberovic,Out,Heel
+401909989,DAL,5279129,Sergio de Larrea,Out,Knee
+401909990,TOR,4432586,Nate Bittle,Out,Foot
+401909990,TOR,4433134,Scottie Barnes,Out,Groin
+401909990,TOR,4411057,Kevin McCullar Jr.,Day-To-Day,Illness
+401909990,TOR,6450,Kawhi Leonard,Out,Knee
+401909991,WSH,5160992,Alex Sarr,Day-To-Day,Illness
+401909991,WSH,5238230,Tre Johnson,Day-To-Day,Back
+401909991,WSH,4845374,Bub Carrington,Day-To-Day,Chest
+401909991,WSH,4997537,Tristan Vukcevic,Out,Hip
+401909991,WSH,4432187,Reece Beekman,Out,Shoulder
+401909991,HOU,3102529,Clint Capela,Out,Ankle
+401909991,HOU,2991235,Steven Adams,Out,Calf
+401909991,HOU,2991230,Fred VanVleet,Out,Knee
+401909991,HOU,2990992,Marcus Smart,Suspension,Suspension
+401909992,MIL,4997526,Ousmane Dieng,Out,Finger
+401909992,ATL,5149077,Kingston Flemings,Out,Back
+401909992,ATL,4712863,Mouhamed Gueye,Out,Foot
+401909992,ATL,4585618,Keshon Gilbert,Out,Knee
+401909992,ATL,4873201,Asa Newell,Out,Toe
+401909992,ATL,5105571,Henri Veesaar,Out,Knee
+401909993,SAC,4898371,Maxime Raynaud,Out,Knee
+401909993,SAC,4594327,Keegan Murray,Day-To-Day,Illness
+401909993,SAC,4431679,Precious Achiuwa,Day-To-Day,Ankle
+401909993,SAC,3907387,Ben Simmons,Out,Achilles
+401909993,OKC,4432823,Jaylin Williams,Out,Back
+401909993,OKC,4900671,Ajay Mitchell,Day-To-Day,Ankle
+401909993,OKC,5061603,Thomas Sorber,Out,Knee
+401909993,OKC,4683692,Cason Wallace,Out,Shoulder
+401909993,OKC,4433255,Chet Holmgren,Out,Knee

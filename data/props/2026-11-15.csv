@@ -264,7 +264,7 @@ game_id,player_id,player,stat,line,source
 401909991,3037789,Bogdan Bogdanovic,3PM,1.5,Draft Kings
 401909991,3037789,Bogdan Bogdanovic,PTS,6.5,Draft Kings
 401909991,3202,Kevin Durant,3PM,1.5,Draft Kings
-401909991,3202,Kevin Durant,AST,3.5,Draft Kings
+401909991,3202,Kevin Durant,AST,4.5,Draft Kings
 401909991,3202,Kevin Durant,PTS,21.5,Draft Kings
 401909991,3202,Kevin Durant,REB,5.5,Draft Kings
 401909991,4277905,Trae Young,3PM,2.5,Draft Kings
@@ -309,28 +309,28 @@ game_id,player_id,player,stat,line,source
 401909991,6583,Anthony Davis,PTS,22.5,Draft Kings
 401909991,6583,Anthony Davis,REB,10.5,Draft Kings
 401909992,2490149,CJ McCollum,3PM,2.5,Draft Kings
-401909992,2490149,CJ McCollum,AST,4.5,Draft Kings
-401909992,2490149,CJ McCollum,PTS,16.5,Draft Kings
+401909992,2490149,CJ McCollum,AST,3.5,Draft Kings
+401909992,2490149,CJ McCollum,PTS,15.5,Draft Kings
 401909992,2490149,CJ McCollum,REB,2.5,Draft Kings
 401909992,3133628,Myles Turner,3PM,1.5,Draft Kings
 401909992,3133628,Myles Turner,AST,1.5,Draft Kings
 401909992,3133628,Myles Turner,PTS,9.5,Draft Kings
-401909992,3133628,Myles Turner,REB,5.5,Draft Kings
+401909992,3133628,Myles Turner,REB,6.5,Draft Kings
 401909992,3134907,Kyle Kuzma,3PM,1.5,Draft Kings
 401909992,3134907,Kyle Kuzma,AST,2.5,Draft Kings
-401909992,3134907,Kyle Kuzma,PTS,11.5,Draft Kings
+401909992,3134907,Kyle Kuzma,PTS,12.5,Draft Kings
 401909992,3134907,Kyle Kuzma,REB,5.5,Draft Kings
 401909992,4278039,Nickeil Alexander-Walker,3PM,3.5,Draft Kings
 401909992,4278039,Nickeil Alexander-Walker,AST,2.5,Draft Kings
 401909992,4278039,Nickeil Alexander-Walker,PTS,21.5,Draft Kings
 401909992,4278039,Nickeil Alexander-Walker,REB,3.5,Draft Kings
 401909992,4395725,Tyler Herro,3PM,2.5,Draft Kings
-401909992,4395725,Tyler Herro,AST,4.5,Draft Kings
-401909992,4395725,Tyler Herro,PTS,21.5,Draft Kings
+401909992,4395725,Tyler Herro,AST,5.5,Draft Kings
+401909992,4395725,Tyler Herro,PTS,22.5,Draft Kings
 401909992,4395725,Tyler Herro,REB,4.5,Draft Kings
 401909992,4397020,Luguentz Dort,3PM,1.5,Draft Kings
 401909992,4397020,Luguentz Dort,PTS,8.5,Draft Kings
-401909992,4397183,Aaron Wiggins,3PM,1.5,Draft Kings
+401909992,4397183,Aaron Wiggins,3PM,2.5,Draft Kings
 401909992,4397183,Aaron Wiggins,AST,2.5,Draft Kings
 401909992,4397183,Aaron Wiggins,PTS,12.5,Draft Kings
 401909992,4397183,Aaron Wiggins,REB,3.5,Draft Kings
@@ -340,22 +340,22 @@ game_id,player_id,player,stat,line,source
 401909992,4431680,Onyeka Okongwu,REB,7.5,Draft Kings
 401909992,4432848,Jaime Jaquez Jr.,3PM,1.5,Draft Kings
 401909992,4432848,Jaime Jaquez Jr.,AST,3.5,Draft Kings
-401909992,4432848,Jaime Jaquez Jr.,PTS,14.5,Draft Kings
-401909992,4432848,Jaime Jaquez Jr.,REB,5.5,Draft Kings
-401909992,4591725,Ryan Rollins,3PM,1.5,Draft Kings
-401909992,4591725,Ryan Rollins,PTS,10.5,Draft Kings
+401909992,4432848,Jaime Jaquez Jr.,PTS,15.5,Draft Kings
+401909992,4432848,Jaime Jaquez Jr.,REB,4.5,Draft Kings
 401909992,4701230,Jalen Johnson,3PM,1.5,Draft Kings
 401909992,4701230,Jalen Johnson,AST,7.5,Draft Kings
-401909992,4701230,Jalen Johnson,PTS,21.5,Draft Kings
+401909992,4701230,Jalen Johnson,PTS,22.5,Draft Kings
 401909992,4701230,Jalen Johnson,REB,9.5,Draft Kings
 401909992,4869342,Dyson Daniels,3PM,0.5,Draft Kings
 401909992,4869342,Dyson Daniels,AST,5.5,Draft Kings
 401909992,4869342,Dyson Daniels,PTS,9.5,Draft Kings
 401909992,4869342,Dyson Daniels,REB,6.5,Draft Kings
 401909992,5082206,Brayden Burries,3PM,1.5,Draft Kings
-401909992,5082206,Brayden Burries,AST,2.5,Draft Kings
-401909992,5082206,Brayden Burries,PTS,11.5,Draft Kings
-401909992,5082206,Brayden Burries,REB,5.5,Draft Kings
+401909992,5082206,Brayden Burries,AST,3.5,Draft Kings
+401909992,5082206,Brayden Burries,PTS,12.5,Draft Kings
+401909992,5082206,Brayden Burries,REB,6.5,Draft Kings
+401909992,5105623,Kel'el Ware,PTS,8.5,Draft Kings
+401909992,5105623,Kel'el Ware,REB,5.5,Draft Kings
 401909992,5164559,Nate Ament,PTS,8.5,Draft Kings
 401909992,5164559,Nate Ament,REB,3.5,Draft Kings
 401909993,3064440,Zach LaVine,3PM,2.5,Draft Kings

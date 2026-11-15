@@ -9,8 +9,6 @@ game_id,team,player_id,player,status,type
 401909985,IND,4433076,Ben Sheppard,Out,Knee
 401909986,PHX,4431695,Drew Timme,Day-To-Day,Hand
 401909986,PHX,4701232,Mark Williams,Out,Shoulder
-401909986,LAL,5060631,Adou Thiero,Day-To-Day,Ankle
-401909986,LAL,4277811,Collin Sexton,Day-To-Day,Head
 401909986,LAL,4066457,Austin Reaves,Out,Heel
 401909987,LAC,3913176,Brandon Ingram,Out,Achilles
 401909987,LAC,5108024,Yanic Konan Niederhauser,Out,Foot
@@ -36,10 +34,10 @@ game_id,team,player_id,player,status,type
 401909990,TOR,4411057,Kevin McCullar Jr.,Day-To-Day,Illness
 401909990,TOR,6450,Kawhi Leonard,Out,Knee
 401909991,WSH,5238230,Tre Johnson,Day-To-Day,Back
-401909991,WSH,4845374,Bub Carrington,Day-To-Day,Chest
 401909991,WSH,4997537,Tristan Vukcevic,Out,Hip
 401909991,WSH,4432187,Reece Beekman,Out,Shoulder
 401909991,WSH,4432907,Justin Champagnie,Out,Foot
+401909991,WSH,4606840,Jamir Watkins,Out,Knee
 401909991,HOU,3102529,Clint Capela,Out,Ankle
 401909991,HOU,2991230,Fred VanVleet,Out,Knee
 401909991,HOU,2990992,Marcus Smart,Suspension,Suspension
@@ -51,7 +49,6 @@ game_id,team,player_id,player,status,type
 401909992,ATL,4585618,Keshon Gilbert,Out,Knee
 401909992,ATL,4873201,Asa Newell,Out,Toe
 401909993,SAC,4898371,Maxime Raynaud,Out,Knee
-401909993,SAC,4594327,Keegan Murray,Day-To-Day,Illness
 401909993,SAC,4431679,Precious Achiuwa,Day-To-Day,Ankle
 401909993,SAC,3907387,Ben Simmons,Out,Achilles
 401909993,OKC,4432823,Jaylin Williams,Out,Back

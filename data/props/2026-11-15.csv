@@ -186,15 +186,15 @@ game_id,player_id,player,stat,line,source
 401909989,4065648,Jayson Tatum,PTS,26.5,Draft Kings
 401909989,4065648,Jayson Tatum,REB,6.5,Draft Kings
 401909989,4065804,Sam Hauser,3PM,1.5,Draft Kings
-401909989,4065804,Sam Hauser,PTS,6.5,Draft Kings
+401909989,4065804,Sam Hauser,PTS,7.5,Draft Kings
 401909989,4065804,Sam Hauser,REB,2.5,Draft Kings
 401909989,4066354,Payton Pritchard,3PM,2.5,Draft Kings
 401909989,4066354,Payton Pritchard,AST,3.5,Draft Kings
-401909989,4066354,Payton Pritchard,PTS,14.5,Draft Kings
+401909989,4066354,Payton Pritchard,PTS,13.5,Draft Kings
 401909989,4066354,Payton Pritchard,REB,3.5,Draft Kings
 401909989,4251,Paul George,3PM,2.5,Draft Kings
 401909989,4251,Paul George,AST,3.5,Draft Kings
-401909989,4251,Paul George,PTS,19.5,Draft Kings
+401909989,4251,Paul George,PTS,18.5,Draft Kings
 401909989,4251,Paul George,REB,4.5,Draft Kings
 401909989,4278049,Daniel Gafford,PTS,8.5,Draft Kings
 401909989,4278049,Daniel Gafford,REB,6.5,Draft Kings
@@ -243,7 +243,7 @@ game_id,player_id,player,stat,line,source
 401909990,3934719,OG Anunoby,REB,4.5,Draft Kings
 401909990,4395625,RJ Barrett,3PM,1.5,Draft Kings
 401909990,4395625,RJ Barrett,AST,4.5,Draft Kings
-401909990,4395625,RJ Barrett,PTS,20.5,Draft Kings
+401909990,4395625,RJ Barrett,PTS,19.5,Draft Kings
 401909990,4395625,RJ Barrett,REB,5.5,Draft Kings
 401909990,4395724,Immanuel Quickley,3PM,2.5,Draft Kings
 401909990,4395724,Immanuel Quickley,AST,4.5,Draft Kings
@@ -280,7 +280,7 @@ game_id,player_id,player,stat,line,source
 401909991,4433192,Tari Eason,PTS,11.5,Draft Kings
 401909991,4433192,Tari Eason,REB,6.5,Draft Kings
 401909991,4684740,Amen Thompson,AST,4.5,Draft Kings
-401909991,4684740,Amen Thompson,PTS,17.5,Draft Kings
+401909991,4684740,Amen Thompson,PTS,16.5,Draft Kings
 401909991,4684740,Amen Thompson,REB,7.5,Draft Kings
 401909991,4711272,Reed Sheppard,3PM,2.5,Draft Kings
 401909991,4711272,Reed Sheppard,AST,3.5,Draft Kings
@@ -289,7 +289,6 @@ game_id,player_id,player,stat,line,source
 401909991,4871144,Alperen Sengun,3PM,0.5,Draft Kings
 401909991,4871144,Alperen Sengun,AST,7.5,Draft Kings
 401909991,4871144,Alperen Sengun,PTS,20.5,Draft Kings
-401909991,4871144,Alperen Sengun,REB,9.5,Draft Kings
 401909991,5142718,AJ Dybantsa,3PM,1.5,Draft Kings
 401909991,5142718,AJ Dybantsa,AST,2.5,Draft Kings
 401909991,5142718,AJ Dybantsa,PTS,15.5,Draft Kings

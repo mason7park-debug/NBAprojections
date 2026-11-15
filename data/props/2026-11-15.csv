@@ -187,7 +187,7 @@ game_id,player_id,player,stat,line,source
 401909989,3138160,Caleb Martin,REB,3.5,DraftKings
 401909989,4065648,Jayson Tatum,3PM,2.5,DraftKings
 401909989,4065648,Jayson Tatum,AST,6.5,DraftKings
-401909989,4065648,Jayson Tatum,PTS,26.5,DraftKings
+401909989,4065648,Jayson Tatum,PTS,25.5,DraftKings
 401909989,4065648,Jayson Tatum,REB,7.5,DraftKings
 401909989,4065804,Sam Hauser,3PM,1.5,DraftKings
 401909989,4065804,Sam Hauser,PTS,6.5,DraftKings
@@ -198,7 +198,7 @@ game_id,player_id,player,stat,line,source
 401909989,4066354,Payton Pritchard,REB,2.5,DraftKings
 401909989,4251,Paul George,3PM,2.5,DraftKings
 401909989,4251,Paul George,AST,3.5,DraftKings
-401909989,4251,Paul George,PTS,19.5,DraftKings
+401909989,4251,Paul George,PTS,18.5,DraftKings
 401909989,4251,Paul George,REB,4.5,DraftKings
 401909989,4278078,P.J. Washington,3PM,1.5,DraftKings
 401909989,4278078,P.J. Washington,PTS,11.5,DraftKings
@@ -216,8 +216,8 @@ game_id,player_id,player,stat,line,source
 401909989,5041939,Cooper Flagg,AST,5.5,DraftKings
 401909989,5041939,Cooper Flagg,PTS,22.5,DraftKings
 401909989,5041939,Cooper Flagg,REB,6.5,DraftKings
-401909989,5211175,Zaccharie Risacher,3PM,0.5,DraftKings
-401909989,5211175,Zaccharie Risacher,PTS,6.5,DraftKings
+401909989,5211175,Zaccharie Risacher,3PM,1.5,DraftKings
+401909989,5211175,Zaccharie Risacher,PTS,7.5,DraftKings
 401909989,5211175,Zaccharie Risacher,REB,3.5,DraftKings
 401909989,6442,Kyrie Irving,3PM,2.5,DraftKings
 401909989,6442,Kyrie Irving,AST,3.5,DraftKings

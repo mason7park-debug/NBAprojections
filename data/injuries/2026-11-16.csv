@@ -11,7 +11,7 @@ game_id,team,player_id,player,status,type
 401909995,CHI,5105555,Tobe Awaka,Out,Back
 401909995,CHI,4397189,Jalen Smith,Day-To-Day,Finger
 401909995,CHI,5095151,Caleb Wilson,Out,Hand
-401909996,WSH,5238230,Tre Johnson,Out,Back
+401909996,WSH,5238230,Tre Johnson,Day-To-Day,Back
 401909996,WSH,4997537,Tristan Vukcevic,Out,Hip
 401909996,WSH,4432187,Reece Beekman,Out,Shoulder
 401909996,WSH,4432907,Justin Champagnie,Out,Foot
@@ -26,8 +26,9 @@ game_id,team,player_id,player,status,type
 401909997,PHI,5105637,Adem Bona,Out,Back
 401909997,PHI,4871141,Ariel Hukporti,Out,Achilles
 401909998,MIA,4601025,Pelle Larsson,Day-To-Day,Illness
+401909998,HOU,5105553,Julian Phillips,Day-To-Day,Wrist
+401909998,HOU,2991230,Fred VanVleet,Day-To-Day,Knee
 401909998,HOU,3102529,Clint Capela,Out,Ankle
-401909998,HOU,2991230,Fred VanVleet,Out,Knee
 401909998,HOU,2990992,Marcus Smart,Suspension,Suspension
 401909999,MIN,4432247,Jaylen Clark,Out,Hamstring
 401909999,MIN,4594268,Anthony Edwards,Out,Knee

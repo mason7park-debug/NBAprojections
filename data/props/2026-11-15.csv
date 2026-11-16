@@ -358,42 +358,38 @@ game_id,player_id,player,stat,line,source
 401909992,5105623,Kel'el Ware,REB,5.5,DraftKings
 401909992,5164559,Nate Ament,PTS,9.5,DraftKings
 401909992,5164559,Nate Ament,REB,3.5,DraftKings
-401909993,3064440,Zach LaVine,3PM,2.5,DraftKings
-401909993,3064440,Zach LaVine,AST,2.5,DraftKings
-401909993,3064440,Zach LaVine,PTS,19.5,DraftKings
-401909993,3064440,Zach LaVine,REB,3.5,DraftKings
-401909993,3133626,Kenrich Williams,3PM,1.5,DraftKings
-401909993,3133626,Kenrich Williams,AST,1.5,DraftKings
-401909993,3133626,Kenrich Williams,PTS,8.5,DraftKings
-401909993,3133626,Kenrich Williams,REB,4.5,DraftKings
-401909993,3155942,Domantas Sabonis,AST,5.5,DraftKings
-401909993,3155942,Domantas Sabonis,PTS,13.5,DraftKings
-401909993,3155942,Domantas Sabonis,REB,11.5,DraftKings
-401909993,4065732,De'Andre Hunter,3PM,1.5,DraftKings
-401909993,4065732,De'Andre Hunter,AST,1.5,DraftKings
-401909993,4065732,De'Andre Hunter,PTS,13.5,DraftKings
-401909993,4065732,De'Andre Hunter,REB,4.5,DraftKings
-401909993,4222252,Isaiah Hartenstein,AST,4.5,DraftKings
-401909993,4222252,Isaiah Hartenstein,PTS,9.5,DraftKings
-401909993,4222252,Isaiah Hartenstein,REB,10.5,DraftKings
-401909993,4278073,Shai Gilgeous-Alexander,3PM,2.5,DraftKings
-401909993,4278073,Shai Gilgeous-Alexander,AST,5.5,DraftKings
-401909993,4278073,Shai Gilgeous-Alexander,PTS,32.5,DraftKings
-401909993,4278073,Shai Gilgeous-Alexander,REB,3.5,DraftKings
-401909993,4594327,,3PM,1.5,DraftKings
-401909993,4594327,,PTS,11.5,DraftKings
-401909993,4594327,,REB,4.5,DraftKings
-401909993,4683778,Jared McCain,3PM,2.5,DraftKings
-401909993,4683778,Jared McCain,AST,2.5,DraftKings
-401909993,4683778,Jared McCain,PTS,15.5,DraftKings
-401909993,4683778,Jared McCain,REB,3.5,DraftKings
-401909993,4900671,Ajay Mitchell,3PM,1.5,DraftKings
-401909993,4900671,Ajay Mitchell,AST,3.5,DraftKings
-401909993,4900671,Ajay Mitchell,PTS,17.5,DraftKings
-401909993,4900671,Ajay Mitchell,REB,3.5,DraftKings
-401909993,5142620,Darius Acuff Jr.,3PM,2.5,DraftKings
-401909993,5142620,Darius Acuff Jr.,AST,6.5,DraftKings
-401909993,5142620,Darius Acuff Jr.,PTS,23.5,DraftKings
-401909993,5142620,Darius Acuff Jr.,REB,3.5,DraftKings
-401909993,5174983,Aday Mara,PTS,9.5,DraftKings
-401909993,5174983,Aday Mara,REB,6.5,DraftKings
+401909993,3133626,Kenrich Williams,3PM,1.5,Draft Kings
+401909993,3133626,Kenrich Williams,AST,1.5,Draft Kings
+401909993,3133626,Kenrich Williams,PTS,8.5,Draft Kings
+401909993,3133626,Kenrich Williams,REB,4.5,Draft Kings
+401909993,3155942,Domantas Sabonis,AST,4.5,Draft Kings
+401909993,3155942,Domantas Sabonis,PTS,13.5,Draft Kings
+401909993,3155942,Domantas Sabonis,REB,12.5,Draft Kings
+401909993,4065732,De'Andre Hunter,3PM,1.5,Draft Kings
+401909993,4065732,De'Andre Hunter,AST,1.5,Draft Kings
+401909993,4065732,De'Andre Hunter,PTS,13.5,Draft Kings
+401909993,4065732,De'Andre Hunter,REB,3.5,Draft Kings
+401909993,4222252,Isaiah Hartenstein,AST,3.5,Draft Kings
+401909993,4222252,Isaiah Hartenstein,PTS,9.5,Draft Kings
+401909993,4222252,Isaiah Hartenstein,REB,10.5,Draft Kings
+401909993,4278073,Shai Gilgeous-Alexander,3PM,2.5,Draft Kings
+401909993,4278073,Shai Gilgeous-Alexander,AST,5.5,Draft Kings
+401909993,4278073,Shai Gilgeous-Alexander,PTS,31.5,Draft Kings
+401909993,4278073,Shai Gilgeous-Alexander,REB,4.5,Draft Kings
+401909993,4594327,,3PM,1.5,Draft Kings
+401909993,4594327,,PTS,12.5,Draft Kings
+401909993,4594327,,REB,4.5,Draft Kings
+401909993,4683778,Jared McCain,3PM,2.5,Draft Kings
+401909993,4683778,Jared McCain,AST,1.5,Draft Kings
+401909993,4683778,Jared McCain,PTS,14.5,Draft Kings
+401909993,4683778,Jared McCain,REB,3.5,Draft Kings
+401909993,4900671,Ajay Mitchell,3PM,1.5,Draft Kings
+401909993,4900671,Ajay Mitchell,AST,3.5,Draft Kings
+401909993,4900671,Ajay Mitchell,PTS,18.5,Draft Kings
+401909993,4900671,Ajay Mitchell,REB,3.5,Draft Kings
+401909993,5142620,Darius Acuff Jr.,3PM,2.5,Draft Kings
+401909993,5142620,Darius Acuff Jr.,AST,6.5,Draft Kings
+401909993,5142620,Darius Acuff Jr.,PTS,25.5,Draft Kings
+401909993,5142620,Darius Acuff Jr.,REB,3.5,Draft Kings
+401909993,5174983,Aday Mara,PTS,8.5,Draft Kings
+401909993,5174983,Aday Mara,REB,6.5,Draft Kings

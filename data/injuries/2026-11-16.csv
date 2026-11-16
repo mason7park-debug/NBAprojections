@@ -16,11 +16,11 @@ game_id,team,player_id,player,status,type
 401909996,WSH,4432187,Reece Beekman,Out,Shoulder
 401909996,WSH,4432907,Justin Champagnie,Out,Foot
 401909996,WSH,4606840,Jamir Watkins,Out,Knee
+401909996,MEM,4431785,Scotty Pippen Jr.,Out,Back
 401909996,MEM,5105550,GG Jackson,Out,Foot
 401909996,MEM,4432810,Isaiah Stewart,Day-To-Day,Illness
 401909996,MEM,4065733,Ty Jerome,Out,Hip
 401909996,MEM,4593016,Quinten Post,Out,Concussion
-401909996,MEM,4600663,Zach Edey,Day-To-Day,Ankle
 401909997,PHI,3059318,Joel Embiid,Day-To-Day,Foot
 401909997,PHI,4870562,Dominick Barlow,Out,Back
 401909997,PHI,5105637,Adem Bona,Out,Back
@@ -48,5 +48,4 @@ game_id,team,player_id,player,status,type
 401910000,GS,3102531,Kristaps Porzingis,Out,Illness
 401910000,GS,4432171,Moses Moody,Out,Knee
 401910001,DEN,4432181,Julian Strawther,Out,Knee
-401910001,PHX,4431695,Drew Timme,Day-To-Day,
 401910001,PHX,4701232,Mark Williams,Out,Shoulder

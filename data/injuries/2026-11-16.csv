@@ -4,13 +4,11 @@ game_id,team,player_id,player,status,type
 401909994,ORL,5214637,Noah Penda,Out,Hamstring
 401909994,ORL,4432573,Paolo Banchero,Out,Ankle
 401909994,ORL,5107251,Izaiyah Nelson,Out,Ankle
+401909995,CLE,4683747,Jaylon Tyson,Out,Ankle
 401909995,CLE,4432158,Evan Mobley,Out,Toe
-401909995,CLE,4683747,Jaylon Tyson,Day-To-Day,Ankle
-401909995,CLE,4576087,Peyton Watson,Day-To-Day,Abdomen
 401909995,CLE,4066757,Sam Merrill,Out,Elbow
 401909995,CLE,5106268,Nae'Qwan Tomlin,Out,Back
 401909995,CHI,5105555,Tobe Awaka,Out,Back
-401909995,CHI,4397189,Jalen Smith,Day-To-Day,Finger
 401909995,CHI,5095151,Caleb Wilson,Out,Hand
 401909996,WSH,4997537,Tristan Vukcevic,Out,Hip
 401909996,WSH,4432187,Reece Beekman,Out,Shoulder
@@ -26,8 +24,8 @@ game_id,team,player_id,player,status,type
 401909997,PHI,4870562,Dominick Barlow,Out,Back
 401909997,PHI,5105637,Adem Bona,Out,Back
 401909997,PHI,4871141,Ariel Hukporti,Out,Achilles
-401909998,MIA,4997528,Nikola Jovic,Day-To-Day,Illness
-401909998,MIA,4601025,Pelle Larsson,Day-To-Day,Illness
+401909998,MIA,4601025,Pelle Larsson,Out,Illness
+401909998,MIA,4997528,Nikola Jovic,Out,Illness
 401909998,HOU,4684740,Amen Thompson,Day-To-Day,Knee
 401909998,HOU,3102529,Clint Capela,Out,Ankle
 401909998,HOU,2991235,Steven Adams,Out,Calf

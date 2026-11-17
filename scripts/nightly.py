@@ -283,6 +283,7 @@ def load_history(data, before):
                  "PTS": fnum(r.get("PTS"), 0.0), "REB": fnum(r.get("REB"), 0.0),
                  "AST": fnum(r.get("AST"), 0.0), "3PM": made(r.get("3PT")),
                  "FTM": made(r.get("FT")),
+                 "STL": fnum(r.get("STL"), 0.0), "BLK": fnum(r.get("BLK"), 0.0),
                  "starter": str(r.get("starter", "")).lower() == "true",
                  "pos": (r.get("pos") or "F")[-1] if (r.get("pos") or "") not in ("G", "F", "C") else r.get("pos")}
             p = players[r["player_id"]]
@@ -377,6 +378,32 @@ def team_absences(team, by_team, out_ids, gtd_ids, team_games, date):
     return lost, names
 
 
+# Absences that change the OTHER team's night. Measured on 2024-25 and 2025-26, each team
+# against itself: steals leader out -> opponent +1.6 points; top rebounder out -> opponent
+# +1.8 rebounds and +2.2 paint points; shot blocker out -> opponent +1.8 paint points; lead
+# playmaker out -> about one fewer possession for both teams. Notes only: no number changes.
+KEY_ROLES = (("rebounder", "top rebounder", lambda pr: pr["REB"] >= 9 and pr["mpg"] >= 26),
+             ("blocker", "shot blocker", lambda pr: pr["BLK"] >= 1.4 and pr["mpg"] >= 24),
+             ("stealer", "steals leader", lambda pr: pr["STL"] >= 1.5 and pr["mpg"] >= 26),
+             ("playmaker", "lead playmaker", lambda pr: pr["AST"] >= 7 and pr["mpg"] >= 28))
+
+
+def key_absences(team, by_team, out_ids, gtd_ids, team_games):
+    days = sorted({r["_date"] for r in team_games.get(team, [])})
+    if not days:
+        return []
+    cutoff = days[-4:][0]
+    out = []
+    for pid, pr in by_team.get(team, []):
+        missing = pid in out_ids or (pr["last_date"] < cutoff and pid not in gtd_ids)
+        if not missing or pr["gp"] < 5:
+            continue
+        for key, label, test in KEY_ROLES:
+            if test(pr):
+                out.append({"role": key, "label": label, "name": pr["name"]})
+    return out
+
+
 def on_back_to_back(team, team_games, date):
     return any(r["_date"] == date - dt.timedelta(days=1) for r in team_games.get(team, []))
 
@@ -438,7 +465,8 @@ def player_profile(p):
             "pos": max(("G", "F", "C"), key=lambda k: sum(1 for x in g if x["pos"] == k)),
             "last_date": g[-1]["date"],
             "start_share": sum(1 for x in g[-5:] if x["starter"]) / len(g[-5:]),
-            "FTM": sum(x["FTM"] for x in g) / n}
+            "FTM": sum(x["FTM"] for x in g) / n,
+            "STL": sum(x["STL"] for x in g) / n, "BLK": sum(x["BLK"] for x in g) / n}
     for s in STATS:
         prof[s] = sum(x[s] for x in g) / n
     last5 = g[-5:]
@@ -605,7 +633,8 @@ def run_project(date, data, docs, now=None, lock=True):
         for t in (home, away):
             lost, names = team_absences(t, by_team, out_ids, gtd_ids, team_games, date)
             b2b = on_back_to_back(t, team_games, date)
-            adj[t] = {"missing": names, "b2b": b2b, "minus": round(INJ_K * lost + (B2B_PTS if b2b else 0.0), 1)}
+            adj[t] = {"missing": names, "b2b": b2b, "minus": round(INJ_K * lost + (B2B_PTS if b2b else 0.0), 1),
+                      "key_out": key_absences(t, by_team, out_ids, gtd_ids, team_games)}
         pred = game_prediction(home, away, raw, lg, lg_pace, spread, total, adj[home]["minus"], adj[away]["minus"],
                                prior=prior_teams)
         if pred:
@@ -668,7 +697,10 @@ def run_project(date, data, docs, now=None, lock=True):
                     rows.append(entry)
             team_blocks.append({"team": team, "opp": opp, "area": {k: round(v, 3) for k, v in area.items()},
                                 "out_scorers": [o[1]["name"] for o in outs], "b2b": adj[team]["b2b"],
-                                "dvp": dvp_block(opp), "opp_games": od["games"], "players": rows})
+                                "dvp": dvp_block(opp), "opp_games": od["games"],
+                                # what the other team is missing tonight, and whether it is the tired one
+                                "opp_missing": adj[opp]["key_out"],
+                                "opp_tired": bool(adj[opp]["b2b"] and not adj[team]["b2b"]), "players": rows})
 
         sims, flags = simulate_game(eff_spread, sim_players, gi)
         for tb in team_blocks:

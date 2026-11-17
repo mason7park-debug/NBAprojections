@@ -56,6 +56,22 @@
     }).join('') + '</div><p class="lead" style="margin-top:12px">When a betting line is posted, the score and win chance shown are the ones the line implies, because the line has been more accurate than this page\'s own game model (see Record). The model\'s score sits underneath as a second opinion, and it is the main number only when no line is posted. When the two differed by 3 or more points, the line was closer about 2 times in 3. Fair ML is the win chance written as odds with no sportsbook fee. Blowout risk is a weak signal: games tagged Low still ended by 20 or more about 1 time in 5, and High about 1 in 3, so lean on the blowout floor. Tap a game to jump to its players.</p></section>';
   }
 
+  // What the other team is missing tonight, as short notes for one stat. Notes only: these do not move any number.
+  function oppNotes(t, s, pos) {
+    var o = [], m = t.opp_missing || [];
+    function has(role) { return m.some(function (x) { return x.role === role; }); }
+    if (s === 'REB' && has('rebounder')) o.push(esc(t.opp) + ' top rebounder out');
+    if (s === 'PTS' && has('stealer')) o.push(esc(t.opp) + ' steals leader out');
+    if (s === 'PTS' && has('blocker') && pos !== 'G') o.push(esc(t.opp) + ' shot blocker out');
+    if (s === 'PTS' && t.opp_tired) o.push(esc(t.opp) + ' on a back-to-back');
+    return o;
+  }
+  function oppLine(t) {
+    var m = t.opp_missing || [], bits = [];
+    if (m.length) bits.push(esc(t.opp) + ' without ' + m.map(function (x) { return x.label + ' ' + esc(x.name.split(' ').slice(-1)[0]); }).join(', '));
+    if (t.opp_tired) bits.push(esc(t.opp) + ' on a back-to-back, ' + esc(t.team) + ' rested');
+    return bits.join(' · ');
+  }
   // Position matchups. SOFT/TOUGH are raw gaps in what a defense has allowed to a position.
   // Checked on 1,419 player-games (Oct 30 to Nov 11, 2026): about a fifth of the raw gap
   // carried over. Points rose against soft spots but did not fall against tough ones, and
@@ -88,6 +104,15 @@
       return '<a class="tg mlink" href="#g-' + x.gid + '"><div class="g">' + esc(x.team) + ' ' + PNAME[x.pos].toLowerCase() + ' · ' + x.s + ' <span class="' + (x.v > 1 ? 'up' : 'down') + '">' + rel(x.v) + '</span></div><div class="m">' + esc(x.def) + ' defense vs ' + PNAME[x.pos].toLowerCase() + ', so far</div>' +
         '<div class="p">' + x.pl.map(function (p) { return esc(p.name) + ' ' + p.stats[x.s].expected; }).join(' · ') + '</div></a>';
     }
+    function absCard(bl) {
+      var EFFECT = { rebounder: 'rebounds and paint points lean up', blocker: 'paint points lean up', stealer: 'points lean up, fewer turnovers', playmaker: 'slower game, slightly fewer chances for both teams' };
+      var items = [];
+      bl.forEach(function (b) {
+        (b.t.opp_missing || []).forEach(function (x) { items.push('<a class="tg mlink" href="#g-' + b.g.game_id + '"><div class="g">' + esc(b.t.opp) + ' without ' + esc(x.name) + '</div><div class="m">' + x.label + '</div><div class="p">For ' + esc(b.t.team) + ': ' + EFFECT[x.role] + '</div></a>'); });
+        if (b.t.opp_tired) items.push('<a class="tg mlink" href="#g-' + b.g.game_id + '"><div class="g">' + esc(b.t.opp) + ' on a back-to-back</div><div class="m">' + esc(b.t.team) + ' is rested</div><div class="p">For ' + esc(b.t.team) + ': points lean up</div></a>');
+      });
+      return '<div class="card"><h3>Key absences and rest</h3><div class="body">' + (items.length ? items.join('') : '<div class="tg"><div class="p">No top rebounder, shot blocker, steals leader or lead playmaker is out tonight, and no team is tired against a rested one.</div></div>') + '</div></div>';
+    }
     function card(title, list, empty) {
       return '<div class="card"><h3>' + title + '</h3><div class="body">' + (list.length ? list.slice(0, 8).map(item).join('') : '<div class="tg"><div class="p">' + empty + '</div></div>') + '</div></div>';
     }
@@ -100,8 +125,8 @@
       }).join('') + '</tbody></table></div>';
     return '<section id="matchups"><div class="eyebrow">Position matchups</div><div class="grid2">' +
       card('▲ Soft spots tonight', soft, 'No defense tonight has been 12% or more above average against a position.') +
-      card('▼ Tough spots tonight', tough, 'No defense tonight has been 12% or more below average against a position in rebounds or assists.') + '</div>' + tbl +
-      '<p class="lead" style="margin-top:10px">Percentages are what each defense has allowed to that position so far, against the league average. They are small samples, so read them as a lean. On 1,419 player-games this season about a fifth of the gap carried over to the next game: a defense that had allowed 25% more to a position meant about 5% more for the next player there. Points rose against soft spots but did not fall against tough ones, so tough spots are not flagged for points. Threes are in the table but not flagged: so far neither a defense\'s record against a position nor its threes allowed overall has carried over to the next game. The Record section tracks all four stats every night, so this will show if a pattern appears. The projections already include position defense at the strength the record supports.</p></section>';
+      card('▼ Tough spots tonight', tough, 'No defense tonight has been 12% or more below average against a position in rebounds or assists.') + absCard(blocks) + '</div>' + tbl +
+      '<p class="lead" style="margin-top:10px">Percentages are what each defense has allowed to that position so far, against the league average. They are small samples, so read them as a lean. On 1,419 player-games this season about a fifth of the gap carried over to the next game: a defense that had allowed 25% more to a position meant about 5% more for the next player there. Key absences and rest come from two full seasons, each team compared with itself: with the steals leader out the other team scored 1.6 more points, with the top rebounder out it grabbed 1.8 more rebounds and scored 2.2 more in the paint, with the shot blocker out 1.8 more in the paint, and a tired team against a rested one gave up 1.5 more points. Those are whole-team numbers split across about nine players, and they are notes only: they do not change any projection. A missing scorer did not help the other team at all. Points rose against soft spots but did not fall against tough ones, so tough spots are not flagged for points. Threes are in the table but not flagged: so far neither a defense\'s record against a position nor its threes allowed overall has carried over to the next game. The Record section tracks all four stats every night, so this will show if a pattern appears. The projections already include position defense at the strength the record supports.</p></section>';
   }
   function mcheck(x) {
     var m = x.matchup_check; if (!m || !Object.keys(m).length) return '';
@@ -124,6 +149,7 @@
       var o = [], st = x.p.stats[s];
       if (spot(x.t, x.p.pos, s) > 0) o.push('soft matchup');
       if ((s === 'PTS' || s === 'AST') && st.bump >= 1.03 && x.t.out_scorers.length) o.push(esc(x.t.out_scorers[0].split(' ').slice(-1)[0]) + ' out');
+      oppNotes(x.t, s, x.p.pos).forEach(function (n) { o.push(n); });
       if (x.g.ceiling && x.g.ceiling[s] >= 1.05) o.push('target game');
       else if (x.g.pace >= 1.03) o.push('fast game');
       return o;
@@ -250,7 +276,7 @@
     g.teams.forEach(function (t) {
       var a = t.area;
       body += '<tr class="teamsplit"><td colspan="' + cols + '">' + esc(t.team) + ' <span class="vs">vs ' + esc(t.opp) + ' defense: threes ' + rel(a.f3) + ', paint ' + rel(a.fpaint) + ', free throws ' + rel(a.fft) +
-        (t.b2b ? ' · back-to-back' : '') + (t.out_scorers.length ? ' · out: ' + t.out_scorers.map(esc).join(', ') : '') + '</span></td></tr>';
+        (oppLine(t) ? ' · <span class="up">' + oppLine(t) + '</span>' : '') + (t.b2b ? ' · back-to-back' : '') + (t.out_scorers.length ? ' · out: ' + t.out_scorers.map(esc).join(', ') : '') + '</span></td></tr>';
       var bench = false;
       t.players.forEach(function (p) {
         if (p.role === 'bench' && !bench) { bench = true; body += '<tr class="benchrow"><td colspan="' + cols + '">Bench</td></tr>'; }

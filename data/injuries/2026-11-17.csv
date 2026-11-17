@@ -1,4 +1,5 @@
 game_id,team,player_id,player,status,type
+401910002,TOR,4433134,Scottie Barnes,Day-To-Day,Illness
 401910002,TOR,4432586,Nate Bittle,Out,Foot
 401910002,TOR,4411057,Kevin McCullar Jr.,Day-To-Day,Illness
 401910002,TOR,6450,Kawhi Leonard,Out,Knee
@@ -12,10 +13,10 @@ game_id,team,player_id,player,status,type
 401910003,POR,4914336,Shaedon Sharpe,Out,Knee
 401910004,SA,6440,Tobias Harris,Out,Calf
 401910004,SA,5101845,Jayden Quaintance,Out,Knee
+401910004,DET,4395702,Isaiah Joe,Out,Hip
 401910004,DET,3157465,Duncan Robinson,Out,Quadriceps
 401910004,DET,2990962,Taurean Prince,Out,Knee
 401910004,DET,4683771,Ronald Holland II,Out,Knee
-401910004,DET,4395702,Isaiah Joe,Out,Hip
 401910004,DET,4433621,Jalen Duren,Out,Hamstring
 401910006,LAC,5108024,Yanic Konan Niederhauser,Out,Foot
 401910006,LAC,3913176,Brandon Ingram,Out,Achilles

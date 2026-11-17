@@ -103,7 +103,7 @@ game_id,player_id,player,stat,line,source
 401910004,4066372,Kevin Huerter,PTS,12.5,DraftKings
 401910004,4066372,Kevin Huerter,REB,3.5,DraftKings
 401910004,4278562,Paul Reed,AST,1.5,DraftKings
-401910004,4278562,Paul Reed,PTS,11.5,DraftKings
+401910004,4278562,Paul Reed,PTS,10.5,DraftKings
 401910004,4278562,Paul Reed,REB,6.5,DraftKings
 401910004,4395630,Devin Vassell,3PM,1.5,DraftKings
 401910004,4395630,Devin Vassell,AST,2.5,DraftKings
@@ -195,7 +195,7 @@ game_id,player_id,player,stat,line,source
 401910005,3945274,Luka Doncic,REB,7.5,DraftKings
 401910005,4277811,Collin Sexton,3PM,1.5,DraftKings
 401910005,4277811,Collin Sexton,AST,2.5,DraftKings
-401910005,4277811,Collin Sexton,PTS,14.5,DraftKings
+401910005,4277811,Collin Sexton,PTS,13.5,DraftKings
 401910005,4278580,Sandro Mamukelashvili,3PM,1.5,DraftKings
 401910005,4278580,Sandro Mamukelashvili,PTS,12.5,DraftKings
 401910005,4278580,Sandro Mamukelashvili,REB,6.5,DraftKings
@@ -203,9 +203,9 @@ game_id,player_id,player,stat,line,source
 401910005,4395651,,AST,3.5,DraftKings
 401910005,4395651,,PTS,14.5,DraftKings
 401910005,4395651,,REB,2.5,DraftKings
-401910005,4396971,Naz Reid,3PM,1.5,DraftKings
+401910005,4396971,Naz Reid,3PM,2.5,DraftKings
 401910005,4396971,Naz Reid,AST,2.5,DraftKings
-401910005,4396971,Naz Reid,PTS,17.5,DraftKings
+401910005,4396971,Naz Reid,PTS,16.5,DraftKings
 401910005,4396971,Naz Reid,REB,7.5,DraftKings
 401910005,4397014,Quentin Grimes,3PM,1.5,DraftKings
 401910005,4397014,Quentin Grimes,AST,2.5,DraftKings
@@ -223,6 +223,7 @@ game_id,player_id,player,stat,line,source
 401910005,4576060,Ryan Kalkbrenner,PTS,4.5,DraftKings
 401910005,4576060,Ryan Kalkbrenner,REB,4.5,DraftKings
 401910005,4592691,Jake LaRavia,3PM,0.5,DraftKings
+401910005,4592691,Jake LaRavia,AST,2.5,DraftKings
 401910005,4592691,Jake LaRavia,PTS,7.5,DraftKings
 401910005,4592691,Jake LaRavia,REB,4.5,DraftKings
 401910005,4602025,Sion James,3PM,1.5,DraftKings

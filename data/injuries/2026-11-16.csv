@@ -20,7 +20,6 @@ game_id,team,player_id,player,status,type
 401909996,MEM,4065733,Ty Jerome,Out,Hip
 401909996,MEM,5105462,Richie Saunders,Out,Knee
 401909997,PHI,4870562,Dominick Barlow,Out,Back
-401909997,PHI,3059318,Joel Embiid,Day-To-Day,Foot
 401909997,PHI,1966,LeBron James,Out,Back
 401909997,PHI,5105637,Adem Bona,Out,Back
 401909997,PHI,4871141,Ariel Hukporti,Out,Achilles
@@ -43,11 +42,11 @@ game_id,team,player_id,player,status,type
 401910000,NO,4397688,Trey Murphy III,Out,Knee
 401910000,NO,4431675,Trendon Watford,Out,Ankle
 401910000,NO,3907497,Dejounte Murray,Out,Ankle
-401910000,GS,4997536,Gui Santos,Day-To-Day,Ankle
 401910000,GS,3975,Stephen Curry,Out,Abdomen
 401910000,GS,4397040,Brandon Williams,Out,Hamstring
 401910000,GS,3102531,Kristaps Porzingis,Out,Illness
 401910000,GS,4432171,Moses Moody,Out,Knee
+401910000,GS,6430,Jimmy Butler III,Out,Knee
 401910001,DEN,4432181,Julian Strawther,Out,Knee
 401910001,PHX,4888725,Ryan Dunn,Day-To-Day,Thumb
 401910001,PHX,4701232,Mark Williams,Out,Shoulder

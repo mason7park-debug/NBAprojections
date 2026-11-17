@@ -1,11 +1,11 @@
 game_id,team,player_id,player,status,type
-401909994,BOS,4397424,Neemias Queta,Out,Rest
+401909994,BOS,4397424,Neemias Queta,Day-To-Day,Rest
 401909994,ORL,4065654,Jonathan Isaac,Out,Knee
 401909994,ORL,5214637,Noah Penda,Out,Hamstring
 401909994,ORL,4432573,Paolo Banchero,Out,Ankle
 401909994,ORL,5107251,Izaiyah Nelson,Out,Ankle
-401909995,CLE,4576087,Peyton Watson,Out,Head
-401909995,CLE,4683747,Jaylon Tyson,Out,Ankle
+401909995,CLE,4683747,Jaylon Tyson,Day-To-Day,Ankle
+401909995,CLE,4576087,Peyton Watson,Day-To-Day,Head
 401909995,CLE,4432158,Evan Mobley,Out,Toe
 401909995,CLE,4066757,Sam Merrill,Out,Elbow
 401909995,CLE,5106268,Nae'Qwan Tomlin,Out,Back
@@ -17,23 +17,24 @@ game_id,team,player_id,player,status,type
 401909996,WSH,4432187,Reece Beekman,Out,Shoulder
 401909996,WSH,4432907,Justin Champagnie,Out,Foot
 401909996,WSH,4606840,Jamir Watkins,Out,Knee
-401909996,MEM,4432810,Isaiah Stewart,Out,Illness
+401909996,MEM,4432810,Isaiah Stewart,Day-To-Day,Illness
+401909996,MEM,4065733,Ty Jerome,Day-To-Day,Hip
 401909996,MEM,4431785,Scotty Pippen Jr.,Out,Back
 401909996,MEM,5105550,GG Jackson,Out,Foot
-401909996,MEM,4065733,Ty Jerome,Out,Hip
 401909996,MEM,5105462,Richie Saunders,Out,Knee
+401909997,PHI,1966,LeBron James,Day-To-Day,Back
 401909997,PHI,4870562,Dominick Barlow,Out,Back
-401909997,PHI,1966,LeBron James,Out,Back
 401909997,PHI,5105637,Adem Bona,Out,Back
 401909997,PHI,4871141,Ariel Hukporti,Out,Achilles
+401909998,MIA,4997528,Nikola Jovic,Day-To-Day,Illness
 401909998,MIA,4066261,Bam Adebayo,Day-To-Day,Hip
-401909998,MIA,4997528,Nikola Jovic,Out,Illness
 401909998,MIA,4601025,Pelle Larsson,Out,Illness
-401909998,HOU,4684740,Amen Thompson,Out,Knee
+401909998,HOU,4684740,Amen Thompson,Day-To-Day,Knee
+401909998,HOU,2990992,Marcus Smart,Day-To-Day,Suspension
+401909998,HOU,2991235,Steven Adams,Day-To-Day,Calf
 401909998,HOU,3102529,Clint Capela,Out,Ankle
-401909998,HOU,2991235,Steven Adams,Out,Calf
 401909998,HOU,5105553,Julian Phillips,Day-To-Day,Wrist
-401909998,HOU,2990992,Marcus Smart,Suspension,Suspension
+401909999,MIN,4433247,Jonathan Kuminga,Day-To-Day,Shoulder
 401909999,MIN,4432247,Jaylen Clark,Out,Hamstring
 401909999,MIN,4594268,Anthony Edwards,Out,Knee
 401909999,MIN,3934673,Donte DiVincenzo,Out,Achilles
@@ -41,8 +42,8 @@ game_id,team,player_id,player,status,type
 401909999,POR,4578893,Vit Krejci,Out,Ankle
 401909999,POR,4279888,Ja Morant,Out,Hamstring
 401909999,POR,4914336,Shaedon Sharpe,Out,Knee
+401910000,NO,4683634,Bennedict Mathurin,Day-To-Day,Foot
 401910000,NO,4576086,Bryce McGowens,Out,Elbow
-401910000,NO,4683634,Bennedict Mathurin,Out,Foot
 401910000,NO,4397688,Trey Murphy III,Out,Knee
 401910000,NO,4431675,Trendon Watford,Out,Ankle
 401910000,NO,3907497,Dejounte Murray,Out,Ankle

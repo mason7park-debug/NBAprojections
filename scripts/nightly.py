@@ -259,6 +259,41 @@ def tag(pb):
 
 # ------------------------------------------------------------------- history
 
+def fix_centers(players):
+    """ESPN lists many centers as forwards (Wembanyama, Sabonis, Gafford and others).
+
+    When a team's starting five has no listed center, the starting forward who rebounds and
+    blocks the most per minute is the one playing center. A forward who fills that spot in
+    at least 60% of his starts, and at least 5 times, is treated as a center everywhere."""
+    def listed(p):
+        return max(("G", "F", "C"), key=lambda k: sum(1 for g in p["games"] if g["pos"] == k))
+    def big(p):
+        mins = sum(g["MIN"] for g in p["games"])
+        return (sum(g["REB"] for g in p["games"]) + 2 * sum(g["BLK"] for g in p["games"])) / mins if mins else 0.0
+    pos = {pid: listed(p) for pid, p in players.items() if p["games"]}
+    lineups = defaultdict(list)
+    for pid, p in players.items():
+        for g in p["games"]:
+            if g["starter"]:
+                lineups[(g["gid"], g["team"])].append(pid)
+    at_five = defaultdict(int)
+    for five in lineups.values():
+        if any(pos[x] == "C" for x in five):
+            continue
+        forwards = [x for x in five if pos[x] == "F"]
+        if forwards:
+            at_five[max(forwards, key=lambda x: big(players[x]))] += 1
+    fixed = []
+    for pid, n in at_five.items():
+        starts = sum(1 for g in players[pid]["games"] if g["starter"])
+        if n >= 5 and n >= 0.6 * starts:
+            for g in players[pid]["games"]:
+                g["pos"] = "C"
+            players[pid]["center_fix"] = True
+            fixed.append(players[pid]["name"])
+    return fixed
+
+
 def load_history(data, before):
     """Every finished game before `before` (a date). Returns player and team logs."""
     players = defaultdict(lambda: {"name": None, "games": []})
@@ -279,7 +314,8 @@ def load_history(data, before):
             mins = fnum(r.get("MIN"), 0.0)
             if not mins:
                 continue
-            g = {"date": d, "team": r["team"], "MIN": mins,
+            g = {"date": d, "team": r["team"], "MIN": mins, "gid": r["game_id"],
+                 "opp": opp_of.get((r["game_id"], r["team"])),
                  "PTS": fnum(r.get("PTS"), 0.0), "REB": fnum(r.get("REB"), 0.0),
                  "AST": fnum(r.get("AST"), 0.0), "3PM": made(r.get("3PT")),
                  "FTM": made(r.get("FT")),
@@ -289,10 +325,12 @@ def load_history(data, before):
             p = players[r["player_id"]]
             p["name"] = r["player"]
             p["games"].append(g)
-            opp = opp_of.get((r["game_id"], r["team"]))
-            if opp:
+    fix_centers(players)        # before the defense-by-position tables are built
+    for p in players.values():
+        for g in p["games"]:
+            if g["opp"]:
                 for s in STATS:
-                    allowed_pos[opp][r["game_id"]][(g["pos"], s)] += g[s]
+                    allowed_pos[g["opp"]][g["gid"]][(g["pos"], s)] += g[s]
     return players, team_games, allowed_pos
 
 
@@ -810,6 +848,7 @@ def run_project(date, data, docs, now=None, lock=True):
             "lines_found": sum(1 for r in proj_rows if fnum(r["line"]) is not None),
             "players": len(proj_rows) // len(STATS),
             "locked_games": sum(1 for g in games_out if g.get("locked")),
+            "centers_fixed": sorted(p["name"] for p in players.values() if p.get("center_fix")),
             "sd": SD,
             "notes": notes[:40],
         },

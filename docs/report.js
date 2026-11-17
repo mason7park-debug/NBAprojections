@@ -98,7 +98,8 @@
         '<section><div class="eyebrow">Against the prop lines · ' + NAME[stat].toLowerCase() + '</div>' + lines(x.lines[stat], NAME[stat].toLowerCase()) + '</section>' +
         '<section><div class="eyebrow">Against the prop lines · all four stats together</div>' + lines(x.lines.all, 'all stats') + '</section>' +
         '<section><div class="eyebrow">Night by night · ' + NAME[stat].toLowerCase() + '</div>' + nights() + '</section>' +
-        '<section><div class="eyebrow">Last slate · ' + NAME[stat].toLowerCase() + '</div>' + lastCards() + '</section>';
+        '<section><div class="eyebrow">Last slate · ' + NAME[stat].toLowerCase() + '</div>' + lastCards() + '</section>' +
+        '<p style="margin:26px 0 8px"><a class="back" href="./">← Back to the main page</a></p>';
       document.getElementById('sc').addEventListener('click', function (ev) { var v = ev.target.getAttribute && ev.target.getAttribute('data-v'); if (v) { scope = v; draw(); } });
       document.getElementById('ss').addEventListener('click', function (ev) { var v = ev.target.getAttribute && ev.target.getAttribute('data-v'); if (v) { stat = v; try { localStorage.setItem('rep-stat', v); } catch (e2) {} draw(); } });
     }

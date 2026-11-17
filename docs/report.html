@@ -239,11 +239,13 @@
   .bar i{display:block;height:100%;background:var(--accent)}
   table.rt td,table.rt th{white-space:nowrap}
   table.rt td.pl{position:static}
-  .back{font-size:.82rem;color:var(--accent);text-decoration:none;font-weight:600}
+  .back{flex:none;font-size:.86rem;color:var(--accent);text-decoration:none;font-weight:700;border:1.5px solid var(--accent);border-radius:999px;padding:7px 14px;background:var(--surface)}
+  .back:hover{background:var(--accent-soft)}
+  .bar-in{flex-wrap:wrap;row-gap:8px}
   .livepill{font-family:var(--mono);font-size:.64rem;font-weight:700;padding:1px 6px;border-radius:999px;background:rgba(var(--good-rgb),.14);color:var(--good);margin-left:6px}
 </style></head><body>
 <header class="bar"><div class="wrap bar-in"><div class="mark"><span class="court"></span><h1>Projection Report</h1></div>
-<span class="date" id="hdate"></span><span class="spacer"></span><a class="back" href="./">← Tonight's page</a></div></header>
+<span class="date" id="hdate"></span><span class="spacer"></span><a class="back" href="./">← Main page</a></div></header>
 <main class="wrap" id="app"><p class="empty">Loading the report.</p></main>
 <footer class="wrap">Built from every graded night. Estimates from small samples, not guarantees, and not betting advice.</footer>
 <script>

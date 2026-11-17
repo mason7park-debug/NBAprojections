@@ -46,15 +46,16 @@ game_id,player_id,player,stat,line,source
 401910002,5093267,Collin Murray-Boyles,PTS,10.5,DraftKings
 401910002,5093267,Collin Murray-Boyles,REB,6.5,DraftKings
 401910003,3032976,Rudy Gobert,AST,1.5,DraftKings
-401910003,3032976,Rudy Gobert,PTS,9.5,DraftKings
+401910003,3032976,Rudy Gobert,PTS,10.5,DraftKings
 401910003,3032976,Rudy Gobert,REB,10.5,DraftKings
+401910003,3136196,Trey Lyles,PTS,6.5,DraftKings
 401910003,3995,Jrue Holiday,3PM,1.5,DraftKings
 401910003,3995,Jrue Holiday,AST,4.5,DraftKings
 401910003,3995,Jrue Holiday,PTS,13.5,DraftKings
 401910003,3995,Jrue Holiday,REB,3.5,DraftKings
 401910003,4397002,Ayo Dosunmu,3PM,1.5,DraftKings
 401910003,4397002,Ayo Dosunmu,AST,3.5,DraftKings
-401910003,4397002,Ayo Dosunmu,PTS,18.5,DraftKings
+401910003,4397002,Ayo Dosunmu,PTS,19.5,DraftKings
 401910003,4397002,Ayo Dosunmu,REB,4.5,DraftKings
 401910003,4431671,Jaden McDaniels,3PM,1.5,DraftKings
 401910003,4431671,Jaden McDaniels,AST,3.5,DraftKings
@@ -72,6 +73,7 @@ game_id,player_id,player,stat,line,source
 401910003,4432847,Terrence Shannon Jr.,AST,2.5,DraftKings
 401910003,4432847,Terrence Shannon Jr.,PTS,15.5,DraftKings
 401910003,4432847,Terrence Shannon Jr.,REB,3.5,DraftKings
+401910003,4592492,Bones Hyland,PTS,11.5,DraftKings
 401910003,4683021,Deni Avdija,3PM,1.5,DraftKings
 401910003,4683021,Deni Avdija,AST,5.5,DraftKings
 401910003,4683021,Deni Avdija,PTS,24.5,DraftKings
@@ -106,8 +108,8 @@ game_id,player_id,player,stat,line,source
 401910004,4066372,Kevin Huerter,PTS,12.5,DraftKings
 401910004,4066372,Kevin Huerter,REB,3.5,DraftKings
 401910004,4278562,Paul Reed,AST,1.5,DraftKings
-401910004,4278562,Paul Reed,PTS,10.5,DraftKings
-401910004,4278562,Paul Reed,REB,7.5,DraftKings
+401910004,4278562,Paul Reed,PTS,11.5,DraftKings
+401910004,4278562,Paul Reed,REB,6.5,DraftKings
 401910004,4395630,Devin Vassell,3PM,1.5,DraftKings
 401910004,4395630,Devin Vassell,AST,2.5,DraftKings
 401910004,4395630,Devin Vassell,PTS,10.5,DraftKings

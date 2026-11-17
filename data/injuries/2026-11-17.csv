@@ -3,11 +3,13 @@ game_id,team,player_id,player,status,type
 401910002,TOR,4432586,Nate Bittle,Out,Foot
 401910002,TOR,4411057,Kevin McCullar Jr.,Day-To-Day,Illness
 401910002,TOR,6450,Kawhi Leonard,Out,Knee
-401910003,MIN,4433247,Jonathan Kuminga,Day-To-Day,Shoulder
+401910003,MIN,4592979,Zyon Pullin,Out,Quadriceps
+401910003,MIN,4433247,Jonathan Kuminga,Out,Shoulder
 401910003,MIN,4432247,Jaylen Clark,Out,Hamstring
 401910003,MIN,4594268,Anthony Edwards,Out,Knee
 401910003,MIN,3934673,Donte DiVincenzo,Out,Achilles
-401910003,POR,4706557,Chris Youngblood,Out,Foot
+401910003,POR,4683021,Deni Avdija,Day-To-Day,Foot
+401910003,POR,4706557,Chris Youngblood,Out,Heel
 401910003,POR,4578893,Vit Krejci,Out,Ankle
 401910003,POR,4279888,Ja Morant,Out,Hamstring
 401910003,POR,4914336,Shaedon Sharpe,Out,Knee

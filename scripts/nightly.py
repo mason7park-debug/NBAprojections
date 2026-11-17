@@ -1119,15 +1119,17 @@ def build_report(every, docs):
         return {"player": r["player"], "team": r["team"], "stat": r["stat"], "expected": fnum(r["expected"]),
                 "actual": fnum(r["actual"]), "floor": fnum(r["floor"]), "line": fnum(r.get("line")),
                 "minutes": fnum(r["actual_minutes"]), "proj_minutes": fnum(r["minutes"])}
-    pts_last = [r for r in last if r["stat"] == "PTS"]
-    by_gap = sorted(pts_last, key=lambda r: fnum(r["actual"]) - fnum(r["expected"]))
+    beats, misses = {}, {}
+    for s in STATS:         # biggest beats and misses of the last slate, for each stat
+        by_gap = sorted([r for r in last if r["stat"] == s], key=lambda r: fnum(r["actual"]) - fnum(r["expected"]))
+        misses[s] = [card(r) for r in by_gap[:8]]
+        beats[s] = [card(r) for r in by_gap[::-1][:8]]
     report = {
         "generated_et": dt.datetime.now(ET).strftime("%Y-%m-%d %I:%M %p ET"), "live_from": str(LIVE_FROM), "model": MODEL_VERSION,
         "close": CLOSE,
         "live": scope([r for r in played if dt.date.fromisoformat(r["date"]) >= LIVE_FROM]),
         "all": scope(played),
-        "last": {"date": last_date, "scope": scope(last), "misses": [card(r) for r in by_gap[:8]],
-                 "beats": [card(r) for r in by_gap[::-1][:8]]},
+        "last": {"date": last_date, "scope": scope(last), "misses": misses, "beats": beats},
         "nights": nights,
     }
     (docs / "data").mkdir(parents=True, exist_ok=True)

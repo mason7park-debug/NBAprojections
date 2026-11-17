@@ -75,7 +75,8 @@
           list.map(function (c) { return '<tr><td class="pl">' + esc(c.player) + ' <span class="date">' + esc(c.team) + '</span></td><td>' + num(c.expected) + '</td><td>' + num(c.floor, 0) + '</td><td>' + (c.line == null ? '-' : c.line) + '</td><td class="ex">' + num(c.actual, 0) + '</td><td class="dim">' + num(c.minutes, 0) + ' <span class="dim">(' + num(c.proj_minutes, 0) + ')</span></td></tr>'; }).join('') +
           '</tbody></table></div></div>';
       }
-      return '<div class="grid2 rgrid">' + tb(R.last.beats, 'Biggest beats, points · ' + esc(R.last.date)) + tb(R.last.misses, 'Biggest misses, points · ' + esc(R.last.date)) + '</div><p class="note">Minutes show what he played, with what was projected in brackets. Most big misses and beats come with a big minutes surprise.</p>';
+      var bt = R.last.beats[stat] || R.last.beats, ms = R.last.misses[stat] || R.last.misses, nm = NAME[stat].toLowerCase();
+      return '<div class="grid2 rgrid">' + tb(bt, 'Biggest beats, ' + nm + ' · ' + esc(R.last.date)) + tb(ms, 'Biggest misses, ' + nm + ' · ' + esc(R.last.date)) + '</div><p class="note">Minutes show what he played, with what was projected in brackets. Most big misses and beats come with a big minutes surprise.</p>';
     }
     function draw() {
       var x = S();
@@ -97,7 +98,7 @@
         '<section><div class="eyebrow">Against the prop lines · ' + NAME[stat].toLowerCase() + '</div>' + lines(x.lines[stat], NAME[stat].toLowerCase()) + '</section>' +
         '<section><div class="eyebrow">Against the prop lines · all four stats together</div>' + lines(x.lines.all, 'all stats') + '</section>' +
         '<section><div class="eyebrow">Night by night · ' + NAME[stat].toLowerCase() + '</div>' + nights() + '</section>' +
-        '<section><div class="eyebrow">Last slate</div>' + lastCards() + '</section>';
+        '<section><div class="eyebrow">Last slate · ' + NAME[stat].toLowerCase() + '</div>' + lastCards() + '</section>';
       document.getElementById('sc').addEventListener('click', function (ev) { var v = ev.target.getAttribute && ev.target.getAttribute('data-v'); if (v) { scope = v; draw(); } });
       document.getElementById('ss').addEventListener('click', function (ev) { var v = ev.target.getAttribute && ev.target.getAttribute('data-v'); if (v) { stat = v; try { localStorage.setItem('rep-stat', v); } catch (e2) {} draw(); } });
     }

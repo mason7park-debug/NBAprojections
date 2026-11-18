@@ -81,3 +81,15 @@ place then, and blend his minutes in those games with the formula (formula = 2 g
 Neutral overall. Of 191 missing regular starters this season, 30% had never sat before and
 most of the rest only once or twice, so the history is thin. Retry later in the season, or
 with last season's game logs (data/prior holds season totals only).
+
+## Health: day-to-day players and first games back
+Box scores 11/06 to 11/17: players listed day-to-day who played got 77% of their usual minutes
+(20 games). Players back after missing 1 to 3 team games got about 93% in the first game, normal
+by the second (115 games). Effect on the players each rule touches, replay:
+| rule | players | minutes miss | PTS miss | floor hit |
+|---|---|---|---|---|
+| `NBA_RETURN_MIN=0.93` (**on**) | 92 | 4.6 -> 4.6 | 5.66 -> 5.56 | 79% -> 84% |
+| `NBA_GTD_MIN=0.85` (off) | 16 | 6.5 -> 5.5 | 6.01 -> 6.47 | 69% -> 75% |
+Overall points miss is unchanged by either (live 5.209 -> 5.201 with the return rule).
+The ESPN injury feed has status, body part and an expected return date, but no news text, so
+minutes restrictions announced by teams are not in the data yet.

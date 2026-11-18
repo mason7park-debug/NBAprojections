@@ -70,6 +70,22 @@ TPM_MATCHUP = os.environ.get("NBA_3PM_MATCHUP", "none")
 BUMP_TRIGGER = 15.0   # a missing teammate scoring this much can move the others
 BUMP_SHRINK = 4       # games without the teammate before the player's own numbers are trusted
 MIN_SD_BENCH = float(os.environ.get("NBA_MIN_SD_BENCH", 6.0))   # bench minutes swing more than starters'
+# Minutes fill (tested 2026-11-18, left OFF). A player ruled out leaves his minutes behind and
+# the model gives them to nobody, so fill-ins keep their usual minutes (CLE on 2026-11-14 had
+# three players projected at 17 to 23 minutes who all played 34). Modes:
+#   "total" scale everyone up until the team adds back to MIN_FILL_TARGET
+#   "even"  share the ruled-out players' minutes (times MIN_FILL_K) in proportion to usual minutes
+#   "on"    share them by room to grow, so a 20-minute player takes far more than a 35-minute star
+# Each is capped at MIN_FILL_MAX times a player's usual minutes and MIN_FILL_CAP in all.
+# On the replay all of them removed the live minutes bias but none lowered the points miss,
+# the ones that hand out minutes cost the floors 1 to 2 points, and all did worse on the
+# earlier nights. Rerun at 15 live nights: logs/2026-11-18-minutes-fill.md has the commands.
+MIN_FILL = os.environ.get("NBA_MIN_FILL", "off")   # off: see the replay note above
+MIN_FILL_TARGET = float(os.environ.get("NBA_MIN_FILL_TARGET", 240.0))
+MIN_FILL_MAX = float(os.environ.get("NBA_MIN_FILL_MAX", 1.25))
+MIN_FILL_CAP = 40.0
+MIN_FILL_ROOM = float(os.environ.get("NBA_MIN_FILL_ROOM", 38.0))   # minutes where a player has no room left
+MIN_FILL_K = float(os.environ.get("NBA_MIN_FILL_K", 1.0))         # share of the freed minutes handed out
 
 # ============================================================== MODEL (fixed)
 SD = 15.0          # spread of final margin around the point spread
@@ -131,9 +147,12 @@ def p20(values):
     lo = int(math.floor(k)); hi = min(lo + 1, len(v) - 1)
     return v[lo] + (v[hi] - v[lo]) * (k - lo)
 
-def project(per_game, mpg, m, pace_factor, pb, stat, bump=1.0, log_rates=None, recent_rate=None, recent_min=None):
+def project(per_game, mpg, m, pace_factor, pb, stat, bump=1.0, log_rates=None, recent_rate=None, recent_min=None,
+            min_scale=1.0):
     rate = blend(per_game / mpg, recent_rate)
     minutes = blend(mpg, recent_min)
+    if min_scale > 1.0:
+        minutes = max(minutes, min(minutes * min_scale, MIN_FILL_CAP))
     mult = m * pace_factor * bump
     bmin = projected_blowout_minutes(minutes)
     normal = rate * minutes * mult
@@ -559,7 +578,7 @@ def run_project(date, data, docs, now=None, lock=True):
     for pid, pr in profs.items():
         by_team[pr["team"]].append((pid, pr))
 
-    def pool(team):
+    def available(team):
         recent_dates = sorted({r["_date"] for r in team_games.get(team, [])})[-4:]
         cutoff = recent_dates[0] if recent_dates else date
         cands = []
@@ -569,6 +588,41 @@ def run_project(date, data, docs, now=None, lock=True):
             if pr["last_date"] < cutoff and pid not in gtd_ids:
                 continue          # has not played lately and is not on the report
             cands.append((pid, pr))
+        return cands
+
+    def min_scale(team):
+        """Per player: how much to stretch his minutes to cover teammates ruled out tonight."""
+        if MIN_FILL == "off":
+            return {}
+        cands = available(team)
+        usual = {pid: blend(pr["a_mpg"], pr["recent_min"]) for pid, pr in cands}
+        have = sum(usual.values())
+        if not have:
+            return {}
+        if MIN_FILL == "total":
+            f = min(MIN_FILL_MAX, max(1.0, MIN_FILL_TARGET / have))
+            return {pid: f for pid in usual}
+        # the minutes of players ruled out who were still in the rotation in the team's last
+        # 4 games; a longer absence is already in his teammates' recent minutes
+        days = sorted({r["_date"] for r in team_games.get(team, [])})[-4:]
+        cutoff = days[0] if days else date
+        freed = MIN_FILL_K * sum(blend(pr["a_mpg"], pr["recent_min"]) for pid, pr in by_team.get(team, [])
+                                 if pid in out_ids and pr["last_date"] >= cutoff and pr["gp"] >= 3)
+        if not freed:
+            return {}
+        if MIN_FILL == "even":
+            f = min(MIN_FILL_MAX, (have + freed) / have)
+            return {pid: f for pid in usual}
+        # "on": shared by room to grow, so a 20-minute player takes far more than a 35-minute star
+        room = {pid: m * max(0.0, MIN_FILL_ROOM - m) for pid, m in usual.items()}
+        tot = sum(room.values())
+        if not tot:
+            return {}
+        return {pid: min(MIN_FILL_MAX, (m + freed * room[pid] / tot) / m) if m else 1.0
+                for pid, m in usual.items()}
+
+    def pool(team):
+        cands = available(team)
         starters = sorted([c for c in cands if c[1]["start_share"] >= 0.5],
                           key=lambda c: (-c[1]["start_share"], -c[1]["mpg"]))[:5]
         sid = {c[0] for c in starters}
@@ -698,6 +752,7 @@ def run_project(date, data, docs, now=None, lock=True):
                     for k, src in (("f3", "3PM"), ("fpaint", "PAINT"), ("fft", "FTM"))}
             outs = out_scorers(team)
             starters, bench = pool(team)
+            fill = min_scale(team)
             rows = []
             for role, group in (("starter", starters), ("bench", bench)):
                 for pid, pr in group:
@@ -720,7 +775,7 @@ def run_project(date, data, docs, now=None, lock=True):
                         lr = pr["log_rates"][s] or None
                         rr = pr["recent_rate"][s] if pr["recent_rate"] else None
                         normal, blow, expected, rfloor, src, minutes = project(
-                            pr["a_" + s], pr["a_mpg"], m, pace_factor, pb, s, bump, lr, rr, pr["recent_min"])
+                            pr["a_" + s], pr["a_mpg"], m, pace_factor, pb, s, bump, lr, rr, pr["recent_min"], fill.get(pid, 1.0))
                         entry["min"] = minutes
                         entry["stats"][s] = {"normal": normal, "blowout": blow, "expected": expected,
                                              "rule_floor": rfloor, "floor_source": src,
@@ -734,7 +789,7 @@ def run_project(date, data, docs, now=None, lock=True):
                                         "min_sd": MIN_SD_BENCH if role == "bench" else (MIN_SD if entry["star"] else MIN_SD_STARTER)})
                     rows.append(entry)
             team_blocks.append({"team": team, "opp": opp, "area": {k: round(v, 3) for k, v in area.items()},
-                                "out_scorers": [o[1]["name"] for o in outs], "b2b": adj[team]["b2b"],
+                                "out_scorers": [o[1]["name"] for o in outs], "min_fill": {profs[k]["name"]: round(v, 3) for k, v in fill.items() if v > 1.0}, "b2b": adj[team]["b2b"],
                                 "dvp": dvp_block(opp), "opp_games": od["games"],
                                 # what the other team is missing tonight, and whether it is the tired one
                                 "opp_missing": adj[opp]["key_out"],

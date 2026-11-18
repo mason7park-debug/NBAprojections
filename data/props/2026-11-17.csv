@@ -66,7 +66,7 @@ game_id,player_id,player,stat,line,source
 401910003,4431736,Toumani Camara,PTS,11.5,DraftKings
 401910003,4431736,Toumani Camara,REB,3.5,DraftKings
 401910003,4432816,LaMelo Ball,3PM,3.5,DraftKings
-401910003,4432816,LaMelo Ball,AST,5.5,DraftKings
+401910003,4432816,LaMelo Ball,AST,6.5,DraftKings
 401910003,4432816,LaMelo Ball,PTS,20.5,DraftKings
 401910003,4432816,LaMelo Ball,REB,4.5,DraftKings
 401910003,4432847,Terrence Shannon Jr.,3PM,1.5,DraftKings
@@ -91,10 +91,10 @@ game_id,player_id,player,stat,line,source
 401910003,5105565,Donovan Clingan,3PM,0.5,DraftKings
 401910003,5105565,Donovan Clingan,AST,1.5,DraftKings
 401910003,5105565,Donovan Clingan,PTS,11.5,DraftKings
-401910003,5105565,Donovan Clingan,REB,11.5,DraftKings
+401910003,5105565,Donovan Clingan,REB,10.5,DraftKings
 401910003,6606,Damian Lillard,3PM,3.5,DraftKings
 401910003,6606,Damian Lillard,AST,4.5,DraftKings
-401910003,6606,Damian Lillard,PTS,20.5,DraftKings
+401910003,6606,Damian Lillard,PTS,21.5,DraftKings
 401910003,6606,Damian Lillard,REB,3.5,DraftKings
 401910004,2596112,Javonte Green,3PM,1.5,DraftKings
 401910004,2596112,Javonte Green,PTS,7.5,DraftKings
@@ -165,7 +165,7 @@ game_id,player_id,player,stat,line,source
 401910006,4066648,Rui Hachimura,3PM,1.5,DraftKings
 401910006,4066648,Rui Hachimura,AST,1.5,DraftKings
 401910006,4066648,Rui Hachimura,PTS,13.5,DraftKings
-401910006,4066648,Rui Hachimura,REB,5.5,DraftKings
+401910006,4066648,Rui Hachimura,REB,4.5,DraftKings
 401910006,4277919,Mo Bamba,3PM,0.5,DraftKings
 401910006,4277919,Mo Bamba,PTS,10.5,DraftKings
 401910006,4277919,Mo Bamba,REB,9.5,DraftKings

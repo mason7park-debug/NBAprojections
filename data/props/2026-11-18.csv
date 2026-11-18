@@ -69,7 +69,7 @@ game_id,player_id,player,stat,line,source
 401910008,4871144,Alperen Sengun,AST,7.5,DraftKings
 401910008,4871144,Alperen Sengun,PTS,21.5,DraftKings
 401910008,4871144,Alperen Sengun,REB,9.5,DraftKings
-401910009,3032977,Giannis Antetokounmpo,AST,6.5,DraftKings
+401910009,3032977,Giannis Antetokounmpo,AST,5.5,DraftKings
 401910009,3032977,Giannis Antetokounmpo,PTS,29.5,DraftKings
 401910009,3032977,Giannis Antetokounmpo,REB,12.5,DraftKings
 401910009,3059319,Andrew Wiggins,3PM,1.5,DraftKings
@@ -142,8 +142,8 @@ game_id,player_id,player,stat,line,source
 401910010,4351851,Anfernee Simons,PTS,11.5,DraftKings
 401910010,4351851,Anfernee Simons,REB,2.5,DraftKings
 401910010,4431678,Tyrese Maxey,3PM,2.5,DraftKings
-401910010,4431678,Tyrese Maxey,AST,4.5,DraftKings
-401910010,4431678,Tyrese Maxey,PTS,24.5,DraftKings
+401910010,4431678,Tyrese Maxey,AST,5.5,DraftKings
+401910010,4431678,Tyrese Maxey,PTS,25.5,DraftKings
 401910010,4431678,Tyrese Maxey,REB,3.5,DraftKings
 401910010,4432165,,3PM,1.5,DraftKings
 401910010,4432165,,AST,4.5,DraftKings
@@ -218,7 +218,7 @@ game_id,player_id,player,stat,line,source
 401910011,5279130,Nolan Traore,PTS,13.5,DraftKings
 401910012,3134908,Jakob Poeltl,PTS,10.5,DraftKings
 401910012,3134908,Jakob Poeltl,REB,7.5,DraftKings
-401910012,4277905,Trae Young,3PM,1.5,DraftKings
+401910012,4277905,Trae Young,3PM,2.5,DraftKings
 401910012,4277905,Trae Young,AST,8.5,DraftKings
 401910012,4277905,Trae Young,PTS,17.5,DraftKings
 401910012,4277905,Trae Young,REB,2.5,DraftKings
@@ -236,7 +236,7 @@ game_id,player_id,player,stat,line,source
 401910012,4432241,Jamal Shead,REB,2.5,DraftKings
 401910012,4684272,Ja'Kobe Walter,3PM,2.5,DraftKings
 401910012,4684272,Ja'Kobe Walter,AST,1.5,DraftKings
-401910012,4684272,Ja'Kobe Walter,PTS,14.5,DraftKings
+401910012,4684272,Ja'Kobe Walter,PTS,13.5,DraftKings
 401910012,4684272,Ja'Kobe Walter,REB,4.5,DraftKings
 401910012,5093267,Collin Murray-Boyles,AST,2.5,DraftKings
 401910012,5093267,Collin Murray-Boyles,PTS,13.5,DraftKings
@@ -260,7 +260,7 @@ game_id,player_id,player,stat,line,source
 401910012,5238230,Tre Johnson,REB,2.5,DraftKings
 401910012,6583,Anthony Davis,AST,2.5,DraftKings
 401910012,6583,Anthony Davis,PTS,22.5,DraftKings
-401910012,6583,Anthony Davis,REB,10.5,DraftKings
+401910012,6583,Anthony Davis,REB,9.5,DraftKings
 401910013,3908845,John Collins,3PM,1.5,DraftKings
 401910013,3908845,John Collins,PTS,13.5,DraftKings
 401910013,3908845,John Collins,REB,6.5,DraftKings
@@ -321,7 +321,7 @@ game_id,player_id,player,stat,line,source
 401910014,4397183,Aaron Wiggins,REB,3.5,DraftKings
 401910014,4431680,Onyeka Okongwu,3PM,1.5,DraftKings
 401910014,4431680,Onyeka Okongwu,AST,2.5,DraftKings
-401910014,4431680,Onyeka Okongwu,PTS,13.5,DraftKings
+401910014,4431680,Onyeka Okongwu,PTS,14.5,DraftKings
 401910014,4431680,Onyeka Okongwu,REB,7.5,DraftKings
 401910014,4683778,Jared McCain,3PM,2.5,DraftKings
 401910014,4683778,Jared McCain,AST,1.5,DraftKings
@@ -363,8 +363,8 @@ game_id,player_id,player,stat,line,source
 401910016,4997536,Gui Santos,PTS,8.5,DraftKings
 401910016,4997536,Gui Santos,REB,3.5,DraftKings
 401910016,5041939,Cooper Flagg,3PM,1.5,DraftKings
-401910016,5041939,Cooper Flagg,AST,6.5,DraftKings
-401910016,5041939,Cooper Flagg,PTS,23.5,DraftKings
+401910016,5041939,Cooper Flagg,AST,5.5,DraftKings
+401910016,5041939,Cooper Flagg,PTS,24.5,DraftKings
 401910016,5041939,Cooper Flagg,REB,6.5,DraftKings
 401910016,5175737,Yaxel Lendeborg,3PM,2.5,DraftKings
 401910016,5175737,Yaxel Lendeborg,AST,4.5,DraftKings
@@ -447,9 +447,9 @@ game_id,player_id,player,stat,line,source
 401910017,5041955,Darryn Peterson,REB,4.5,DraftKings
 401910018,3064440,Zach LaVine,3PM,2.5,DraftKings
 401910018,3064440,Zach LaVine,AST,2.5,DraftKings
-401910018,3064440,Zach LaVine,PTS,17.5,DraftKings
+401910018,3064440,Zach LaVine,PTS,18.5,DraftKings
 401910018,3064440,Zach LaVine,REB,3.5,DraftKings
-401910018,3136193,Devin Booker,3PM,2.5,DraftKings
+401910018,3136193,Devin Booker,3PM,1.5,DraftKings
 401910018,3136193,Devin Booker,PTS,26.5,DraftKings
 401910018,3136193,Devin Booker,REB,3.5,DraftKings
 401910018,3155526,Dillon Brooks,3PM,1.5,DraftKings
@@ -464,29 +464,29 @@ game_id,player_id,player,stat,line,source
 401910018,4065732,De'Andre Hunter,3PM,1.5,DraftKings
 401910018,4065732,De'Andre Hunter,AST,1.5,DraftKings
 401910018,4065732,De'Andre Hunter,PTS,13.5,DraftKings
-401910018,4065732,De'Andre Hunter,REB,3.5,DraftKings
+401910018,4065732,De'Andre Hunter,REB,4.5,DraftKings
 401910018,4066383,Miles Bridges,3PM,1.5,DraftKings
 401910018,4066383,Miles Bridges,AST,2.5,DraftKings
-401910018,4066383,Miles Bridges,PTS,14.5,DraftKings
-401910018,4066383,Miles Bridges,REB,6.5,DraftKings
+401910018,4066383,Miles Bridges,PTS,13.5,DraftKings
+401910018,4066383,Miles Bridges,REB,5.5,DraftKings
 401910018,4278402,Jordan Goodwin,3PM,1.5,DraftKings
 401910018,4278402,Jordan Goodwin,AST,1.5,DraftKings
 401910018,4278402,Jordan Goodwin,PTS,8.5,DraftKings
 401910018,4278402,Jordan Goodwin,REB,4.5,DraftKings
 401910018,4278585,Collin Gillespie,3PM,2.5,DraftKings
 401910018,4278585,Collin Gillespie,AST,3.5,DraftKings
-401910018,4278585,Collin Gillespie,PTS,11.5,DraftKings
-401910018,4278585,Collin Gillespie,REB,3.5,DraftKings
+401910018,4278585,Collin Gillespie,PTS,10.5,DraftKings
+401910018,4278585,Collin Gillespie,REB,2.5,DraftKings
 401910018,4431679,Precious Achiuwa,PTS,8.5,DraftKings
 401910018,4431679,Precious Achiuwa,REB,5.5,DraftKings
 401910018,4437244,Jalen Green,3PM,1.5,DraftKings
 401910018,4437244,Jalen Green,AST,2.5,DraftKings
-401910018,4437244,Jalen Green,PTS,13.5,DraftKings
+401910018,4437244,Jalen Green,PTS,12.5,DraftKings
 401910018,4437244,Jalen Green,REB,3.5,DraftKings
 401910018,4601023,Oso Ighodaro,AST,2.5,DraftKings
 401910018,4601023,Oso Ighodaro,PTS,6.5,DraftKings
 401910018,4601023,Oso Ighodaro,REB,5.5,DraftKings
-401910018,5142620,Darius Acuff Jr.,3PM,3.5,DraftKings
+401910018,5142620,Darius Acuff Jr.,3PM,2.5,DraftKings
 401910018,5142620,Darius Acuff Jr.,AST,6.5,DraftKings
 401910018,5142620,Darius Acuff Jr.,PTS,24.5,DraftKings
 401910018,5142620,Darius Acuff Jr.,REB,3.5,DraftKings

@@ -49,53 +49,26 @@ game_id,player_id,player,stat,line,source
 401910003,3032976,Rudy Gobert,REB,10.5,DraftKings
 401910003,3136196,Trey Lyles,PTS,7.5,DraftKings
 401910003,3136196,Trey Lyles,REB,4.5,DraftKings
-401910003,3995,Jrue Holiday,3PM,1.5,DraftKings
-401910003,3995,Jrue Holiday,AST,3.5,DraftKings
-401910003,3995,Jrue Holiday,PTS,12.5,DraftKings
-401910003,3995,Jrue Holiday,REB,3.5,DraftKings
 401910003,4397002,Ayo Dosunmu,3PM,1.5,DraftKings
 401910003,4397002,Ayo Dosunmu,AST,3.5,DraftKings
 401910003,4397002,Ayo Dosunmu,PTS,18.5,DraftKings
 401910003,4397002,Ayo Dosunmu,REB,4.5,DraftKings
 401910003,4431671,Jaden McDaniels,3PM,1.5,DraftKings
 401910003,4431671,Jaden McDaniels,AST,3.5,DraftKings
-401910003,4431671,Jaden McDaniels,PTS,16.5,DraftKings
+401910003,4431671,Jaden McDaniels,PTS,17.5,DraftKings
 401910003,4431671,Jaden McDaniels,REB,5.5,DraftKings
-401910003,4431736,Toumani Camara,3PM,1.5,DraftKings
-401910003,4431736,Toumani Camara,AST,1.5,DraftKings
-401910003,4431736,Toumani Camara,PTS,11.5,DraftKings
-401910003,4431736,Toumani Camara,REB,3.5,DraftKings
 401910003,4432816,LaMelo Ball,3PM,3.5,DraftKings
-401910003,4432816,LaMelo Ball,AST,6.5,DraftKings
+401910003,4432816,LaMelo Ball,AST,5.5,DraftKings
 401910003,4432816,LaMelo Ball,PTS,20.5,DraftKings
 401910003,4432816,LaMelo Ball,REB,4.5,DraftKings
 401910003,4432847,Terrence Shannon Jr.,3PM,1.5,DraftKings
 401910003,4432847,Terrence Shannon Jr.,AST,2.5,DraftKings
 401910003,4432847,Terrence Shannon Jr.,PTS,15.5,DraftKings
 401910003,4432847,Terrence Shannon Jr.,REB,3.5,DraftKings
-401910003,4592492,Bones Hyland,3PM,1.5,DraftKings
+401910003,4592492,Bones Hyland,3PM,2.5,DraftKings
 401910003,4592492,Bones Hyland,AST,3.5,DraftKings
-401910003,4592492,Bones Hyland,PTS,11.5,DraftKings
+401910003,4592492,Bones Hyland,PTS,12.5,DraftKings
 401910003,4592492,Bones Hyland,REB,2.5,DraftKings
-401910003,4683021,Deni Avdija,3PM,1.5,DraftKings
-401910003,4683021,Deni Avdija,AST,5.5,DraftKings
-401910003,4683021,Deni Avdija,PTS,24.5,DraftKings
-401910003,4683021,Deni Avdija,REB,5.5,DraftKings
-401910003,4683678,Scoot Henderson,3PM,1.5,DraftKings
-401910003,4683678,Scoot Henderson,AST,2.5,DraftKings
-401910003,4683678,Scoot Henderson,PTS,10.5,DraftKings
-401910003,4683678,Scoot Henderson,REB,2.5,DraftKings
-401910003,5081727,Sidy Cissoko,3PM,1.5,DraftKings
-401910003,5081727,Sidy Cissoko,PTS,6.5,DraftKings
-401910003,5081727,Sidy Cissoko,REB,3.5,DraftKings
-401910003,5105565,Donovan Clingan,3PM,0.5,DraftKings
-401910003,5105565,Donovan Clingan,AST,1.5,DraftKings
-401910003,5105565,Donovan Clingan,PTS,11.5,DraftKings
-401910003,5105565,Donovan Clingan,REB,10.5,DraftKings
-401910003,6606,Damian Lillard,3PM,3.5,DraftKings
-401910003,6606,Damian Lillard,AST,4.5,DraftKings
-401910003,6606,Damian Lillard,PTS,21.5,DraftKings
-401910003,6606,Damian Lillard,REB,3.5,DraftKings
 401910004,2596112,Javonte Green,3PM,1.5,DraftKings
 401910004,2596112,Javonte Green,PTS,7.5,DraftKings
 401910004,2596112,Javonte Green,REB,3.5,DraftKings
@@ -121,7 +94,7 @@ game_id,player_id,player,stat,line,source
 401910004,4395723,Keldon Johnson,REB,5.5,DraftKings
 401910004,4432166,Cade Cunningham,3PM,2.5,DraftKings
 401910004,4432166,Cade Cunningham,AST,8.5,DraftKings
-401910004,4432166,Cade Cunningham,PTS,25.5,DraftKings
+401910004,4432166,Cade Cunningham,PTS,26.5,DraftKings
 401910004,4432166,Cade Cunningham,REB,5.5,DraftKings
 401910004,4592479,Julian Champagnie,3PM,2.5,DraftKings
 401910004,4592479,Julian Champagnie,AST,1.5,DraftKings
@@ -151,7 +124,7 @@ game_id,player_id,player,stat,line,source
 401910006,2991139,Kris Dunn,REB,3.5,DraftKings
 401910006,3448,Brook Lopez,3PM,1.5,DraftKings
 401910006,3448,Brook Lopez,AST,1.5,DraftKings
-401910006,3448,Brook Lopez,PTS,13.5,DraftKings
+401910006,3448,Brook Lopez,PTS,12.5,DraftKings
 401910006,3448,Brook Lopez,REB,5.5,DraftKings
 401910006,3936099,Derrick Jones Jr.,3PM,1.5,DraftKings
 401910006,3936099,Derrick Jones Jr.,PTS,9.5,DraftKings
@@ -193,7 +166,7 @@ game_id,player_id,player,stat,line,source
 401910006,5105839,Brice Sensabaugh,REB,3.5,DraftKings
 401910006,5254165,Keaton Wagler,3PM,1.5,DraftKings
 401910006,5254165,Keaton Wagler,AST,3.5,DraftKings
-401910006,5254165,Keaton Wagler,PTS,11.5,DraftKings
+401910006,5254165,Keaton Wagler,PTS,12.5,DraftKings
 401910006,5254165,Keaton Wagler,REB,3.5,DraftKings
 401910005,3135045,Grayson Allen,3PM,2.5,DraftKings
 401910005,3135045,Grayson Allen,AST,3.5,DraftKings

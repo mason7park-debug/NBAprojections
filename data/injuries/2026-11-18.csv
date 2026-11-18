@@ -10,12 +10,10 @@ game_id,team,player_id,player,status,type
 401910007,MEM,4431785,Scotty Pippen Jr.,Out,Back
 401910007,MEM,5105462,Richie Saunders,Out,Knee
 401910008,IND,4395712,Andrew Nembhard,Out,Hip
-401910008,IND,2530530,T.J. McConnell,Day-To-Day,Hamstring
 401910008,IND,4396993,Tyrese Haliburton,Out,Hamstring
 401910008,IND,5157066,Johnny Furphy,Out,Knee
 401910008,IND,4433076,Ben Sheppard,Out,Knee
 401910008,HOU,3102529,Clint Capela,Out,Ankle
-401910008,HOU,4684740,Amen Thompson,Day-To-Day,Knee
 401910009,MIA,4431772,Myron Gardner,Out,Hamstring
 401910009,MIL,4591725,Ryan Rollins,Out,Illness
 401910009,MIL,4997526,Ousmane Dieng,Out,Finger
@@ -28,10 +26,9 @@ game_id,team,player_id,player,status,type
 401910010,PHI,4870562,Dominick Barlow,Out,Back
 401910010,PHI,5105637,Adem Bona,Out,Back
 401910010,PHI,4871141,Ariel Hukporti,Out,Achilles
-401910011,CHI,4431687,Patrick Williams,Day-To-Day,Finger
 401910011,CHI,5105555,Tobe Awaka,Out,Back
 401910011,CHI,5095151,Caleb Wilson,Out,Hand
-401910012,TOR,4395625,RJ Barrett,Day-To-Day,Hamstring
+401910012,TOR,4395625,RJ Barrett,Out,Hamstring
 401910012,TOR,4433134,Scottie Barnes,Out,Groin
 401910012,TOR,6450,Kawhi Leonard,Out,Knee
 401910012,TOR,4432586,Nate Bittle,Out,Foot

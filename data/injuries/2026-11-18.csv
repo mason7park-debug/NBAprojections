@@ -1,8 +1,7 @@
 game_id,team,player_id,player,status,type
-401910007,CLE,4576087,Peyton Watson,Day-To-Day,Back
+401910007,CLE,4576087,Peyton Watson,Out,Back
 401910007,CLE,4683747,Jaylon Tyson,Out,Ankle
 401910007,CLE,5106268,Nae'Qwan Tomlin,Out,Back
-401910007,CLE,4066757,Sam Merrill,Out,
 401910007,CLE,4432158,Evan Mobley,Out,Toe
 401910007,MEM,5105550,GG Jackson,Out,Foot
 401910007,MEM,4432810,Isaiah Stewart,Out,Illness
@@ -21,9 +20,9 @@ game_id,team,player_id,player,status,type
 401910010,ORL,4065654,Jonathan Isaac,Out,Knee
 401910010,ORL,5214637,Noah Penda,Out,Hamstring
 401910010,ORL,4432573,Paolo Banchero,Out,Ankle
+401910010,PHI,3912848,Dean Wade,Out,Hamstring
 401910010,PHI,4431678,Tyrese Maxey,Day-To-Day,Foot
 401910010,PHI,3917376,Jaylen Brown,Out,Hamstring
-401910010,PHI,3912848,Dean Wade,Day-To-Day,Hamstring
 401910010,PHI,4870562,Dominick Barlow,Out,Back
 401910010,PHI,5105637,Adem Bona,Out,Back
 401910011,CHI,5105555,Tobe Awaka,Out,Back

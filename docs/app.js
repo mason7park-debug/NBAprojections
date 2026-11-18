@@ -93,7 +93,7 @@
       ['G', 'F', 'C'].forEach(function (pos) {
         MSTATS.forEach(function (s) {
           var k = spot(b.t, pos, s); if (!k) return;
-          var pl = b.t.players.filter(function (p) { return p.pos === pos && p.stats[s].expected >= MINV[s]; }).sort(function (x, y) { return y.stats[s].expected - x.stats[s].expected; }).slice(0, 3);
+          var pl = b.t.players.filter(function (p) { return p.pos === pos && p.stats[s].expected >= MINV[s]; }).sort(function (x, y) { return y.stats[s].expected - x.stats[s].expected; });
           if (!pl.length) return;
           (k > 0 ? soft : tough).push({ v: b.t.dvp[pos][s], pos: pos, s: s, def: b.t.opp, team: b.t.team, gid: b.g.game_id, pl: pl });
         });
@@ -114,7 +114,7 @@
       return '<div class="card"><h3>Key absences and rest</h3><div class="body">' + (items.length ? items.join('') : '<div class="tg"><div class="p">No top rebounder, shot blocker, steals leader or lead playmaker is out tonight, and no team is tired against a rested one.</div></div>') + '</div></div>';
     }
     function card(title, list, empty) {
-      return '<div class="card"><h3>' + title + '</h3><div class="body">' + (list.length ? list.slice(0, 8).map(item).join('') : '<div class="tg"><div class="p">' + empty + '</div></div>') + '</div></div>';
+      return '<div class="card"><h3>' + title + '</h3><div class="body">' + (list.length ? list.map(item).join('') : '<div class="tg"><div class="p">' + empty + '</div></div>') + '</div></div>';
     }
     var tbl = '<div class="ceilwrap" style="margin-top:12px"><table class="ceil"><thead><tr><th class="lft" rowspan="2">Defense</th>' + TSTATS.map(function (s) { return '<th class="grp" colspan="3">' + s + ' allowed</th>'; }).join('') + '</tr><tr>' +
       TSTATS.map(function () { return '<th class="grp">G</th><th>F</th><th>C</th>'; }).join('') + '</tr></thead><tbody>' +

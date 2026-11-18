@@ -88,6 +88,8 @@ MIN_FILL_TARGET = float(os.environ.get("NBA_MIN_FILL_TARGET", 240.0))
 MIN_FILL_MAX = float(os.environ.get("NBA_MIN_FILL_MAX", 1.25))
 MIN_FILL_CAP = 40.0
 PROMOTE_POS = os.environ.get("NBA_PROMOTE_POS", "on")   # "on": fill an open starting spot by position first
+PROMOTE_HIST = os.environ.get("NBA_PROMOTE_HIST", "off")   # "on": pick the fill-in from who started when that starter sat before
+PROMOTE_HIST_K = float(os.environ.get("NBA_PROMOTE_HIST_K", 2.0))   # formula counted as this many games
 PROMOTE_A, PROMOTE_B = 17.7, 0.44   # fill-in starter minutes = A + B x usual (fit before 2026-11-12)
 MIN_FILL_ROOM = float(os.environ.get("NBA_MIN_FILL_ROOM", 38.0))   # minutes where a player has no room left
 MIN_FILL_K = float(os.environ.get("NBA_MIN_FILL_K", 1.0))         # share of the freed minutes handed out
@@ -583,6 +585,8 @@ def run_project(date, data, docs, now=None, lock=True):
     for pid, pr in profs.items():
         by_team[pr["team"]].append((pid, pr))
 
+    promo_hist = {}      # player -> his minutes in earlier starts while tonight's missing starter sat
+
     def available(team):
         recent_dates = sorted({r["_date"] for r in team_games.get(team, [])})[-4:]
         cutoff = recent_dates[0] if recent_dates else date
@@ -638,7 +642,11 @@ def run_project(date, data, docs, now=None, lock=True):
         for pid, pr in starters:
             m = usual.get(pid)
             if pr["start_share"] < 0.5 and m:
-                new = min(MIN_FILL_CAP, max(m, PROMOTE_A + PROMOTE_B * m))
+                new = PROMOTE_A + PROMOTE_B * m
+                h = promo_hist.get(pid) if PROMOTE_HIST == "on" else None
+                if h:   # his own minutes as a fill-in starter, trusted more as the games add up
+                    new = (sum(h) + PROMOTE_HIST_K * new) / (len(h) + PROMOTE_HIST_K)
+                new = min(MIN_FILL_CAP, max(m, new))
                 out[pid] = new / m
                 gained += new - m
         if MIN_FILL == "promote+":
@@ -667,11 +675,27 @@ def run_project(date, data, docs, now=None, lock=True):
                 # like for like: each open spot goes first to a player at the missing starter's position
                 days = sorted({r["_date"] for r in team_games.get(team, [])})[-4:]
                 cut = days[0] if days else date
-                gone = sorted([pr for pid, pr in by_team.get(team, [])
+                gone = sorted([(pid, pr) for pid, pr in by_team.get(team, [])
                                if pid in out_ids and pr["start_share"] >= 0.5 and pr["last_date"] >= cut],
-                              key=lambda pr: -pr["mpg"])
-                for g in gone[:5 - len(starters)]:
-                    pick = next((c for c in rest if c[1]["pos"] == g["pos"] and c[0] not in sid), None)
+                              key=lambda c: -c[1]["mpg"])
+                all_days = {r["_date"] for r in team_games.get(team, [])}
+                for gid_, g in gone[:5 - len(starters)]:
+                    pick = None
+                    if PROMOTE_HIST == "on":
+                        # who started when this player sat out earlier this season
+                        away = all_days - {x["date"] for x in players[gid_]["games"] if x["team"] == team}
+                        best, best_n = None, 0
+                        for c in rest:
+                            if c[0] in sid:
+                                continue
+                            mins = [x["MIN"] for x in players[c[0]]["games"]
+                                    if x["team"] == team and x["starter"] and x["date"] in away]
+                            if len(mins) > best_n:
+                                best, best_n = c, len(mins)
+                                promo_hist[c[0]] = mins
+                        pick = best
+                    if pick is None:
+                        pick = next((c for c in rest if c[1]["pos"] == g["pos"] and c[0] not in sid), None)
                     if pick:
                         starters.append(pick); sid.add(pick[0])
                 rest = [c for c in rest if c[0] not in sid]

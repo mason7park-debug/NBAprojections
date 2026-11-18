@@ -67,3 +67,17 @@ for v in off promote; do
 done
 python3 scripts/compare_replay.py /tmp/rp/off /tmp/rp/promote
 ```
+
+## Picking the fill-in from past absences (`NBA_PROMOTE_HIST`, off)
+When tonight's missing starter sat out earlier this season, pick the player who started in his
+place then, and blend his minutes in those games with the formula (formula = 2 games).
+| | right player | fill-in minutes miss | overall PTS miss |
+|---|---|---|---|
+| live, position rule (on) | 58% | 6.2 | 5.209 |
+| live, past absences | 59% | 5.7 | 5.209 |
+| earlier, position rule (on) | 50% | 3.6 | 4.989 |
+| earlier, past absences | 67% | 4.3 | 5.001 |
+
+Neutral overall. Of 191 missing regular starters this season, 30% had never sat before and
+most of the rest only once or twice, so the history is thin. Retry later in the season, or
+with last season's game logs (data/prior holds season totals only).

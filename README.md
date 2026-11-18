@@ -19,6 +19,8 @@ The model's settings are fixed constants at the top of `scripts/nightly.py`. Gra
 
 The settings were frozen on 2026-11-12 (`MODEL_VERSION` in `scripts/nightly.py`). One change was made after that, the same night, at the owner's request: last season's numbers as a starting point (version `2026-11-12b`, data in `data/prior/`). The record on the page is split in two: nights from Oct 30 to Nov 11 were replayed or projected late, and nights from Nov 12 on are live, projected before tip by the scheduled runs. Judge the model on the live nights. No setting changes until 15 live nights are graded, and a change then has to hold up on the live record as well as the replay.
 
+One more change was made on 2026-11-18 at the owner's request, after 6 live nights: a player moved into the starting lineup now gets most of the missing starter's minutes, and the open spot goes to a player at the same position (version `2026-11-18`). It beat the old version on both the live and the earlier nights; see `logs/2026-11-18-minutes-fill.md`. Graded rows keep their `model` value, so the record can be split at that date.
+
 Nothing here is betting advice. Floors and win chances are estimates from small samples.
 
 ## Layout

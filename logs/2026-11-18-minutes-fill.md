@@ -1,9 +1,34 @@
 # Minutes fill replay, 2026-11-18
 
-**Result: left OFF.** No version lowered the points miss, and the ones that hand out
-minutes cost the floors 1 to 2 points. Every version did worse on the earlier nights.
+**Result: ON as "promote" with PROMOTE_POS "on" (model 2026-11-18).** Spreading the missing
+minutes across the team did not help (first table below). Giving them to the player who takes
+the open starting spot did, on both the live and the earlier nights.
 
-## The problem
+## What works: the fill-in starter takes the minutes
+Season box scores, 200 promotions (a player starting after starting under half of his last 5):
+he gains about 7 minutes, more the less he usually plays (8 usual -> 22, 16 -> 23, 21 -> 28,
+26 -> 30). Fit on the 148 before 11/12: **minutes = 17.7 + 0.44 x usual**. On the 52 live
+promotions that cut his minutes miss from 9.1 to 5.9 when the right player is known.
+
+The model has to guess who gets promoted. By most recent minutes it was right 52% of the time;
+filling the open spot with a player at the missing starter's position first raised that to 58%
+and stopped the wrong picks from costing floors.
+
+| version | live PTS miss | live PTS floor | live vs line | earlier PTS miss | earlier PTS floor |
+|---|---|---|---|---|---|
+| off (2026-11-12b) | 5.246 | 82.7% | 47.9% | 5.003 | 80.4% |
+| promote | 5.194 | 82.9% | 48.6% | 5.012 | 80.2% |
+| promote + position (**on**) | 5.209 | 83.0% | 49.3% | 4.989 | 80.5% |
+| promote+, K=0.3 | 5.194 | 82.7% | 47.5% | 5.018 | 80.0% |
+| promote+, K=0.5 | 5.203 | 82.0% | 48.2% | 5.023 | 79.9% |
+
+Minutes miss with the version that's on: live 5.00 -> 4.89, earlier 4.33 -> 4.33. The gains are small
+overall because only about 5 players a night are fill-ins, but for them the points miss went from
+7.4 to 6.4 on the live nights. Still well short of beating the prop lines.
+
+## What did not work: spreading the minutes
+
+## The problem (first look)
 On the first 6 live nights (11/12 to 11/17) points ran +0.75 low and minutes ran +0.66 low.
 When a player is ruled out, his minutes go to nobody: the fill-ins keep their usual minutes.
 CLE on 11/14 (Mobley, Harden, Mitchell out): Proctor, Hezonja and Tyson were projected at
@@ -34,11 +59,11 @@ Lines: no version beat the prop lines (all 46 to 51%).
 
 ## Rerun at 15 live nights
 ```
-for v in off total on; do
+for v in off promote; do
   cp -r . /tmp/rp/$v && cd /tmp/rp/$v
   for d in $(ls data/graded | sed 's/.csv//'); do
     NBA_MIN_FILL=$v python3 scripts/nightly.py project --date $d && python3 scripts/nightly.py grade --date $d
   done; cd -
 done
-python3 scripts/compare_replay.py /tmp/rp/off /tmp/rp/on
+python3 scripts/compare_replay.py /tmp/rp/off /tmp/rp/promote
 ```

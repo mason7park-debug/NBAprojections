@@ -41,7 +41,7 @@ STAR_PPG = 18.0
 BUMP_PPG = 20.0
 # Settings were frozen on this date. The plan: no changes until 15 live nights are graded,
 # and then only changes that hold up on the live record as well as the replay.
-MODEL_VERSION = "2026-11-12b"
+MODEL_VERSION = "2026-11-18"   # 2026-11-12b + fill-in starters (MIN_FILL "promote", PROMOTE_POS "on")
 LIVE_FROM = dt.date(2026, 11, 12)     # first slate projected before tip by the scheduled runs
 # Percentile used for bench players' points floors. Everyone else uses the 20th.
 # The 12th held 81% of 439 bench cases on the replay; the 20th held only 74%.
@@ -70,20 +70,25 @@ TPM_MATCHUP = os.environ.get("NBA_3PM_MATCHUP", "none")
 BUMP_TRIGGER = 15.0   # a missing teammate scoring this much can move the others
 BUMP_SHRINK = 4       # games without the teammate before the player's own numbers are trusted
 MIN_SD_BENCH = float(os.environ.get("NBA_MIN_SD_BENCH", 6.0))   # bench minutes swing more than starters'
-# Minutes fill (tested 2026-11-18, left OFF). A player ruled out leaves his minutes behind and
-# the model gives them to nobody, so fill-ins keep their usual minutes (CLE on 2026-11-14 had
-# three players projected at 17 to 23 minutes who all played 34). Modes:
-#   "total" scale everyone up until the team adds back to MIN_FILL_TARGET
-#   "even"  share the ruled-out players' minutes (times MIN_FILL_K) in proportion to usual minutes
-#   "on"    share them by room to grow, so a 20-minute player takes far more than a 35-minute star
-# Each is capped at MIN_FILL_MAX times a player's usual minutes and MIN_FILL_CAP in all.
-# On the replay all of them removed the live minutes bias but none lowered the points miss,
-# the ones that hand out minutes cost the floors 1 to 2 points, and all did worse on the
-# earlier nights. Rerun at 15 live nights: logs/2026-11-18-minutes-fill.md has the commands.
-MIN_FILL = os.environ.get("NBA_MIN_FILL", "off")   # off: see the replay note above
+# Minutes fill (2026-11-18). A player ruled out leaves his minutes behind; before this the model
+# gave them to nobody, so the fill-ins kept their usual minutes (CLE on 2026-11-14 had three
+# players projected at 17 to 23 minutes who all played 34). Modes:
+#   "promote"  ON. A player moved into the starting five plays PROMOTE_A + PROMOTE_B x his usual
+#              minutes (fit on 148 promotions before 2026-11-12: a 16-minute player plays ~24).
+#              With PROMOTE_POS "on" the open spot goes first to a player at the missing
+#              starter's position. The only version that held up on both live and earlier nights.
+#   "promote+" promote, then share what is left of the missing minutes by room (MIN_FILL_K)
+#   "total"    scale everyone up until the team adds back to MIN_FILL_TARGET
+#   "even"     share the missing minutes in proportion to usual minutes
+#   "on"       share them by room to grow
+#   "off"      the 2026-11-12b behavior
+# Results for each: logs/2026-11-18-minutes-fill.md.
+MIN_FILL = os.environ.get("NBA_MIN_FILL", "promote")
 MIN_FILL_TARGET = float(os.environ.get("NBA_MIN_FILL_TARGET", 240.0))
 MIN_FILL_MAX = float(os.environ.get("NBA_MIN_FILL_MAX", 1.25))
 MIN_FILL_CAP = 40.0
+PROMOTE_POS = os.environ.get("NBA_PROMOTE_POS", "on")   # "on": fill an open starting spot by position first
+PROMOTE_A, PROMOTE_B = 17.7, 0.44   # fill-in starter minutes = A + B x usual (fit before 2026-11-12)
 MIN_FILL_ROOM = float(os.environ.get("NBA_MIN_FILL_ROOM", 38.0))   # minutes where a player has no room left
 MIN_FILL_K = float(os.environ.get("NBA_MIN_FILL_K", 1.0))         # share of the freed minutes handed out
 
@@ -590,10 +595,12 @@ def run_project(date, data, docs, now=None, lock=True):
             cands.append((pid, pr))
         return cands
 
-    def min_scale(team):
+    def min_scale(team, starters=()):
         """Per player: how much to stretch his minutes to cover teammates ruled out tonight."""
         if MIN_FILL == "off":
             return {}
+        if MIN_FILL in ("promote", "promote+"):
+            return promote_scale(team, starters)
         cands = available(team)
         usual = {pid: blend(pr["a_mpg"], pr["recent_min"]) for pid, pr in cands}
         have = sum(usual.values())
@@ -621,6 +628,33 @@ def run_project(date, data, docs, now=None, lock=True):
         return {pid: min(MIN_FILL_MAX, (m + freed * room[pid] / tot) / m) if m else 1.0
                 for pid, m in usual.items()}
 
+    def promote_scale(team, starters):
+        """A player moved into the starting five takes most of the missing starter's minutes:
+        PROMOTE_A + PROMOTE_B x his usual minutes (fit on 148 promotions before 2026-11-12).
+        "promote+" also shares what the missing players leave beyond that by room to grow."""
+        usual = {pid: blend(pr["a_mpg"], pr["recent_min"]) for pid, pr in available(team)}
+        out = {}
+        gained = 0.0
+        for pid, pr in starters:
+            m = usual.get(pid)
+            if pr["start_share"] < 0.5 and m:
+                new = min(MIN_FILL_CAP, max(m, PROMOTE_A + PROMOTE_B * m))
+                out[pid] = new / m
+                gained += new - m
+        if MIN_FILL == "promote+":
+            days = sorted({r["_date"] for r in team_games.get(team, [])})[-4:]
+            cutoff = days[0] if days else date
+            freed = MIN_FILL_K * sum(blend(pr["a_mpg"], pr["recent_min"]) for pid, pr in by_team.get(team, [])
+                                     if pid in out_ids and pr["last_date"] >= cutoff and pr["gp"] >= 3)
+            left = max(0.0, freed - gained)
+            room = {pid: m * max(0.0, MIN_FILL_ROOM - m) for pid, m in usual.items() if pid not in out}
+            tot = sum(room.values())
+            if left and tot:
+                for pid, r in room.items():
+                    m = usual[pid]
+                    out[pid] = min(MIN_FILL_MAX, (m + left * r / tot) / m) if m else 1.0
+        return out
+
     def pool(team):
         cands = available(team)
         starters = sorted([c for c in cands if c[1]["start_share"] >= 0.5],
@@ -629,6 +663,18 @@ def run_project(date, data, docs, now=None, lock=True):
         if len(starters) < 5:      # fill open spots with the heaviest-minute players left
             rest = sorted([c for c in cands if c[0] not in sid and c[1]["gp"] >= 3],
                           key=lambda c: (-c[1]["start_share"], -c[1]["recent_min"] if c[1]["recent_min"] else -c[1]["mpg"]))
+            if PROMOTE_POS == "on":
+                # like for like: each open spot goes first to a player at the missing starter's position
+                days = sorted({r["_date"] for r in team_games.get(team, [])})[-4:]
+                cut = days[0] if days else date
+                gone = sorted([pr for pid, pr in by_team.get(team, [])
+                               if pid in out_ids and pr["start_share"] >= 0.5 and pr["last_date"] >= cut],
+                              key=lambda pr: -pr["mpg"])
+                for g in gone[:5 - len(starters)]:
+                    pick = next((c for c in rest if c[1]["pos"] == g["pos"] and c[0] not in sid), None)
+                    if pick:
+                        starters.append(pick); sid.add(pick[0])
+                rest = [c for c in rest if c[0] not in sid]
             starters += rest[:5 - len(starters)]
             sid = {c[0] for c in starters}
         bench = sorted([c for c in cands if c[0] not in sid and c[1]["mpg"] >= BENCH_MIN and c[1]["gp"] >= 3],
@@ -752,7 +798,7 @@ def run_project(date, data, docs, now=None, lock=True):
                     for k, src in (("f3", "3PM"), ("fpaint", "PAINT"), ("fft", "FTM"))}
             outs = out_scorers(team)
             starters, bench = pool(team)
-            fill = min_scale(team)
+            fill = min_scale(team, starters)
             rows = []
             for role, group in (("starter", starters), ("bench", bench)):
                 for pid, pr in group:

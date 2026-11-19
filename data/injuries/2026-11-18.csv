@@ -12,6 +12,7 @@ game_id,team,player_id,player,status,type
 401910008,IND,4396993,Tyrese Haliburton,Out,Hamstring
 401910008,IND,5157066,Johnny Furphy,Out,Knee
 401910008,IND,4433076,Ben Sheppard,Out,Knee
+401910008,HOU,4871144,Alperen Sengun,Day-To-Day,Eye
 401910008,HOU,3102529,Clint Capela,Out,Ankle
 401910009,MIA,4431772,Myron Gardner,Out,Hamstring
 401910009,MIL,4591725,Ryan Rollins,Out,Illness
@@ -27,6 +28,7 @@ game_id,team,player_id,player,status,type
 401910010,PHI,5105637,Adem Bona,Out,Back
 401910011,CHI,5105555,Tobe Awaka,Out,Back
 401910011,CHI,5095151,Caleb Wilson,Out,Hand
+401910012,TOR,5093267,Collin Murray-Boyles,Day-To-Day,Illness
 401910012,TOR,4395625,RJ Barrett,Out,Hamstring
 401910012,TOR,4433134,Scottie Barnes,Out,Groin
 401910012,TOR,6450,Kawhi Leonard,Out,Knee
@@ -41,11 +43,11 @@ game_id,team,player_id,player,status,type
 401910013,NO,4431675,Trendon Watford,Out,Ankle
 401910013,NO,4397688,Trey Murphy III,Out,Knee
 401910013,NO,3907497,Dejounte Murray,Out,Ankle
-401910013,DET,4432166,Cade Cunningham,Day-To-Day,Knee
-401910013,DET,4395702,Isaiah Joe,Out,Hip
+401910013,DET,4432166,Cade Cunningham,Out,Knee
 401910013,DET,2990962,Taurean Prince,Out,Knee
 401910013,DET,4683771,Ronald Holland II,Out,Knee
 401910013,DET,3157465,Duncan Robinson,Out,Quadriceps
+401910013,DET,4433621,Jalen Duren,Out,Hamstring
 401910014,OKC,5061603,Thomas Sorber,Out,Knee
 401910014,OKC,4683692,Cason Wallace,Out,Shoulder
 401910014,OKC,4433255,Chet Holmgren,Out,Knee

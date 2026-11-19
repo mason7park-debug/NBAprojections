@@ -269,7 +269,7 @@ def fetch_summaries(game_ids, date, out, want_box):
     """
     One call per game returns box score, injuries and betting lines together.
     """
-    box_rows, inj_rows, odds_rows, team_rows = [], [], [], []
+    box_rows, inj_rows, odds_rows, team_rows, ref_rows = [], [], [], [], []
 
     for gid in game_ids:
         d = get(f"{SITE}/summary?event={gid}", f"summary[{gid}]")
@@ -328,6 +328,11 @@ def fetch_summaries(game_ids, date, out, want_box):
                         row["pos"] = (ath.get("position") or {}).get("abbreviation")
                         box_rows.append(row)
             team_rows.extend(team_stat_rows(d, gid))
+            # referees, listed by ESPN once a game is final (tonight's crews: scripts/fetch_refs.py)
+            refs = [o.get("displayName") for o in (d.get("gameInfo") or {}).get("officials", []) if o.get("displayName")]
+            if refs:
+                ref_rows.append({"game_id": gid, "ref1": refs[0], "ref2": refs[1] if len(refs) > 1 else "",
+                                 "ref3": refs[2] if len(refs) > 2 else "", "ref4": refs[3] if len(refs) > 3 else ""})
 
     # Odds and injuries are point-in-time. A pregame run always writes them.
     # A post-game run must not replace the pregame snapshot with what the feed
@@ -341,6 +346,8 @@ def fetch_summaries(game_ids, date, out, want_box):
     if want_box:
         write_csv(box_rows, out / "boxscores" / f"{date}.csv", "boxscores")
         write_csv(team_rows, out / "teamstats" / f"{date}.csv", "teamstats")
+        if ref_rows:
+            write_csv(ref_rows, out / "refs" / "espn" / f"{date}.csv", "referees")
 
 
 # ----------------------------------------------------------------------- main

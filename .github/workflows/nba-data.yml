@@ -59,6 +59,12 @@ jobs:
         continue-on-error: true
         run: python scripts/fetch_espn.py --mode pregame --out data
 
+      # Optional. Tonight's referee crews, posted about 9:00 am ET at official.nba.com. A miss
+      # (page not posted yet, or not reachable) only means no crews on the page; it never fails the run.
+      - name: Fetch referee crews
+        continue-on-error: true
+        run: python scripts/fetch_refs.py --out data
+
       # Optional. Does nothing unless the ODDS_API_KEY secret is set.
       - name: Fetch prop lines
         continue-on-error: true

@@ -8,6 +8,7 @@ game_id,team,player_id,player,status,type
 401910007,MEM,4065733,Ty Jerome,Out,Hip
 401910007,MEM,4431785,Scotty Pippen Jr.,Out,Back
 401910007,MEM,5105462,Richie Saunders,Out,Knee
+401910008,IND,5105854,Braden Smith,Day-To-Day,Ankle
 401910008,IND,4395712,Andrew Nembhard,Out,Hip
 401910008,IND,4396993,Tyrese Haliburton,Out,Hamstring
 401910008,IND,5157066,Johnny Furphy,Out,Knee
@@ -48,6 +49,7 @@ game_id,team,player_id,player,status,type
 401910013,DET,4683771,Ronald Holland II,Out,Knee
 401910013,DET,3157465,Duncan Robinson,Out,Quadriceps
 401910013,DET,4433621,Jalen Duren,Out,Hamstring
+401910014,OKC,2991350,Alex Caruso,Out,Hip
 401910014,OKC,5061603,Thomas Sorber,Out,Knee
 401910014,OKC,4683692,Cason Wallace,Out,Shoulder
 401910014,OKC,4433255,Chet Holmgren,Out,Knee

@@ -139,6 +139,21 @@
   }
   // the blowout floor shown is the blown-out version when there is one: it assumes his team is the one losing big
   function bfl(x) { return x.loss_floor != null ? x.loss_floor : x.blowout_floor; }
+  // Most consistent: tonight's players whose games have stayed closest to their own average.
+  function consistent(D) {
+    var C = D.consistent; if (!C) return '';
+    var names = { PTS: 'Points', REB: 'Rebounds', AST: 'Assists', '3PM': 'Threes' };
+    if (!STATS.some(function (s) { return (C[s] || []).length; })) return '';
+    return '<section id="consistent"><div class="eyebrow">Most consistent</div><div class="grid2">' + STATS.map(function (s) {
+      var l = C[s] || [];
+      return '<div class="card"><h3>' + names[s] + '</h3><div class="body">' + (l.length ? l.map(function (x) {
+        return '<a class="tg mlink" href="#g-' + x.gid + '"><div class="g">' + esc(x.name) + ' <span class="date">' + esc(x.team) + '</span> <span class="ceilv">' + x.avg + '</span></div>' +
+          '<div class="m">most games ' + x.lo10 + ' to ' + x.hi90 + ' · lowest ' + x.low + ' · 75%+ of his average in ' + Math.round(x.hit * x.games) + ' of ' + x.games + '</div>' +
+          '<div class="p">tonight: expected ' + x.expected + ' · floor ' + dash(x.floor) + (x.line != null ? ' · line ' + x.line : '') + '</div></a>';
+      }).join('') : '<div class="tg"><div class="p">No one on tonight\'s slate has enough games yet.</div></div>') + '</div></div>';
+    }).join('') + '</div><p class="lead" style="margin-top:10px">The big number is his season average. Players are ranked by how far a typical game lands from that average, among those with at least 8 games of 10+ minutes; "most games" is the range of his middle 80% of games. This does carry over: on the graded nights, the steadiest quarter of players stayed closer to their average the next game too (points about 29% off against 39% for the streakiest quarter, rebounds 34% against 44%, threes 59% against 80%, assists only 41% against 46%). One catch: the model sets tighter floors for steady players, and those floors have been missed more often (points floors hit 78% of the time for the steadiest quarter against 86% for the streakiest, assists 71% against 90%), so do not read a steady player\'s floor as safer.</p></section>';
+  }
+
   // Players who could go off: the highest ceilings tonight. A ceiling is the number reached in about
   // 1 simulated game in 10 (on the replay, points ceilings were reached about 1 time in 7).
   function goOff(D) {
@@ -356,7 +371,7 @@
       else if (!open && D.date < todayEt) stale = '<div class="warnbar">Showing ' + esc(D.date) + '. Today\'s games appear after the first run of the day.</div>';
     }
     app.innerHTML = stale + (D.early_run && !stale ? '<div class="warnbar">Early look. Injuries and spreads can still change. This page refreshes at about 2:31pm, 5:37pm and 6:27pm ET, and each game locks at its tip.</div>' : '') +
-      gamesGrid(D) + matchups(D) + goOff(D) + targets(D) + safest(D) +
+      gamesGrid(D) + matchups(D) + goOff(D) + consistent(D) + targets(D) + safest(D) +
       '<section id="players"><div class="eyebrow">Players, game by game</div><div class="controls"><input id="q" type="search" placeholder="Find a player" aria-label="Find a player">' +
       '<div class="seg" id="seg" role="group" aria-label="Stat shown">' + ['ALL'].concat(STATS).map(function (s) { return '<button type="button" data-m="' + s + '">' + (s === 'ALL' ? 'All stats' : s) + '</button>'; }).join('') + '</div>' +
       '<button type="button" class="tgl" id="fold">Collapse all</button></div>' +

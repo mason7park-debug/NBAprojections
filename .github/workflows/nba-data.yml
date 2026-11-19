@@ -25,6 +25,15 @@ on:
     - cron: "37 21 * * *"
     - cron: "27 22 * * *"
     - cron: "17 23 * * *"
+    # Close to tip (2026-11-19): late scratches like Maxey and Cunningham on 11/18 were still
+    # projected because the last run was about 6:15pm ET. These re-project every game that has
+    # not tipped with the newest injury report (6:41, 7:47, 8:41, 9:37, 10:08pm Eastern in winter;
+    # an hour later in summer time). Games that have tipped stay locked.
+    - cron: "41 23 * * *"
+    - cron: "47 0 * * *"
+    - cron: "41 1 * * *"
+    - cron: "37 2 * * *"
+    - cron: "8 3 * * *"
   workflow_dispatch:
 
 permissions:

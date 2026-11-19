@@ -1,28 +1,22 @@
 game_id,player_id,player,stat,line,source
 401910019,3213,Al Horford,AST,2.5,DraftKings
 401910019,3213,Al Horford,REB,3.5,DraftKings
-401910019,4065733,Ty Jerome,3PM,2.5,DraftKings
-401910019,4065733,Ty Jerome,AST,4.5,DraftKings
-401910019,4065733,Ty Jerome,PTS,22.5,DraftKings
-401910019,4065733,Ty Jerome,REB,3.5,DraftKings
 401910019,4397886,Charles Bassey,PTS,8.5,DraftKings
 401910019,4397886,Charles Bassey,REB,6.5,DraftKings
-401910019,4600663,Zach Edey,PTS,8.5,DraftKings
-401910019,4600663,Zach Edey,REB,7.5,DraftKings
 401910019,4709138,Brandin Podziemski,3PM,2.5,DraftKings
 401910019,4709138,Brandin Podziemski,AST,4.5,DraftKings
-401910019,4709138,Brandin Podziemski,PTS,15.5,DraftKings
+401910019,4709138,Brandin Podziemski,PTS,16.5,DraftKings
 401910019,4709138,Brandin Podziemski,REB,4.5,DraftKings
 401910019,4903027,Cedric Coward,3PM,1.5,DraftKings
 401910019,4903027,Cedric Coward,AST,3.5,DraftKings
 401910019,4903027,Cedric Coward,PTS,14.5,DraftKings
 401910019,4903027,Cedric Coward,REB,7.5,DraftKings
 401910019,4997536,Gui Santos,AST,2.5,DraftKings
-401910019,4997536,Gui Santos,PTS,8.5,DraftKings
+401910019,4997536,Gui Santos,PTS,7.5,DraftKings
 401910019,4997536,Gui Santos,REB,3.5,DraftKings
-401910019,5041935,Cameron Boozer,3PM,2.5,DraftKings
+401910019,5041935,Cameron Boozer,3PM,1.5,DraftKings
 401910019,5041935,Cameron Boozer,AST,4.5,DraftKings
-401910019,5041935,Cameron Boozer,PTS,18.5,DraftKings
+401910019,5041935,Cameron Boozer,PTS,17.5,DraftKings
 401910019,5041935,Cameron Boozer,REB,8.5,DraftKings
 401910019,5112087,Jaylen Wells,AST,1.5,DraftKings
 401910019,5112087,Jaylen Wells,PTS,9.5,DraftKings
@@ -32,7 +26,7 @@ game_id,player_id,player,stat,line,source
 401910019,5175737,Yaxel Lendeborg,PTS,21.5,DraftKings
 401910019,5175737,Yaxel Lendeborg,REB,6.5,DraftKings
 401910020,3133628,Myles Turner,3PM,1.5,DraftKings
-401910020,3133628,Myles Turner,AST,1.5,DraftKings
+401910020,3133628,Myles Turner,AST,2.5,DraftKings
 401910020,3133628,Myles Turner,PTS,9.5,DraftKings
 401910020,3133628,Myles Turner,REB,4.5,DraftKings
 401910020,3134907,Kyle Kuzma,3PM,1.5,DraftKings
@@ -72,7 +66,7 @@ game_id,player_id,player,stat,line,source
 401910020,5082206,Brayden Burries,REB,4.5,DraftKings
 401910020,5105565,Donovan Clingan,AST,2.5,DraftKings
 401910020,5105565,Donovan Clingan,PTS,13.5,DraftKings
-401910020,5105565,Donovan Clingan,REB,11.5,DraftKings
+401910020,5105565,Donovan Clingan,REB,12.5,DraftKings
 401910020,6606,Damian Lillard,3PM,3.5,DraftKings
 401910020,6606,Damian Lillard,AST,4.5,DraftKings
 401910020,6606,Damian Lillard,PTS,22.5,DraftKings
@@ -90,15 +84,15 @@ game_id,player_id,player,stat,line,source
 401910021,3136195,Karl-Anthony Towns,REB,13.5,DraftKings
 401910021,3147657,Mikal Bridges,3PM,1.5,DraftKings
 401910021,3147657,Mikal Bridges,AST,2.5,DraftKings
-401910021,3147657,Mikal Bridges,PTS,10.5,DraftKings
+401910021,3147657,Mikal Bridges,PTS,9.5,DraftKings
 401910021,3147657,Mikal Bridges,REB,3.5,DraftKings
 401910021,3914044,Landry Shamet,3PM,1.5,DraftKings
 401910021,3914044,Landry Shamet,PTS,8.5,DraftKings
 401910021,3934672,Jalen Brunson,3PM,2.5,DraftKings
 401910021,3934672,Jalen Brunson,AST,5.5,DraftKings
-401910021,3934672,Jalen Brunson,PTS,25.5,DraftKings
+401910021,3934672,Jalen Brunson,PTS,24.5,DraftKings
 401910021,3934672,Jalen Brunson,REB,2.5,DraftKings
-401910021,3934719,OG Anunoby,3PM,1.5,DraftKings
+401910021,3934719,OG Anunoby,3PM,2.5,DraftKings
 401910021,3934719,OG Anunoby,AST,1.5,DraftKings
 401910021,3934719,OG Anunoby,PTS,15.5,DraftKings
 401910021,3934719,OG Anunoby,REB,4.5,DraftKings
@@ -112,11 +106,11 @@ game_id,player_id,player,stat,line,source
 401910021,4431671,Jaden McDaniels,REB,5.5,DraftKings
 401910021,4432816,LaMelo Ball,3PM,3.5,DraftKings
 401910021,4432816,LaMelo Ball,AST,5.5,DraftKings
-401910021,4432816,LaMelo Ball,PTS,19.5,DraftKings
+401910021,4432816,LaMelo Ball,PTS,18.5,DraftKings
 401910021,4432816,LaMelo Ball,REB,4.5,DraftKings
 401910021,4432847,Terrence Shannon Jr.,3PM,1.5,DraftKings
 401910021,4432847,Terrence Shannon Jr.,AST,2.5,DraftKings
-401910021,4432847,Terrence Shannon Jr.,PTS,11.5,DraftKings
+401910021,4432847,Terrence Shannon Jr.,PTS,12.5,DraftKings
 401910021,4432847,Terrence Shannon Jr.,REB,2.5,DraftKings
 401910021,4433247,Jonathan Kuminga,3PM,1.5,DraftKings
 401910021,4433247,Jonathan Kuminga,AST,2.5,DraftKings

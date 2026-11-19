@@ -41,11 +41,26 @@ STAR_PPG = 18.0
 BUMP_PPG = 20.0
 # Settings were frozen on this date. The plan: no changes until 15 live nights are graded,
 # and then only changes that hold up on the live record as well as the replay.
-MODEL_VERSION = "2026-11-18"   # 2026-11-12b + fill-in starters (MIN_FILL "promote", PROMOTE_POS "on") + RETURN_MIN
+MODEL_VERSION = "2026-11-19"   # 2026-11-18 (fill-in starters, first game back) + line anchor, over-chance calibration, ceilings at 95%, floor caps, home edge 1.5
 LIVE_FROM = dt.date(2026, 11, 12)     # first slate projected before tip by the scheduled runs
 # Percentile used for bench players' points floors. Everyone else uses the 20th.
 # The 12th held 81% of 439 bench cases on the replay; the 20th held only 74%.
 FLOOR_Q_BENCH_PTS = float(os.environ.get("NBA_FLOOR_Q_BENCH", 0.12))
+# Calibration (2026-11-19, replayed on 11/13 to 11/18; logs/2026-11-19-calibration.md).
+# Line anchor: where a prop line exists, the projection is LINE_W x the model's expected value +
+# (1 - LINE_W) x the line, and the simulated games are scaled to match. The line beat the model as a
+# projection (points miss 5.05 vs 5.28), and players went over about half the time wherever the line
+# sat against their recent games. 1.0 = off.
+LINE_W = float(os.environ.get("NBA_LINE_W", 0.25))
+# Over chance: the simulation's chance of going over spread far wider than what happened (it said 27%
+# where 47% went over, 64% where 56% did) and leaned under. Shrunk to a quarter of its lean, centered
+# where the results were. "off" shows the raw simulation.
+P_OVER_CAL = os.environ.get("NBA_P_OVER_CAL", "on")
+CEIL_Q = float(os.environ.get("NBA_CEIL_Q", 0.95))      # ceiling percentile (0.90 was reached 16 to 26% of the time)
+# Floors no closer than this to the expected value: tight floors for steady players were missed
+# about 1 time in 4. 9 = no cap.
+FLOOR_CAP = {"PTS": float(os.environ.get("NBA_FLOOR_CAP_PTS", 0.65)), "REB": float(os.environ.get("NBA_FLOOR_CAP_REB", 0.70)),
+             "AST": float(os.environ.get("NBA_FLOOR_CAP_AST", 0.70)), "3PM": float(os.environ.get("NBA_FLOOR_CAP_TPM", 9))}
 # Last season as a starting point. A player's per-minute rates and minutes are blended with
 # last season's, counted as PRIOR_KMIN minutes and PRIOR_KG games of evidence, so the blend
 # fades on its own as this season's sample grows. Team ratings for the game margin are blended
@@ -56,8 +71,8 @@ PRIOR_KMIN = 100.0
 PRIOR_KG = 3.0
 PRIOR_TEAM_K = 20.0
 PRIOR_SEASON = "2025-26"
-HOME_EDGE = 2.5       # points the home team is worth
-RATE_K = 10           # team ratings are pulled toward average until about this many games
+HOME_EDGE = float(os.environ.get("NBA_HOME_EDGE", 1.5))       # points the home team is worth (2.5 until 2026-11-19: home teams won by 1.0 on average, the model had them at 2.1)
+RATE_K = float(os.environ.get("NBA_RATE_K", 10))           # team ratings are pulled toward average until about this many games
 INJ_K = float(os.environ.get("NBA_INJ_K", 0.5))    # share of a missing player's scoring edge the team loses
 B2B_PTS = float(os.environ.get("NBA_B2B", 1.5))    # points a team loses on the second night of a back-to-back
 MIN_SD_STARTER = float(os.environ.get("NBA_MIN_SD_STARTER", 5.0))   # starters under 18 points a game (measured 5.3)
@@ -911,14 +926,25 @@ def run_project(date, data, docs, now=None, lock=True):
                 for s in STATS:
                     st = e["stats"][s]
                     vals = sims[e["id"]][s]
+                    if LINE_W < 1.0 and st["line"] is not None and st["expected"] > 0:
+                        target = LINE_W * st["expected"] + (1 - LINE_W) * st["line"]
+                        k = max(0.6, min(1.6, target / st["expected"]))
+                        vals = [int(v * k + 0.5) for v in vals]
+                        sims[e["id"]][s] = vals
+                        st["model_expected"] = st["expected"]
+                        st["expected"] = round(st["expected"] * k, 1)
+                        st["normal"], st["blowout"] = round(st["normal"] * k, 1), round(st["blowout"] * k, 1)
                     res = summarize(vals, flags, st["line"])
+                    if P_OVER_CAL == "on" and res["p_over"] is not None:
+                        st["sim_p_over"] = res["p_over"]
+                        res["p_over"] = round(min(0.95, max(0.05, 0.495 + 0.25 * (res["p_over"] - 0.45))), 3)
                     if s == "PTS" and e["role"] == "bench" and FLOOR_Q_BENCH_PTS != 0.20:
                         res["floor"] = int(pct(sorted(vals), FLOOR_Q_BENCH_PTS))
                         bv = sorted(v for v, b in zip(vals, flags) if b)
                         if len(bv) >= 200:
                             res["blowout_floor"] = int(pct(bv, FLOOR_Q_BENCH_PTS))
-                    # Ceiling: the number he reaches in about 1 simulated game in 10. Display only.
-                    st["ceiling"] = int(pct(sorted(vals), 0.90))
+                    # Ceiling: the number he reaches in his best 1 simulated game in 20 (CEIL_Q). Display only.
+                    st["ceiling"] = int(pct(sorted(vals), CEIL_Q))
                     # Blown-out floor: the number reached in 80% of the simulated games his team LOST by 20+,
                     # with the measured drop in minutes and per-minute production applied. Display only:
                     # it does not change any other number.
@@ -937,7 +963,7 @@ def run_project(date, data, docs, now=None, lock=True):
                     if s == "3PM":      # a floor of 0 says little, so threes also get "at least" chances
                         st["at_least"] = {str(k): round(sum(1 for v in vals if v >= k) / len(vals), 3) for k in (1, 2, 3)}
                     # whole-number rounding can push a tiny floor above the expected value
-                    res["floor"] = min(res["floor"], int(st["expected"]))
+                    res["floor"] = min(res["floor"], int(st["expected"]), int(FLOOR_CAP[s] * st["expected"]))
                     if res["blowout_floor"] is not None:
                         res["blowout_floor"] = min(res["blowout_floor"], res["floor"])
                     st.update(floor=res["floor"], blowout_floor=res["blowout_floor"],

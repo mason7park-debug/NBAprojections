@@ -154,8 +154,8 @@
     }).join('') + '</div><p class="lead" style="margin-top:10px">The big number is the highest ladder line he has reached in every one of his last 5 or more games (points 10, 15, 20, 25 and up; rebounds 4, 6, 8, 10; assists 3, 4, 6, 8; threes 1, 2, 3), listed when that line is at least half his season average. Longest streaks first. On this season\'s box scores, a streak meant more than his season numbers alone: among players who had cleared a line 70 to 85% of the time before their last 5 games, those on a streak cleared it next time 83% of the time against 66% for those who were not, and streaks of 10 or more games were cleared 89% of the time. Compare it with the model\'s chance: the model already counts recent games, so when both are high the case is stronger.</p></section>';
   }
 
-  // Players who could go off: the highest ceilings tonight. A ceiling is the number reached in about
-  // 1 simulated game in 10 (on the replay, points ceilings were reached about 1 time in 7).
+  // Players who could go off: the highest ceilings tonight. A ceiling is the number reached in the best
+  // 1 simulated game in 20 (on the replay, reached about 1 time in 10).
   function goOff(D) {
     var all = [];
     D.games.forEach(function (g) { g.teams.forEach(function (t) { t.players.forEach(function (p) { all.push({ g: g, t: t, p: p }); }); }); });
@@ -177,7 +177,7 @@
         return '<a class="tg mlink" href="#g-' + x.g.game_id + '"><div class="g">' + esc(x.p.name) + ' <span class="date">' + esc(x.t.team) + '</span> <span class="ceilv">' + st.ceiling + '</span></div>' +
           '<div class="m">expected ' + st.expected + (st.line != null ? ' · line ' + st.line : '') + (w.length ? ' · <span class="up">' + w.join(', ') + '</span>' : '') + '</div></a>';
       }).join('') + '</div></div>';
-    }).join('') + '</div><p class="lead" style="margin-top:10px">The big number is the ceiling: what he reaches in his best 1 game in 10 according to the simulation. On the replay, points ceilings were reached about 1 time in 7, so they run slightly low. Ranking by ceiling does find the big games: the top tenth of ceilings produced 35 of the 60 games of 30 or more points. The green notes are leans, not guarantees. Ranking players by how far their ceiling sits above their expected value did not pick out who goes off, so the page does not do that.</p></section>';
+    }).join('') + '</div><p class="lead" style="margin-top:10px">The big number is the ceiling: what he reaches in his best 1 game in 20 according to the simulation. On the replay that was reached about 1 time in 10 for points, rebounds and assists (threes run higher because they come in whole numbers). Ranking by ceiling does find the big games: the top tenth of ceilings produced 35 of the 60 games of 30 or more points. The green notes are leans, not guarantees. Ranking players by how far their ceiling sits above their expected value did not pick out who goes off, so the page does not do that.</p></section>';
   }
   function load(u) { return fetch(u, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
 
@@ -191,7 +191,7 @@
       }).join('');
     }
     function tbl(x) {
-      return '<div class="tscroll"><table><thead><tr><th class="lft">Stat</th><th>Players</th><th>Avg miss</th><th>Avg abs miss</th><th title="How often the ceiling was reached. It is meant to be about 1 time in 10.">Ceiling reached</th><th title="Average miss if you had just used each player\'s season average">Season avg miss</th><th>Floor hit</th><th title="Leaving out players who left early">Full games</th><th>Blowout floor hit</th><th>Log rule</th><th>Flat rule</th></tr></thead><tbody>' + rows(x) + '</tbody></table></div>';
+      return '<div class="tscroll"><table><thead><tr><th class="lft">Stat</th><th>Players</th><th>Avg miss</th><th>Avg abs miss</th><th title="How often the ceiling was reached. Since 2026-11-19 it is meant to be about 1 time in 10.">Ceiling reached</th><th title="Average miss if you had just used each player\'s season average">Season avg miss</th><th>Floor hit</th><th title="Leaving out players who left early">Full games</th><th>Blowout floor hit</th><th>Log rule</th><th>Flat rule</th></tr></thead><tbody>' + rows(x) + '</tbody></table></div>';
     }
     function mins(x) {
       var c = x.star_minutes_close, b = x.star_minutes_blowout, o = [];
@@ -348,7 +348,7 @@
       '<p><b>Minutes swing.</b> Minutes are simulated with a night-to-night swing of 6 for bench players, 5 for starters under 18 points a game and 3 for stars. The first two match what the record shows. On the replay that moved bench points floors from 70% to 74% held and non-star starter floors from 76% to 79%.</p>' +
       '<p><b>Missing teammates.</b> When a 15-point scorer is out, each teammate\'s points rate is adjusted by how he has actually scored in games without that player, compared with his season rate, so a long absence is not counted twice. With few such games the number stays close to a small default lift. Assists use the default lift only. On 98 replayed cases this was about even with the old flat 5% rule, so it is not yet proven better.</p>' +
       '<p><b>Runs.</b> About 11:30am, 2:30pm, 5:37pm and 6:27pm ET. A game that has tipped keeps the numbers from the last run before tip' + (m.locked_games ? ' (' + m.locked_games + ' locked now)' : '') + '.</p>' +
-      '<p><b>Lines.</b> ' + (m.lines_found ? m.lines_found + ' prop lines loaded from ESPN\'s public odds feed (one sportsbook), matched by player id. Only pregame lines are saved. They never feed the projection. Over chance is the share of 10,000 simulated games that finished above the line, and "check" marks a projection 20% or more away from its line, which is either a real gap or something the line knows that the model does not.' : 'No prop lines loaded for this slate, so Line and Over chance are hidden.') + '</p>' +
+      '<p><b>Lines.</b> ' + (m.lines_found ? m.lines_found + ' prop lines loaded from ESPN\'s public odds feed (one sportsbook), matched by player id. Only pregame lines are saved. Since 2026-11-19, where a line exists the projection is one quarter the model and three quarters the line, because on the replay the line was the better projection (points off by 5.05 against 5.28 for the model). Over chance starts from the share of 10,000 simulated games that finished above the line, shrunk to a quarter of its lean, because the raw simulation spread far wider than what happened: players went over about half the time whatever it said. So over chances near 50% are the honest answer, and "check" marks a projection 20% or more away from its line, which is either a real gap or something the line knows that the model does not.' : 'No prop lines loaded for this slate, so Line and Over chance are hidden.') + '</p>' +
       '<p><b>Positions.</b> ESPN lists many centers as forwards. When a team starts no listed center, the starting forward who rebounds and blocks the most is treated as the center' + (m.centers_fixed && m.centers_fixed.length ? '. Currently: ' + m.centers_fixed.map(esc).join(', ') : '') + '.</p>' +
       '<p><b>Limits.</b> Starters are taken from each team\'s last five games, not from tonight\'s posted lineup. Positions are ESPN\'s three groups. A late scratch after the run is not reflected.</p>' +
       '<p><b>Record.</b> Nights from Oct 30 to Nov 10, 2026 were replayed after the fact, each using only data from before that night. Later nights are graded live.</p>' +

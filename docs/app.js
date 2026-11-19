@@ -52,7 +52,7 @@
       return '<a class="gc" href="#g-' + g.game_id + '"><div class="gtop"><span class="gtime">' + tipTxt(g) + (g.locked ? ' · locked' : '') + '</span>' + tagEl(g.tag) + '</div>' +
         (p ? '<div class="ghdr"><span class="src">' + src + '</span><span>score</span><span>win</span><span>fair ML</span></div>' : '') + rows +
         '<div class="gmeta">' + line + ' · blowout risk ' + pc(g.p_blowout) + '</div>' + (model ? '<div class="gmeta">' + model + '</div>' : '') +
-        (adj ? '<div class="gmeta adj">Model adjusted: ' + adj + '</div>' : '') + '</a>';
+        (adj ? '<div class="gmeta adj">Model adjusted: ' + adj + '</div>' : '') + refLine(g) + '</a>';
     }).join('') + '</div><p class="lead" style="margin-top:12px">When a betting line is posted, the score and win chance shown are the ones the line implies, because the line has been more accurate than this page\'s own game model (see Record). The model\'s score sits underneath as a second opinion, and it is the main number only when no line is posted. When the two differed by 3 or more points, the line was closer about 2 times in 3. Fair ML is the win chance written as odds with no sportsbook fee. Blowout risk is a weak signal: games tagged Low still ended by 20 or more about 1 time in 5, and High about 1 in 3, so lean on the blowout floor. Tap a game to jump to its players.</p></section>';
   }
 
@@ -139,6 +139,36 @@
   }
   // the blowout floor shown is the blown-out version when there is one: it assumes his team is the one losing big
   function bfl(x) { return x.loss_floor != null ? x.loss_floor : x.blowout_floor; }
+  // Referee crew for a game card: names, and how many free throws the crew's games have averaged.
+  function refLine(g) {
+    var r = g.refs; if (!r) return '';
+    var last = r.names.map(function (n) { return esc(n.split(' ').slice(1).join(' ') || n); }).join(', ');
+    var w = '';
+    if (r.crew_fta != null && r.league_fta != null) {
+      var d = r.crew_fta - r.league_fta;
+      w = ' · their games ' + r.crew_fta + ' FTs vs ' + r.league_fta + ' avg' + (Math.abs(d) >= 2.5 ? (d > 0 ? ' <span class="up">(heavy whistle)</span>' : ' <span class="down">(light whistle)</span>') : '');
+    }
+    return '<div class="gmeta">Refs: ' + last + w + '</div>';
+  }
+
+  // Leans to watch: two situations that beat the line while testing. Tracked, not trusted.
+  function leans(D) {
+    var L = D.leans; if (!L) return '';
+    function rec(x) { return x[0] ? x[1] + ' of ' + x[0] + ' (' + Math.round(x[1] / x[0] * 100) + '%)' : 'none yet'; }
+    var R = L.record, T = L.tonight || [];
+    var groups = [['over', 'Over: fill-in starters', 'Starters projected under ' + L.fill_min + ' minutes, usually filling in for someone.', R.fill_over],
+                  ['under', 'Under: starters in likely blowouts', 'Starters in games with a ' + Math.round(L.blowout * 100) + '%+ blowout chance.', R.blowout_under]];
+    var tbl = '<div class="tscroll"><table><thead><tr><th class="lft">Lean</th><th>Found on (before ' + esc(L.from) + ')</th><th>Since the list started</th></tr></thead><tbody>' +
+      groups.map(function (g) { return '<tr><td class="pl">' + g[1] + '</td><td>' + rec(g[3].found) + '</td><td>' + rec(g[3].live) + '</td></tr>'; }).join('') + '</tbody></table></div>';
+    return '<section id="leans"><div class="eyebrow">Leans to watch</div>' + tbl + '<div class="grid2" style="margin-top:12px">' + groups.map(function (g) {
+      var l = T.filter(function (x) { return x.side === g[0]; });
+      return '<div class="card"><h3>' + g[1] + '</h3><div class="body">' + (l.length ? l.map(function (x) {
+        return '<a class="tg mlink" href="#g-' + x.gid + '"><div class="g">' + esc(x.name) + ' <span class="date">' + esc(x.team) + '</span> <span class="ceilv">' + x.side + ' ' + x.line + '</span></div>' +
+          '<div class="m">' + x.stat + ' · expected ' + x.expected + ' · ' + esc(x.why) + '</div></a>';
+      }).join('') : '<div class="tg"><div class="p">None tonight.</div></div>') + '<div class="tg"><div class="p">' + g[2] + '</div></div></div></div>';
+    }).join('') + '</div><p class="lead" style="margin-top:10px">These two beat the prop line on the graded nights before this list existed, but they were picked out of about 15 situations tested, so some of that is likely luck. Standard odds need about 52.4% to break even. The right-hand column counts only nights since the list started, which is the real test; give it a couple of weeks. A starter who fits both is left out. Nothing here changes a projection.</p></section>';
+  }
+
   // Streaks: the highest ladder line each player has reached in every one of his last 5+ games.
   function streaks(D) {
     var S = D.streaks; if (!S) return '';
@@ -371,7 +401,7 @@
       else if (!open && D.date < todayEt) stale = '<div class="warnbar">Showing ' + esc(D.date) + '. Today\'s games appear after the first run of the day.</div>';
     }
     app.innerHTML = stale + (D.early_run && !stale ? '<div class="warnbar">Early look. Injuries and spreads can still change. This page refreshes at about 2:31pm, 5:37pm and 6:27pm ET, and each game locks at its tip.</div>' : '') +
-      gamesGrid(D) + matchups(D) + goOff(D) + streaks(D) + targets(D) + safest(D) +
+      gamesGrid(D) + matchups(D) + goOff(D) + streaks(D) + leans(D) + targets(D) + safest(D) +
       '<section id="players"><div class="eyebrow">Players, game by game</div><div class="controls"><input id="q" type="search" placeholder="Find a player" aria-label="Find a player">' +
       '<div class="seg" id="seg" role="group" aria-label="Stat shown">' + ['ALL'].concat(STATS).map(function (s) { return '<button type="button" data-m="' + s + '">' + (s === 'ALL' ? 'All stats' : s) + '</button>'; }).join('') + '</div>' +
       '<button type="button" class="tgl" id="fold">Collapse all</button></div>' +

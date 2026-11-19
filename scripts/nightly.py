@@ -117,6 +117,15 @@ STREAK_MIN = 5
 STREAK_REL = 0.5   # listed only when the line is at least half his season average (10+ for a 28-point scorer says little)
 STREAK_LADDER = {"PTS": [10, 15, 20, 25, 30, 35, 40], "REB": [4, 6, 8, 10, 12, 14],
                  "AST": [3, 4, 6, 8, 10, 12], "3PM": [1, 2, 3, 4, 5]}
+# Referee crews (display only, 2026-11-19): tonight's crew from data/refs/nba, and how many free throws
+# each referee's games have averaged this season (data/refs/espn + teamstats). A crew average is shown
+# only when every referee has at least REF_MIN_GAMES games.
+REF_MIN_GAMES = 5
+# Leans to watch (display only, 2026-11-19). Found on 11/13 to 11/18 by testing about 15 situations,
+# so these are being tracked, not trusted: starters projected under LEAN_FILL_MIN minutes (usually
+# fill-ins) went over their line 57% of the time (294 lines), starters in games with a blowout chance
+# of LEAN_BLOWOUT or more went under 56% (290). A starter who fits both is left out.
+LEAN_FILL_MIN, LEAN_BLOWOUT, LEAN_FROM = 26.0, 0.30, "2026-11-19"
 PROMOTE_A, PROMOTE_B = 17.7, 0.44   # fill-in starter minutes = A + B x usual (fit before 2026-11-12)
 MIN_FILL_ROOM = float(os.environ.get("NBA_MIN_FILL_ROOM", 38.0))   # minutes where a player has no room left
 MIN_FILL_K = float(os.environ.get("NBA_MIN_FILL_K", 1.0))         # share of the freed minutes handed out
@@ -238,6 +247,76 @@ def ladder_streak(games, s):
         if k >= STREAK_MIN:
             best = (x, k)
     return best
+
+
+def ref_key(name):
+    return re.sub(r"[^a-z]", "", (name or "").lower())     # "J.B. DeRosa" and "JB DeRosa" match
+
+
+def ref_games(hist, name):
+    """His games by exact name, else by last name and first initial when only one referee fits
+    (ESPN has "Kladji Mulla" where the NBA has "Klajdi Mulla")."""
+    k = ref_key(name)
+    if k in hist:
+        return hist[k]
+    parts = (name or "").split()
+    if len(parts) < 2:
+        return []
+    last, first = ref_key(parts[-1]), ref_key(parts[0])[:1]
+    fits = [v for key, v in hist.items() if key.endswith(last) and key[:1] == first]
+    return fits[0] if len(fits) == 1 else []
+
+
+def load_crews(data, date):
+    """Tonight's crews by game id (data/refs/nba/<date>.csv), or {} before the page is posted."""
+    out = {}
+    for r in read_csv(data / "refs" / "nba" / f"{date}.csv"):
+        names = [r.get(k) for k in ("crew_chief", "referee", "umpire") if r.get(k)]
+        if names:
+            out[str(r.get("game_id") or "")] = names
+            out[(r.get("away"), r.get("home"))] = names
+    return out
+
+
+def ref_history(data, before):
+    """Free throws per game (both teams) in each referee's games before this date, and the league average."""
+    hist, allg = defaultdict(list), []
+    for path in sorted((data / "refs" / "espn").glob("*.csv")):
+        d = dt.date.fromisoformat(path.stem)
+        if d >= before:
+            continue
+        fta = defaultdict(float)
+        for r in read_csv(data / "teamstats" / f"{path.stem}.csv"):
+            fta[str(r["game_id"])] += fnum(r.get("FTA"), 0.0)
+        for r in read_csv(path):
+            g = fta.get(str(r["game_id"]))
+            if not g:
+                continue
+            allg.append(g)
+            for k in ("ref1", "ref2", "ref3", "ref4"):
+                if r.get(k):
+                    hist[ref_key(r[k])].append(g)
+    return hist, (sum(allg) / len(allg) if allg else None)
+
+
+def lean_record(data, before):
+    """How each lean has done on graded nights: before LEAN_FROM (where it was found) and since."""
+    rec = {k: {"found": [0, 0], "live": [0, 0]} for k in ("fill_over", "blowout_under")}
+    for path in sorted((data / "graded").glob("*.csv")):
+        if path.stem >= str(before):
+            continue
+        for r in read_csv(path):
+            line, act, mins, pb = fnum(r.get("line")), fnum(r.get("actual")), fnum(r.get("minutes")), fnum(r.get("p_blowout"))
+            if r.get("played") not in ("True", "true", True) or r.get("role") != "starter" or line is None or act is None or act == line:
+                continue
+            a, b = mins is not None and mins < LEAN_FILL_MIN, pb is not None and pb >= LEAN_BLOWOUT
+            if a == b:
+                continue
+            k, won = ("fill_over", act > line) if a else ("blowout_under", act < line)
+            slot = rec[k]["live" if path.stem >= LEAN_FROM else "found"]
+            slot[0] += 1
+            slot[1] += int(won)
+    return rec
 
 
 def pct(sorted_vals, q):
@@ -1028,6 +1107,35 @@ def run_project(date, data, docs, now=None, lock=True):
                "expected": st["expected"]}
               for e, s, st in (with_line + no_line)[:10]]
 
+    # Referee crews and leans to watch (display only)
+    crews = load_crews(data, date)
+    rhist, lg_fta = ref_history(data, date)
+    leans = []
+    for g in games_out:
+        names = crews.get(str(g["game_id"])) or crews.get((g["away"], g["home"]))
+        if names:
+            per = [ref_games(rhist, n) for n in names]
+            ok = all(len(x) >= REF_MIN_GAMES for x in per)
+            g["refs"] = {"names": names, "league_fta": round(lg_fta, 1) if lg_fta else None,
+                         "crew_fta": round(sum(sum(x) / len(x) for x in per) / len(per), 1) if ok else None,
+                         "games": [len(x) for x in per]}
+        for tb in g["teams"]:
+            for e in tb["players"]:
+                if e["role"] != "starter" or not e.get("min"):
+                    continue
+                a, b = e["min"] < LEAN_FILL_MIN, g["p_blowout"] >= LEAN_BLOWOUT
+                if a == b:
+                    continue
+                for s_ in STATS:
+                    st = e["stats"][s_]
+                    if st.get("line") is None:
+                        continue
+                    leans.append({"name": e["name"], "team": e["team"], "gid": g["game_id"], "stat": s_,
+                                  "line": st["line"], "expected": st["expected"], "side": "over" if a else "under",
+                                  "why": f"projected {e['min']:.1f} min" if a else f"blowout chance {g['p_blowout']:.0%}"})
+    leans_out = {"tonight": leans, "record": lean_record(data, date), "fill_min": LEAN_FILL_MIN,
+                 "blowout": LEAN_BLOWOUT, "from": LEAN_FROM}
+
     # Streaks: longest first, then the higher line
     streaks = {s: sorted([{"name": e["name"], "team": e["team"], "gid": g["game_id"], "season": e["season"][s],
                            "expected": e["stats"][s]["expected"], "prop": e["stats"][s]["line"],
@@ -1045,7 +1153,7 @@ def run_project(date, data, docs, now=None, lock=True):
         "date": str(date), "run_time_et": now_et.strftime("%Y-%m-%d %I:%M %p ET"),
         "run_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "model": MODEL_VERSION,
         "early_run": hours_early > 3,
-        "games": games_out, "targets": targets, "safest": safest, "streaks": streaks,
+        "games": games_out, "targets": targets, "safest": safest, "streaks": streaks, "leans": leans_out,
         "method": {
             "history_days": len(hist_dates),
             "history_from": str(hist_dates[0]) if hist_dates else None,

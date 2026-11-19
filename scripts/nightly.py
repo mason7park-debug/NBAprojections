@@ -94,10 +94,14 @@ PROMOTE_HIST_K = float(os.environ.get("NBA_PROMOTE_HIST_K", 2.0))   # formula co
 # minutes (20 games); players in their first game back after missing 1 to 3 got about 93% (115).
 GTD_MIN = float(os.environ.get("NBA_GTD_MIN", 1.0))   # off: 0.85 helped minutes but not points on only 16 games; retry with more
 RETURN_MIN = float(os.environ.get("NBA_RETURN_MIN", 0.93))   # ON: floors for those 92 players 79% -> 84% on the replay
-# Most consistent list (display only): at least CONSIST_GAMES games of CONSIST_MIN_MIN+ minutes,
-# a season average of at least CONSIST_AVG, ranked by how far a game lands from his average.
-CONSIST_GAMES, CONSIST_MIN_MIN, CONSIST_TOP = 8, 10.0, 10
-CONSIST_AVG = {"PTS": 12.0, "REB": 5.0, "AST": 4.0, "3PM": 1.5}
+# Streaks (display only, 2026-11-19): the highest ladder line a player has reached in every one of
+# his last STREAK_MIN+ games. On this season's box scores, with the same rate before those games,
+# a player on a streak cleared the line next time far more often (83% vs 66% for players who had
+# cleared it 70 to 85% of the time before). Streaks of 10+ were cleared 89% of the time.
+STREAK_MIN = 5
+STREAK_REL = 0.5   # listed only when the line is at least half his season average (10+ for a 28-point scorer says little)
+STREAK_LADDER = {"PTS": [10, 15, 20, 25, 30, 35, 40], "REB": [4, 6, 8, 10, 12, 14],
+                 "AST": [3, 4, 6, 8, 10, 12], "3PM": [1, 2, 3, 4, 5]}
 PROMOTE_A, PROMOTE_B = 17.7, 0.44   # fill-in starter minutes = A + B x usual (fit before 2026-11-12)
 MIN_FILL_ROOM = float(os.environ.get("NBA_MIN_FILL_ROOM", 38.0))   # minutes where a player has no room left
 MIN_FILL_K = float(os.environ.get("NBA_MIN_FILL_K", 1.0))         # share of the freed minutes handed out
@@ -205,6 +209,21 @@ def poisson(lam, rng):
         p *= rng.random()
         if p <= limit: return k
         k += 1
+
+def ladder_streak(games, s):
+    """Highest ladder line reached in each of the last STREAK_MIN+ games: (line, streak length)."""
+    vals = [g[s] for g in games]
+    best = None
+    for x in STREAK_LADDER[s]:
+        k = 0
+        for v in reversed(vals):
+            if v < x:
+                break
+            k += 1
+        if k >= STREAK_MIN:
+            best = (x, k)
+    return best
+
 
 def pct(sorted_vals, q):
     k = q * (len(sorted_vals) - 1)
@@ -911,6 +930,10 @@ def run_project(date, data, docs, now=None, lock=True):
                         st["loss_floor"] = min(int(pct(lv, 0.20)), res["floor"]) if len(lv) >= 100 else None
                     else:
                         st["loss_floor"] = None
+                    sk = ladder_streak(players[e["id"]]["games"], s)
+                    st["streak"] = ({"line": sk[0], "games": sk[1],
+                                     "model": round(sum(1 for v in vals if v >= sk[0]) / len(vals), 3),
+                                     "last5": [g[s] for g in players[e["id"]]["games"][-5:]]} if sk else None)
                     if s == "3PM":      # a floor of 0 says little, so threes also get "at least" chances
                         st["at_least"] = {str(k): round(sum(1 for v in vals if v >= k) / len(vals), 3) for k in (1, 2, 3)}
                     # whole-number rounding can push a tiny floor above the expected value
@@ -932,6 +955,9 @@ def run_project(date, data, docs, now=None, lock=True):
                         "expected": st["expected"], "floor": st["floor"], "blowout_floor": st["blowout_floor"],
                         "p_over": st["p_over"], "rule_floor": st["rule_floor"],
                         "floor_source": st["floor_source"], "line": st["line"],
+                        "streak_line": st["streak"]["line"] if st["streak"] else None,
+                        "streak_games": st["streak"]["games"] if st["streak"] else None,
+                        "streak_model": st["streak"]["model"] if st["streak"] else None,
                         "spread": spread, "p_blowout": round(pb, 3),
                         # kept so the morning grade can check whether matchups carry over
                         "pos": e["pos"], "dvp": st["dvp"], "area3": tb["area"]["f3"], "base_rate": st["base_rate"],
@@ -976,31 +1002,13 @@ def run_project(date, data, docs, now=None, lock=True):
                "expected": st["expected"]}
               for e, s, st in (with_line + no_line)[:10]]
 
-    # Most consistent: tonight's players whose games stay closest to their average this season.
-    # Checked 2026-11-19 on the graded nights: the steadiest quarter by this measure stayed closer
-    # to their average in the next game too (points 29% off vs 39% for the streakiest quarter,
-    # rebounds 34% vs 44%, threes 59% vs 80%; assists only 41% vs 46%). Display only.
-    consistent = {}
-    for s in STATS:
-        pool_ = []
-        for g in games_out:
-            for tb in g["teams"]:
-                for e in tb["players"]:
-                    vals = [x[s] for x in players[e["id"]]["games"] if x["MIN"] >= CONSIST_MIN_MIN]
-                    if len(vals) < CONSIST_GAMES:
-                        continue
-                    avg = sum(vals) / len(vals)
-                    if avg < CONSIST_AVG[s]:
-                        continue
-                    off = sum(abs(v - avg) for v in vals) / len(vals) / avg
-                    sv = sorted(vals)
-                    st = e["stats"][s]
-                    pool_.append({"name": e["name"], "team": e["team"], "gid": g["game_id"], "games": len(vals),
-                                  "avg": round(avg, 1), "off": round(off, 3),
-                                  "hit": round(sum(1 for v in vals if v >= 0.75 * avg) / len(vals), 3),
-                                  "low": sv[0], "lo10": round(pct(sv, 0.10), 1), "hi90": round(pct(sv, 0.90), 1),
-                                  "expected": st["expected"], "floor": st.get("floor"), "line": st.get("line")})
-        consistent[s] = sorted(pool_, key=lambda x: (x["off"], -x["avg"]))[:CONSIST_TOP]
+    # Streaks: longest first, then the higher line
+    streaks = {s: sorted([{"name": e["name"], "team": e["team"], "gid": g["game_id"], "season": e["season"][s],
+                           "expected": e["stats"][s]["expected"], "prop": e["stats"][s]["line"],
+                           **e["stats"][s]["streak"]}
+                          for g in games_out for tb in g["teams"] for e in tb["players"] if e["stats"][s].get("streak")
+                          and e["stats"][s]["streak"]["line"] >= STREAK_REL * e["season"][s]],
+                         key=lambda x: (-x["games"], -x["line"])) for s in STATS}
 
     hist_dates = sorted({r["_date"] for rows in team_games.values() for r in rows})
     n_log = sum(1 for r in proj_rows if r["floor_source"] == "log")
@@ -1011,7 +1019,7 @@ def run_project(date, data, docs, now=None, lock=True):
         "date": str(date), "run_time_et": now_et.strftime("%Y-%m-%d %I:%M %p ET"),
         "run_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "model": MODEL_VERSION,
         "early_run": hours_early > 3,
-        "games": games_out, "targets": targets, "safest": safest, "consistent": consistent,
+        "games": games_out, "targets": targets, "safest": safest, "streaks": streaks,
         "method": {
             "history_days": len(hist_dates),
             "history_from": str(hist_dates[0]) if hist_dates else None,

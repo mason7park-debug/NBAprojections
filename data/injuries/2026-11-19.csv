@@ -4,8 +4,8 @@ game_id,team,player_id,player,status,type
 401910019,MEM,4065733,Ty Jerome,Out,Hip
 401910019,MEM,4431785,Scotty Pippen Jr.,Out,Back
 401910019,MEM,5105462,Richie Saunders,Out,Knee
-401910019,GS,6589,Draymond Green,Day-To-Day,Rest
-401910019,GS,3213,Al Horford,Day-To-Day,Back
+401910019,GS,6589,Draymond Green,Out,Rest
+401910019,GS,4433149,LJ Cryer,Day-To-Day,Back
 401910019,GS,4397040,Brandon Williams,Out,Hamstring
 401910019,GS,3975,Stephen Curry,Out,Abdomen
 401910019,GS,3102531,Kristaps Porzingis,Out,Illness
@@ -16,7 +16,7 @@ game_id,team,player_id,player,status,type
 401910020,POR,4683021,Deni Avdija,Day-To-Day,Foot
 401910020,POR,4431736,Toumani Camara,Day-To-Day,Rest
 401910020,POR,4578893,Vit Krejci,Out,Ankle
-401910021,MIN,4592979,Zyon Pullin,Day-To-Day,Quadriceps
+401910021,MIN,4592979,Zyon Pullin,Day-To-Day,
 401910021,MIN,4433247,Jonathan Kuminga,Day-To-Day,Shoulder
 401910021,MIN,4432247,Jaylen Clark,Out,Hamstring
 401910021,MIN,4594268,Anthony Edwards,Out,Knee

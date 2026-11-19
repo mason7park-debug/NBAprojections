@@ -465,14 +465,12 @@ game_id,player_id,player,stat,line,source
 401910017,3945274,Luka Doncic,3PM,4.5,Draft Kings
 401910017,3945274,Luka Doncic,AST,8.5,Draft Kings
 401910017,3945274,Luka Doncic,PTS,36.5,Draft Kings
-401910017,3945274,Luka Doncic,REB,7.5,Draft Kings
+401910017,3945274,Luka Doncic,REB,6.5,Draft Kings
 401910017,4065663,Josh Okogie,PTS,6.5,Draft Kings
-401910017,4065663,Josh Okogie,REB,3.5,Draft Kings
+401910017,4065663,Josh Okogie,REB,2.5,Draft Kings
 401910017,4277811,Collin Sexton,3PM,1.5,Draft Kings
 401910017,4277811,Collin Sexton,AST,2.5,Draft Kings
 401910017,4277811,Collin Sexton,PTS,13.5,Draft Kings
-401910017,4277919,Mo Bamba,PTS,9.5,Draft Kings
-401910017,4277919,Mo Bamba,REB,8.5,Draft Kings
 401910017,4278580,Sandro Mamukelashvili,3PM,1.5,Draft Kings
 401910017,4278580,Sandro Mamukelashvili,PTS,9.5,Draft Kings
 401910017,4278580,Sandro Mamukelashvili,REB,4.5,Draft Kings
@@ -480,35 +478,35 @@ game_id,player_id,player,stat,line,source
 401910017,4397014,Quentin Grimes,AST,2.5,Draft Kings
 401910017,4397014,Quentin Grimes,PTS,15.5,Draft Kings
 401910017,4397014,Quentin Grimes,REB,3.5,Draft Kings
-401910017,4432811,Josh Green,PTS,3.5,Draft Kings
+401910017,4432811,Josh Green,PTS,4.5,Draft Kings
 401910017,4433136,Walker Kessler,AST,1.5,Draft Kings
 401910017,4433136,Walker Kessler,PTS,14.5,Draft Kings
 401910017,4433136,Walker Kessler,REB,10.5,Draft Kings
 401910017,4433627,Keyonte George,3PM,2.5,Draft Kings
 401910017,4433627,Keyonte George,AST,6.5,Draft Kings
-401910017,4433627,Keyonte George,PTS,22.5,Draft Kings
+401910017,4433627,Keyonte George,PTS,21.5,Draft Kings
 401910017,4433627,Keyonte George,REB,3.5,Draft Kings
 401910017,4592691,Jake LaRavia,3PM,0.5,Draft Kings
 401910017,4592691,Jake LaRavia,PTS,6.5,Draft Kings
 401910017,4592691,Jake LaRavia,REB,4.5,Draft Kings
 401910017,4873138,Ace Bailey,3PM,1.5,Draft Kings
-401910017,4873138,Ace Bailey,AST,2.5,Draft Kings
+401910017,4873138,Ace Bailey,AST,1.5,Draft Kings
 401910017,4873138,Ace Bailey,PTS,13.5,Draft Kings
 401910017,4873138,Ace Bailey,REB,5.5,Draft Kings
 401910017,5041955,Darryn Peterson,3PM,2.5,Draft Kings
 401910017,5041955,Darryn Peterson,AST,4.5,Draft Kings
 401910017,5041955,Darryn Peterson,PTS,18.5,Draft Kings
 401910017,5041955,Darryn Peterson,REB,4.5,Draft Kings
-401910017,5105839,Brice Sensabaugh,3PM,2.5,Draft Kings
-401910017,5105839,Brice Sensabaugh,PTS,15.5,Draft Kings
-401910017,5105839,Brice Sensabaugh,REB,4.5,Draft Kings
+401910017,5105839,Brice Sensabaugh,3PM,1.5,Draft Kings
+401910017,5105839,Brice Sensabaugh,PTS,14.5,Draft Kings
+401910017,5105839,Brice Sensabaugh,REB,3.5,Draft Kings
 401910018,3064440,Zach LaVine,3PM,2.5,Draft Kings
 401910018,3064440,Zach LaVine,AST,2.5,Draft Kings
 401910018,3064440,Zach LaVine,PTS,18.5,Draft Kings
 401910018,3064440,Zach LaVine,REB,2.5,Draft Kings
 401910018,3136193,Devin Booker,3PM,1.5,Draft Kings
 401910018,3136193,Devin Booker,AST,5.5,Draft Kings
-401910018,3136193,Devin Booker,PTS,26.5,Draft Kings
+401910018,3136193,Devin Booker,PTS,25.5,Draft Kings
 401910018,3136193,Devin Booker,REB,3.5,Draft Kings
 401910018,3155526,Dillon Brooks,3PM,1.5,Draft Kings
 401910018,3155526,Dillon Brooks,AST,1.5,Draft Kings
@@ -534,10 +532,10 @@ game_id,player_id,player,stat,line,source
 401910018,4278585,Collin Gillespie,3PM,2.5,Draft Kings
 401910018,4278585,Collin Gillespie,AST,3.5,Draft Kings
 401910018,4278585,Collin Gillespie,PTS,10.5,Draft Kings
-401910018,4278585,Collin Gillespie,REB,2.5,Draft Kings
-401910018,4431679,Precious Achiuwa,PTS,7.5,Draft Kings
+401910018,4278585,Collin Gillespie,REB,3.5,Draft Kings
+401910018,4431679,Precious Achiuwa,PTS,8.5,Draft Kings
 401910018,4431679,Precious Achiuwa,REB,5.5,Draft Kings
-401910018,4433174,,PTS,5.5,Draft Kings
+401910018,4433174,,PTS,4.5,Draft Kings
 401910018,4433174,,REB,5.5,Draft Kings
 401910018,4437244,Jalen Green,3PM,1.5,Draft Kings
 401910018,4437244,Jalen Green,AST,2.5,Draft Kings
@@ -550,7 +548,7 @@ game_id,player_id,player,stat,line,source
 401910018,4601023,Oso Ighodaro,AST,2.5,Draft Kings
 401910018,4601023,Oso Ighodaro,PTS,6.5,Draft Kings
 401910018,4601023,Oso Ighodaro,REB,5.5,Draft Kings
-401910018,5142620,Darius Acuff Jr.,3PM,3.5,Draft Kings
+401910018,5142620,Darius Acuff Jr.,3PM,2.5,Draft Kings
 401910018,5142620,Darius Acuff Jr.,AST,6.5,Draft Kings
 401910018,5142620,Darius Acuff Jr.,PTS,24.5,Draft Kings
 401910018,5142620,Darius Acuff Jr.,REB,3.5,Draft Kings

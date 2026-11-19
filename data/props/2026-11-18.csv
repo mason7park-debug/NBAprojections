@@ -285,11 +285,11 @@ game_id,player_id,player,stat,line,source
 401910012,6583,Anthony Davis,PTS,22.5,DraftKings
 401910012,6583,Anthony Davis,REB,9.5,DraftKings
 401910013,3908845,John Collins,3PM,1.5,Draft Kings
-401910013,3908845,John Collins,PTS,13.5,Draft Kings
+401910013,3908845,John Collins,PTS,14.5,Draft Kings
 401910013,3908845,John Collins,REB,6.5,Draft Kings
 401910013,4066372,Kevin Huerter,3PM,2.5,Draft Kings
-401910013,4066372,Kevin Huerter,AST,3.5,Draft Kings
-401910013,4066372,Kevin Huerter,PTS,14.5,Draft Kings
+401910013,4066372,Kevin Huerter,AST,4.5,Draft Kings
+401910013,4066372,Kevin Huerter,PTS,15.5,Draft Kings
 401910013,4066372,Kevin Huerter,REB,4.5,Draft Kings
 401910013,4277813,Herbert Jones,3PM,1.5,Draft Kings
 401910013,4277813,Herbert Jones,PTS,8.5,Draft Kings
@@ -303,11 +303,7 @@ game_id,player_id,player,stat,line,source
 401910013,4397136,Saddiq Bey,3PM,2.5,Draft Kings
 401910013,4397136,Saddiq Bey,PTS,19.5,Draft Kings
 401910013,4397136,Saddiq Bey,REB,5.5,Draft Kings
-401910013,4432166,Cade Cunningham,3PM,1.5,Draft Kings
-401910013,4432166,Cade Cunningham,AST,8.5,Draft Kings
-401910013,4432166,Cade Cunningham,PTS,24.5,Draft Kings
-401910013,4432166,Cade Cunningham,REB,5.5,Draft Kings
-401910013,4684742,Ausar Thompson,AST,6.5,Draft Kings
+401910013,4684742,Ausar Thompson,AST,7.5,Draft Kings
 401910013,4684742,Ausar Thompson,PTS,13.5,Draft Kings
 401910013,4684742,Ausar Thompson,REB,8.5,Draft Kings
 401910013,4869780,Derik Queen,AST,2.5,Draft Kings
@@ -316,8 +312,8 @@ game_id,player_id,player,stat,line,source
 401910013,5061589,,PTS,6.5,Draft Kings
 401910013,5061589,,REB,8.5,Draft Kings
 401910013,5107199,Daniss Jenkins,3PM,1.5,Draft Kings
-401910013,5107199,Daniss Jenkins,AST,6.5,Draft Kings
-401910013,5107199,Daniss Jenkins,PTS,17.5,Draft Kings
+401910013,5107199,Daniss Jenkins,AST,7.5,Draft Kings
+401910013,5107199,Daniss Jenkins,PTS,19.5,Draft Kings
 401910013,5107199,Daniss Jenkins,REB,3.5,Draft Kings
 401910013,5144091,Jeremiah Fears,3PM,1.5,Draft Kings
 401910013,5144091,Jeremiah Fears,AST,6.5,Draft Kings

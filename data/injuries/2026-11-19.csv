@@ -1,0 +1,29 @@
+game_id,team,player_id,player,status,type
+401910019,MEM,5105550,GG Jackson,Out,Foot
+401910019,MEM,4432810,Isaiah Stewart,Out,Illness
+401910019,MEM,4065733,Ty Jerome,Out,Hip
+401910019,MEM,4431785,Scotty Pippen Jr.,Out,Back
+401910019,MEM,5105462,Richie Saunders,Out,Knee
+401910019,GS,3213,Al Horford,Out,Back
+401910019,GS,4397040,Brandon Williams,Out,Hamstring
+401910019,GS,3975,Stephen Curry,Out,Abdomen
+401910019,GS,3102531,Kristaps Porzingis,Out,Illness
+401910019,GS,4432171,Moses Moody,Out,Knee
+401910020,MIL,4591725,Ryan Rollins,Out,Illness
+401910020,MIL,4997526,Ousmane Dieng,Out,Finger
+401910020,POR,4066211,Robert Williams III,Out,Rest
+401910020,POR,4683021,Deni Avdija,Day-To-Day,Foot
+401910020,POR,4431736,Toumani Camara,Day-To-Day,Rest
+401910020,POR,4706557,Chris Youngblood,Out,Heel
+401910020,POR,4578893,Vit Krejci,Out,Ankle
+401910021,MIN,4592979,Zyon Pullin,Day-To-Day,Quadriceps
+401910021,MIN,4433247,Jonathan Kuminga,Day-To-Day,Shoulder
+401910021,MIN,4432247,Jaylen Clark,Out,Hamstring
+401910021,MIN,4594268,Anthony Edwards,Out,Knee
+401910021,MIN,3934673,Donte DiVincenzo,Out,Achilles
+401910022,SA,5037871,Dylan Harper,Out,Hip
+401910022,SA,6440,Tobias Harris,Out,Calf
+401910022,SA,5101845,Jayden Quaintance,Out,Knee
+401910022,LAC,3913176,Brandon Ingram,Out,Achilles
+401910022,LAC,6580,Bradley Beal,Out,Knee
+401910022,LAC,4396818,Jordan Miller,Out,Shoulder

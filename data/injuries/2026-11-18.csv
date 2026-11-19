@@ -20,8 +20,8 @@ game_id,team,player_id,player,status,type
 401910010,ORL,4065654,Jonathan Isaac,Out,Knee
 401910010,ORL,5214637,Noah Penda,Out,Hamstring
 401910010,ORL,4432573,Paolo Banchero,Out,Ankle
+401910010,PHI,4431678,Tyrese Maxey,Out,Foot
 401910010,PHI,3912848,Dean Wade,Out,Hamstring
-401910010,PHI,4431678,Tyrese Maxey,Day-To-Day,Foot
 401910010,PHI,3917376,Jaylen Brown,Out,Hamstring
 401910010,PHI,4870562,Dominick Barlow,Out,Back
 401910010,PHI,5105637,Adem Bona,Out,Back
@@ -47,7 +47,6 @@ game_id,team,player_id,player,status,type
 401910013,DET,4683771,Ronald Holland II,Out,Knee
 401910013,DET,3157465,Duncan Robinson,Out,Quadriceps
 401910014,OKC,5061603,Thomas Sorber,Out,Knee
-401910014,OKC,4432823,Jaylin Williams,Out,Back
 401910014,OKC,4683692,Cason Wallace,Out,Shoulder
 401910014,OKC,4433255,Chet Holmgren,Out,Knee
 401910014,OKC,4593803,Jalen Williams,Out,Leg
@@ -61,11 +60,11 @@ game_id,team,player_id,player,status,type
 401910016,DAL,4683688,Dereck Lively II,Out,Foot
 401910016,DAL,5106040,Tobi Lawal,Day-To-Day,Groin
 401910016,DAL,5148538,Tarik Biberovic,Out,Heel
+401910016,GS,3213,Al Horford,Out,Back
 401910016,GS,4397040,Brandon Williams,Out,Hamstring
-401910016,GS,6589,Draymond Green,Day-To-Day,Elbow
-401910016,GS,3213,Al Horford,Day-To-Day,Back
 401910016,GS,3975,Stephen Curry,Out,Abdomen
 401910016,GS,3102531,Kristaps Porzingis,Out,Illness
+401910016,GS,4432171,Moses Moody,Out,Knee
 401910015,DEN,4432181,Julian Strawther,Out,Knee
 401910017,LAL,4066457,Austin Reaves,Out,Heel
 401910017,UTAH,4397077,Jaxson Hayes,Day-To-Day,Knee

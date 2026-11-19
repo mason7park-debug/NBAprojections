@@ -43,7 +43,7 @@ game_id,player_id,player,stat,line,source
 401910020,4395725,Tyler Herro,3PM,2.5,Draft Kings
 401910020,4395725,Tyler Herro,AST,4.5,Draft Kings
 401910020,4395725,Tyler Herro,PTS,20.5,Draft Kings
-401910020,4395725,Tyler Herro,REB,3.5,Draft Kings
+401910020,4395725,Tyler Herro,REB,4.5,Draft Kings
 401910020,4431736,Toumani Camara,3PM,2.5,Draft Kings
 401910020,4431736,Toumani Camara,PTS,12.5,Draft Kings
 401910020,4431736,Toumani Camara,REB,4.5,Draft Kings
@@ -53,7 +53,7 @@ game_id,player_id,player,stat,line,source
 401910020,4432848,Jaime Jaquez Jr.,REB,4.5,Draft Kings
 401910020,4683021,Deni Avdija,3PM,1.5,Draft Kings
 401910020,4683021,Deni Avdija,AST,5.5,Draft Kings
-401910020,4683021,Deni Avdija,PTS,24.5,Draft Kings
+401910020,4683021,Deni Avdija,PTS,23.5,Draft Kings
 401910020,4683021,Deni Avdija,REB,6.5,Draft Kings
 401910020,4683678,Scoot Henderson,3PM,1.5,Draft Kings
 401910020,4683678,Scoot Henderson,AST,2.5,Draft Kings
@@ -70,24 +70,28 @@ game_id,player_id,player,stat,line,source
 401910020,5105565,Donovan Clingan,AST,2.5,Draft Kings
 401910020,5105565,Donovan Clingan,PTS,12.5,Draft Kings
 401910020,5105565,Donovan Clingan,REB,12.5,Draft Kings
+401910020,5105623,Kel'el Ware,PTS,10.5,Draft Kings
+401910020,5105623,Kel'el Ware,REB,7.5,Draft Kings
+401910020,5164559,Nate Ament,PTS,8.5,Draft Kings
+401910020,5164559,Nate Ament,REB,3.5,Draft Kings
 401910020,6606,Damian Lillard,3PM,3.5,Draft Kings
 401910020,6606,Damian Lillard,AST,4.5,Draft Kings
 401910020,6606,Damian Lillard,PTS,22.5,Draft Kings
 401910020,6606,Damian Lillard,REB,3.5,Draft Kings
 401910021,3032976,Rudy Gobert,AST,1.5,Draft Kings
 401910021,3032976,Rudy Gobert,PTS,8.5,Draft Kings
-401910021,3032976,Rudy Gobert,REB,10.5,Draft Kings
+401910021,3032976,Rudy Gobert,REB,9.5,Draft Kings
 401910021,3062679,Josh Hart,3PM,1.5,Draft Kings
 401910021,3062679,Josh Hart,AST,3.5,Draft Kings
 401910021,3062679,Josh Hart,PTS,7.5,Draft Kings
 401910021,3062679,Josh Hart,REB,5.5,Draft Kings
 401910021,3136195,Karl-Anthony Towns,3PM,1.5,Draft Kings
 401910021,3136195,Karl-Anthony Towns,AST,3.5,Draft Kings
-401910021,3136195,Karl-Anthony Towns,PTS,20.5,Draft Kings
+401910021,3136195,Karl-Anthony Towns,PTS,21.5,Draft Kings
 401910021,3136195,Karl-Anthony Towns,REB,13.5,Draft Kings
 401910021,3147657,Mikal Bridges,3PM,1.5,Draft Kings
 401910021,3147657,Mikal Bridges,AST,2.5,Draft Kings
-401910021,3147657,Mikal Bridges,PTS,9.5,Draft Kings
+401910021,3147657,Mikal Bridges,PTS,10.5,Draft Kings
 401910021,3147657,Mikal Bridges,REB,3.5,Draft Kings
 401910021,3914044,Landry Shamet,3PM,1.5,Draft Kings
 401910021,3914044,Landry Shamet,PTS,8.5,Draft Kings
@@ -101,7 +105,7 @@ game_id,player_id,player,stat,line,source
 401910021,3934719,OG Anunoby,REB,4.5,Draft Kings
 401910021,4397002,Ayo Dosunmu,3PM,1.5,Draft Kings
 401910021,4397002,Ayo Dosunmu,AST,4.5,Draft Kings
-401910021,4397002,Ayo Dosunmu,PTS,18.5,Draft Kings
+401910021,4397002,Ayo Dosunmu,PTS,17.5,Draft Kings
 401910021,4397002,Ayo Dosunmu,REB,4.5,Draft Kings
 401910021,4431671,Jaden McDaniels,3PM,1.5,Draft Kings
 401910021,4431671,Jaden McDaniels,AST,3.5,Draft Kings
@@ -137,7 +141,7 @@ game_id,player_id,player,stat,line,source
 401910022,4066259,De'Aaron Fox,3PM,1.5,Draft Kings
 401910022,4066259,De'Aaron Fox,AST,6.5,Draft Kings
 401910022,4066259,De'Aaron Fox,PTS,15.5,Draft Kings
-401910022,4066259,De'Aaron Fox,REB,4.5,Draft Kings
+401910022,4066259,De'Aaron Fox,REB,3.5,Draft Kings
 401910022,4066648,Rui Hachimura,3PM,1.5,Draft Kings
 401910022,4066648,Rui Hachimura,AST,1.5,Draft Kings
 401910022,4066648,Rui Hachimura,PTS,11.5,Draft Kings
@@ -160,7 +164,7 @@ game_id,player_id,player,stat,line,source
 401910022,4845367,Stephon Castle,3PM,1.5,Draft Kings
 401910022,4845367,Stephon Castle,AST,7.5,Draft Kings
 401910022,4845367,Stephon Castle,PTS,17.5,Draft Kings
-401910022,4845367,Stephon Castle,REB,5.5,Draft Kings
+401910022,4845367,Stephon Castle,REB,4.5,Draft Kings
 401910022,5104157,Victor Wembanyama,3PM,2.5,Draft Kings
 401910022,5104157,Victor Wembanyama,AST,3.5,Draft Kings
 401910022,5104157,Victor Wembanyama,PTS,27.5,Draft Kings

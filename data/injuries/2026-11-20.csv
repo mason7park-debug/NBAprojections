@@ -19,11 +19,10 @@ game_id,team,player_id,player,status,type
 401909307,CLE,4432158,Evan Mobley,Out,Toe
 401909307,IND,4396993,Tyrese Haliburton,Out,Hamstring
 401909307,IND,2530530,T.J. McConnell,Day-To-Day,Hamstring
-401909307,IND,4395712,Andrew Nembhard,Day-To-Day,Hip
-401909307,IND,5105854,Braden Smith,Day-To-Day,Ankle
 401909307,IND,5157066,Johnny Furphy,Out,Knee
-401909308,DET,4683771,Ronald Holland II,Day-To-Day,Knee
+401909307,IND,4433076,Ben Sheppard,Out,Knee
 401909308,DET,2990962,Taurean Prince,Out,Knee
+401909308,DET,4683771,Ronald Holland II,Day-To-Day,Knee
 401909308,DET,5258459,Ebuka Okorie,Out,Oblique
 401909308,DET,4432166,Cade Cunningham,Day-To-Day,Knee
 401909308,DET,5037878,Ugonna Onyenso,Day-To-Day,Foot
@@ -40,8 +39,8 @@ game_id,team,player_id,player,status,type
 401909309,WSH,4432187,Reece Beekman,Out,Shoulder
 401909309,WSH,4432907,Justin Champagnie,Out,Foot
 401909309,WSH,4606840,Jamir Watkins,Out,Knee
+401909310,OKC,2991350,Alex Caruso,Out,Hip
 401909310,OKC,5159925,Nikola Topic,Out,Hip
-401909310,OKC,2991350,Alex Caruso,Day-To-Day,Hip
 401909310,OKC,5061603,Thomas Sorber,Out,Knee
 401909310,OKC,4683692,Cason Wallace,Out,Shoulder
 401909310,OKC,4433255,Chet Holmgren,Out,Knee

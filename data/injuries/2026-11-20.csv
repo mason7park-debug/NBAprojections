@@ -17,19 +17,19 @@ game_id,team,player_id,player,status,type
 401909307,CLE,4576087,Peyton Watson,Day-To-Day,Back
 401909307,CLE,5106268,Nae'Qwan Tomlin,Out,Back
 401909307,CLE,4432158,Evan Mobley,Out,Toe
+401909307,IND,4396993,Tyrese Haliburton,Out,Hamstring
 401909307,IND,2530530,T.J. McConnell,Day-To-Day,Hamstring
 401909307,IND,4395712,Andrew Nembhard,Day-To-Day,Hip
 401909307,IND,5105854,Braden Smith,Day-To-Day,Ankle
-401909307,IND,4396993,Tyrese Haliburton,Out,Hamstring
 401909307,IND,5157066,Johnny Furphy,Out,Knee
 401909308,DET,4683771,Ronald Holland II,Day-To-Day,Knee
 401909308,DET,2990962,Taurean Prince,Out,Knee
 401909308,DET,5258459,Ebuka Okorie,Out,Oblique
 401909308,DET,4432166,Cade Cunningham,Day-To-Day,Knee
 401909308,DET,5037878,Ugonna Onyenso,Day-To-Day,Foot
+401909308,TOR,6450,Kawhi Leonard,Out,Knee
 401909308,TOR,5093267,Collin Murray-Boyles,Out,Concussion
 401909308,TOR,4395625,RJ Barrett,Out,Hamstring
-401909308,TOR,6450,Kawhi Leonard,Out,Knee
 401909308,TOR,4432586,Nate Bittle,Out,Foot
 401909309,CHI,4397189,Jalen Smith,Day-To-Day,Illness
 401909309,CHI,5242496,Noa Essengue,Day-To-Day,Wrist
@@ -59,7 +59,7 @@ game_id,team,player_id,player,status,type
 401909312,HOU,3102529,Clint Capela,Out,Ankle
 401909312,HOU,4871144,Alperen Sengun,Day-To-Day,Eye
 401909313,LAL,4066457,Austin Reaves,Out,Heel
-401909313,SAC,4431679,Precious Achiuwa,Day-To-Day,Lower Leg
+401909313,SAC,4431679,Precious Achiuwa,Out,Lower Leg
 401909313,SAC,4065732,De'Andre Hunter,Day-To-Day,Hip
 401909313,SAC,4898371,Maxime Raynaud,Out,Knee
 401909313,SAC,3907387,Ben Simmons,Out,Achilles

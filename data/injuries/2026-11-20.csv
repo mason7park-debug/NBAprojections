@@ -1,0 +1,64 @@
+game_id,team,player_id,player,status,type
+401909305,ATL,3146557,Jock Landale,Out,Hip
+401909305,ATL,5149077,Kingston Flemings,Day-To-Day,Back
+401909305,ATL,4873201,Asa Newell,Out,Toe
+401909305,ATL,2490149,CJ McCollum,Out,Calf
+401909305,ATL,4712863,Mouhamed Gueye,Out,Foot
+401909305,CHA,4066218,Grant Williams,Out,Hamstring
+401909305,CHA,3135045,Grayson Allen,Out,Concussion
+401909305,CHA,5061575,Kon Knueppel,Out,Hamstring
+401909305,CHA,3032979,Dennis Schroder,Out,Hamstring
+401909306,BKN,4702670,Grant Nelson,Out,Ankle
+401909306,ORL,5107251,Izaiyah Nelson,Out,Ankle
+401909306,ORL,4065654,Jonathan Isaac,Out,Knee
+401909306,ORL,5214637,Noah Penda,Out,Hamstring
+401909306,ORL,4432573,Paolo Banchero,Out,Ankle
+401909307,CLE,4683747,Jaylon Tyson,Out,Ankle
+401909307,CLE,4576087,Peyton Watson,Day-To-Day,Back
+401909307,CLE,5106268,Nae'Qwan Tomlin,Out,Back
+401909307,CLE,4432158,Evan Mobley,Out,Toe
+401909307,IND,2530530,T.J. McConnell,Day-To-Day,Hamstring
+401909307,IND,4395712,Andrew Nembhard,Day-To-Day,Hip
+401909307,IND,5105854,Braden Smith,Day-To-Day,Ankle
+401909307,IND,4396993,Tyrese Haliburton,Out,Hamstring
+401909307,IND,5157066,Johnny Furphy,Out,Knee
+401909308,DET,2990962,Taurean Prince,Out,Knee
+401909308,DET,5258459,Ebuka Okorie,Out,Oblique
+401909308,DET,4683771,Ronald Holland II,Out,Knee
+401909308,DET,4432166,Cade Cunningham,Day-To-Day,Knee
+401909308,DET,5037878,Ugonna Onyenso,Day-To-Day,Foot
+401909308,TOR,5093267,Collin Murray-Boyles,Out,Concussion
+401909308,TOR,4395625,RJ Barrett,Out,Hamstring
+401909308,TOR,6450,Kawhi Leonard,Out,Knee
+401909308,TOR,4432586,Nate Bittle,Out,Foot
+401909309,CHI,5242496,Noa Essengue,Day-To-Day,Wrist
+401909309,CHI,5105555,Tobe Awaka,Out,Back
+401909309,CHI,5095151,Caleb Wilson,Out,Hand
+401909309,WSH,5105841,Felix Okpara,Day-To-Day,Back
+401909309,WSH,4997537,Tristan Vukcevic,Out,Hip
+401909309,WSH,4432187,Reece Beekman,Out,Shoulder
+401909309,WSH,4432907,Justin Champagnie,Out,Foot
+401909309,WSH,4606840,Jamir Watkins,Out,Knee
+401909310,OKC,2991350,Alex Caruso,Day-To-Day,Hip
+401909310,OKC,5061603,Thomas Sorber,Out,Knee
+401909310,OKC,4683692,Cason Wallace,Out,Shoulder
+401909310,OKC,4433255,Chet Holmgren,Out,Knee
+401909310,OKC,4593803,Jalen Williams,Out,Leg
+401909310,NO,4576086,Bryce McGowens,Out,Elbow
+401909310,NO,4431675,Trendon Watford,Out,Ankle
+401909310,NO,4683634,Bennedict Mathurin,Out,Foot
+401909310,NO,4397688,Trey Murphy III,Out,Knee
+401909310,NO,3907497,Dejounte Murray,Out,Ankle
+401909311,UTAH,3102530,Jusuf Nurkic,Out,Foot
+401909311,UTAH,4066336,Lauri Markkanen,Out,Hand
+401909311,UTAH,4277961,Jaren Jackson Jr.,Out,Knee
+401909311,PHX,4701232,Mark Williams,Out,Shoulder
+401909312,DEN,4432181,Julian Strawther,Out,Knee
+401909312,HOU,2991235,Steven Adams,Day-To-Day,Quadriceps
+401909312,HOU,3102529,Clint Capela,Out,Ankle
+401909312,HOU,4871144,Alperen Sengun,Day-To-Day,Eye
+401909313,LAL,4066457,Austin Reaves,Out,Heel
+401909313,SAC,4431679,Precious Achiuwa,Day-To-Day,Lower Leg
+401909313,SAC,4065732,De'Andre Hunter,Day-To-Day,Hip
+401909313,SAC,4898371,Maxime Raynaud,Out,Knee
+401909313,SAC,3907387,Ben Simmons,Out,Achilles

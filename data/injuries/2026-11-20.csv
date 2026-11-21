@@ -14,11 +14,9 @@ game_id,team,player_id,player,status,type
 401909306,ORL,5214637,Noah Penda,Out,Hamstring
 401909306,ORL,4432573,Paolo Banchero,Out,Ankle
 401909307,CLE,4683747,Jaylon Tyson,Out,Ankle
-401909307,CLE,4576087,Peyton Watson,Day-To-Day,Back
 401909307,CLE,5106268,Nae'Qwan Tomlin,Out,Back
 401909307,CLE,4432158,Evan Mobley,Out,Toe
 401909307,IND,4396993,Tyrese Haliburton,Out,Hamstring
-401909307,IND,2530530,T.J. McConnell,Day-To-Day,Hamstring
 401909307,IND,5157066,Johnny Furphy,Out,Knee
 401909307,IND,4433076,Ben Sheppard,Out,Knee
 401909308,DET,2990962,Taurean Prince,Out,Knee
@@ -30,8 +28,7 @@ game_id,team,player_id,player,status,type
 401909308,TOR,5093267,Collin Murray-Boyles,Out,Concussion
 401909308,TOR,4395625,RJ Barrett,Out,Hamstring
 401909308,TOR,4432586,Nate Bittle,Out,Foot
-401909309,CHI,4397189,Jalen Smith,Day-To-Day,Illness
-401909309,CHI,5242496,Noa Essengue,Day-To-Day,Wrist
+401909309,CHI,4397189,Jalen Smith,Out,Illness
 401909309,CHI,5105555,Tobe Awaka,Out,Back
 401909309,CHI,5095151,Caleb Wilson,Out,Hand
 401909309,WSH,5105841,Felix Okpara,Day-To-Day,Back
@@ -47,7 +44,6 @@ game_id,team,player_id,player,status,type
 401909310,NO,4576086,Bryce McGowens,Out,Elbow
 401909310,NO,4431675,Trendon Watford,Out,Ankle
 401909310,NO,4683634,Bennedict Mathurin,Out,Foot
-401909310,NO,4397688,Trey Murphy III,Out,Knee
 401909310,NO,3907497,Dejounte Murray,Out,Ankle
 401909311,UTAH,3102530,Jusuf Nurkic,Out,Foot
 401909311,UTAH,4066336,Lauri Markkanen,Out,Hand

@@ -4,6 +4,7 @@ game_id,team,player_id,player,status,type
 401909305,ATL,4873201,Asa Newell,Out,Toe
 401909305,ATL,2490149,CJ McCollum,Out,Calf
 401909305,ATL,4712863,Mouhamed Gueye,Out,Foot
+401909305,CHA,4433287,Brandon Miller,Day-To-Day,Ankle
 401909305,CHA,4066218,Grant Williams,Out,Hamstring
 401909305,CHA,3135045,Grayson Allen,Out,Concussion
 401909305,CHA,5061575,Kon Knueppel,Out,Hamstring
@@ -19,8 +20,8 @@ game_id,team,player_id,player,status,type
 401909307,IND,4396993,Tyrese Haliburton,Out,Hamstring
 401909307,IND,5157066,Johnny Furphy,Out,Knee
 401909307,IND,4433076,Ben Sheppard,Out,Knee
+401909308,DET,4683771,Ronald Holland II,Out,Knee
 401909308,DET,2990962,Taurean Prince,Out,Knee
-401909308,DET,4683771,Ronald Holland II,Day-To-Day,Knee
 401909308,DET,5258459,Ebuka Okorie,Out,Oblique
 401909308,DET,5037878,Ugonna Onyenso,Day-To-Day,Foot
 401909308,DET,3157465,Duncan Robinson,Out,Quadriceps
@@ -31,7 +32,7 @@ game_id,team,player_id,player,status,type
 401909309,CHI,4397189,Jalen Smith,Out,Illness
 401909309,CHI,5105555,Tobe Awaka,Out,Back
 401909309,CHI,5095151,Caleb Wilson,Out,Hand
-401909309,WSH,5105841,Felix Okpara,Day-To-Day,Back
+401909309,WSH,5105841,Felix Okpara,Out,Back
 401909309,WSH,4997537,Tristan Vukcevic,Out,Hip
 401909309,WSH,4432187,Reece Beekman,Out,Shoulder
 401909309,WSH,4432907,Justin Champagnie,Out,Foot

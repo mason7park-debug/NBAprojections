@@ -9,6 +9,7 @@ game_id,team,player_id,player,status,type
 401909305,CHA,3135045,Grayson Allen,Out,Concussion
 401909305,CHA,5061575,Kon Knueppel,Out,Hamstring
 401909305,CHA,3032979,Dennis Schroder,Out,Hamstring
+401909306,BKN,5279130,Nolan Traore,Out,Hamstring
 401909306,BKN,4702670,Grant Nelson,Out,Ankle
 401909306,ORL,5107251,Izaiyah Nelson,Out,Ankle
 401909306,ORL,4065654,Jonathan Isaac,Out,Knee
@@ -51,11 +52,8 @@ game_id,team,player_id,player,status,type
 401909311,UTAH,4277961,Jaren Jackson Jr.,Out,Knee
 401909311,PHX,4701232,Mark Williams,Out,Shoulder
 401909312,DEN,4432181,Julian Strawther,Out,Knee
-401909312,HOU,2991235,Steven Adams,Day-To-Day,Quadriceps
 401909312,HOU,3102529,Clint Capela,Out,Ankle
-401909312,HOU,4871144,Alperen Sengun,Day-To-Day,Eye
 401909313,LAL,4066457,Austin Reaves,Out,Heel
 401909313,SAC,4431679,Precious Achiuwa,Out,Lower Leg
-401909313,SAC,4065732,De'Andre Hunter,Day-To-Day,Hip
 401909313,SAC,4898371,Maxime Raynaud,Out,Knee
 401909313,SAC,3907387,Ben Simmons,Out,Achilles

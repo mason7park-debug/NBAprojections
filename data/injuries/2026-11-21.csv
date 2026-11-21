@@ -5,8 +5,9 @@ game_id,team,player_id,player,status,type
 401910023,PHI,5105637,Adem Bona,Out,Back
 401910023,PHI,3917376,Jaylen Brown,Out,Hamstring
 401910023,MIL,4997526,Ousmane Dieng,Out,Finger
-401910024,NY,2528426,Jordan Clarkson,Out,Foot
 401910024,NY,3934719,OG Anunoby,Day-To-Day,Calf
+401910024,NY,3136195,Karl-Anthony Towns,Day-To-Day,Illness
+401910024,NY,2528426,Jordan Clarkson,Out,Foot
 401910024,POR,4706557,Chris Youngblood,Out,Heel
 401910024,POR,4683021,Deni Avdija,Day-To-Day,Foot
 401910024,POR,4578893,Vit Krejci,Out,Ankle

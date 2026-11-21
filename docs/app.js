@@ -139,6 +139,24 @@
   }
   // the blowout floor shown is the blown-out version when there is one: it assumes his team is the one losing big
   function bfl(x) { return x.loss_floor != null ? x.loss_floor : x.blowout_floor; }
+  // Hot and in a good spot: a streak where nothing about tonight's opponent should pull him down.
+  function hotSpots(D) {
+    var H = D.hot_spots; if (!H) return '';
+    var names = { PTS: 'Points', REB: 'Rebounds', AST: 'Assists', '3PM': 'Threes' };
+    var total = STATS.reduce(function (n, s) { return n + (H[s] || []).length; }, 0);
+    var cards = STATS.map(function (s) {
+      var l = H[s] || [];
+      return '<div class="card"><h3>' + names[s] + '</h3><div class="body">' + (l.length ? l.map(function (x) {
+        var plus = x.spot && x.spot.plus && x.spot.plus.length ? x.spot.plus.map(esc).join(' · ') : 'no drag from the matchup';
+        return '<a class="tg mlink" href="#g-' + x.gid + '"><div class="g">' + esc(x.name) + ' <span class="date">' + esc(x.team) + '</span> <span class="ceilv">' + x.line + '+</span></div>' +
+          '<div class="m"><span class="up">' + x.games + ' straight</span> · last 5: ' + x.last5.join(', ') + ' · model ' + pc(x.model) + (x.prop != null ? ' · prop ' + x.prop : '') + '</div>' +
+          '<div class="p">Spot: ' + plus + '</div></a>';
+      }).join('') : '<div class="tg"><div class="p">No streak in this stat has a clean spot tonight.</div></div>') + '</div></div>';
+    }).join('');
+    return '<section id="hotspots"><div class="eyebrow">Hot and in a good spot</div>' +
+      (total ? '' : '<p class="lead">No streak tonight has a clean spot.</p>') + '<div class="grid2">' + cards + '</div>' +
+      '<p class="lead" style="margin-top:10px">These are the streaks below where nothing about tonight\'s opponent is expected to pull him down. A streak is left out if the model\'s matchup cuts his projection 3% or more, if the defense has allowed 12% or more below average to his position in that stat, or if the game carries High blowout risk. A neutral matchup counts as a good spot. Pluses (a soft defense, a missing rebounder or shot blocker, a tired opponent) are shown but not required.</p></section>';
+  }
   // Streaks: the highest ladder line each player has reached in every one of his last 5+ games.
   function streaks(D) {
     var S = D.streaks; if (!S) return '';
@@ -149,7 +167,8 @@
       return '<div class="card"><h3>' + names[s] + '</h3><div class="body">' + (l.length ? l.map(function (x) {
         return '<a class="tg mlink" href="#g-' + x.gid + '"><div class="g">' + esc(x.name) + ' <span class="date">' + esc(x.team) + '</span> <span class="ceilv">' + x.line + '+</span></div>' +
           '<div class="m"><span class="up">' + x.games + ' straight</span> · last 5: ' + x.last5.join(', ') + ' · season ' + x.season + '</div>' +
-          '<div class="p">tonight: expected ' + x.expected + ' · model gives ' + x.line + '+ a ' + pc(x.model) + ' chance' + (x.prop != null ? ' · prop line ' + x.prop : '') + '</div></a>';
+          '<div class="p">tonight: expected ' + x.expected + ' · model gives ' + x.line + '+ a ' + pc(x.model) + ' chance' + (x.prop != null ? ' · prop line ' + x.prop : '') + '</div>' +
+          (x.spot ? '<div class="p">' + (x.spot.good ? '<span class="up">good spot</span>' : '<span class="down">tough spot: ' + x.spot.against.map(esc).join(', ') + '</span>') + '</div>' : '') + '</a>';
       }).join('') : '<div class="tg"><div class="p">No one on tonight\'s slate has a streak of 5+ games at a line worth listing.</div></div>') + '</div></div>';
     }).join('') + '</div><p class="lead" style="margin-top:10px">The big number is the highest ladder line he has reached in every one of his last 5 or more games (points 10, 15, 20, 25 and up; rebounds 4, 6, 8, 10; assists 3, 4, 6, 8; threes 1, 2, 3), listed when that line is at least half his season average. Longest streaks first. On this season\'s box scores, a streak meant more than his season numbers alone: among players who had cleared a line 70 to 85% of the time before their last 5 games, those on a streak cleared it next time 83% of the time against 66% for those who were not, and streaks of 10 or more games were cleared 89% of the time. Compare it with the model\'s chance: the model already counts recent games, so when both are high the case is stronger.</p></section>';
   }
@@ -371,7 +390,7 @@
       else if (!open && D.date < todayEt) stale = '<div class="warnbar">Showing ' + esc(D.date) + '. Today\'s games appear after the first run of the day.</div>';
     }
     app.innerHTML = stale + (D.early_run && !stale ? '<div class="warnbar">Early look. Injuries and spreads can still change. This page refreshes at about 2:31pm, 5:37pm and 6:27pm ET, and each game locks at its tip.</div>' : '') +
-      gamesGrid(D) + matchups(D) + goOff(D) + streaks(D) + targets(D) + safest(D) +
+      gamesGrid(D) + matchups(D) + goOff(D) + hotSpots(D) + streaks(D) + targets(D) + safest(D) +
       '<section id="players"><div class="eyebrow">Players, game by game</div><div class="controls"><input id="q" type="search" placeholder="Find a player" aria-label="Find a player">' +
       '<div class="seg" id="seg" role="group" aria-label="Stat shown">' + ['ALL'].concat(STATS).map(function (s) { return '<button type="button" data-m="' + s + '">' + (s === 'ALL' ? 'All stats' : s) + '</button>'; }).join('') + '</div>' +
       '<button type="button" class="tgl" id="fold">Collapse all</button></div>' +

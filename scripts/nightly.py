@@ -117,6 +117,15 @@ STREAK_MIN = 5
 STREAK_REL = 0.5   # listed only when the line is at least half his season average (10+ for a 28-point scorer says little)
 STREAK_LADDER = {"PTS": [10, 15, 20, 25, 30, 35, 40], "REB": [4, 6, 8, 10, 12, 14],
                  "AST": [3, 4, 6, 8, 10, 12], "3PM": [1, 2, 3, 4, 5]}
+# Good spot (2026-11-21, display only): a streak is in a good spot when nothing about tonight's
+# opponent is expected to pull him down. No sign of trouble counts as a good spot. Trouble is any of:
+#   - the model's matchup factor cuts him SPOT_MATCHUP_MIN or more (position + area defense, as used in the projection)
+#   - the defense has allowed SPOT_TOUGH or less of the league average to his position in that stat
+#   - High blowout risk, which is when stars lose minutes
+SPOT_MATCHUP_MIN = 0.97
+SPOT_TOUGH = 0.88
+# Opponent absences and rest that help a stat (same measured effects as KEY_ROLES below). Shown as pluses.
+SPOT_HELPS = {"PTS": ("blocker", "stealer"), "REB": ("rebounder",), "AST": ("stealer",), "3PM": ()}
 PROMOTE_A, PROMOTE_B = 17.7, 0.44   # fill-in starter minutes = A + B x usual (fit before 2026-11-12)
 MIN_FILL_ROOM = float(os.environ.get("NBA_MIN_FILL_ROOM", 38.0))   # minutes where a player has no room left
 MIN_FILL_K = float(os.environ.get("NBA_MIN_FILL_K", 1.0))         # share of the freed minutes handed out
@@ -238,6 +247,25 @@ def ladder_streak(games, s):
         if k >= STREAK_MIN:
             best = (x, k)
     return best
+
+
+def streak_spot(stat, pos, matchup_f, dvp_f, blow_tag, opp_missing, opp_tired):
+    """Is tonight's opponent likely to pull this stat down? Returns good flag, reasons against, pluses."""
+    against, plus = [], []
+    if matchup_f < SPOT_MATCHUP_MIN:
+        against.append(f"defense cuts his projection {round((1 - matchup_f) * 100)}%")
+    if dvp_f is not None and dvp_f <= SPOT_TOUGH:
+        against.append(f"allows {round((1 - dvp_f) * 100)}% less {stat} to {pos}s")
+    if blow_tag == "High":
+        against.append("high blowout risk")
+    if matchup_f >= 1.03:
+        plus.append(f"defense lifts his projection {round((matchup_f - 1) * 100)}%")
+    for x in opp_missing or []:
+        if x["role"] in SPOT_HELPS.get(stat, ()):
+            plus.append(f"opponent without {x['label']} {x['name']}")
+    if opp_tired and stat == "PTS":
+        plus.append("opponent on a back-to-back, he is rested")
+    return {"good": not against, "against": against, "plus": plus}
 
 
 def pct(sorted_vals, q):
@@ -960,6 +988,9 @@ def run_project(date, data, docs, now=None, lock=True):
                     st["streak"] = ({"line": sk[0], "games": sk[1],
                                      "model": round(sum(1 for v in vals if v >= sk[0]) / len(vals), 3),
                                      "last5": [g[s] for g in players[e["id"]]["games"][-5:]]} if sk else None)
+                    if st["streak"]:
+                        st["streak"]["spot"] = streak_spot(s, e["pos"], st["matchup"], st["dvp"], tag(pb),
+                                                           tb["opp_missing"], tb["opp_tired"])
                     if s == "3PM":      # a floor of 0 says little, so threes also get "at least" chances
                         st["at_least"] = {str(k): round(sum(1 for v in vals if v >= k) / len(vals), 3) for k in (1, 2, 3)}
                     # whole-number rounding can push a tiny floor above the expected value
@@ -984,6 +1015,7 @@ def run_project(date, data, docs, now=None, lock=True):
                         "streak_line": st["streak"]["line"] if st["streak"] else None,
                         "streak_games": st["streak"]["games"] if st["streak"] else None,
                         "streak_model": st["streak"]["model"] if st["streak"] else None,
+                        "streak_spot": (st["streak"]["spot"]["good"] if st["streak"] else None),
                         "spread": spread, "p_blowout": round(pb, 3),
                         # kept so the morning grade can check whether matchups carry over
                         "pos": e["pos"], "dvp": st["dvp"], "area3": tb["area"]["f3"], "base_rate": st["base_rate"],
@@ -1035,6 +1067,8 @@ def run_project(date, data, docs, now=None, lock=True):
                           for g in games_out for tb in g["teams"] for e in tb["players"] if e["stats"][s].get("streak")
                           and e["stats"][s]["streak"]["line"] >= STREAK_REL * e["season"][s]],
                          key=lambda x: (-x["games"], -x["line"])) for s in STATS}
+    # Hot and in a good spot: streaks where nothing about tonight's opponent should pull him down
+    hot_spots = {s: [x for x in streaks[s] if x["spot"]["good"]] for s in STATS}
 
     hist_dates = sorted({r["_date"] for rows in team_games.values() for r in rows})
     n_log = sum(1 for r in proj_rows if r["floor_source"] == "log")
@@ -1045,7 +1079,7 @@ def run_project(date, data, docs, now=None, lock=True):
         "date": str(date), "run_time_et": now_et.strftime("%Y-%m-%d %I:%M %p ET"),
         "run_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "model": MODEL_VERSION,
         "early_run": hours_early > 3,
-        "games": games_out, "targets": targets, "safest": safest, "streaks": streaks,
+        "games": games_out, "targets": targets, "safest": safest, "streaks": streaks, "hot_spots": hot_spots,
         "method": {
             "history_days": len(hist_dates),
             "history_from": str(hist_dates[0]) if hist_dates else None,

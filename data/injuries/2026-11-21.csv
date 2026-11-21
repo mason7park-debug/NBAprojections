@@ -4,7 +4,7 @@ game_id,team,player_id,player,status,type
 401910023,PHI,3917376,Jaylen Brown,Out,Hamstring
 401910023,PHI,4871141,Ariel Hukporti,Out,Achilles
 401910023,MIL,4997526,Ousmane Dieng,Out,Finger
-401910024,NY,3934719,OG Anunoby,Day-To-Day,Calf
+401910024,NY,3934719,OG Anunoby,Out,Calf
 401910024,NY,3136195,Karl-Anthony Towns,Day-To-Day,Illness
 401910024,NY,2528426,Jordan Clarkson,Out,Foot
 401910024,POR,4706557,Chris Youngblood,Out,Heel
@@ -39,6 +39,6 @@ game_id,team,player_id,player,status,type
 401910028,SAC,4431679,Precious Achiuwa,Day-To-Day,Lower Leg
 401910028,SAC,4898371,Maxime Raynaud,Out,Knee
 401910028,SAC,3907387,Ben Simmons,Out,Achilles
-401910028,BOS,4065648,Jayson Tatum,Out,Rest
-401910028,BOS,3078576,Derrick White,Out,Shoulder
 401910028,BOS,4351852,Mitchell Robinson,Out,Illness
+401910028,BOS,3078576,Derrick White,Out,Shoulder
+401910028,BOS,4065648,Jayson Tatum,Out,Rest

@@ -39,5 +39,6 @@ game_id,team,player_id,player,status,type
 401910028,SAC,4431679,Precious Achiuwa,Day-To-Day,Lower Leg
 401910028,SAC,4898371,Maxime Raynaud,Out,Knee
 401910028,SAC,3907387,Ben Simmons,Out,Achilles
-401910028,BOS,4065648,Jayson Tatum,Day-To-Day,Rest
-401910028,BOS,3078576,Derrick White,Day-To-Day,Shoulder
+401910028,BOS,4065648,Jayson Tatum,Out,Rest
+401910028,BOS,3078576,Derrick White,Out,Shoulder
+401910028,BOS,4351852,Mitchell Robinson,Out,Illness

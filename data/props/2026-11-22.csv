@@ -51,8 +51,10 @@ game_id,player_id,player,stat,line,source
 401910030,3032977,Giannis Antetokounmpo,AST,5.5,DraftKings
 401910030,3032977,Giannis Antetokounmpo,PTS,26.5,DraftKings
 401910030,3032977,Giannis Antetokounmpo,REB,12.5,DraftKings
+401910030,3059319,Andrew Wiggins,3PM,1.5,DraftKings
 401910030,3059319,Andrew Wiggins,PTS,9.5,DraftKings
 401910030,3059319,Andrew Wiggins,REB,3.5,DraftKings
+401910030,3064482,Bobby Portis,3PM,1.5,DraftKings
 401910030,3064482,Bobby Portis,PTS,8.5,DraftKings
 401910030,3064482,Bobby Portis,REB,4.5,DraftKings
 401910030,4066261,Bam Adebayo,3PM,1.5,DraftKings
@@ -140,7 +142,7 @@ game_id,player_id,player,stat,line,source
 401910032,3064290,Aaron Gordon,REB,5.5,DraftKings
 401910032,3112335,Nikola Jokic,3PM,1.5,DraftKings
 401910032,3112335,Nikola Jokic,AST,9.5,DraftKings
-401910032,3112335,Nikola Jokic,PTS,26.5,DraftKings
+401910032,3112335,Nikola Jokic,PTS,25.5,DraftKings
 401910032,3112335,Nikola Jokic,REB,11.5,DraftKings
 401910032,3138196,Cameron Johnson,3PM,2.5,DraftKings
 401910032,3138196,Cameron Johnson,PTS,13.5,DraftKings
@@ -193,7 +195,7 @@ game_id,player_id,player,stat,line,source
 401910033,4873138,Ace Bailey,PTS,14.5,DraftKings
 401910033,4873138,Ace Bailey,REB,5.5,DraftKings
 401910033,5041939,Cooper Flagg,3PM,1.5,DraftKings
-401910033,5041939,Cooper Flagg,AST,6.5,DraftKings
+401910033,5041939,Cooper Flagg,AST,5.5,DraftKings
 401910033,5041939,Cooper Flagg,PTS,24.5,DraftKings
 401910033,5041939,Cooper Flagg,REB,6.5,DraftKings
 401910033,5041955,Darryn Peterson,3PM,2.5,DraftKings

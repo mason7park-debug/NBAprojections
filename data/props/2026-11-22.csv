@@ -158,7 +158,7 @@ game_id,player_id,player,stat,line,source
 401910032,4395626,Tre Jones,PTS,13.5,Draft Kings
 401910032,4395626,Tre Jones,REB,2.5,Draft Kings
 401910032,4397189,Jalen Smith,3PM,1.5,Draft Kings
-401910032,4397189,Jalen Smith,PTS,14.5,Draft Kings
+401910032,4397189,Jalen Smith,PTS,13.5,Draft Kings
 401910032,4397189,Jalen Smith,REB,8.5,Draft Kings
 401910032,4431687,,3PM,1.5,Draft Kings
 401910032,4431687,,PTS,8.5,Draft Kings
@@ -200,7 +200,7 @@ game_id,player_id,player,stat,line,source
 401910033,4873138,Ace Bailey,REB,5.5,Draft Kings
 401910033,5041939,Cooper Flagg,3PM,1.5,Draft Kings
 401910033,5041939,Cooper Flagg,AST,5.5,Draft Kings
-401910033,5041939,Cooper Flagg,PTS,24.5,Draft Kings
+401910033,5041939,Cooper Flagg,PTS,25.5,Draft Kings
 401910033,5041939,Cooper Flagg,REB,6.5,Draft Kings
 401910033,5041955,Darryn Peterson,3PM,2.5,Draft Kings
 401910033,5041955,Darryn Peterson,AST,4.5,Draft Kings
@@ -208,7 +208,7 @@ game_id,player_id,player,stat,line,source
 401910033,5041955,Darryn Peterson,REB,4.5,Draft Kings
 401910033,5105839,Brice Sensabaugh,3PM,1.5,Draft Kings
 401910033,5105839,Brice Sensabaugh,PTS,12.5,Draft Kings
-401910033,5211175,Zaccharie Risacher,PTS,9.5,Draft Kings
+401910033,5211175,Zaccharie Risacher,PTS,8.5,Draft Kings
 401910033,5211175,Zaccharie Risacher,REB,4.5,Draft Kings
 401910033,6442,Kyrie Irving,3PM,3.5,Draft Kings
 401910033,6442,Kyrie Irving,AST,4.5,Draft Kings

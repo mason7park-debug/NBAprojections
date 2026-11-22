@@ -1,0 +1,56 @@
+game_id,team,player_id,player,status,type
+401910029,ATL,5149077,Kingston Flemings,Out,Back
+401910029,ATL,3146557,Jock Landale,Out,Hip
+401910029,ATL,4873201,Asa Newell,Out,Toe
+401910029,ATL,2490149,CJ McCollum,Out,Calf
+401910029,ATL,4712863,Mouhamed Gueye,Out,Foot
+401910029,DET,4683771,Ronald Holland II,Out,Knee
+401910029,DET,5258459,Ebuka Okorie,Out,Oblique
+401910029,DET,4432166,Cade Cunningham,Day-To-Day,Knee
+401910029,DET,2990962,Taurean Prince,Out,Knee
+401910029,DET,5037878,Ugonna Onyenso,Day-To-Day,Foot
+401910030,MIA,4431772,Myron Gardner,Day-To-Day,Hamstring
+401910030,MIA,3032977,Giannis Antetokounmpo,Day-To-Day,Groin
+401910030,OKC,4278073,Shai Gilgeous-Alexander,Day-To-Day,Back
+401910030,OKC,5159925,Nikola Topic,Out,Hip
+401910030,OKC,4432823,Jaylin Williams,Out,Back
+401910030,OKC,2991350,Alex Caruso,Out,Hip
+401910030,OKC,5061603,Thomas Sorber,Out,Knee
+401910031,WSH,4997537,Tristan Vukcevic,Out,Hip
+401910031,WSH,4432187,Reece Beekman,Out,Shoulder
+401910031,WSH,4432907,Justin Champagnie,Out,Foot
+401910031,WSH,4606840,Jamir Watkins,Out,Knee
+401910031,ORL,4065654,Jonathan Isaac,Out,Knee
+401910031,ORL,5107251,Izaiyah Nelson,Out,Ankle
+401910031,ORL,5214637,Noah Penda,Out,Hamstring
+401910031,ORL,4432573,Paolo Banchero,Out,Ankle
+401910032,CHI,4431687,Patrick Williams,Day-To-Day,Thumb
+401910032,CHI,2595516,Norman Powell,Day-To-Day,Hamstring
+401910032,CHI,4397189,Jalen Smith,Day-To-Day,Illness
+401910032,CHI,5105555,Tobe Awaka,Out,Back
+401910032,CHI,5095151,Caleb Wilson,Out,Hand
+401910032,DEN,4432181,Julian Strawther,Out,Knee
+401910033,UTAH,3102530,Jusuf Nurkic,Out,Foot
+401910033,UTAH,4066336,Lauri Markkanen,Out,Hand
+401910033,UTAH,4277961,Jaren Jackson Jr.,Out,Knee
+401910033,DAL,4278078,P.J. Washington,Out,Illness
+401910033,DAL,5106040,Tobi Lawal,Out,Groin
+401910033,DAL,4683688,Dereck Lively II,Out,Foot
+401910033,DAL,5279129,Sergio de Larrea,Out,Knee
+401910033,DAL,5148538,Tarik Biberovic,Out,Heel
+401910034,NY,3136195,Karl-Anthony Towns,Day-To-Day,Illness
+401910034,NY,2528426,Jordan Clarkson,Day-To-Day,Foot
+401910034,NY,3934719,OG Anunoby,Day-To-Day,Calf
+401910034,IND,2530530,T.J. McConnell,Out,Hamstring
+401910034,IND,3149673,Pascal Siakam,Day-To-Day,Hip
+401910034,IND,4396993,Tyrese Haliburton,Out,Hamstring
+401910034,IND,5157066,Johnny Furphy,Out,Knee
+401910034,IND,4433076,Ben Sheppard,Out,Knee
+401910035,GS,4397040,Brandon Williams,Out,Hamstring
+401910035,GS,3975,Stephen Curry,Out,Abdomen
+401910035,GS,3102531,Kristaps Porzingis,Out,Illness
+401910035,GS,4432171,Moses Moody,Out,Knee
+401910035,GS,6430,Jimmy Butler III,Out,Knee
+401910035,BOS,4351852,Mitchell Robinson,Out,Illness
+401910035,BOS,3078576,Derrick White,Out,Shoulder
+401910035,BOS,4065648,Jayson Tatum,Out,Rest

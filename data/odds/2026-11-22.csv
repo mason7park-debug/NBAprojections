@@ -1,8 +1,8 @@
 game_id,provider,spread,over_under,details
-401910029,DraftKings,2.5,224.5,DET -2.5
-401910030,DraftKings,-3.5,231.5,MIA -3.5
-401910031,DraftKings,4.5,220.5,ORL -4.5
-401910032,DraftKings,8.5,237.5,DEN -8.5
-401910033,DraftKings,1.5,225.5,DAL -1.5
-401910034,DraftKings,-8.5,214.5,NY -8.5
-401910035,DraftKings,8.5,210.5,BOS -8.5
+401910029,DraftKings,1.5,223.5,DET -1.5
+401910030,DraftKings,-4.5,231.5,MIA -4.5
+401910031,DraftKings,4.5,219.5,ORL -4.5
+401910032,DraftKings,9.5,235.5,DEN -9.5
+401910033,DraftKings,1.5,224.5,DAL -1.5
+401910034,DraftKings,-8.5,213.5,NY -8.5
+401910035,DraftKings,8.5,209.5,BOS -8.5

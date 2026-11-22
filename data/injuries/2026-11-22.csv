@@ -24,8 +24,8 @@ game_id,team,player_id,player,status,type
 401910031,ORL,5107251,Izaiyah Nelson,Out,Ankle
 401910031,ORL,5214637,Noah Penda,Out,Hamstring
 401910031,ORL,4432573,Paolo Banchero,Out,Ankle
+401910032,CHI,2595516,Norman Powell,Out,Hamstring
 401910032,CHI,4431687,Patrick Williams,Day-To-Day,Thumb
-401910032,CHI,2595516,Norman Powell,Day-To-Day,Hamstring
 401910032,CHI,4397189,Jalen Smith,Day-To-Day,Illness
 401910032,CHI,5105555,Tobe Awaka,Out,Back
 401910032,CHI,5095151,Caleb Wilson,Out,Hand
@@ -33,8 +33,8 @@ game_id,team,player_id,player,status,type
 401910033,UTAH,3102530,Jusuf Nurkic,Out,Foot
 401910033,UTAH,4066336,Lauri Markkanen,Out,Hand
 401910033,UTAH,4277961,Jaren Jackson Jr.,Out,Knee
-401910033,DAL,4278078,P.J. Washington,Out,Illness
-401910033,DAL,5106040,Tobi Lawal,Out,Groin
+401910033,DAL,4278078,P.J. Washington,Day-To-Day,Illness
+401910033,DAL,5106040,Tobi Lawal,Day-To-Day,Groin
 401910033,DAL,4683688,Dereck Lively II,Out,Foot
 401910033,DAL,5279129,Sergio de Larrea,Out,Knee
 401910033,DAL,5148538,Tarik Biberovic,Out,Heel
@@ -51,6 +51,6 @@ game_id,team,player_id,player,status,type
 401910035,GS,3102531,Kristaps Porzingis,Out,Illness
 401910035,GS,4432171,Moses Moody,Out,Knee
 401910035,GS,6430,Jimmy Butler III,Out,Knee
-401910035,BOS,4351852,Mitchell Robinson,Out,Illness
-401910035,BOS,3078576,Derrick White,Out,Shoulder
-401910035,BOS,4065648,Jayson Tatum,Out,Rest
+401910035,BOS,3078576,Derrick White,Day-To-Day,Shoulder
+401910035,BOS,4351852,Mitchell Robinson,Day-To-Day,Illness
+401910035,BOS,4065648,Jayson Tatum,Day-To-Day,Rest

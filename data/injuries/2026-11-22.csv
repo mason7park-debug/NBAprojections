@@ -51,6 +51,5 @@ game_id,team,player_id,player,status,type
 401910035,GS,3102531,Kristaps Porzingis,Out,Illness
 401910035,GS,4432171,Moses Moody,Out,Knee
 401910035,GS,6430,Jimmy Butler III,Out,Knee
-401910035,BOS,3078576,Derrick White,Day-To-Day,Shoulder
-401910035,BOS,4351852,Mitchell Robinson,Day-To-Day,Illness
-401910035,BOS,4065648,Jayson Tatum,Day-To-Day,Rest
+401910035,BOS,4351852,Mitchell Robinson,Out,Illness
+401910035,BOS,4251,Paul George,Out,Rest

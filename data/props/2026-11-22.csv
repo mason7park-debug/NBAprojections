@@ -194,12 +194,12 @@ game_id,player_id,player,stat,line,source
 401910033,4432811,Josh Green,PTS,5.5,DraftKings
 401910033,4433627,Keyonte George,3PM,2.5,DraftKings
 401910033,4433627,Keyonte George,AST,7.5,DraftKings
-401910033,4433627,Keyonte George,PTS,23.5,DraftKings
+401910033,4433627,Keyonte George,PTS,22.5,DraftKings
 401910033,4433627,Keyonte George,REB,3.5,DraftKings
 401910033,4873138,Ace Bailey,3PM,1.5,DraftKings
 401910033,4873138,Ace Bailey,AST,1.5,DraftKings
 401910033,4873138,Ace Bailey,PTS,14.5,DraftKings
-401910033,4873138,Ace Bailey,REB,4.5,DraftKings
+401910033,4873138,Ace Bailey,REB,5.5,DraftKings
 401910033,4873153,Morez Johnson Jr.,PTS,6.5,DraftKings
 401910033,4873153,Morez Johnson Jr.,REB,4.5,DraftKings
 401910033,5041939,Cooper Flagg,3PM,1.5,DraftKings
@@ -220,7 +220,7 @@ game_id,player_id,player,stat,line,source
 401910033,6442,Kyrie Irving,REB,3.5,DraftKings
 401910034,3062679,Josh Hart,3PM,1.5,DraftKings
 401910034,3062679,Josh Hart,AST,3.5,DraftKings
-401910034,3062679,Josh Hart,PTS,10.5,DraftKings
+401910034,3062679,Josh Hart,PTS,9.5,DraftKings
 401910034,3062679,Josh Hart,REB,8.5,DraftKings
 401910034,3133603,Kelly Oubre Jr.,3PM,1.5,DraftKings
 401910034,3133603,Kelly Oubre Jr.,PTS,12.5,DraftKings
@@ -235,7 +235,7 @@ game_id,player_id,player,stat,line,source
 401910034,3147657,Mikal Bridges,REB,3.5,DraftKings
 401910034,3149673,Pascal Siakam,3PM,1.5,DraftKings
 401910034,3149673,Pascal Siakam,AST,2.5,DraftKings
-401910034,3149673,Pascal Siakam,PTS,19.5,DraftKings
+401910034,3149673,Pascal Siakam,PTS,20.5,DraftKings
 401910034,3149673,Pascal Siakam,REB,5.5,DraftKings
 401910034,3914044,Landry Shamet,3PM,2.5,DraftKings
 401910034,3914044,Landry Shamet,PTS,11.5,DraftKings
@@ -286,7 +286,7 @@ game_id,player_id,player,stat,line,source
 401910035,4397886,Charles Bassey,PTS,7.5,DraftKings
 401910035,4397886,Charles Bassey,REB,6.5,DraftKings
 401910035,4593841,Baylor Scheierman,3PM,1.5,DraftKings
-401910035,4593841,Baylor Scheierman,AST,1.5,DraftKings
+401910035,4593841,Baylor Scheierman,AST,2.5,DraftKings
 401910035,4593841,Baylor Scheierman,PTS,7.5,DraftKings
 401910035,4593841,Baylor Scheierman,REB,3.5,DraftKings
 401910035,4709138,Brandin Podziemski,3PM,2.5,DraftKings

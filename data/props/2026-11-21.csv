@@ -150,15 +150,15 @@ game_id,player_id,player,stat,line,source
 401910025,6442,Kyrie Irving,REB,4.5,DraftKings
 401910026,3032976,Rudy Gobert,AST,1.5,DraftKings
 401910026,3032976,Rudy Gobert,PTS,9.5,DraftKings
-401910026,3032976,Rudy Gobert,REB,9.5,DraftKings
+401910026,3032976,Rudy Gobert,REB,10.5,DraftKings
 401910026,4065733,Ty Jerome,3PM,2.5,DraftKings
 401910026,4065733,Ty Jerome,AST,5.5,DraftKings
 401910026,4065733,Ty Jerome,PTS,23.5,DraftKings
-401910026,4065733,Ty Jerome,REB,2.5,DraftKings
+401910026,4065733,Ty Jerome,REB,3.5,DraftKings
 401910026,4397002,Ayo Dosunmu,3PM,2.5,DraftKings
 401910026,4397002,Ayo Dosunmu,AST,3.5,DraftKings
 401910026,4397002,Ayo Dosunmu,PTS,17.5,DraftKings
-401910026,4397002,Ayo Dosunmu,REB,3.5,DraftKings
+401910026,4397002,Ayo Dosunmu,REB,4.5,DraftKings
 401910026,4431671,Jaden McDaniels,3PM,1.5,DraftKings
 401910026,4431671,Jaden McDaniels,AST,2.5,DraftKings
 401910026,4431671,Jaden McDaniels,PTS,17.5,DraftKings
@@ -188,7 +188,7 @@ game_id,player_id,player,stat,line,source
 401910026,4684806,Taylor Hendricks,3PM,1.5,DraftKings
 401910026,4684806,Taylor Hendricks,PTS,9.5,DraftKings
 401910026,4684806,Taylor Hendricks,REB,4.5,DraftKings
-401910026,4903027,Cedric Coward,3PM,2.5,DraftKings
+401910026,4903027,Cedric Coward,3PM,1.5,DraftKings
 401910026,4903027,Cedric Coward,AST,3.5,DraftKings
 401910026,4903027,Cedric Coward,PTS,15.5,DraftKings
 401910026,4903027,Cedric Coward,REB,7.5,DraftKings
@@ -224,7 +224,7 @@ game_id,player_id,player,stat,line,source
 401910027,4592479,Julian Champagnie,PTS,11.5,DraftKings
 401910027,4592479,Julian Champagnie,REB,4.5,DraftKings
 401910027,4845367,Stephon Castle,3PM,1.5,DraftKings
-401910027,4845367,Stephon Castle,AST,6.5,DraftKings
+401910027,4845367,Stephon Castle,AST,7.5,DraftKings
 401910027,4845367,Stephon Castle,PTS,17.5,DraftKings
 401910027,4845367,Stephon Castle,REB,4.5,DraftKings
 401910027,4869780,Derik Queen,AST,2.5,DraftKings
@@ -264,6 +264,8 @@ game_id,player_id,player,stat,line,source
 401910028,4397424,Neemias Queta,AST,2.5,DraftKings
 401910028,4397424,Neemias Queta,PTS,12.5,DraftKings
 401910028,4397424,Neemias Queta,REB,8.5,DraftKings
+401910028,4431679,Precious Achiuwa,PTS,5.5,DraftKings
+401910028,4431679,Precious Achiuwa,REB,4.5,DraftKings
 401910028,4593841,Baylor Scheierman,3PM,1.5,DraftKings
 401910028,4593841,Baylor Scheierman,AST,2.5,DraftKings
 401910028,4593841,Baylor Scheierman,PTS,9.5,DraftKings

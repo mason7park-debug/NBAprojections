@@ -8,7 +8,7 @@ game_id,team,player_id,player,status,type
 401910029,DET,5258459,Ebuka Okorie,Out,Oblique
 401910029,DET,4432166,Cade Cunningham,Day-To-Day,Knee
 401910029,DET,2990962,Taurean Prince,Out,Knee
-401910029,DET,5037878,Ugonna Onyenso,Day-To-Day,Foot
+401910029,DET,3157465,Duncan Robinson,Out,Quadriceps
 401910030,MIA,4431772,Myron Gardner,Day-To-Day,Hamstring
 401910030,MIA,3032977,Giannis Antetokounmpo,Day-To-Day,Groin
 401910030,OKC,4278073,Shai Gilgeous-Alexander,Day-To-Day,Back
@@ -16,6 +16,7 @@ game_id,team,player_id,player,status,type
 401910030,OKC,4432823,Jaylin Williams,Out,Back
 401910030,OKC,2991350,Alex Caruso,Out,Hip
 401910030,OKC,5061603,Thomas Sorber,Out,Knee
+401910031,WSH,4278129,Deandre Ayton,Day-To-Day,Illness
 401910031,WSH,4997537,Tristan Vukcevic,Out,Hip
 401910031,WSH,4432187,Reece Beekman,Out,Shoulder
 401910031,WSH,4432907,Justin Champagnie,Out,Foot

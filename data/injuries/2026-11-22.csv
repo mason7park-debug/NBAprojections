@@ -8,7 +8,7 @@ game_id,team,player_id,player,status,type
 401910029,DET,2990962,Taurean Prince,Out,Knee
 401910029,DET,3157465,Duncan Robinson,Out,Quadriceps
 401910029,DET,4433621,Jalen Duren,Out,Hamstring
-401910030,MIA,3032977,Giannis Antetokounmpo,Day-To-Day,Groin
+401910030,MIA,3032977,Giannis Antetokounmpo,Out,Groin
 401910030,OKC,4278073,Shai Gilgeous-Alexander,Out,Back
 401910030,OKC,5159925,Nikola Topic,Out,Hip
 401910030,OKC,4432823,Jaylin Williams,Out,Back
@@ -24,15 +24,13 @@ game_id,team,player_id,player,status,type
 401910031,ORL,5214637,Noah Penda,Out,Hamstring
 401910031,ORL,4432573,Paolo Banchero,Out,Ankle
 401910032,CHI,4278067,Nic Claxton,Out,Illness
-401910032,CHI,4397189,Jalen Smith,Day-To-Day,Illness
 401910032,CHI,2595516,Norman Powell,Out,Hamstring
-401910032,CHI,4431687,Patrick Williams,Day-To-Day,Thumb
 401910032,CHI,5095151,Caleb Wilson,Out,Hand
 401910032,DEN,4432181,Julian Strawther,Out,Knee
 401910033,UTAH,3102530,Jusuf Nurkic,Out,Foot
 401910033,UTAH,4066336,Lauri Markkanen,Out,Hand
 401910033,UTAH,4277961,Jaren Jackson Jr.,Out,Knee
-401910033,DAL,4278078,P.J. Washington,Day-To-Day,Illness
+401910033,DAL,4278078,P.J. Washington,Out,Illness
 401910033,DAL,4896372,Walter Clayton Jr.,Day-To-Day,Knee
 401910033,DAL,5106040,Tobi Lawal,Out,Groin
 401910033,DAL,4683688,Dereck Lively II,Out,Foot

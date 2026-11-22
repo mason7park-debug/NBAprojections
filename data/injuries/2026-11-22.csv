@@ -4,16 +4,16 @@ game_id,team,player_id,player,status,type
 401910029,ATL,2490149,CJ McCollum,Out,Calf
 401910029,ATL,4712863,Mouhamed Gueye,Out,Foot
 401910029,ATL,5105571,Henri Veesaar,Out,Knee
-401910029,DET,5258459,Ebuka Okorie,Out,Oblique
+401910029,DET,5258459,Ebuka Okorie,Day-To-Day,Oblique
 401910029,DET,2990962,Taurean Prince,Out,Knee
 401910029,DET,3157465,Duncan Robinson,Out,Quadriceps
 401910029,DET,4433621,Jalen Duren,Out,Hamstring
 401910030,MIA,3032977,Giannis Antetokounmpo,Out,Groin
+401910030,OKC,5174983,Aday Mara,Out,Lower Leg
 401910030,OKC,4278073,Shai Gilgeous-Alexander,Out,Back
 401910030,OKC,5159925,Nikola Topic,Out,Hip
 401910030,OKC,4432823,Jaylin Williams,Out,Back
 401910030,OKC,2991350,Alex Caruso,Out,Hip
-401910030,OKC,5061603,Thomas Sorber,Out,Knee
 401910031,WSH,4845374,Bub Carrington,Day-To-Day,Illness
 401910031,WSH,4278129,Deandre Ayton,Day-To-Day,Illness
 401910031,WSH,4997537,Tristan Vukcevic,Out,Hip
@@ -30,11 +30,11 @@ game_id,team,player_id,player,status,type
 401910033,UTAH,3102530,Jusuf Nurkic,Out,Foot
 401910033,UTAH,4066336,Lauri Markkanen,Out,Hand
 401910033,UTAH,4277961,Jaren Jackson Jr.,Out,Knee
-401910033,DAL,4278078,P.J. Washington,Day-To-Day,Illness
-401910033,DAL,4896372,Walter Clayton Jr.,Day-To-Day,
+401910033,DAL,4278078,P.J. Washington,Out,Illness
 401910033,DAL,5106040,Tobi Lawal,Out,Groin
 401910033,DAL,4683688,Dereck Lively II,Out,Foot
 401910033,DAL,5279129,Sergio de Larrea,Out,Knee
+401910033,DAL,5148538,Tarik Biberovic,Out,Heel
 401910034,NY,3934719,OG Anunoby,Out,Calf
 401910034,NY,3136195,Karl-Anthony Towns,Day-To-Day,Illness
 401910034,NY,2528426,Jordan Clarkson,Out,Foot

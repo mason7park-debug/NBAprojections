@@ -23,6 +23,15 @@ One more change was made on 2026-11-18 at the owner's request, after 6 live nigh
 
 Nothing here is betting advice. Floors and win chances are estimates from small samples.
 
+## Leans
+
+`data/leans/<date>.csv` holds sides on posted prop lines, logged before tip and graded the next
+morning (`result`: win, loss, push, void if he did not play, late if logged after tip). Two kinds:
+`claude` rows are written by hand and the nightly run never changes them; `rule:<name>` rows are
+written by every run from fixed rules (see `LEAN_RULES` in `scripts/nightly.py`) and frozen at tip.
+The record by source, against the 52.4% needed at -110, is in `docs/data/grade.json` under `leans`
+and on the page under Leans. Tracking only; nothing here feeds a projection.
+
 ## Layout
 
 ```

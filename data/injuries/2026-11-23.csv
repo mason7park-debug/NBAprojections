@@ -17,15 +17,15 @@ game_id,team,player_id,player,status,type
 401910037,POR,4578893,Vit Krejci,Out,Ankle
 401910037,POR,4279888,Ja Morant,Out,Hamstring
 401910037,POR,4914336,Shaedon Sharpe,Out,Knee
-401910038,IND,2530530,T.J. McConnell,Out,Hamstring
+401910038,IND,2530530,T.J. McConnell,Day-To-Day,Hamstring
 401910038,IND,4396993,Tyrese Haliburton,Out,Hamstring
 401910038,IND,5157066,Johnny Furphy,Out,Knee
 401910038,IND,4433076,Ben Sheppard,Out,Knee
-401910038,OKC,5174983,Aday Mara,Out,Lower Leg
-401910038,OKC,4278073,Shai Gilgeous-Alexander,Out,Back
-401910038,OKC,5159925,Nikola Topic,Out,Hip
-401910038,OKC,4432823,Jaylin Williams,Out,Back
-401910038,OKC,2991350,Alex Caruso,Out,Hip
+401910038,OKC,5174983,Aday Mara,Day-To-Day,Lower Leg
+401910038,OKC,4432823,Jaylin Williams,Day-To-Day,Back
+401910038,OKC,5159925,Nikola Topic,Day-To-Day,Hip
+401910038,OKC,4278073,Shai Gilgeous-Alexander,Day-To-Day,Back
+401910038,OKC,2991350,Alex Caruso,Day-To-Day,Hip
 401910039,TOR,5093267,Collin Murray-Boyles,Day-To-Day,Concussion
 401910039,TOR,4432586,Nate Bittle,Out,Foot
 401910039,TOR,6450,Kawhi Leonard,Out,Knee
@@ -34,9 +34,9 @@ game_id,team,player_id,player,status,type
 401910040,MIN,4432247,Jaylen Clark,Out,Hamstring
 401910040,MIN,4594268,Anthony Edwards,Out,Knee
 401910040,MIN,3934673,Donte DiVincenzo,Out,Achilles
-401910040,BKN,4702670,Grant Nelson,Day-To-Day,Ankle
 401910040,BKN,5279130,Nolan Traore,Out,Hamstring
-401910041,CHI,4278067,Nic Claxton,Out,Illness
+401910040,BKN,4702670,Grant Nelson,Day-To-Day,Ankle
+401910041,CHI,4278067,Nic Claxton,Day-To-Day,Illness
 401910041,CHI,2595516,Norman Powell,Out,Hamstring
 401910041,CHI,5095151,Caleb Wilson,Out,Hand
 401910041,CLE,4683747,Jaylon Tyson,Out,Ankle
@@ -52,7 +52,7 @@ game_id,team,player_id,player,status,type
 401910043,LAC,6580,Bradley Beal,Out,Knee
 401910043,LAC,4396818,Jordan Miller,Out,Shoulder
 401910044,LAL,4066457,Austin Reaves,Out,Heel
-401910044,UTAH,4397077,Jaxson Hayes,Out,Knee
+401910044,UTAH,4397077,Jaxson Hayes,Day-To-Day,Knee
 401910044,UTAH,3102530,Jusuf Nurkic,Out,Foot
 401910044,UTAH,4066336,Lauri Markkanen,Out,Hand
 401910044,UTAH,4277961,Jaren Jackson Jr.,Out,Knee

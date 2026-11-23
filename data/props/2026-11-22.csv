@@ -255,55 +255,55 @@ game_id,player_id,player,stat,line,source
 401910034,4396909,Aaron Nesmith,3PM,1.5,DraftKings
 401910034,4396909,Aaron Nesmith,PTS,12.5,DraftKings
 401910034,4396909,Aaron Nesmith,REB,3.5,DraftKings
-401910035,2990969,Georges Niang,3PM,1.5,DraftKings
-401910035,2990969,Georges Niang,PTS,6.5,DraftKings
-401910035,3078576,Derrick White,3PM,2.5,DraftKings
-401910035,3078576,Derrick White,AST,5.5,DraftKings
-401910035,3078576,Derrick White,PTS,14.5,DraftKings
-401910035,3078576,Derrick White,REB,3.5,DraftKings
-401910035,3213,Al Horford,3PM,0.5,DraftKings
-401910035,3213,Al Horford,PTS,4.5,DraftKings
-401910035,3213,Al Horford,REB,3.5,DraftKings
-401910035,4065648,Jayson Tatum,3PM,3.5,DraftKings
-401910035,4065648,Jayson Tatum,AST,6.5,DraftKings
-401910035,4065648,Jayson Tatum,PTS,26.5,DraftKings
-401910035,4065648,Jayson Tatum,REB,7.5,DraftKings
-401910035,4065804,Sam Hauser,3PM,2.5,DraftKings
-401910035,4065804,Sam Hauser,PTS,8.5,DraftKings
-401910035,4065804,Sam Hauser,REB,3.5,DraftKings
-401910035,4066354,Payton Pritchard,3PM,2.5,DraftKings
-401910035,4066354,Payton Pritchard,AST,4.5,DraftKings
-401910035,4066354,Payton Pritchard,PTS,15.5,DraftKings
-401910035,4066354,Payton Pritchard,REB,3.5,DraftKings
-401910035,4066436,De'Anthony Melton,3PM,1.5,DraftKings
-401910035,4066436,De'Anthony Melton,AST,2.5,DraftKings
-401910035,4066436,De'Anthony Melton,PTS,10.5,DraftKings
-401910035,4066436,De'Anthony Melton,REB,3.5,DraftKings
-401910035,4277951,Luka Garza,PTS,6.5,DraftKings
-401910035,4277951,Luka Garza,REB,4.5,DraftKings
-401910035,4397424,Neemias Queta,PTS,10.5,DraftKings
-401910035,4397424,Neemias Queta,REB,7.5,DraftKings
-401910035,4397886,Charles Bassey,PTS,7.5,DraftKings
-401910035,4397886,Charles Bassey,REB,6.5,DraftKings
-401910035,4593841,Baylor Scheierman,3PM,1.5,DraftKings
-401910035,4593841,Baylor Scheierman,AST,2.5,DraftKings
-401910035,4593841,Baylor Scheierman,PTS,7.5,DraftKings
-401910035,4593841,Baylor Scheierman,REB,3.5,DraftKings
-401910035,4709138,Brandin Podziemski,3PM,2.5,DraftKings
-401910035,4709138,Brandin Podziemski,AST,4.5,DraftKings
-401910035,4709138,Brandin Podziemski,PTS,15.5,DraftKings
-401910035,4709138,Brandin Podziemski,REB,4.5,DraftKings
-401910035,4897262,Will Richard,3PM,1.5,DraftKings
-401910035,4897262,Will Richard,PTS,7.5,DraftKings
-401910035,4897262,Will Richard,REB,2.5,DraftKings
-401910035,4997536,Gui Santos,AST,2.5,DraftKings
-401910035,4997536,Gui Santos,PTS,7.5,DraftKings
-401910035,4997536,Gui Santos,REB,3.5,DraftKings
-401910035,5175737,Yaxel Lendeborg,3PM,1.5,DraftKings
-401910035,5175737,Yaxel Lendeborg,AST,3.5,DraftKings
-401910035,5175737,Yaxel Lendeborg,PTS,19.5,DraftKings
-401910035,5175737,Yaxel Lendeborg,REB,6.5,DraftKings
-401910035,6589,Draymond Green,3PM,0.5,DraftKings
-401910035,6589,Draymond Green,AST,5.5,DraftKings
-401910035,6589,Draymond Green,PTS,4.5,DraftKings
-401910035,6589,Draymond Green,REB,4.5,DraftKings
+401910035,2990969,Georges Niang,3PM,1.5,Draft Kings
+401910035,2990969,Georges Niang,PTS,6.5,Draft Kings
+401910035,3078576,Derrick White,3PM,2.5,Draft Kings
+401910035,3078576,Derrick White,AST,5.5,Draft Kings
+401910035,3078576,Derrick White,PTS,14.5,Draft Kings
+401910035,3078576,Derrick White,REB,3.5,Draft Kings
+401910035,3213,Al Horford,3PM,0.5,Draft Kings
+401910035,3213,Al Horford,PTS,5.5,Draft Kings
+401910035,3213,Al Horford,REB,3.5,Draft Kings
+401910035,4065648,Jayson Tatum,3PM,3.5,Draft Kings
+401910035,4065648,Jayson Tatum,AST,6.5,Draft Kings
+401910035,4065648,Jayson Tatum,PTS,27.5,Draft Kings
+401910035,4065648,Jayson Tatum,REB,7.5,Draft Kings
+401910035,4065804,Sam Hauser,3PM,2.5,Draft Kings
+401910035,4065804,Sam Hauser,PTS,8.5,Draft Kings
+401910035,4065804,Sam Hauser,REB,3.5,Draft Kings
+401910035,4066354,Payton Pritchard,3PM,2.5,Draft Kings
+401910035,4066354,Payton Pritchard,AST,4.5,Draft Kings
+401910035,4066354,Payton Pritchard,PTS,15.5,Draft Kings
+401910035,4066354,Payton Pritchard,REB,3.5,Draft Kings
+401910035,4066436,De'Anthony Melton,3PM,1.5,Draft Kings
+401910035,4066436,De'Anthony Melton,AST,2.5,Draft Kings
+401910035,4066436,De'Anthony Melton,PTS,10.5,Draft Kings
+401910035,4066436,De'Anthony Melton,REB,3.5,Draft Kings
+401910035,4277951,Luka Garza,PTS,6.5,Draft Kings
+401910035,4277951,Luka Garza,REB,4.5,Draft Kings
+401910035,4397424,Neemias Queta,PTS,10.5,Draft Kings
+401910035,4397424,Neemias Queta,REB,7.5,Draft Kings
+401910035,4397886,Charles Bassey,PTS,7.5,Draft Kings
+401910035,4397886,Charles Bassey,REB,6.5,Draft Kings
+401910035,4593841,Baylor Scheierman,3PM,1.5,Draft Kings
+401910035,4593841,Baylor Scheierman,AST,2.5,Draft Kings
+401910035,4593841,Baylor Scheierman,PTS,7.5,Draft Kings
+401910035,4593841,Baylor Scheierman,REB,3.5,Draft Kings
+401910035,4709138,Brandin Podziemski,3PM,2.5,Draft Kings
+401910035,4709138,Brandin Podziemski,AST,4.5,Draft Kings
+401910035,4709138,Brandin Podziemski,PTS,15.5,Draft Kings
+401910035,4709138,Brandin Podziemski,REB,4.5,Draft Kings
+401910035,4897262,Will Richard,3PM,1.5,Draft Kings
+401910035,4897262,Will Richard,PTS,7.5,Draft Kings
+401910035,4897262,Will Richard,REB,2.5,Draft Kings
+401910035,4997536,Gui Santos,AST,2.5,Draft Kings
+401910035,4997536,Gui Santos,PTS,7.5,Draft Kings
+401910035,4997536,Gui Santos,REB,3.5,Draft Kings
+401910035,5175737,Yaxel Lendeborg,3PM,1.5,Draft Kings
+401910035,5175737,Yaxel Lendeborg,AST,3.5,Draft Kings
+401910035,5175737,Yaxel Lendeborg,PTS,19.5,Draft Kings
+401910035,5175737,Yaxel Lendeborg,REB,6.5,Draft Kings
+401910035,6589,Draymond Green,3PM,0.5,Draft Kings
+401910035,6589,Draymond Green,AST,5.5,Draft Kings
+401910035,6589,Draymond Green,PTS,4.5,Draft Kings
+401910035,6589,Draymond Green,REB,4.5,Draft Kings

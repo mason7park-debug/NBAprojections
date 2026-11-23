@@ -18,36 +18,36 @@ game_id,team,player_id,player,status,type
 401910037,POR,4578893,Vit Krejci,Out,Ankle
 401910037,POR,4279888,Ja Morant,Out,Hamstring
 401910037,POR,4914336,Shaedon Sharpe,Out,Knee
-401910038,IND,2530530,T.J. McConnell,Day-To-Day,Hamstring
+401910038,IND,2530530,T.J. McConnell,Out,Hamstring
+401910038,IND,4396909,Aaron Nesmith,Out,Foot
+401910038,IND,3149673,Pascal Siakam,Day-To-Day,Hip
 401910038,IND,4396993,Tyrese Haliburton,Out,Hamstring
 401910038,IND,5157066,Johnny Furphy,Out,Knee
-401910038,IND,4433076,Ben Sheppard,Out,Knee
-401910038,OKC,5174983,Aday Mara,Day-To-Day,Lower Leg
-401910038,OKC,4432823,Jaylin Williams,Day-To-Day,Back
-401910038,OKC,5159925,Nikola Topic,Day-To-Day,Hip
-401910038,OKC,4278073,Shai Gilgeous-Alexander,Day-To-Day,Back
-401910038,OKC,2991350,Alex Caruso,Day-To-Day,Hip
+401910038,OKC,5159925,Nikola Topic,Out,Hip
+401910038,OKC,4432823,Jaylin Williams,Out,Back
+401910038,OKC,5174983,Aday Mara,Out,Lower Leg
+401910038,OKC,4593803,Jalen Williams,Out,Leg
+401910038,OKC,2991350,Alex Caruso,Out,Hip
+401910039,TOR,4432737,Jaden Bradley,Day-To-Day,Ankle
 401910039,TOR,5093267,Collin Murray-Boyles,Day-To-Day,Concussion
 401910039,TOR,4432586,Nate Bittle,Out,Foot
 401910039,TOR,6450,Kawhi Leonard,Out,Knee
 401910039,TOR,4395625,RJ Barrett,Out,Hamstring
-401910039,MIL,4997526,Ousmane Dieng,Out,Finger
 401910040,MIN,4432247,Jaylen Clark,Out,Hamstring
 401910040,MIN,4594268,Anthony Edwards,Out,Knee
 401910040,MIN,3934673,Donte DiVincenzo,Out,Achilles
 401910040,BKN,5279130,Nolan Traore,Out,Hamstring
-401910040,BKN,4702670,Grant Nelson,Day-To-Day,Ankle
+401910041,CHI,4397189,Jalen Smith,Day-To-Day,Illness
 401910041,CHI,4278067,Nic Claxton,Day-To-Day,Illness
 401910041,CHI,2595516,Norman Powell,Out,Hamstring
 401910041,CHI,5095151,Caleb Wilson,Out,Hand
 401910041,CLE,4683747,Jaylon Tyson,Out,Ankle
 401910041,CLE,5106268,Nae'Qwan Tomlin,Out,Back
 401910041,CLE,4432158,Evan Mobley,Out,Toe
-401910042,NO,4397688,Trey Murphy III,Day-To-Day,Knee
-401910042,NO,4576086,Bryce McGowens,Out,Elbow
 401910042,NO,4395628,Zion Williamson,Day-To-Day,Thigh
 401910042,NO,4431675,Trendon Watford,Out,Ankle
 401910042,NO,4683634,Bennedict Mathurin,Out,Foot
+401910042,NO,3907497,Dejounte Murray,Out,Ankle
 401910042,PHX,4888725,Ryan Dunn,Day-To-Day,Quadriceps
 401910042,PHX,4701232,Mark Williams,Out,Shoulder
 401910043,LAC,6580,Bradley Beal,Out,Knee

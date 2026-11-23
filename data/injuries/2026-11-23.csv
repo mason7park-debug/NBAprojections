@@ -8,7 +8,7 @@ game_id,team,player_id,player,status,type
 401910036,MEM,5105550,GG Jackson,Out,Foot
 401910036,MEM,4431785,Scotty Pippen Jr.,Out,Back
 401910036,MEM,5105462,Richie Saunders,Out,Knee
-401910037,PHI,3059318,Joel Embiid,Day-To-Day,Illness
+401910037,PHI,3059318,Joel Embiid,Out,Illness
 401910037,PHI,5105637,Adem Bona,Out,Back
 401910037,PHI,3917376,Jaylen Brown,Day-To-Day,Hamstring
 401910037,PHI,3912848,Dean Wade,Day-To-Day,Hamstring
@@ -19,16 +19,15 @@ game_id,team,player_id,player,status,type
 401910037,POR,4914336,Shaedon Sharpe,Out,Knee
 401910038,IND,2530530,T.J. McConnell,Out,Hamstring
 401910038,IND,4396909,Aaron Nesmith,Out,Foot
-401910038,IND,3149673,Pascal Siakam,Day-To-Day,Hip
 401910038,IND,4396993,Tyrese Haliburton,Out,Hamstring
 401910038,IND,5157066,Johnny Furphy,Out,Knee
+401910038,IND,4433076,Ben Sheppard,Out,Knee
 401910038,OKC,4432823,Jaylin Williams,Out,Back
 401910038,OKC,5159925,Nikola Topic,Out,Hip
 401910038,OKC,5174983,Aday Mara,Out,Lower Leg
 401910038,OKC,4593803,Jalen Williams,Out,Leg
 401910038,OKC,2991350,Alex Caruso,Out,Hip
-401910039,TOR,4432737,Jaden Bradley,Day-To-Day,Ankle
-401910039,TOR,5093267,Collin Murray-Boyles,Day-To-Day,Concussion
+401910039,TOR,4432737,Jaden Bradley,Day-To-Day,
 401910039,TOR,4432586,Nate Bittle,Out,Foot
 401910039,TOR,6450,Kawhi Leonard,Out,Knee
 401910039,TOR,4395625,RJ Barrett,Out,Hamstring

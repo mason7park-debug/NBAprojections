@@ -1,4 +1,5 @@
 game_id,team,player_id,player,status,type
+401910036,CHA,4576060,Ryan Kalkbrenner,Day-To-Day,Hip
 401910036,CHA,3135045,Grayson Allen,Out,Concussion
 401910036,CHA,4066218,Grant Williams,Out,Hamstring
 401910036,CHA,5061575,Kon Knueppel,Out,Hamstring
@@ -14,11 +15,11 @@ game_id,team,player_id,player,status,type
 401910037,POR,4578893,Vit Krejci,Out,Ankle
 401910037,POR,4279888,Ja Morant,Out,Hamstring
 401910037,POR,4914336,Shaedon Sharpe,Out,Knee
+401910038,IND,2580365,Larry Nance Jr.,Day-To-Day,Ankle
 401910038,IND,2530530,T.J. McConnell,Out,Hamstring
 401910038,IND,4396909,Aaron Nesmith,Out,Foot
 401910038,IND,4396993,Tyrese Haliburton,Out,Hamstring
 401910038,IND,5157066,Johnny Furphy,Out,Knee
-401910038,IND,4433076,Ben Sheppard,Out,Knee
 401910038,OKC,4432823,Jaylin Williams,Out,Back
 401910038,OKC,5159925,Nikola Topic,Out,Hip
 401910038,OKC,5174983,Aday Mara,Out,Lower Leg
@@ -48,8 +49,8 @@ game_id,team,player_id,player,status,type
 401910044,UTAH,4277961,Jaren Jackson Jr.,Out,Knee
 401910045,SAC,4898371,Maxime Raynaud,Out,Knee
 401910045,SAC,3907387,Ben Simmons,Out,Achilles
-401910045,SA,5104157,Victor Wembanyama,Out,Back
 401910045,SA,4066259,De'Aaron Fox,Out,Lower Leg
-401910045,SA,3134916,Jordan McLaughlin,Day-To-Day,Shoulder
+401910045,SA,5104157,Victor Wembanyama,Out,Back
 401910045,SA,5037871,Dylan Harper,Out,Hip
 401910045,SA,6440,Tobias Harris,Out,Calf
+401910045,SA,5101845,Jayden Quaintance,Out,Knee

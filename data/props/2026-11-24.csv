@@ -1,5 +1,5 @@
 game_id,player_id,player,stat,line,source
-401909314,3908845,John Collins,3PM,0.5,Draft Kings
+401909314,3908845,John Collins,3PM,1.5,Draft Kings
 401909314,3908845,John Collins,PTS,10.5,Draft Kings
 401909314,3908845,John Collins,REB,5.5,Draft Kings
 401909314,4066320,Desmond Bane,3PM,3.5,Draft Kings
@@ -45,3 +45,10 @@ game_id,player_id,player,stat,line,source
 401909314,5107199,Daniss Jenkins,AST,4.5,Draft Kings
 401909314,5107199,Daniss Jenkins,PTS,15.5,Draft Kings
 401909314,5107199,Daniss Jenkins,REB,3.5,Draft Kings
+401909315,4277905,Trae Young,3PM,1.5,Draft Kings
+401909315,4277905,Trae Young,PTS,14.5,Draft Kings
+401909315,5142718,AJ Dybantsa,PTS,16.5,Draft Kings
+401909315,5160992,Alex Sarr,PTS,10.5,Draft Kings
+401909315,5174563,Kyshawn George,3PM,2.5,Draft Kings
+401909315,5174563,Kyshawn George,PTS,14.5,Draft Kings
+401909315,6583,Anthony Davis,PTS,21.5,Draft Kings

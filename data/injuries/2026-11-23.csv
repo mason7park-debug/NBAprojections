@@ -1,7 +1,7 @@
 game_id,team,player_id,player,status,type
+401910036,CHA,4066218,Grant Williams,Day-To-Day,Hamstring
 401910036,CHA,4576060,Ryan Kalkbrenner,Day-To-Day,Hip
 401910036,CHA,3135045,Grayson Allen,Out,Concussion
-401910036,CHA,4066218,Grant Williams,Out,Hamstring
 401910036,CHA,5061575,Kon Knueppel,Out,Hamstring
 401910036,CHA,3032979,Dennis Schroder,Out,Hamstring
 401910036,MEM,5041935,Cameron Boozer,Out,Ankle
@@ -9,20 +9,20 @@ game_id,team,player_id,player,status,type
 401910036,MEM,5105550,GG Jackson,Out,Foot
 401910036,MEM,4431785,Scotty Pippen Jr.,Out,Back
 401910036,MEM,5105462,Richie Saunders,Out,Knee
-401910037,PHI,3059318,Joel Embiid,Out,Illness
+401910037,PHI,3059318,Joel Embiid,Day-To-Day,Illness
 401910037,PHI,4871141,Ariel Hukporti,Out,Achilles
 401910037,POR,4706557,Chris Youngblood,Out,Heel
 401910037,POR,4578893,Vit Krejci,Out,Ankle
 401910037,POR,4279888,Ja Morant,Out,Hamstring
 401910037,POR,4914336,Shaedon Sharpe,Out,Knee
+401910038,IND,4396909,Aaron Nesmith,Day-To-Day,Foot
+401910038,IND,2530530,T.J. McConnell,Day-To-Day,Hamstring
 401910038,IND,2580365,Larry Nance Jr.,Day-To-Day,Ankle
-401910038,IND,2530530,T.J. McConnell,Out,Hamstring
-401910038,IND,4396909,Aaron Nesmith,Out,Foot
 401910038,IND,4396993,Tyrese Haliburton,Out,Hamstring
 401910038,IND,5157066,Johnny Furphy,Out,Knee
-401910038,OKC,4432823,Jaylin Williams,Out,Back
+401910038,OKC,4432823,Jaylin Williams,Day-To-Day,Back
+401910038,OKC,5174983,Aday Mara,Day-To-Day,Lower Leg
 401910038,OKC,5159925,Nikola Topic,Out,Hip
-401910038,OKC,5174983,Aday Mara,Out,Lower Leg
 401910038,OKC,4593803,Jalen Williams,Out,Leg
 401910038,OKC,2991350,Alex Caruso,Out,Hip
 401910039,TOR,4432586,Nate Bittle,Out,Foot
@@ -39,7 +39,6 @@ game_id,team,player_id,player,status,type
 401910042,NO,4431675,Trendon Watford,Out,Ankle
 401910042,NO,4683634,Bennedict Mathurin,Out,Foot
 401910042,NO,3907497,Dejounte Murray,Out,Ankle
-401910042,PHX,4278585,Collin Gillespie,Day-To-Day,Undisclosed
 401910042,PHX,4701232,Mark Williams,Out,Shoulder
 401910043,LAC,6580,Bradley Beal,Out,Knee
 401910043,LAC,4396818,Jordan Miller,Out,Shoulder

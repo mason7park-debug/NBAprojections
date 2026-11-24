@@ -33,10 +33,8 @@ game_id,team,player_id,player,status,type
 401910040,BKN,5279130,Nolan Traore,Out,Hamstring
 401910041,CHI,2595516,Norman Powell,Out,Hamstring
 401910041,CHI,5095151,Caleb Wilson,Out,Hand
-401910041,CLE,4683747,Jaylon Tyson,Out,Ankle
 401910041,CLE,5106268,Nae'Qwan Tomlin,Out,Back
 401910041,CLE,4432158,Evan Mobley,Out,Toe
-401910042,NO,4395628,Zion Williamson,Day-To-Day,Thigh
 401910042,NO,4431675,Trendon Watford,Out,Ankle
 401910042,NO,4683634,Bennedict Mathurin,Out,Foot
 401910042,NO,3907497,Dejounte Murray,Out,Ankle
@@ -50,8 +48,8 @@ game_id,team,player_id,player,status,type
 401910044,UTAH,4277961,Jaren Jackson Jr.,Out,Knee
 401910045,SAC,4898371,Maxime Raynaud,Out,Knee
 401910045,SAC,3907387,Ben Simmons,Out,Achilles
-401910045,SA,5104157,Victor Wembanyama,Day-To-Day,Back
-401910045,SA,4066259,De'Aaron Fox,Day-To-Day,Lower Leg
+401910045,SA,5104157,Victor Wembanyama,Out,Back
+401910045,SA,4066259,De'Aaron Fox,Out,Lower Leg
 401910045,SA,3134916,Jordan McLaughlin,Day-To-Day,Shoulder
 401910045,SA,5037871,Dylan Harper,Out,Hip
 401910045,SA,6440,Tobias Harris,Out,Calf

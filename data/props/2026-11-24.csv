@@ -1,5 +1,5 @@
 game_id,player_id,player,stat,line,source
-401909314,3908845,John Collins,3PM,1.5,Draft Kings
+401909314,3908845,John Collins,3PM,0.5,Draft Kings
 401909314,3908845,John Collins,PTS,10.5,Draft Kings
 401909314,3908845,John Collins,REB,5.5,Draft Kings
 401909314,4066320,Desmond Bane,3PM,3.5,Draft Kings
@@ -13,7 +13,7 @@ game_id,player_id,player,stat,line,source
 401909314,4277847,Wendell Carter Jr.,3PM,0.5,Draft Kings
 401909314,4277847,Wendell Carter Jr.,AST,1.5,Draft Kings
 401909314,4277847,Wendell Carter Jr.,PTS,10.5,Draft Kings
-401909314,4277847,Wendell Carter Jr.,REB,8.5,Draft Kings
+401909314,4277847,Wendell Carter Jr.,REB,7.5,Draft Kings
 401909314,4278562,Paul Reed,PTS,9.5,Draft Kings
 401909314,4278562,Paul Reed,REB,6.5,Draft Kings
 401909314,4395702,,3PM,2.5,Draft Kings
@@ -41,7 +41,7 @@ game_id,player_id,player,stat,line,source
 401909314,4712849,Anthony Black,AST,4.5,Draft Kings
 401909314,4712849,Anthony Black,PTS,14.5,Draft Kings
 401909314,4712849,Anthony Black,REB,4.5,Draft Kings
-401909314,5107199,Daniss Jenkins,3PM,1.5,Draft Kings
+401909314,5107199,Daniss Jenkins,3PM,2.5,Draft Kings
 401909314,5107199,Daniss Jenkins,AST,4.5,Draft Kings
 401909314,5107199,Daniss Jenkins,PTS,14.5,Draft Kings
 401909314,5107199,Daniss Jenkins,REB,3.5,Draft Kings
@@ -64,10 +64,11 @@ game_id,player_id,player,stat,line,source
 401909315,4251,Paul George,AST,3.5,Draft Kings
 401909315,4251,Paul George,PTS,18.5,Draft Kings
 401909315,4251,Paul George,REB,5.5,Draft Kings
-401909315,4277905,Trae Young,3PM,1.5,Draft Kings
+401909315,4277905,Trae Young,3PM,2.5,Draft Kings
 401909315,4277905,Trae Young,AST,7.5,Draft Kings
 401909315,4277905,Trae Young,PTS,14.5,Draft Kings
 401909315,4277905,Trae Young,REB,2.5,Draft Kings
+401909315,4397424,Neemias Queta,AST,2.5,Draft Kings
 401909315,4397424,Neemias Queta,PTS,10.5,Draft Kings
 401909315,4397424,Neemias Queta,REB,8.5,Draft Kings
 401909315,5104155,Bilal Coulibaly,3PM,0.5,Draft Kings
@@ -82,13 +83,14 @@ game_id,player_id,player,stat,line,source
 401909315,5160992,Alex Sarr,REB,6.5,Draft Kings
 401909315,5174563,Kyshawn George,3PM,2.5,Draft Kings
 401909315,5174563,Kyshawn George,AST,3.5,Draft Kings
-401909315,5174563,Kyshawn George,PTS,15.5,Draft Kings
+401909315,5174563,Kyshawn George,PTS,14.5,Draft Kings
 401909315,5174563,Kyshawn George,REB,4.5,Draft Kings
 401909315,5175647,Hugo Gonzalez,PTS,5.5,Draft Kings
 401909315,6583,Anthony Davis,3PM,0.5,Draft Kings
 401909315,6583,Anthony Davis,AST,2.5,Draft Kings
-401909315,6583,Anthony Davis,PTS,21.5,Draft Kings
+401909315,6583,Anthony Davis,PTS,20.5,Draft Kings
 401909315,6583,Anthony Davis,REB,9.5,Draft Kings
+401909315,6609,,PTS,5.5,Draft Kings
 401909316,3064290,Aaron Gordon,3PM,1.5,Draft Kings
 401909316,3064290,Aaron Gordon,AST,2.5,Draft Kings
 401909316,3064290,Aaron Gordon,PTS,13.5,Draft Kings

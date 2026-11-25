@@ -1,7 +1,6 @@
 game_id,team,player_id,player,status,type
 401909317,PHI,3059318,Joel Embiid,Out,Illness
 401909317,PHI,4871141,Ariel Hukporti,Out,Achilles
-401909317,MIA,3032977,Giannis Antetokounmpo,Day-To-Day,Groin
 401909318,CHA,4576060,Ryan Kalkbrenner,Out,Hip
 401909318,CHA,3135045,Grayson Allen,Out,Concussion
 401909318,CHA,3032979,Dennis Schroder,Out,Hamstring
@@ -10,10 +9,10 @@ game_id,team,player_id,player,status,type
 401909318,CHI,4397189,Jalen Smith,Day-To-Day,Illness
 401909318,CHI,2595516,Norman Powell,Out,Hamstring
 401909318,CHI,5095151,Caleb Wilson,Out,Hand
+401909319,NY,3934672,Jalen Brunson,Day-To-Day,Illness
 401909319,NY,3062679,Josh Hart,Day-To-Day,Shoulder
 401909319,NY,4431823,Miles McBride,Out,Groin
 401909319,NY,3136195,Karl-Anthony Towns,Day-To-Day,Knee
-401909319,NY,3934672,Jalen Brunson,Day-To-Day,Illness
 401909319,NY,2528426,Jordan Clarkson,Out,Foot
 401909319,CLE,5106268,Nae'Qwan Tomlin,Out,Back
 401909319,CLE,4432158,Evan Mobley,Out,Toe
@@ -40,6 +39,7 @@ game_id,team,player_id,player,status,type
 401909324,GS,3102531,Kristaps Porzingis,Out,Illness
 401909324,GS,4432171,Moses Moody,Out,Knee
 401909324,SAC,4898371,Maxime Raynaud,Out,Knee
+401909324,SAC,3064440,Zach LaVine,Day-To-Day,Knee
 401909324,SAC,3907387,Ben Simmons,Out,Achilles
 401909325,POR,4706557,Chris Youngblood,Out,Heel
 401909325,POR,4578893,Vit Krejci,Out,Ankle

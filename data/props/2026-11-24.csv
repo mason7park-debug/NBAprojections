@@ -88,47 +88,49 @@ game_id,player_id,player,stat,line,source
 401909315,6583,Anthony Davis,AST,2.5,Draft Kings
 401909315,6583,Anthony Davis,PTS,20.5,Draft Kings
 401909315,6583,Anthony Davis,REB,9.5,Draft Kings
-401909316,3064290,Aaron Gordon,3PM,1.5,Draft Kings
-401909316,3064290,Aaron Gordon,AST,2.5,Draft Kings
-401909316,3064290,Aaron Gordon,PTS,13.5,Draft Kings
-401909316,3064290,Aaron Gordon,REB,5.5,Draft Kings
-401909316,3112335,Nikola Jokic,3PM,1.5,Draft Kings
-401909316,3112335,Nikola Jokic,AST,9.5,Draft Kings
-401909316,3112335,Nikola Jokic,PTS,25.5,Draft Kings
-401909316,3112335,Nikola Jokic,REB,11.5,Draft Kings
-401909316,3138160,Caleb Martin,3PM,0.5,Draft Kings
-401909316,3138160,Caleb Martin,PTS,5.5,Draft Kings
-401909316,3138160,Caleb Martin,REB,3.5,Draft Kings
-401909316,3138196,Cameron Johnson,3PM,1.5,Draft Kings
-401909316,3138196,Cameron Johnson,PTS,12.5,Draft Kings
-401909316,3138196,Cameron Johnson,REB,3.5,Draft Kings
-401909316,3936299,Jamal Murray,3PM,2.5,Draft Kings
-401909316,3936299,Jamal Murray,AST,6.5,Draft Kings
-401909316,3936299,Jamal Murray,PTS,23.5,Draft Kings
-401909316,3936299,Jamal Murray,REB,4.5,Draft Kings
-401909316,3978,DeMar DeRozan,PTS,10.5,Draft Kings
-401909316,4278049,Daniel Gafford,AST,1.5,Draft Kings
-401909316,4278049,Daniel Gafford,PTS,9.5,Draft Kings
-401909316,4278049,Daniel Gafford,REB,6.5,Draft Kings
-401909316,4278078,P.J. Washington,3PM,1.5,Draft Kings
-401909316,4278078,P.J. Washington,PTS,12.5,Draft Kings
-401909316,4278078,P.J. Washington,REB,5.5,Draft Kings
-401909316,4278594,Naji Marshall,3PM,0.5,Draft Kings
-401909316,4278594,Naji Marshall,AST,2.5,Draft Kings
-401909316,4278594,Naji Marshall,PTS,10.5,Draft Kings
-401909316,4278594,Naji Marshall,REB,3.5,Draft Kings
-401909316,4431767,Christian Braun,3PM,1.5,Draft Kings
-401909316,4431767,Christian Braun,AST,2.5,Draft Kings
-401909316,4431767,Christian Braun,PTS,12.5,Draft Kings
-401909316,4431767,Christian Braun,REB,4.5,Draft Kings
-401909316,5041939,Cooper Flagg,3PM,1.5,Draft Kings
-401909316,5041939,Cooper Flagg,AST,6.5,Draft Kings
-401909316,5041939,Cooper Flagg,PTS,24.5,Draft Kings
-401909316,5041939,Cooper Flagg,REB,6.5,Draft Kings
-401909316,5211175,Zaccharie Risacher,3PM,0.5,Draft Kings
-401909316,5211175,Zaccharie Risacher,PTS,7.5,Draft Kings
-401909316,5211175,Zaccharie Risacher,REB,3.5,Draft Kings
-401909316,6442,Kyrie Irving,3PM,3.5,Draft Kings
-401909316,6442,Kyrie Irving,AST,4.5,Draft Kings
-401909316,6442,Kyrie Irving,PTS,22.5,Draft Kings
-401909316,6442,Kyrie Irving,REB,3.5,Draft Kings
+401909316,3064290,Aaron Gordon,3PM,1.5,DraftKings
+401909316,3064290,Aaron Gordon,AST,2.5,DraftKings
+401909316,3064290,Aaron Gordon,PTS,13.5,DraftKings
+401909316,3064290,Aaron Gordon,REB,5.5,DraftKings
+401909316,3112335,Nikola Jokic,3PM,1.5,DraftKings
+401909316,3112335,Nikola Jokic,AST,9.5,DraftKings
+401909316,3112335,Nikola Jokic,PTS,25.5,DraftKings
+401909316,3112335,Nikola Jokic,REB,11.5,DraftKings
+401909316,3138160,Caleb Martin,3PM,0.5,DraftKings
+401909316,3138160,Caleb Martin,PTS,5.5,DraftKings
+401909316,3138160,Caleb Martin,REB,3.5,DraftKings
+401909316,3138196,Cameron Johnson,3PM,1.5,DraftKings
+401909316,3138196,Cameron Johnson,PTS,12.5,DraftKings
+401909316,3138196,Cameron Johnson,REB,3.5,DraftKings
+401909316,3936299,Jamal Murray,3PM,2.5,DraftKings
+401909316,3936299,Jamal Murray,AST,6.5,DraftKings
+401909316,3936299,Jamal Murray,PTS,23.5,DraftKings
+401909316,3936299,Jamal Murray,REB,4.5,DraftKings
+401909316,3978,DeMar DeRozan,PTS,10.5,DraftKings
+401909316,4278049,Daniel Gafford,AST,1.5,DraftKings
+401909316,4278049,Daniel Gafford,PTS,9.5,DraftKings
+401909316,4278049,Daniel Gafford,REB,6.5,DraftKings
+401909316,4278078,P.J. Washington,3PM,1.5,DraftKings
+401909316,4278078,P.J. Washington,PTS,11.5,DraftKings
+401909316,4278078,P.J. Washington,REB,4.5,DraftKings
+401909316,4278594,Naji Marshall,3PM,0.5,DraftKings
+401909316,4278594,Naji Marshall,AST,2.5,DraftKings
+401909316,4278594,Naji Marshall,PTS,10.5,DraftKings
+401909316,4278594,Naji Marshall,REB,2.5,DraftKings
+401909316,4431767,Christian Braun,3PM,1.5,DraftKings
+401909316,4431767,Christian Braun,AST,2.5,DraftKings
+401909316,4431767,Christian Braun,PTS,12.5,DraftKings
+401909316,4431767,Christian Braun,REB,4.5,DraftKings
+401909316,4873153,Morez Johnson Jr.,PTS,5.5,DraftKings
+401909316,4873153,Morez Johnson Jr.,REB,3.5,DraftKings
+401909316,5041939,Cooper Flagg,3PM,1.5,DraftKings
+401909316,5041939,Cooper Flagg,AST,6.5,DraftKings
+401909316,5041939,Cooper Flagg,PTS,23.5,DraftKings
+401909316,5041939,Cooper Flagg,REB,6.5,DraftKings
+401909316,5211175,Zaccharie Risacher,3PM,0.5,DraftKings
+401909316,5211175,Zaccharie Risacher,PTS,7.5,DraftKings
+401909316,5211175,Zaccharie Risacher,REB,3.5,DraftKings
+401909316,6442,Kyrie Irving,3PM,3.5,DraftKings
+401909316,6442,Kyrie Irving,AST,4.5,DraftKings
+401909316,6442,Kyrie Irving,PTS,22.5,DraftKings
+401909316,6442,Kyrie Irving,REB,3.5,DraftKings

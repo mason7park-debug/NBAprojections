@@ -187,6 +187,11 @@ def fetch_scoreboard(date, out, label):
     if not d:
         return []
     events = d.get("events", [])
+    if not events:
+        # The feed answered and simply has no games (Thanksgiving, All-Star break,
+        # offseason). That is not a failed fetch, so nothing is added to FAILED.
+        print(f"  no games on {date}")
+        return []
     rows = []
     for e in events:
         comp = (e.get("competitions") or [{}])[0]
@@ -351,7 +356,33 @@ def pregame(out, today):
     print(f"  {len(gids)} games on the slate")
     if gids:
         fetch_summaries(gids, today, out, want_box=False)
+    else:
+        write_next_slate(out, today)
     fetch_baselines(season_year(today), out, today)
+
+
+def write_next_slate(out, today, days=14):
+    """On a day with no games, note the next date that has games so the page can say so."""
+    import json
+    nxt = None
+    for i in range(1, days + 1):
+        d = today + dt.timedelta(days=i)
+        lab = f"scoreboard[{d}]"
+        data = get(f"{SITE}/scoreboard?dates={espn_date(d)}", lab, attempts=2)
+        if data is None:
+            # a lookahead miss is not worth failing the run over
+            if lab in FAILED:
+                FAILED.remove(lab)
+            continue
+        n = len(data.get("events") or [])
+        if n:
+            nxt = {"date": str(d), "games": n}
+            break
+    path = out / "no_games" / f"{today}.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps({"date": str(today), "next": nxt}))
+    print(f"  wrote {path}  (next slate: {nxt['date'] if nxt else 'not found'})")
+    WROTE.append("no_games")
 
 
 def results(out, today):

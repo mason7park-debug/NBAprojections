@@ -1,6 +1,6 @@
 game_id,team,player_id,player,status,type
-401909317,PHI,3917376,Jaylen Brown,Out,Hamstring
-401909317,PHI,3059318,Joel Embiid,Out,Illness
+401909317,PHI,3059318,Joel Embiid,Day-To-Day,Illness
+401909317,PHI,3917376,Jaylen Brown,Day-To-Day,Hamstring
 401909317,PHI,4871141,Ariel Hukporti,Out,Achilles
 401909318,CHA,4576060,Ryan Kalkbrenner,Out,Hip
 401909318,CHA,3135045,Grayson Allen,Out,Concussion
@@ -31,11 +31,11 @@ game_id,team,player_id,player,status,type
 401909321,LAC,4396818,Jordan Miller,Out,Shoulder
 401909322,BKN,5279130,Nolan Traore,Out,Hamstring
 401909323,PHX,4701232,Mark Williams,Out,Shoulder
-401909324,GS,5175737,Yaxel Lendeborg,Day-To-Day,Illness
-401909324,GS,4397040,Brandon Williams,Out,Hamstring
 401909324,GS,3975,Stephen Curry,Out,Abdomen
+401909324,GS,4397040,Brandon Williams,Out,Hamstring
 401909324,GS,3102531,Kristaps Porzingis,Out,Illness
 401909324,GS,4432171,Moses Moody,Out,Knee
+401909324,GS,6430,Jimmy Butler III,Out,Knee
 401909324,SAC,3064440,Zach LaVine,Out,Knee
 401909324,SAC,4898371,Maxime Raynaud,Out,Knee
 401909324,SAC,3907387,Ben Simmons,Out,Achilles

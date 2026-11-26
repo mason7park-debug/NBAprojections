@@ -140,6 +140,30 @@
   // the blowout floor shown is the blown-out version when there is one: it assumes his team is the one losing big
   function bfl(x) { return x.loss_floor != null ? x.loss_floor : x.blowout_floor; }
   // Hot and in a good spot: a streak where nothing about tonight's opponent should pull him down.
+  // Leans: a side on a posted prop line, logged before tip and graded the next morning.
+  function leansBlock(D, G) {
+    var L = D.leans || [], R = (G && G.leans) || null, src = R ? R.sources : {};
+    var names = { claude: 'Claude', 'rule:model_edge': 'Model vs line', 'rule:hot_spot': 'Hot + good spot', 'rule:fill_in': 'Fill-in starter', 'rule:big_dog_star': 'Star on big underdog' };
+    var order = ['claude', 'rule:hot_spot', 'rule:fill_in', 'rule:big_dog_star', 'rule:model_edge'];
+    var be = R ? R.breakeven : 0.524;
+    var rec = '<div class="ceilwrap"><table class="ceil"><thead><tr><th class="lft">Source</th><th>W-L</th><th>Win %</th><th>Units at -110</th><th>Nights</th></tr></thead><tbody>' +
+      order.concat(['all rules']).filter(function (k) { return src[k]; }).map(function (k) {
+        var v = src[k], wr = v.win_rate;
+        return '<tr><td class="lft">' + esc(names[k] || k) + '</td><td>' + v.win + '-' + v.loss + (v.push ? '-' + v.push : '') + '</td><td><span class="' + (wr != null && wr >= be ? 'up' : '') + '">' + pc(wr) + '</span></td><td>' + (v.units > 0 ? '+' : '') + v.units + '</td><td>' + v.nights + '</td></tr>';
+      }).join('') + '</tbody></table></div>';
+    if (!Object.keys(src).length) rec = '<p class="lead">No graded leans yet. The record starts the morning after the first logged slate.</p>';
+    var tonight = order.map(function (k) {
+      var l = L.filter(function (x) { return x.source === k; });
+      if (!l.length) return '';
+      return '<div class="card"><h3>' + esc(names[k] || k) + ' <span class="dim">(' + l.length + ')</span></h3><div class="body">' + l.map(function (x) {
+        return '<a class="tg mlink" href="#g-' + x.game_id + '"><div class="g">' + esc(x.player) + ' <span class="date">' + esc(x.team) + '</span> <span class="ceilv">' + (x.side === 'over' ? 'Over ' : 'Under ') + x.line + ' ' + x.stat + '</span></div><div class="p">' + esc(x.reason) + '</div></a>';
+      }).join('') + '</div></div>';
+    }).join('');
+    var rules = R && R.rules ? '<p class="lead" style="margin-top:10px">' + Object.keys(R.rules).map(function (k) { return '<b>' + esc(names[k] || k) + '.</b> ' + esc(R.rules[k]); }).join(' ') + ' Claude leans are written by hand before tip.</p>' : '';
+    return '<section id="leans"><div class="eyebrow">Leans</div>' +
+      '<p class="lead">Each lean is a side on a posted line, logged before tip and graded the next morning. Breaking even at -110 takes ' + (be * 100).toFixed(1) + '%. Tracking only, not betting advice: judge a source after a couple hundred graded leans, not a few nights.</p>' +
+      rec + (tonight ? '<div class="grid2" style="margin-top:12px">' + tonight + '</div>' : '<p class="lead" style="margin-top:12px">No leans for tonight\'s open games.</p>') + rules + '</section>';
+  }
   function hotSpots(D) {
     var H = D.hot_spots; if (!H) return '';
     var names = { PTS: 'Points', REB: 'Rebounds', AST: 'Assists', '3PM': 'Threes' };
@@ -404,7 +428,7 @@
       '<div class="seg" id="seg" role="group" aria-label="Stat shown">' + ['ALL'].concat(STATS).map(function (s) { return '<button type="button" data-m="' + s + '">' + (s === 'ALL' ? 'All stats' : s) + '</button>'; }).join('') + '</div>' +
       '<button type="button" class="tgl" id="fold">Collapse all</button></div>' +
       '<p class="lead" style="margin-bottom:14px">Expected already accounts for blowout risk. Floor is the number reached in 80% of 10,000 simulated games. Blowout floor is the number reached in 80% of the simulated games where his team loses by 20 or more, which is the case that actually hurts. ★ marks players at 18 or more points a game. ▲ and ▼ mark a soft or tough position matchup for that stat. For threes the page shows the chance of making at least 1, 2 or 3, because a floor of 0 says little.</p>' +
-      '<div id="tables"></div><p class="empty" id="nomatch" hidden>No player on tonight\'s slate matches that name.</p></section>' + ceiling(D) + gradeBlock(G) + method(D);
+      '<div id="tables"></div><p class="empty" id="nomatch" hidden>No player on tonight\'s slate matches that name.</p></section>' + ceiling(D) + leansBlock(D, G) + gradeBlock(G) + method(D);
 
     var tables = document.getElementById('tables'), q = document.getElementById('q'), seg = document.getElementById('seg'), fold = document.getElementById('fold');
     function filter() {

@@ -1115,6 +1115,7 @@ def run_project(date, data, docs, now=None, lock=True):
             "notes": notes[:40],
         },
     }
+    payload["leans"] = update_leans(date, data, games_out, payload["run_utc"])
     write_csv(proj_rows, data / "projections" / f"{date}.csv")
     if pred_rows:
         write_csv(pred_rows, data / "gamepreds" / f"{date}.csv")
@@ -1123,6 +1124,135 @@ def run_project(date, data, docs, now=None, lock=True):
         (docs / "data" / name).write_text(json.dumps(payload, separators=(",", ":")))
     print(f"projected {payload['method']['players']} players in {len(games_out)} games for {date}")
     print(f"floors: {n_log} from player logs, {len(proj_rows) - n_log} flat rule; lines found: {payload['method']['lines_found']}")
+
+
+
+# --------------------------------------------------------------------- leans
+# A lean is a side (over or under) on a posted prop line, logged before tip and graded the
+# next morning. Two kinds, each with its own record:
+#   claude        leans written by hand into data/leans/<date>.csv; the nightly run never touches them
+#   rule:<name>   leans the nightly run writes itself from a fixed rule, rewritten each run until tip
+# Tracking only. Nothing here changes a projection, and none of it is betting advice.
+LEAN_BREAKEVEN = 0.524      # win rate needed to break even at -110
+LEAN_EDGE = 0.15            # rule:model_edge needs the model this far from the line (and at least 1)
+LEAN_DOG = 10.0             # rule:big_dog_star needs his team to be this big an underdog
+LEAN_FIELDS = ["date", "game_id", "tip", "player_id", "player", "team", "opp", "stat", "line", "side",
+               "source", "reason", "logged_utc", "actual", "result"]
+LEAN_RULES = {
+    "rule:model_edge": "The model, before it is pulled toward the line, is 15% or more (and at least 1) away from the line.",
+    "rule:hot_spot": "He has cleared this line in each of his last 5 or more games, and the matchup is a good spot.",
+    "rule:fill_in": "Points over for a player moved into the starting five tonight, who gets the missing starter's minutes.",
+    "rule:big_dog_star": "Points under for a star whose team is a 10 point or bigger underdog, since stars lose minutes and touches in blowout losses.",
+}
+
+
+def rule_leans(date, games_out, run_utc):
+    rows = []
+    for g in games_out:
+        if g.get("locked"):
+            continue
+        spread = fnum(g.get("spread"))
+        for tb in g["teams"]:
+            fills = set(tb.get("min_fill") or {})
+            team_spread = None if spread is None else (spread if tb["team"] == g["home"] else -spread)
+            for e in tb["players"]:
+                for s in STATS:
+                    st = e["stats"][s]
+                    line = st.get("line")
+                    if line is None:
+                        continue
+
+                    def add(source, side, reason):
+                        rows.append({"date": str(date), "game_id": g["game_id"], "tip": g["tip"], "player_id": e["id"],
+                                     "player": e["name"], "team": e["team"], "opp": e["opp"], "stat": s, "line": line,
+                                     "side": side, "source": source, "reason": reason, "logged_utc": run_utc,
+                                     "actual": "", "result": ""})
+                    me = st.get("model_expected", st["expected"])
+                    if abs(me - line) >= max(LEAN_EDGE * line, 1.0):
+                        add("rule:model_edge", "over" if me > line else "under", f"model {me} vs line {line}")
+                    sk = st.get("streak")
+                    if sk and sk.get("spot", {}).get("good") and sk["line"] > line:
+                        add("rule:hot_spot", "over", f"{sk['line']}+ in {sk['games']} straight, good spot")
+                    if s == "PTS" and e["name"] in fills:
+                        add("rule:fill_in", "over", f"moved into the starting five, {e['min']} min")
+                    if s == "PTS" and e["star"] and team_spread is not None and team_spread >= LEAN_DOG:
+                        add("rule:big_dog_star", "under", f"{e['team']} +{team_spread:g}, {g['tag']} blowout risk")
+    return rows
+
+
+def update_leans(date, data, games_out, run_utc):
+    """Rewrite the rule leans for games that have not tipped; keep hand-written leans and locked games."""
+    path = data / "leans" / f"{date}.csv"
+    old = read_csv(path)
+    locked = {g["game_id"] for g in games_out if g.get("locked")}
+    keep = [r for r in old if r.get("source") == "claude" or r.get("game_id") in locked]
+    rows = keep + rule_leans(date, games_out, run_utc)
+    if rows:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with open(path, "w", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=LEAN_FIELDS, extrasaction="ignore")
+            w.writeheader()
+            w.writerows(rows)
+    return rows
+
+
+def utc(v):
+    return dt.datetime.fromisoformat(v.replace("Z", "+00:00"))
+
+
+def grade_leans(date, data):
+    """Fill in the result of each lean for --date. A lean logged after tip is marked late and not counted."""
+    path = data / "leans" / f"{date}.csv"
+    rows, box = read_csv(path), read_csv(data / "boxscores" / f"{date}.csv")
+    if not rows or not box:
+        return
+    act = {}
+    for r in box:
+        if str(r.get("dnp", "")).lower() != "true" and fnum(r.get("MIN"), 0) > 0:
+            act[r["player_id"]] = {"PTS": fnum(r.get("PTS"), 0.0), "REB": fnum(r.get("REB"), 0.0),
+                                   "AST": fnum(r.get("AST"), 0.0), "3PM": made(r.get("3PT"))}
+    games = {r["game_id"] for r in box}
+    for r in rows:
+        if r.get("game_id") not in games:
+            continue                      # box score not in yet; try again next run
+        line, a = fnum(r.get("line")), act.get(r.get("player_id"))
+        if r.get("logged_utc") and r.get("tip") and utc(r["logged_utc"]) > utc(r["tip"]):
+            r["result"] = "late"
+        elif a is None or line is None:
+            r["result"], r["actual"] = "void", ""
+        else:
+            v = a[r["stat"]]
+            r["actual"] = v
+            r["result"] = "push" if v == line else ("win" if (v > line) == (r["side"] == "over") else "loss")
+    with open(path, "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=LEAN_FIELDS, extrasaction="ignore")
+        w.writeheader()
+        w.writerows(rows)
+
+
+def lean_record(data):
+    """Record by source, over every graded date. Units assume -110: a win pays 0.909, a loss costs 1."""
+    by = defaultdict(lambda: {"win": 0, "loss": 0, "push": 0, "void": 0, "late": 0, "nights": set()})
+    by_stat = defaultdict(lambda: {"win": 0, "loss": 0})
+    for p in sorted((data / "leans").glob("*.csv")):
+        for r in read_csv(p):
+            res = r.get("result")
+            if res not in ("win", "loss", "push", "void", "late"):
+                continue
+            for key in (r["source"], "all rules" if r["source"].startswith("rule:") else None):
+                if key:
+                    by[key][res] += 1
+                    by[key]["nights"].add(r["date"])
+            if res in ("win", "loss"):
+                by_stat[(r["source"], r["stat"])][res] += 1
+    out = {}
+    for k, v in by.items():
+        n = v["win"] + v["loss"]
+        out[k] = {"win": v["win"], "loss": v["loss"], "push": v["push"], "void": v["void"], "late": v["late"],
+                  "nights": len(v["nights"]), "win_rate": round(v["win"] / n, 3) if n else None,
+                  "units": round(v["win"] * (100 / 110) - v["loss"], 2),
+                  "by_stat": {s: by_stat[(k, s)] for s in STATS if sum(by_stat[(k, s)].values())}}
+    return {"breakeven": LEAN_BREAKEVEN, "rules": LEAN_RULES, "sources": out}
 
 
 # --------------------------------------------------------------------- grade
@@ -1439,6 +1569,7 @@ def build_report(every, docs):
 
 
 def run_grade(date, data, docs):
+    grade_leans(date, data)
     rows = grade_one(date, data)
     if rows is None:
         print(f"nothing to grade for {date} (need projections, box scores and team stats)")
@@ -1466,7 +1597,8 @@ def run_grade(date, data, docs):
         live["game_preds"] = grade_games(data, sorted(p.stem for p in (data / "gamepreds").glob("*.csv")
                                                       if dt.date.fromisoformat(p.stem) >= LIVE_FROM))
     (docs / "data" / "grade.json").write_text(json.dumps(
-        {"last": last, "all": allnights, "live": live, "live_from": str(LIVE_FROM), "model": MODEL_VERSION},
+        {"last": last, "all": allnights, "live": live, "live_from": str(LIVE_FROM), "model": MODEL_VERSION,
+         "leans": lean_record(data)},
         separators=(",", ":")))
     build_report(every, docs)
     s = last["stats"].get("PTS", {})

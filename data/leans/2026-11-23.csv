@@ -1,0 +1,5 @@
+date,game_id,tip,player_id,player,team,opp,stat,line,side,source,reason,logged_utc,actual,result
+2026-11-23,401910036,2026-11-24T00:00Z,4903027,Cedric Coward,MEM,CHA,3PM,1.5,over,claude,"2+ threes in 5 straight (4, 2, 4, 5, 4), model 2.5, CHA allows 8% more threes than average",2026-11-23T20:39:56Z,,
+2026-11-23,401910037,2026-11-24T00:00Z,4683021,Deni Avdija,POR,PHI,3PM,1.5,over,claude,"2+ threes in 6 straight, model 2.1, Morant out leaves more shots",2026-11-23T20:39:56Z,,
+2026-11-23,401910041,2026-11-24T01:00Z,4397189,Jalen Smith,CHI,CLE,PTS,14.5,over,claude,"model 17.9 before the line pull; Wilson and Powell out, highest points ceiling game tonight (241.5 total)",2026-11-23T20:39:56Z,,
+2026-11-23,401910044,2026-11-24T03:00Z,3945274,Luka Doncic,LAL,UTAH,PTS,36.5,under,claude,line sits above his model 33.6; LAL -13.5 with High blowout risk can cut his fourth quarter,2026-11-23T20:39:56Z,,

@@ -9,6 +9,7 @@ game_id,team,player_id,player,status,type
 401909318,CHI,4397189,Jalen Smith,Out,Illness
 401909318,CHI,2595516,Norman Powell,Out,Hamstring
 401909318,CHI,5095151,Caleb Wilson,Out,Hand
+401909319,NY,6585,Andre Drummond,Day-To-Day,Head
 401909319,NY,3934719,OG Anunoby,Out,Calf
 401909319,NY,4431823,Miles McBride,Out,Groin
 401909319,NY,2528426,Jordan Clarkson,Out,Foot
@@ -29,10 +30,10 @@ game_id,team,player_id,player,status,type
 401909321,MEM,5105462,Richie Saunders,Out,Knee
 401909321,LAC,6580,Bradley Beal,Out,Knee
 401909321,LAC,4396818,Jordan Miller,Out,Shoulder
+401909322,BKN,3150844,Moritz Wagner,Out,Knee
 401909322,BKN,5279130,Nolan Traore,Out,Hamstring
 401909323,PHX,4701232,Mark Williams,Out,Shoulder
 401909324,GS,3975,Stephen Curry,Out,Abdomen
-401909324,GS,4397040,Brandon Williams,Out,Hamstring
 401909324,GS,3102531,Kristaps Porzingis,Out,Illness
 401909324,GS,4432171,Moses Moody,Out,Knee
 401909324,GS,6430,Jimmy Butler III,Out,Knee
@@ -43,8 +44,7 @@ game_id,team,player_id,player,status,type
 401909325,POR,4578893,Vit Krejci,Out,Ankle
 401909325,POR,4279888,Ja Morant,Out,Hamstring
 401909325,POR,4914336,Shaedon Sharpe,Out,Knee
-401909325,SA,4066259,De'Aaron Fox,Day-To-Day,Lower Leg
-401909325,SA,5104157,Victor Wembanyama,Day-To-Day,Back
+401909325,SA,4066259,De'Aaron Fox,Out,Lower Leg
 401909325,SA,5037871,Dylan Harper,Out,Hip
 401909325,SA,6440,Tobias Harris,Out,Calf
 401909325,SA,5101845,Jayden Quaintance,Out,Knee

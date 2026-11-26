@@ -339,37 +339,42 @@ game_id,player_id,player,stat,line,source
 401909323,4871144,Alperen Sengun,REB,8.5,DraftKings
 401909323,5203685,Khaman Maluach,PTS,5.5,DraftKings
 401909323,5203685,Khaman Maluach,REB,5.5,DraftKings
-401909324,3155942,Domantas Sabonis,AST,4.5,DraftKings
+401909324,3155942,Domantas Sabonis,AST,5.5,DraftKings
 401909324,3155942,Domantas Sabonis,PTS,14.5,DraftKings
-401909324,3155942,Domantas Sabonis,REB,12.5,DraftKings
-401909324,4065732,De'Andre Hunter,3PM,1.5,DraftKings
+401909324,3155942,Domantas Sabonis,REB,13.5,DraftKings
+401909324,4065732,De'Andre Hunter,3PM,2.5,DraftKings
 401909324,4065732,De'Andre Hunter,AST,1.5,DraftKings
-401909324,4065732,De'Andre Hunter,PTS,15.5,DraftKings
+401909324,4065732,De'Andre Hunter,PTS,16.5,DraftKings
 401909324,4065732,De'Andre Hunter,REB,4.5,DraftKings
 401909324,4066262,Malik Monk,3PM,1.5,DraftKings
 401909324,4066262,Malik Monk,AST,3.5,DraftKings
-401909324,4066262,Malik Monk,PTS,11.5,DraftKings
+401909324,4066262,Malik Monk,PTS,10.5,DraftKings
 401909324,4066436,De'Anthony Melton,3PM,1.5,DraftKings
 401909324,4066436,De'Anthony Melton,AST,2.5,DraftKings
 401909324,4066436,De'Anthony Melton,PTS,10.5,DraftKings
 401909324,4066436,De'Anthony Melton,REB,3.5,DraftKings
 401909324,4397886,Charles Bassey,PTS,10.5,DraftKings
 401909324,4397886,Charles Bassey,REB,7.5,DraftKings
+401909324,4431679,Precious Achiuwa,PTS,6.5,DraftKings
 401909324,4594327,,3PM,1.5,DraftKings
 401909324,4594327,,AST,1.5,DraftKings
 401909324,4594327,,PTS,13.5,DraftKings
-401909324,4594327,,REB,5.5,DraftKings
+401909324,4594327,,REB,4.5,DraftKings
 401909324,4709138,Brandin Podziemski,3PM,2.5,DraftKings
 401909324,4709138,Brandin Podziemski,AST,3.5,DraftKings
 401909324,4709138,Brandin Podziemski,PTS,16.5,DraftKings
 401909324,4709138,Brandin Podziemski,REB,4.5,DraftKings
+401909324,4897262,Will Richard,PTS,6.5,DraftKings
+401909324,4997536,Gui Santos,AST,2.5,DraftKings
+401909324,4997536,Gui Santos,PTS,7.5,DraftKings
+401909324,4997536,Gui Santos,REB,4.5,DraftKings
 401909324,5142620,Darius Acuff Jr.,3PM,2.5,DraftKings
 401909324,5142620,Darius Acuff Jr.,AST,7.5,DraftKings
 401909324,5142620,Darius Acuff Jr.,PTS,24.5,DraftKings
 401909324,5142620,Darius Acuff Jr.,REB,3.5,DraftKings
 401909324,5175737,Yaxel Lendeborg,3PM,1.5,DraftKings
 401909324,5175737,Yaxel Lendeborg,AST,3.5,DraftKings
-401909324,5175737,Yaxel Lendeborg,PTS,21.5,DraftKings
+401909324,5175737,Yaxel Lendeborg,PTS,20.5,DraftKings
 401909324,5175737,Yaxel Lendeborg,REB,7.5,DraftKings
 401909324,6589,Draymond Green,3PM,0.5,DraftKings
 401909324,6589,Draymond Green,AST,4.5,DraftKings
@@ -379,13 +384,9 @@ game_id,player_id,player,stat,line,source
 401909325,3995,Jrue Holiday,AST,4.5,DraftKings
 401909325,3995,Jrue Holiday,PTS,12.5,DraftKings
 401909325,3995,Jrue Holiday,REB,3.5,DraftKings
-401909325,4066259,De'Aaron Fox,3PM,1.5,DraftKings
-401909325,4066259,De'Aaron Fox,AST,5.5,DraftKings
-401909325,4066259,De'Aaron Fox,PTS,14.5,DraftKings
-401909325,4066259,De'Aaron Fox,REB,3.5,DraftKings
 401909325,4395630,Devin Vassell,3PM,1.5,DraftKings
 401909325,4395630,Devin Vassell,AST,2.5,DraftKings
-401909325,4395630,Devin Vassell,PTS,13.5,DraftKings
+401909325,4395630,Devin Vassell,PTS,12.5,DraftKings
 401909325,4395630,Devin Vassell,REB,3.5,DraftKings
 401909325,4395723,Keldon Johnson,PTS,10.5,DraftKings
 401909325,4395723,Keldon Johnson,REB,5.5,DraftKings
@@ -404,7 +405,7 @@ game_id,player_id,player,stat,line,source
 401909325,4683678,Scoot Henderson,REB,2.5,DraftKings
 401909325,4845367,Stephon Castle,3PM,1.5,DraftKings
 401909325,4845367,Stephon Castle,AST,7.5,DraftKings
-401909325,4845367,Stephon Castle,PTS,19.5,DraftKings
+401909325,4845367,Stephon Castle,PTS,18.5,DraftKings
 401909325,4845367,Stephon Castle,REB,5.5,DraftKings
 401909325,5081727,Sidy Cissoko,PTS,6.5,DraftKings
 401909325,5081727,Sidy Cissoko,REB,2.5,DraftKings
@@ -414,6 +415,9 @@ game_id,player_id,player,stat,line,source
 401909325,5104157,Victor Wembanyama,REB,12.5,DraftKings
 401909325,5105565,Donovan Clingan,PTS,10.5,DraftKings
 401909325,5105565,Donovan Clingan,REB,10.5,DraftKings
+401909325,6578,Harrison Barnes,3PM,1.5,DraftKings
+401909325,6578,Harrison Barnes,PTS,7.5,DraftKings
+401909325,6578,Harrison Barnes,REB,2.5,DraftKings
 401909325,6606,Damian Lillard,3PM,3.5,DraftKings
 401909325,6606,Damian Lillard,AST,3.5,DraftKings
 401909325,6606,Damian Lillard,PTS,20.5,DraftKings

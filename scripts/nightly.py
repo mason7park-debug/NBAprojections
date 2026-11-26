@@ -618,10 +618,32 @@ def player_profile(p):
 
 # ------------------------------------------------------------------- project
 
+def write_no_games(date, data, docs):
+    """Point the page at an empty slate. Only latest.json is written, so the dated
+    files, the record and grading never see a no-game day."""
+    nxt = None
+    p = data / "no_games" / f"{date}.json"
+    if p.exists():
+        try:
+            nxt = json.loads(p.read_text()).get("next")
+        except ValueError:
+            nxt = None
+    payload = {
+        "date": str(date), "no_games": True, "next": nxt, "games": [],
+        "run_time_et": dt.datetime.now(ET).strftime("%Y-%m-%d %I:%M %p ET"),
+        "run_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "model": MODEL_VERSION,
+    }
+    (docs / "data").mkdir(parents=True, exist_ok=True)
+    (docs / "data" / "latest.json").write_text(json.dumps(payload, separators=(",", ":")))
+    print(f"wrote no-games page for {date}" + (f" (next slate {nxt['date']})" if nxt else ""))
+
+
 def run_project(date, data, docs, now=None, lock=True):
     slate = read_csv(data / "slate" / f"{date}.csv")
     if not slate:
         print(f"no games found for {date}; nothing to project")
+        if lock:    # live run for today, not a replay: tell the page there are no games
+            write_no_games(date, data, docs)
         return
     odds = {r["game_id"]: r for r in read_csv(data / "odds" / f"{date}.csv")}
     inj = read_csv(data / "injuries" / f"{date}.csv")

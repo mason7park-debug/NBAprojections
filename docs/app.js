@@ -377,6 +377,15 @@
   Promise.all([load('data/latest.json'), load('data/grade.json')]).then(function (r) {
     var D = r[0], G = r[1], app = document.getElementById('app');
     if (!D) { app.innerHTML = '<p class="empty">No projections yet. They appear after the first pregame run.</p>'; return; }
+    if (D.no_games) {
+      var fmt = function (d) { return new Date(d + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' }); };
+      document.getElementById('hdate').textContent = new Date(D.date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) + ' · no games';
+      document.getElementById('hrun').textContent = 'Updated ' + D.run_time_et.replace(/^\d{4}-\d{2}-\d{2} 0?/, '');
+      app.innerHTML = '<section id="games"><div class="eyebrow">Tonight</div><p class="lead"><b>No NBA games today.</b> There is nothing to project for ' + esc(fmt(D.date)) + '.' +
+        (D.next ? ' The next slate is ' + esc(fmt(D.next.date)) + ' with ' + D.next.games + (D.next.games === 1 ? ' game' : ' games') + '. Projections for it appear after that day\'s first run.' : '') +
+        '</p></section>' + gradeBlock(G);
+      return;
+    }
     document.getElementById('hdate').textContent = new Date(D.date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) + ' · ' + D.games.length + ' games';
     document.getElementById('hrun').textContent = 'Updated ' + D.run_time_et.replace(/^\d{4}-\d{2}-\d{2} 0?/, '');
     document.getElementById('nav').hidden = false;

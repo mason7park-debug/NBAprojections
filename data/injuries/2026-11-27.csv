@@ -1,18 +1,19 @@
 game_id,team,player_id,player,status,type
+401909326,NY,4431823,Miles McBride,Out,Groin
+401909326,NY,3934719,OG Anunoby,Out,Calf
+401909326,NY,2528426,Jordan Clarkson,Out,Foot
 401909326,NY,3136195,Karl-Anthony Towns,Day-To-Day,Abdomen
 401909326,NY,6585,Andre Drummond,Out,Concussion
-401909326,NY,4431823,Miles McBride,Day-To-Day,Groin
-401909326,NY,2528426,Jordan Clarkson,Out,Foot
-401909326,NY,3934719,OG Anunoby,Out,Calf
 401909326,MIA,3032977,Giannis Antetokounmpo,Day-To-Day,Groin
 401909327,DET,3157465,Duncan Robinson,Out,Quadriceps
 401909327,DET,4432166,Cade Cunningham,Out,Knee
 401909327,DET,4433621,Jalen Duren,Out,Hamstring
 401909327,DET,5258459,Ebuka Okorie,Out,Oblique
 401909327,DET,2990962,Taurean Prince,Out,Knee
+401909327,MIL,5214640,Kasparas Jakucionis,Out,Ankle
+401909328,IND,2580365,Larry Nance Jr.,Day-To-Day,Ankle
 401909328,IND,4396993,Tyrese Haliburton,Out,Hamstring
 401909328,IND,3133603,Kelly Oubre Jr.,Day-To-Day,Hand
-401909328,IND,2580365,Larry Nance Jr.,Day-To-Day,Ankle
 401909328,IND,2530530,T.J. McConnell,Day-To-Day,Hamstring
 401909328,IND,4433076,Ben Sheppard,Out,Knee
 401909328,PHI,3059318,Joel Embiid,Day-To-Day,Illness
@@ -30,7 +31,7 @@ game_id,team,player_id,player,status,type
 401909330,ATL,2490149,CJ McCollum,Out,Calf
 401909330,ATL,4712863,Mouhamed Gueye,Out,Foot
 401909330,ATL,5105571,Henri Veesaar,Out,Knee
-401909331,MIN,4432816,LaMelo Ball,Day-To-Day,Ankle
+401909331,MIN,4432816,LaMelo Ball,Out,Ankle
 401909331,MIN,3934673,Donte DiVincenzo,Out,Achilles
 401909331,MIN,4432247,Jaylen Clark,Out,Hamstring
 401909331,MIN,4594268,Anthony Edwards,Out,Knee
@@ -60,6 +61,7 @@ game_id,team,player_id,player,status,type
 401909335,NO,4683634,Bennedict Mathurin,Out,Foot
 401909335,NO,4683742,Julian Reese,Day-To-Day,Knee
 401909335,NO,3907497,Dejounte Murray,Out,Ankle
+401909336,POR,6606,Damian Lillard,Out,Calf
 401909336,POR,4706557,Chris Youngblood,Out,Heel
 401909336,POR,4578893,Vit Krejci,Out,Ankle
 401909336,POR,4279888,Ja Morant,Out,Hamstring

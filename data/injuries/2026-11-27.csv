@@ -1,0 +1,69 @@
+game_id,team,player_id,player,status,type
+401909326,NY,4431823,Miles McBride,Day-To-Day,Groin
+401909326,NY,2528426,Jordan Clarkson,Out,Foot
+401909326,NY,3934719,OG Anunoby,Out,Calf
+401909326,NY,6585,Andre Drummond,Day-To-Day,Head
+401909326,MIA,3032977,Giannis Antetokounmpo,Day-To-Day,Groin
+401909326,MIA,3059319,Andrew Wiggins,Day-To-Day,Ankle
+401909327,DET,3157465,Duncan Robinson,Out,Quadriceps
+401909327,DET,4432166,Cade Cunningham,Out,Knee
+401909327,DET,4433621,Jalen Duren,Out,Hamstring
+401909327,DET,5258459,Ebuka Okorie,Out,Oblique
+401909327,DET,2990962,Taurean Prince,Out,Knee
+401909328,IND,3133603,Kelly Oubre Jr.,Day-To-Day,Hand
+401909328,IND,2580365,Larry Nance Jr.,Day-To-Day,Ankle
+401909328,IND,2530530,T.J. McConnell,Day-To-Day,Hamstring
+401909328,IND,4396993,Tyrese Haliburton,Out,Hamstring
+401909328,IND,4433076,Ben Sheppard,Out,Knee
+401909328,PHI,3059318,Joel Embiid,Day-To-Day,Illness
+401909328,PHI,3917376,Jaylen Brown,Out,Hamstring
+401909328,PHI,4871141,Ariel Hukporti,Out,Achilles
+401909329,TOR,4702656,Alijah Martin,Day-To-Day,Knee
+401909329,TOR,6450,Kawhi Leonard,Out,Knee
+401909329,TOR,4432586,Nate Bittle,Out,Foot
+401909329,TOR,4395625,RJ Barrett,Out,Hamstring
+401909329,BKN,3150844,Moritz Wagner,Out,Knee
+401909329,BKN,5279130,Nolan Traore,Out,Hamstring
+401909330,BOS,4351852,Mitchell Robinson,Out,Illness
+401909330,ATL,3146557,Jock Landale,Out,Hip
+401909330,ATL,4873201,Asa Newell,Out,Toe
+401909330,ATL,2490149,CJ McCollum,Out,Calf
+401909330,ATL,4712863,Mouhamed Gueye,Out,Foot
+401909330,ATL,5105571,Henri Veesaar,Out,Knee
+401909331,MIN,4432816,LaMelo Ball,Day-To-Day,Ankle
+401909331,MIN,3934673,Donte DiVincenzo,Out,Achilles
+401909331,MIN,4432247,Jaylen Clark,Out,Hamstring
+401909331,MIN,4594268,Anthony Edwards,Out,Knee
+401909331,MEM,4432810,Isaiah Stewart,Day-To-Day,Hip
+401909331,MEM,4600663,Zach Edey,Day-To-Day,Ankle
+401909331,MEM,4431785,Scotty Pippen Jr.,Out,Back
+401909331,MEM,5041935,Cameron Boozer,Out,Ankle
+401909331,MEM,2991070,Jerami Grant,Out,Calf
+401909332,PHX,4701232,Mark Williams,Out,Shoulder
+401909332,DAL,5106040,Tobi Lawal,Out,Groin
+401909332,DAL,5279129,Sergio de Larrea,Out,Knee
+401909332,DAL,4683688,Dereck Lively II,Out,Foot
+401909332,DAL,5148538,Tarik Biberovic,Out,Heel
+401909333,SA,5037871,Dylan Harper,Out,Hip
+401909333,SA,4066259,De'Aaron Fox,Day-To-Day,Lower Leg
+401909333,SA,6440,Tobias Harris,Out,Calf
+401909333,SA,5101845,Jayden Quaintance,Out,Knee
+401909333,LAL,4066457,Austin Reaves,Out,Heel
+401909334,UTAH,4397077,Jaxson Hayes,Day-To-Day,Knee
+401909334,UTAH,3102530,Jusuf Nurkic,Out,Foot
+401909334,UTAH,4066336,Lauri Markkanen,Out,Hand
+401909334,UTAH,4277961,Jaren Jackson Jr.,Out,Knee
+401909335,LAC,6580,Bradley Beal,Out,Knee
+401909335,LAC,4396818,Jordan Miller,Out,Shoulder
+401909335,NO,4431675,Trendon Watford,Out,Ankle
+401909335,NO,4683634,Bennedict Mathurin,Out,Foot
+401909335,NO,4683742,Julian Reese,Day-To-Day,Knee
+401909335,NO,3907497,Dejounte Murray,Out,Ankle
+401909336,POR,4706557,Chris Youngblood,Out,Heel
+401909336,POR,4578893,Vit Krejci,Out,Ankle
+401909336,POR,4279888,Ja Morant,Out,Hamstring
+401909336,POR,4914336,Shaedon Sharpe,Out,Knee
+401909336,GS,3975,Stephen Curry,Out,Abdomen
+401909336,GS,3102531,Kristaps Porzingis,Out,Illness
+401909336,GS,4432171,Moses Moody,Out,Knee
+401909336,GS,6430,Jimmy Butler III,Out,Knee

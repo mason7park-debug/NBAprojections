@@ -41,6 +41,7 @@ game_id,team,player_id,player,status,type
 401909331,MEM,5041935,Cameron Boozer,Out,Ankle
 401909331,MEM,2991070,Jerami Grant,Out,Calf
 401909332,PHX,4701232,Mark Williams,Out,Shoulder
+401909332,DAL,6442,Kyrie Irving,Day-To-Day,Knee
 401909332,DAL,5106040,Tobi Lawal,Out,Groin
 401909332,DAL,5279129,Sergio de Larrea,Out,Knee
 401909332,DAL,4683688,Dereck Lively II,Out,Foot
@@ -49,7 +50,6 @@ game_id,team,player_id,player,status,type
 401909333,SA,4066259,De'Aaron Fox,Day-To-Day,Lower Leg
 401909333,SA,6440,Tobias Harris,Out,Calf
 401909333,SA,5101845,Jayden Quaintance,Out,Knee
-401909333,LAL,4066457,Austin Reaves,Out,Heel
 401909334,UTAH,4277919,Mo Bamba,Day-To-Day,Illness
 401909334,UTAH,4397077,Jaxson Hayes,Day-To-Day,Knee
 401909334,UTAH,3102530,Jusuf Nurkic,Out,Foot

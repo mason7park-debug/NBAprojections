@@ -4,7 +4,6 @@ game_id,team,player_id,player,status,type
 401909326,NY,2528426,Jordan Clarkson,Out,Foot
 401909326,NY,3934719,OG Anunoby,Out,Calf
 401909326,MIA,3032977,Giannis Antetokounmpo,Day-To-Day,Groin
-401909326,MIA,3059319,Andrew Wiggins,Day-To-Day,Ankle
 401909327,DET,3157465,Duncan Robinson,Out,Quadriceps
 401909327,DET,4432166,Cade Cunningham,Out,Knee
 401909327,DET,4433621,Jalen Duren,Out,Hamstring
@@ -49,6 +48,7 @@ game_id,team,player_id,player,status,type
 401909333,SA,6440,Tobias Harris,Out,Calf
 401909333,SA,5101845,Jayden Quaintance,Out,Knee
 401909333,LAL,4066457,Austin Reaves,Out,Heel
+401909334,UTAH,4277919,Mo Bamba,Day-To-Day,Illness
 401909334,UTAH,4397077,Jaxson Hayes,Day-To-Day,Knee
 401909334,UTAH,3102530,Jusuf Nurkic,Out,Foot
 401909334,UTAH,4066336,Lauri Markkanen,Out,Hand

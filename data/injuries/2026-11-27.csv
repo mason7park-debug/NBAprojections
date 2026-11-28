@@ -15,6 +15,7 @@ game_id,team,player_id,player,status,type
 401909328,PHI,3912848,Dean Wade,Out,Hamstring
 401909328,PHI,3917376,Jaylen Brown,Out,Hamstring
 401909328,PHI,4871141,Ariel Hukporti,Out,Achilles
+401909329,TOR,4684272,Ja'Kobe Walter,Out,Quadriceps
 401909329,TOR,6450,Kawhi Leonard,Out,Knee
 401909329,TOR,4432586,Nate Bittle,Out,Foot
 401909329,TOR,4395625,RJ Barrett,Out,Hamstring
@@ -41,13 +42,9 @@ game_id,team,player_id,player,status,type
 401909332,DAL,5279129,Sergio de Larrea,Out,Knee
 401909332,DAL,4683688,Dereck Lively II,Out,Foot
 401909332,DAL,5148538,Tarik Biberovic,Out,Heel
-401909333,SA,5037871,Dylan Harper,Out,Hip
-401909333,SA,4066259,De'Aaron Fox,Day-To-Day,Lower Leg
 401909333,SA,6440,Tobias Harris,Out,Calf
 401909333,SA,5101845,Jayden Quaintance,Out,Knee
-401909334,UTAH,4277919,Mo Bamba,Day-To-Day,Illness
-401909334,UTAH,4397077,Jaxson Hayes,Day-To-Day,Knee
-401909334,UTAH,3102530,Jusuf Nurkic,Out,Foot
+401909334,UTAH,4277919,Mo Bamba,Out,Illness
 401909334,UTAH,4066336,Lauri Markkanen,Out,Hand
 401909334,UTAH,4277961,Jaren Jackson Jr.,Out,Knee
 401909335,LAC,6580,Bradley Beal,Out,Knee

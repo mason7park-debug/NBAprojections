@@ -14,7 +14,6 @@ game_id,team,player_id,player,status,type
 401909328,IND,4433076,Ben Sheppard,Out,Knee
 401909328,PHI,3912848,Dean Wade,Out,Hamstring
 401909328,PHI,3917376,Jaylen Brown,Out,Hamstring
-401909328,PHI,3059318,Joel Embiid,Day-To-Day,Illness
 401909328,PHI,4871141,Ariel Hukporti,Out,Achilles
 401909329,TOR,6450,Kawhi Leonard,Out,Knee
 401909329,TOR,4432586,Nate Bittle,Out,Foot
@@ -31,7 +30,7 @@ game_id,team,player_id,player,status,type
 401909331,MIN,3934673,Donte DiVincenzo,Out,Achilles
 401909331,MIN,4432247,Jaylen Clark,Out,Hamstring
 401909331,MIN,4594268,Anthony Edwards,Out,Knee
-401909331,MEM,4432810,Isaiah Stewart,Day-To-Day,Hip
+401909331,MEM,4432810,Isaiah Stewart,Out,Hip
 401909331,MEM,4600663,Zach Edey,Day-To-Day,Ankle
 401909331,MEM,4431785,Scotty Pippen Jr.,Out,Back
 401909331,MEM,5041935,Cameron Boozer,Out,Ankle

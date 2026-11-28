@@ -1,0 +1,215 @@
+game_id,player_id,player,stat,line,source
+401910046,4066320,Desmond Bane,3PM,3.5,DraftKings
+401910046,4066320,Desmond Bane,AST,3.5,DraftKings
+401910046,4066320,Desmond Bane,PTS,19.5,DraftKings
+401910046,4066320,Desmond Bane,REB,3.5,DraftKings
+401910046,4277847,Wendell Carter Jr.,AST,1.5,DraftKings
+401910046,4277847,Wendell Carter Jr.,PTS,10.5,DraftKings
+401910046,4277847,Wendell Carter Jr.,REB,8.5,DraftKings
+401910046,4277905,Trae Young,3PM,1.5,DraftKings
+401910046,4277905,Trae Young,AST,8.5,DraftKings
+401910046,4277905,Trae Young,PTS,15.5,DraftKings
+401910046,4277905,Trae Young,REB,2.5,DraftKings
+401910046,4432165,,3PM,1.5,DraftKings
+401910046,4432165,,AST,4.5,DraftKings
+401910046,4432165,,PTS,11.5,DraftKings
+401910046,4432165,,REB,4.5,DraftKings
+401910046,4566434,Franz Wagner,3PM,1.5,DraftKings
+401910046,4566434,Franz Wagner,AST,7.5,DraftKings
+401910046,4566434,Franz Wagner,PTS,24.5,DraftKings
+401910046,4566434,Franz Wagner,REB,6.5,DraftKings
+401910046,4702382,Tristan da Silva,3PM,2.5,DraftKings
+401910046,4702382,Tristan da Silva,PTS,11.5,DraftKings
+401910046,4702382,Tristan da Silva,REB,3.5,DraftKings
+401910046,4712849,Anthony Black,3PM,1.5,DraftKings
+401910046,4712849,Anthony Black,AST,4.5,DraftKings
+401910046,4712849,Anthony Black,PTS,14.5,DraftKings
+401910046,4712849,Anthony Black,REB,4.5,DraftKings
+401910046,5104155,Bilal Coulibaly,PTS,7.5,DraftKings
+401910046,5104155,Bilal Coulibaly,REB,3.5,DraftKings
+401910046,5142718,AJ Dybantsa,3PM,0.5,DraftKings
+401910046,5142718,AJ Dybantsa,AST,3.5,DraftKings
+401910046,5142718,AJ Dybantsa,PTS,17.5,DraftKings
+401910046,5142718,AJ Dybantsa,REB,7.5,DraftKings
+401910046,5160992,Alex Sarr,3PM,1.5,DraftKings
+401910046,5160992,Alex Sarr,AST,1.5,DraftKings
+401910046,5160992,Alex Sarr,PTS,9.5,DraftKings
+401910046,5160992,Alex Sarr,REB,6.5,DraftKings
+401910046,5174563,Kyshawn George,3PM,2.5,DraftKings
+401910046,5174563,Kyshawn George,AST,4.5,DraftKings
+401910046,5174563,Kyshawn George,PTS,15.5,DraftKings
+401910046,5174563,Kyshawn George,REB,4.5,DraftKings
+401910046,6583,Anthony Davis,3PM,0.5,DraftKings
+401910046,6583,Anthony Davis,AST,1.5,DraftKings
+401910046,6583,Anthony Davis,PTS,22.5,DraftKings
+401910046,6583,Anthony Davis,REB,10.5,DraftKings
+401910047,3064514,Julius Randle,3PM,1.5,DraftKings
+401910047,3064514,Julius Randle,AST,4.5,DraftKings
+401910047,3064514,Julius Randle,PTS,19.5,DraftKings
+401910047,3064514,Julius Randle,REB,6.5,DraftKings
+401910047,3135045,Grayson Allen,3PM,2.5,DraftKings
+401910047,3135045,Grayson Allen,PTS,12.5,DraftKings
+401910047,3135045,Grayson Allen,REB,2.5,DraftKings
+401910047,4278104,Michael Porter Jr.,3PM,2.5,DraftKings
+401910047,4278104,Michael Porter Jr.,AST,1.5,DraftKings
+401910047,4278104,Michael Porter Jr.,PTS,18.5,DraftKings
+401910047,4278104,Michael Porter Jr.,REB,6.5,DraftKings
+401910047,4395651,,3PM,2.5,DraftKings
+401910047,4395651,,AST,4.5,DraftKings
+401910047,4395651,,PTS,17.5,DraftKings
+401910047,4395651,,REB,3.5,DraftKings
+401910047,4396971,Naz Reid,3PM,2.5,DraftKings
+401910047,4396971,Naz Reid,AST,2.5,DraftKings
+401910047,4396971,Naz Reid,PTS,19.5,DraftKings
+401910047,4396971,Naz Reid,REB,8.5,DraftKings
+401910047,4432194,Day'Ron Sharpe,AST,3.5,DraftKings
+401910047,4432194,Day'Ron Sharpe,PTS,8.5,DraftKings
+401910047,4432194,Day'Ron Sharpe,REB,7.5,DraftKings
+401910047,4433249,Moussa Diabate,AST,1.5,DraftKings
+401910047,4433249,Moussa Diabate,PTS,10.5,DraftKings
+401910047,4433249,Moussa Diabate,REB,10.5,DraftKings
+401910047,4433287,Brandon Miller,3PM,3.5,DraftKings
+401910047,4433287,Brandon Miller,AST,3.5,DraftKings
+401910047,4433287,Brandon Miller,PTS,21.5,DraftKings
+401910047,4433287,Brandon Miller,REB,4.5,DraftKings
+401910047,4602025,Sion James,AST,3.5,DraftKings
+401910047,4602025,Sion James,PTS,5.5,DraftKings
+401910047,4602025,Sion James,REB,4.5,DraftKings
+401910047,5107173,Danny Wolf,3PM,1.5,DraftKings
+401910047,5107173,Danny Wolf,PTS,7.5,DraftKings
+401910047,5107173,Danny Wolf,REB,4.5,DraftKings
+401910048,2990984,Buddy Hield,3PM,2.5,DraftKings
+401910048,2990984,Buddy Hield,AST,2.5,DraftKings
+401910048,2990984,Buddy Hield,PTS,14.5,DraftKings
+401910048,2990984,Buddy Hield,REB,3.5,DraftKings
+401910048,3133603,Kelly Oubre Jr.,3PM,1.5,DraftKings
+401910048,3133603,Kelly Oubre Jr.,PTS,13.5,DraftKings
+401910048,3133603,Kelly Oubre Jr.,REB,4.5,DraftKings
+401910048,3149673,Pascal Siakam,3PM,1.5,DraftKings
+401910048,3149673,Pascal Siakam,AST,3.5,DraftKings
+401910048,3149673,Pascal Siakam,PTS,22.5,DraftKings
+401910048,3149673,Pascal Siakam,REB,6.5,DraftKings
+401910048,4017837,Ivica Zubac,PTS,13.5,DraftKings
+401910048,4017837,Ivica Zubac,REB,10.5,DraftKings
+401910048,4278067,,AST,1.5,DraftKings
+401910048,4278067,,PTS,9.5,DraftKings
+401910048,4278067,,REB,5.5,DraftKings
+401910048,4395626,Tre Jones,AST,4.5,DraftKings
+401910048,4395626,Tre Jones,PTS,12.5,DraftKings
+401910048,4395626,Tre Jones,REB,2.5,DraftKings
+401910048,4395712,Andrew Nembhard,3PM,1.5,DraftKings
+401910048,4395712,Andrew Nembhard,AST,7.5,DraftKings
+401910048,4395712,Andrew Nembhard,PTS,14.5,DraftKings
+401910048,4395712,Andrew Nembhard,REB,2.5,DraftKings
+401910048,4396909,Aaron Nesmith,3PM,1.5,DraftKings
+401910048,4396909,Aaron Nesmith,PTS,13.5,DraftKings
+401910048,4397189,Jalen Smith,3PM,1.5,DraftKings
+401910048,4397189,Jalen Smith,AST,1.5,DraftKings
+401910048,4397189,Jalen Smith,PTS,15.5,DraftKings
+401910048,4397189,Jalen Smith,REB,7.5,DraftKings
+401910048,4432822,Isaac Okoro,3PM,1.5,DraftKings
+401910048,4432822,Isaac Okoro,AST,1.5,DraftKings
+401910048,4432822,Isaac Okoro,PTS,10.5,DraftKings
+401910048,4432822,Isaac Okoro,REB,2.5,DraftKings
+401910048,4711294,Matas Buzelis,3PM,2.5,DraftKings
+401910048,4711294,Matas Buzelis,AST,1.5,DraftKings
+401910048,4711294,Matas Buzelis,PTS,18.5,DraftKings
+401910048,4711294,Matas Buzelis,REB,5.5,DraftKings
+401910048,4871145,Josh Giddey,3PM,1.5,DraftKings
+401910048,4871145,Josh Giddey,AST,8.5,DraftKings
+401910048,4871145,Josh Giddey,PTS,12.5,DraftKings
+401910048,4871145,Josh Giddey,REB,7.5,DraftKings
+401910049,2991350,Alex Caruso,3PM,1.5,DraftKings
+401910049,2991350,Alex Caruso,AST,2.5,DraftKings
+401910049,2991350,Alex Caruso,PTS,8.5,DraftKings
+401910049,2991350,Alex Caruso,REB,3.5,DraftKings
+401910049,3133626,Kenrich Williams,3PM,1.5,DraftKings
+401910049,3133626,Kenrich Williams,AST,1.5,DraftKings
+401910049,3133626,Kenrich Williams,PTS,9.5,DraftKings
+401910049,3133626,Kenrich Williams,REB,5.5,DraftKings
+401910049,3133628,Myles Turner,3PM,1.5,DraftKings
+401910049,3133628,Myles Turner,AST,1.5,DraftKings
+401910049,3133628,Myles Turner,PTS,8.5,DraftKings
+401910049,3133628,Myles Turner,REB,5.5,DraftKings
+401910049,3134907,Kyle Kuzma,3PM,1.5,DraftKings
+401910049,3134907,Kyle Kuzma,AST,2.5,DraftKings
+401910049,3134907,Kyle Kuzma,PTS,12.5,DraftKings
+401910049,3134907,Kyle Kuzma,REB,4.5,DraftKings
+401910049,4222252,Isaiah Hartenstein,AST,4.5,DraftKings
+401910049,4222252,Isaiah Hartenstein,PTS,9.5,DraftKings
+401910049,4222252,Isaiah Hartenstein,REB,11.5,DraftKings
+401910049,4278073,Shai Gilgeous-Alexander,3PM,2.5,DraftKings
+401910049,4278073,Shai Gilgeous-Alexander,AST,5.5,DraftKings
+401910049,4278073,Shai Gilgeous-Alexander,PTS,32.5,DraftKings
+401910049,4278073,Shai Gilgeous-Alexander,REB,4.5,DraftKings
+401910049,4395725,Tyler Herro,3PM,2.5,DraftKings
+401910049,4395725,Tyler Herro,AST,4.5,DraftKings
+401910049,4395725,Tyler Herro,PTS,21.5,DraftKings
+401910049,4395725,Tyler Herro,REB,3.5,DraftKings
+401910049,4432848,Jaime Jaquez Jr.,3PM,1.5,DraftKings
+401910049,4432848,Jaime Jaquez Jr.,AST,3.5,DraftKings
+401910049,4432848,Jaime Jaquez Jr.,PTS,13.5,DraftKings
+401910049,4432848,Jaime Jaquez Jr.,REB,4.5,DraftKings
+401910049,4591725,Ryan Rollins,3PM,1.5,DraftKings
+401910049,4591725,Ryan Rollins,AST,3.5,DraftKings
+401910049,4591725,Ryan Rollins,PTS,10.5,DraftKings
+401910049,4591725,Ryan Rollins,REB,3.5,DraftKings
+401910049,4683778,Jared McCain,3PM,2.5,DraftKings
+401910049,4683778,Jared McCain,AST,1.5,DraftKings
+401910049,4683778,Jared McCain,PTS,14.5,DraftKings
+401910049,4683778,Jared McCain,REB,2.5,DraftKings
+401910049,4900671,Ajay Mitchell,3PM,1.5,DraftKings
+401910049,4900671,Ajay Mitchell,AST,3.5,DraftKings
+401910049,4900671,Ajay Mitchell,PTS,18.5,DraftKings
+401910049,4900671,Ajay Mitchell,REB,3.5,DraftKings
+401910049,5241364,Bennett Stirtz,3PM,1.5,DraftKings
+401910049,5241364,Bennett Stirtz,AST,2.5,DraftKings
+401910049,5241364,Bennett Stirtz,PTS,9.5,DraftKings
+401910049,5241364,Bennett Stirtz,REB,2.5,DraftKings
+401910050,2581018,Kentavious Caldwell-Pope,3PM,1.5,DraftKings
+401910050,2581018,Kentavious Caldwell-Pope,AST,2.5,DraftKings
+401910050,2581018,Kentavious Caldwell-Pope,PTS,7.5,DraftKings
+401910050,2581018,Kentavious Caldwell-Pope,REB,3.5,DraftKings
+401910050,2990992,Marcus Smart,3PM,1.5,DraftKings
+401910050,2990992,Marcus Smart,AST,1.5,DraftKings
+401910050,2990992,Marcus Smart,PTS,5.5,DraftKings
+401910050,2990992,Marcus Smart,REB,2.5,DraftKings
+401910050,2991230,Fred VanVleet,3PM,2.5,DraftKings
+401910050,2991230,Fred VanVleet,AST,5.5,DraftKings
+401910050,2991230,Fred VanVleet,PTS,12.5,DraftKings
+401910050,2991230,Fred VanVleet,REB,2.5,DraftKings
+401910050,3202,Kevin Durant,3PM,1.5,DraftKings
+401910050,3202,Kevin Durant,AST,3.5,DraftKings
+401910050,3202,Kevin Durant,PTS,21.5,DraftKings
+401910050,3202,Kevin Durant,REB,5.5,DraftKings
+401910050,4351851,Anfernee Simons,3PM,2.5,DraftKings
+401910050,4351851,Anfernee Simons,AST,1.5,DraftKings
+401910050,4351851,Anfernee Simons,PTS,14.5,DraftKings
+401910050,4351851,Anfernee Simons,REB,2.5,DraftKings
+401910050,4431678,Tyrese Maxey,3PM,2.5,DraftKings
+401910050,4431678,Tyrese Maxey,AST,6.5,DraftKings
+401910050,4431678,Tyrese Maxey,PTS,26.5,DraftKings
+401910050,4431678,Tyrese Maxey,REB,3.5,DraftKings
+401910050,4432446,Jabari Walker,PTS,9.5,DraftKings
+401910050,4432446,Jabari Walker,REB,6.5,DraftKings
+401910050,4432639,Jabari Smith Jr.,3PM,1.5,DraftKings
+401910050,4432639,Jabari Smith Jr.,AST,1.5,DraftKings
+401910050,4432639,Jabari Smith Jr.,PTS,13.5,DraftKings
+401910050,4432639,Jabari Smith Jr.,REB,6.5,DraftKings
+401910050,4433192,Tari Eason,3PM,0.5,DraftKings
+401910050,4433192,Tari Eason,PTS,9.5,DraftKings
+401910050,4433192,Tari Eason,REB,5.5,DraftKings
+401910050,4684740,Amen Thompson,3PM,0.5,DraftKings
+401910050,4684740,Amen Thompson,AST,3.5,DraftKings
+401910050,4684740,Amen Thompson,PTS,15.5,DraftKings
+401910050,4684740,Amen Thompson,REB,6.5,DraftKings
+401910050,4711272,Reed Sheppard,3PM,1.5,DraftKings
+401910050,4711272,Reed Sheppard,PTS,7.5,DraftKings
+401910050,4871144,Alperen Sengun,3PM,0.5,DraftKings
+401910050,4871144,Alperen Sengun,AST,6.5,DraftKings
+401910050,4871144,Alperen Sengun,PTS,20.5,DraftKings
+401910050,4871144,Alperen Sengun,REB,9.5,DraftKings
+401910050,5124612,VJ Edgecombe,3PM,1.5,DraftKings
+401910050,5124612,VJ Edgecombe,AST,5.5,DraftKings
+401910050,5124612,VJ Edgecombe,PTS,16.5,DraftKings
+401910050,5124612,VJ Edgecombe,REB,6.5,DraftKings

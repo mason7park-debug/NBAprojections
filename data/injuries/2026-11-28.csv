@@ -1,0 +1,35 @@
+game_id,team,player_id,player,status,type
+401910046,WSH,4997537,Tristan Vukcevic,Out,Hip
+401910046,WSH,4432187,Reece Beekman,Out,Shoulder
+401910046,WSH,4432907,Justin Champagnie,Out,Foot
+401910046,WSH,4606840,Jamir Watkins,Out,Knee
+401910046,ORL,4397204,Colin Castleton,Out,Calf
+401910046,ORL,4397140,Kevin Porter Jr.,Out,Not Injury Related
+401910046,ORL,4712849,Anthony Black,Day-To-Day,Back
+401910046,ORL,4065654,Jonathan Isaac,Out,Knee
+401910046,ORL,5107251,Izaiyah Nelson,Out,Ankle
+401910047,CHA,3135045,Grayson Allen,Out,Concussion
+401910047,CHA,4576060,Ryan Kalkbrenner,Day-To-Day,Hip
+401910047,CHA,3032979,Dennis Schroder,Out,Hamstring
+401910047,CHA,5061575,Kon Knueppel,Out,Hamstring
+401910047,BKN,3150844,Moritz Wagner,Out,Knee
+401910047,BKN,5279130,Nolan Traore,Out,Hamstring
+401910048,CHI,2595516,Norman Powell,Out,Hamstring
+401910048,CHI,5242496,Noa Essengue,Day-To-Day,Thumb
+401910048,CHI,4397189,Jalen Smith,Day-To-Day,Illness
+401910048,CHI,5095151,Caleb Wilson,Out,Hand
+401910048,IND,2530530,T.J. McConnell,Out,Hamstring
+401910048,IND,4396993,Tyrese Haliburton,Out,Hamstring
+401910048,IND,4433076,Ben Sheppard,Out,Knee
+401910049,MIL,5214640,Kasparas Jakucionis,Out,Ankle
+401910049,OKC,5159925,Nikola Topic,Out,Hip
+401910049,OKC,5174983,Aday Mara,Out,Lower Leg
+401910049,OKC,4432823,Jaylin Williams,Out,Back
+401910049,OKC,4593803,Jalen Williams,Out,Leg
+401910049,OKC,5061603,Thomas Sorber,Out,Knee
+401910050,HOU,2991235,Steven Adams,Day-To-Day,Knee
+401910050,PHI,3059318,Joel Embiid,Out,Foot
+401910050,PHI,1966,LeBron James,Out,Back
+401910050,PHI,3912848,Dean Wade,Out,Hamstring
+401910050,PHI,3917376,Jaylen Brown,Out,Hamstring
+401910050,PHI,4871141,Ariel Hukporti,Out,Achilles

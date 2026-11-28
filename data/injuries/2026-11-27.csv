@@ -47,6 +47,7 @@ game_id,team,player_id,player,status,type
 401909334,UTAH,4277919,Mo Bamba,Out,Illness
 401909334,UTAH,4066336,Lauri Markkanen,Out,Hand
 401909334,UTAH,4277961,Jaren Jackson Jr.,Out,Knee
+401909335,LAC,5108024,Yanic Konan Niederhauser,Out,Toe
 401909335,LAC,6580,Bradley Beal,Out,Knee
 401909335,LAC,4396818,Jordan Miller,Out,Shoulder
 401909335,NO,4683634,Bennedict Mathurin,Out,Foot
@@ -57,6 +58,7 @@ game_id,team,player_id,player,status,type
 401909336,POR,4578893,Vit Krejci,Out,Ankle
 401909336,POR,4279888,Ja Morant,Out,Hamstring
 401909336,POR,4914336,Shaedon Sharpe,Out,Knee
+401909336,GS,4997536,Gui Santos,Out,Knee
 401909336,GS,3975,Stephen Curry,Out,Abdomen
 401909336,GS,3102531,Kristaps Porzingis,Out,Illness
 401909336,GS,4432171,Moses Moody,Out,Knee
